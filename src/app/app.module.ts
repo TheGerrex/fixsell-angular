@@ -8,10 +8,14 @@ import { AppComponent } from './app.component';
 import {ButtonModule} from 'primeng/button';
 import {MenubarModule} from 'primeng/menubar';
 import {SpeedDialModule} from 'primeng/speeddial';
+import { HomeComponent } from './home/home/home.component';
+import { NosotrosComponent } from './nosotros/nosotros/nosotros.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,
