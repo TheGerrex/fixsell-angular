@@ -10,20 +10,19 @@ import {MenubarModule} from 'primeng/menubar';
 import {SpeedDialModule} from 'primeng/speeddial';
 import { HomeComponent } from './home/home/home.component';
 import { NosotrosComponent } from './nosotros/nosotros/nosotros.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NosotrosComponent
+    NosotrosComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ButtonModule,
-    MenubarModule,
-    SpeedDialModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
