@@ -10,3 +10,42 @@
 img {
     width: 75%;
 }
+
+.hero {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(223, 233, 243, 1) 100%);
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    .hero-message {
+        h1 {
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 1;
+            color: #434343;
+        }
+        p {
+            font-size: 20px;
+            font-weight: medium;
+            line-height: 1.3;
+            color: #434343;
+        }
+    }
+}
+
+.mainColor {
+    background-color: #781F41;
+    border: 1px solid #781F41;
+}
+
+button:enabled:hover {
+    background: #48001B;
+    color: #fff;
+    border-color: #48001B;
+}
+
+button:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #AA4E6C, 0 1px 2px 0 black
+}
