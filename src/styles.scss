@@ -1,5 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
-
+// General
+$font-family: 'Inter',
+sans-serif;
+$text: #495057;
+$secondary-text: #6C757D;
+$border-radius: 6px;
+$disabled-opacity: 0.6;
+// Pallete
+$primary-color: #781F41;
+$primary-color-text:#ffffff;
+$primary-color-darker:#5C0022;
+$highlight-background: #EFDCE2;
+$highlight-text: #5C0022;
+$focus-outline: #E7CBD4;
+$error-color: #E24C4C;
+//Surfaces
+$surface-header: #F8F9FA;
+$surface-content: #FFF;
+$surface-border: #DEE2E6;
+// Forms
+$form-background: #FFF;
+$form-border: #CED4DA;
+$form-hover-border: $primary-color;
+$form-focus-border: $primary-color;
+$form-filled-background: #E9ECEF;
+// Buttons
+$button-secondary-color: #64748B;
+$button-secondary-text-color: #FFF;
+$button-success-color: #22C55E;
+$button-success-text-color: #FFF;
+$button-info-color: #3B82F6;
+$button-info-text-color: #FFF;
+$button-warning-color: #F59E0B;
+$button-warning-text-color: #FFF;
+$button-help-color: #A855F7;
+$button-help-text-color: #FFF;
+$button-danger-color: #F01919;
+$button-danger-text-color: #FFF;
+//Messages
+$message-info-color: #E9E9FF;
+$message-success-color: #E4F8F0;
+$message-warning-color: #FFF2E2;
+$message-error-color: #FFE7E6;
 body {
     width: 100%;
     height: 100%;
@@ -14,5 +55,5 @@ h5,
 h6,
 p,
 a {
-    font-family: 'Inter', sans-serif;
+    font-family: $font-family;
 }
