@@ -45,6 +45,7 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
+    overflow-x: hidden;
 }
 
 h1,
@@ -54,6 +55,12 @@ h4,
 h5,
 h6,
 p,
+ul,
+li,
 a {
     font-family: $font-family;
+}
+
+li {
+    font-size: 1em;
 }

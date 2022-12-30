@@ -15,6 +15,7 @@ export class NavbarComponent {
       this.items = [
         {
           label: 'Renta',
+          icon: 'pi pi-print',
           items: [
               {label: 'Oficina'},
               {label: 'Producción'},
@@ -24,6 +25,7 @@ export class NavbarComponent {
         },
         {
           label: 'Venta',
+          icon: 'pi pi-dollar',
           items: [
               {label: 'Oficina'},
               {label: 'Producción'},
@@ -35,6 +37,7 @@ export class NavbarComponent {
         },
         {
           label: 'Servicios',
+          icon: 'pi pi-table',
           items: [
               {label: 'Servicio Técnico'},
               {label: 'Digitalización'},
@@ -43,13 +46,20 @@ export class NavbarComponent {
         },
         {
           label: 'Consumibles',
+          icon: 'pi pi-shopping-bag',
           items: [
               {label: 'Toner'},
               {label: 'Refacciones'},
           ]
         },
-        {label: 'Promociones'},
-        {label: 'Nosotros'}
+        {
+          label: 'Promociones',
+          icon: 'pi pi-bolt',
+        },
+        {
+          label: 'Nosotros',
+          icon: 'pi pi-users',
+        }
       ];
   }
 }
