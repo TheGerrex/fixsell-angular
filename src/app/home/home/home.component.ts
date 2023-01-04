@@ -143,8 +143,13 @@ export class HomeComponent {
           numScroll: 1
       },
       {
-          breakpoint: '390px',
+          breakpoint: '375px',
           numVisible: 2,
+          numScroll: 1
+      },
+      {
+          breakpoint: '265px',
+          numVisible: 1,
           numScroll: 1
       }
     ];

@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-12 col-md-6 mt-5">
                 <div class="col-12">
-                    <h1 class="hero-title">Llevando tu productividad al máximo</h1>
+                    <h1 class="hero-title">Llevando tu <span style="color: #1D4ED8; font-weight: 600;">productividad</span> al máximo</h1>
                     <p class="hero-message mt-2">Expertos en servicios de impresión y gestión documental en el ámbito profesional y corporativo.</p>
                 </div>
                 <div class="col-12 d-none d-sm-block mt-3">
@@ -25,9 +25,9 @@
 </section>
 
 
-<section class="container py-5">
+<section class="container pt-5 pb-3" #categorias>
     <div class="row pb-3 justify-content-center">
-        <h1 class="section-title text-center">Categorías de Productos</h1>
+        <h1 class="section-title">Categorías</h1>
     </div>
     <div class="row">
         <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1"  [circular]="true" [responsiveOptions]="responsiveOptions">
@@ -46,7 +46,7 @@
     </div>
 </section>
 
-<section class="light-background">
+<section class="light-50" #soluciones>
     <div class="container py-5">
         <div class="row">
             <div class="col-12">
@@ -66,8 +66,8 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mt-3">
-                            <div class="tab-container">
-                                <div class="tab-content">
+                            <div class="row tab-container">
+                                <div class="col-12 tab-content">
                                     <p>Utiliza equipos de impresión con la tecnología más avanzada para mejorar los tiempos, calidad y presupuestos que facilíten los flujos de trabajo para tu negocio en tareas de impresión.</p>
                                     <ul>
                                         <li>Renta</li>
@@ -75,7 +75,7 @@
                                         <li>Artes Graficas</li>
                                     </ul>
                                 </div>
-                                <div class="tab-action">
+                                <div class="col-12 col-md-6 align-self-end">
                                     <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
                                 </div>
                             </div>
@@ -91,8 +91,8 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mt-3">
-                            <div class="tab-container">
-                                <div class="tab-content">
+                            <div class="row tab-container">
+                                <div class="col-12 tab-content">
                                     <ul>
                                         <li>Reparación de equipos de impresión.</li>
                                         <li>Mantenimiento preventivo para extender la duración y el buen funcionamiento de su equipo de impresión.</li>
@@ -100,7 +100,7 @@
                                         <li>Pólizas de servicio técnico todo incluido.</li>
                                     </ul>
                                 </div>
-                                <div class="tab-action">
+                                <div class="col-12 col-md-6 align-self-end">
                                     <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
                                 </div>
                             </div>
@@ -115,12 +115,12 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mt-3">
-                            <div class="tab-container">
-                                <div class="tab-content">
+                            <div class="row tab-container">
+                                <div class="col-12 tab-content">
                                     <p>Digitaliza y asegura tu información para compartirla exitosamente. Aumenta tu productividad, almacena tu archivo histórico, asigna jerarquías, autoriza vía remota,  o encuentra documentos con pocos clics desde cualquier lugar, en cualquier dispositivo y en cualquier momento.</p>
                                 </div>
                                
-                                <div class="tab-action">
+                                <div class="col-12 col-md-6 align-self-end">
                                     <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
                                 </div>
                             </div>
@@ -135,15 +135,15 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mt-3">
-                            <div class="tab-container">
-                                <div class="tab-content">
+                            <div class="row tab-container">
+                                <div class="col-12 tab-content">
                                     <p>Determinantes para el proceso de impresión ya que sin los mismos las impresoras no funcionaran. </p>
                                     <ul>
                                         <li>Tóner</li>
                                         <li>Refacciones</li>
                                     </ul>
                                 </div>
-                                <div class="tab-action">
+                                <div class="col-12 col-md-6 align-self-end">
                                     <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
                                 </div>
                             </div>
@@ -155,16 +155,11 @@
     </div>
 </section>
 
-<section class="dark-blue-background">
+<section class="dark-blue-secondary" #clientes>
     <div class="container py-5">
         <div class="row">
             <div class="col-12">
-                <h3 class="text-white text-center">Ayudamos a empresas innovadoras a escalar más rápido.</h3>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                <p-carousel [value]="clients" [numVisible]="1" [numScroll]="1" [autoplayInterval]="5000" [showNavigators]="false" [showIndicators]="false" [circular]="true" [responsiveOptions]="responsiveClientOptions" #clientCarousel>
+                <p-carousel [value]="clients" [numVisible]="1" [numScroll]="1" [autoplayInterval]="3500" [showNavigators]="false" [showIndicators]="false" [circular]="true" [responsiveOptions]="responsiveClientOptions" #clientCarousel>
                     <ng-template let-client pTemplate="item">
                         <div class="svg-container">
                             <img [src]="client.svg" alt="client.name">
@@ -173,10 +168,17 @@
                 </p-carousel>
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="subheader">
+                    <h4>Ayudamos a empresas innovadoras a escalar más rápido.</h4>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section>
+<section #beneficios>
     <div class="container py-5">
         <div class="row">
             <div class="col-12">
@@ -184,99 +186,126 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Soluciones Personalizadas</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-briefcase" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Contamos con gran variedad de equipos multifuncionales que se adapten a sus necesidades. Ayudándolo a eficientizar sus procesos de impresión y flujos de trabajo a un excelente costo.
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Soluciones Personalizadas</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-briefcase" style="color: #3C5A94; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Contamos con gran variedad de equipos multifuncionales que se adapten a sus necesidades. Ayudándolo a eficientizar sus procesos de impresión y flujos de trabajo a un excelente costo.
+                    </p-panel>
+                </div>
             </div>
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Monitoreo de equipos 24/7</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-desktop" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Con ayuda de software nos mantenemos al tanto sobre los estados de sus equipos ya sea nivel de tóner y vida útil de refacciones para poder brindarle un mejor servicio. 
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Monitoreo de equipos 24/7</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-desktop" style="color: #4f46e5; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Con ayuda de software nos mantenemos al tanto sobre los estados de sus equipos ya sea nivel de tóner y vida útil de refacciones para poder brindarle un mejor servicio. 
+                    </p-panel>
+                </div>
             </div>
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Servicio al cliente</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-user" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Cubrimos las necesidades del cliente y tenemos la infraestructura para darle un servicio de calidad con mejores tiempos de respuesta.  
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Servicio al cliente</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-user" style="color: #0d9488; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Cubrimos las necesidades del cliente y tenemos la infraestructura para darle un servicio de calidad con mejores tiempos de respuesta.  
+                    </p-panel>
+                </div>
             </div>
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Servicio Técnico</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-cog" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Técnicos certificados por las principales marcas que atienden su equipo para que extender la duración y el buen funcionamiento logrando óptimas condiciones.
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Servicio Técnico</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-cog" style="color: #475569; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Técnicos certificados por las principales marcas que atienden su equipo para que extender la duración y el buen funcionamiento logrando óptimas condiciones.
+                    </p-panel>
+                </div>
             </div>
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Consumibles Garantizados</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-shopping-bag" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Suministro de consumibles y refacciones para garantizar siempre un funcionamiento de sus equipos.  
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Consumibles Garantizados</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-shopping-bag" style="color: #ea580c; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Suministro de consumibles y refacciones para garantizar siempre un funcionamiento de sus equipos.  
+                    </p-panel>
+                </div>
             </div>
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Contratos Flexibles</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-money-bill" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Nos adaptamos a los consumos de cada cliente haciendo un contrato a la medida de sus necesidades.  
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Contratos Flexibles</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-money-bill" style="color: #16a34a; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Nos adaptamos a los consumos de cada cliente haciendo un contrato a la medida de sus necesidades.  
+                    </p-panel>
+                </div>
             </div>
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Software para tu empresa</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-database" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Socios de negocio de las principales plataformas de gestión documental, flujos de trabajo, y digitalización.   
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Software para tu empresa</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-database" style="color: #0891b2; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Socios de negocio de las principales plataformas de gestión documental, flujos de trabajo, y digitalización.   
+                    </p-panel>
+                </div>
             </div>
-            <div class="col-12 col-md-6 panel">
-                <p-panel>
-                    <ng-template pTemplate="header">
-                        <p class="panel-header">Cobertura nivel nacional</p>
-                        <button pButton class="p-panel-header-icon p-link">
-                            <span class="pi pi-globe" style="color: #1E293B; font-size: 1.2em;"></span>
-                        </button>
-                    </ng-template>
-                    Contamos con servicio en las principales ciudades de toda la república mexicana  
-                </p-panel>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="panel">
+                    <p-panel iconPos="end">
+                        <ng-template pTemplate="header">
+                            <p class="panel-header">Cobertura nivel nacional</p>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button pButton class="p-panel-header-icon p-link">
+                                <span class="pi pi-globe" style="color: #0284c7; font-size: 1.5em;"></span>
+                            </button>
+                        </ng-template>
+                        Contamos con servicio en las principales ciudades de toda la república mexicana  
+                    </p-panel>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- <div class="link-wrap d-block d-sm-none">
-    <button pButton type="button" label="Ver productos" class="p-button-raised p-button-rounded w-100"></button>
-    <button pButton type="button" label="Agenda una demo" class="p-button-outlined p-button-rounded mt-2 w-100"></button>
-</div> -->

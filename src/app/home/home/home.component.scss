@@ -4,38 +4,77 @@
     background: rgb(255, 255, 255);
     background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(223, 233, 243, 1) 100%);
     width: 100%;
-    height: 100%;
+    height: calc(100% - 50px);
 }
 
 
 .hero-title {
-    font-size: 2.68em;
+    font-size: 2.2em;
     font-weight: 600;
     line-height: 1;
-    color: #434343;
+    color: #475569;
 
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 340px) { font-size: 3em;}
 
     // Small devices (landscape phones, 576px and up)
     @media (min-width: 576px) { font-size: 3.5em;}
 
     // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) { font-size: 4em; }
+    @media (min-width: 768px) { font-size: 3.8em; }
 
     // Large devices (desktops, 992px and up)
     @media (min-width: 992px) { font-size: 4em; }
 
     // X-Large devices (large desktops, 1200px and up)
-    @media (min-width: 1200px) { font-size: 4em; }
+    @media (min-width: 1200px) { font-size: 5em; }
 
-    // XX-Large devices (larger desktops, 1400px and up)
-    @media (min-width: 1400px) { font-size: 4em; }
 }
 
 .hero-message {
-    font-size: 20px;
-    font-weight: medium;
+    font-size: 1em;
+    font-weight: 400;
     line-height: 1.3;
-    color: #434343;
+    color: #64748B;
+
+        // Small devices (landscape phones, 576px and up)
+        @media (min-width: 340px) { font-size: 1.25em;}
+
+        // Small devices (landscape phones, 576px and up)
+        @media (min-width: 576px) { font-size: 1.40em;}
+}
+
+.section-title {
+    font-weight: 600;
+    font-size: 2.2em;
+    color: #64748b;
+    text-align: center;
+
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 576px) { font-size: 2.5em;}
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) { font-size: 3em; text-align: left;}
+
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) { font-size: 3.5em; }
+
+    // X-Large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) { font-size: 4em; }
+
+    // XX-Large devices (larger desktops, 1400px and up)
+    @media (min-width: 1400px) { font-size: 4em;}
+}
+
+.section-description {
+    font-weight: 400;
+    font-size: 1.25em;
+    line-height: 1.3;
+    color: #64748B;
+    text-align: center;
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) { text-align: left; font-size: 1.25em;}
 }
 
 
@@ -140,18 +179,6 @@
     }
 }
 
-.section-title {
-    font-weight: 600;
-    font-size: 2.2em;
-    color: #495057;
-}
-.section-description {
-    font-weight: 400;
-    font-size: 1.2em;
-    line-height: 1.3;
-    color: #434343;
-}
-
 :host  ::ng-deep .p-carousel-item{
     max-height: 100%;
     padding: 10px;
@@ -167,9 +194,13 @@
 }
 
 :host  ::ng-deep p-tabview.p-element {
-    border-radius: 6px;
+    .p-tabview.p-component {
+        border-radius: 6px;
+        border: #dee2e6 1px solid;
+    }
     .p-tabview-nav-container {
         border-radius: 6px 6px 0 0;
+        
         
     }
     .p-tabview-panels {
@@ -185,6 +216,12 @@
 
     .tab-content {
         flex-grow: 4;
+        p, li {
+            font-size: 1em;
+            line-height: 1.25em;
+            // X-Large devices (large desktops, 1200px and up)
+            @media (min-width: 1200px) { font-size: 1.2em; line-height: 1.5em;}
+        }
     }
 
     .tab-action {
@@ -199,12 +236,29 @@
     }
 }
 
-.light-background {
+.light-50 {
     background-color: #f8f9fa;
 }
 
-.dark-blue-background {
+.light-200 {
+    background-color: #F8FAFC;
+}
+
+.indigo-500 {
+    background-color: #6366F1;
+}
+
+.dark-blue-secondary {
     background-color: #172A3A;
+}
+
+.subheader {
+    h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    }
 }
 
 .svg-container {
@@ -219,12 +273,24 @@
 
 
 .panel {
-    margin-bottom: 10px;
-    .panel-header {
-        margin-bottom: 0;
-        font-weight: 600;
-        color: #1E293B;
+    margin-bottom: 20px;
+}
+
+:host  ::ng-deep p-panel {
+    .p-panel-header {
+        p {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #1E293B;
+        }
     
+    }
+    
+    .p-panel-content {
+        min-height: 160px;
+
+        // Small devices (landscape phones, 576px and up)
+        @media (max-width: 768px) { min-height: 100%;}
     }
     
 }
