@@ -1,14 +1,37 @@
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('./assets/fonts/Cera-Pro/Cera Pro Regular.otf');
+}
+
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('./assets/fonts/Cera-Pro/Cera Pro Medium.otf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('./assets/fonts/Cera-Pro/Cera Pro Bold.otf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('./assets/fonts/Cera-Pro/Cera Pro Regular Italic.otf');
+    font-style: italic;
+}
+
 // General
-$font-family: 'Inter',
+$font-family: 'Cera Pro',
 sans-serif;
-$text: #495057;
-$secondary-text: #6C757D;
+$text: #434655;
+$secondary-text: #A8AABC;
 $border-radius: 6px;
 $disabled-opacity: 0.6;
 // Pallete
-$primary-color: #781F41;
+$primary-color: #3C81F6;
 $primary-color-text:#ffffff;
-$primary-color-darker:#5C0022;
+$primary-color-darker:#1D4ED8;
 $highlight-background: #EFDCE2;
 $highlight-text: #5C0022;
 $focus-outline: #E7CBD4;

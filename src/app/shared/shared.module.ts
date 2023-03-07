@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { SocialHeaderComponent } from './social-header/social-header.component';
 
 @NgModule({
     declarations: [
         NavbarComponent,
-        FooterComponent
+        FooterComponent,
+        SocialHeaderComponent
     ],
     imports: [
         CommonModule,
@@ -15,6 +17,7 @@ import { PrimengModule } from '../primeng/primeng.module';
     ],
     exports: [
         NavbarComponent,
-        FooterComponent]
+        FooterComponent,
+        SocialHeaderComponent]
   })
   export class SharedModule { }
