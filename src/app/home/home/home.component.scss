@@ -159,14 +159,20 @@
             line-height: 20px;
         }
     }
-}
-
-#translate-icon {
-    transition: transform .1s ease-out;
     &:hover {
-        transform: translate(10px);
+        #translate-icon {
+            transition: transform .2s ease-in-out;
+            transform: translate(5px);
+        }
     }
 }
+
+// #translate-icon {
+//     transition: transform .1s ease-out;
+//     &:hover {
+//         transform: translate(10px);
+//     }
+// }
 
 :host ::ng-deep .p-carousel-item {
     max-height: 100%;
