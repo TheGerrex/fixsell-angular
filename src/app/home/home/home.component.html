@@ -1,24 +1,35 @@
 <section class="hero-background">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-md-6 mt-5">
+        <div class="row align-items-center position-relative">
+            <div class="col-12 col-md-6 my-sm-5 my-3" id="hero-message-container">
                 <div class="col-12">
-                    <h1 class="hero-title">Llevando tu <span style="color: #3C81F6; font-weight: 600;">productividad</span> al máximo</h1>
-                    <p class="hero-message mt-2">Expertos en servicios de impresión y gestión documental en el ámbito profesional y corporativo.</p>
+                    <div class="hero-title-container"><h1 class="hero-title">Llevando tu <span style="color: #3C81F6; font-weight: 600;">productividad</span> al máximo</h1></div>
+                    <p class="hero-message mt-3">Expertos en servicios de impresión y gestión documental en el ámbito profesional y corporativo.</p>
                 </div>
                 <div class="col-12 d-none d-sm-block mt-3">
-                    <button pButton type="button" label="Ver productos" class="p-button-raised p-button-rounded"></button>
-                    <button pButton type="button" label="Agenda una demo" class="p-button-outlined p-button-rounded ms-2"></button>
+                    <div class="action-container">
+                        <button pButton type="button" label="Ver productos" class="p-button-raised p-button-rounded"></button>
+                        <button pButton type="button" label="Agenda una demo" class="p-button-outlined p-button-rounded ms-2"></button>
+                    </div>
+                </div>
+                <div class="col-12 d-none d-sm-block mt-5" id="proveedores">
+                    <div class="d-flex justify-content-around">
+                        <img src="../../../assets/svg/home/proveedores/konica_minolta.svg" alt="konica_minolta">
+                        <img src="../../../assets/svg/home/proveedores/epson.svg" alt="epson">
+                        <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
+                        <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
+                        <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft">
+                    </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6">
-                <div class="hero-image">
-                    <img src="assets/img/png/hero-image.png" alt="">
-                </div>
+            <div class="col-12 col-sm-6 overflow-hidden">
+                <img src="assets/img/png/hero-image.png" alt="printers and plotter" class="img-fluid hero-image">
             </div>
             <div class="col-12 d-block d-sm-none mb-5">
-                <button pButton type="button" label="Ver productos" class="p-button-raised p-button-rounded w-100"></button>
-                <button pButton type="button" label="Agenda una demo" class="p-button-outlined p-button-rounded mt-2 w-100"></button>
+                <div class="action-container">
+                    <button pButton type="button" label="Ver productos" class="p-button-raised p-button-rounded w-100"></button>
+                    <button pButton type="button" label="Agenda una demo" class="p-button-outlined p-button-rounded mt-2 w-100"></button>
+                </div>
             </div>
         </div>
     </div>
