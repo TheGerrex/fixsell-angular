@@ -115,17 +115,18 @@ export class HomeComponent {
       {
         breakpoint: '3000px',
         numVisible: 7,
-        numScroll: 1,
+        numScroll: 0,
       },
       {
         breakpoint: '1400px',
         numVisible: 7,
-        numScroll: 1
+        numScroll: 0,
       },
       {
           breakpoint: '1200px',
           numVisible: 5,
-          numScroll: 1
+          numScroll: 1,
+          circular: false
       },
       {
           breakpoint: '992px',
@@ -153,5 +154,8 @@ export class HomeComponent {
           numScroll: 1
       }
     ];
+    
+    
+    
   }
 }

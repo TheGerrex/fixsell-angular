@@ -35,29 +35,30 @@
     </div>
 </section>
 
-
-<section class="container pt-5 pb-3" #categorias>
-    <div class="row pb-3 justify-content-center">
-        <h1 class="section-title">Categorías</h1>
-    </div>
-    <div class="row">
-        <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
-            <ng-template let-category pTemplate="item">
-                <div class="category-card">
-                    <div class="image">
-                        <img [src]="category.img" alt="category.name">
+<section class="section-content" id="categorias">
+    <div class="container py-5">
+        <div class="row pb-3 justify-content-center">
+            <h1 class="section-title">Categorías</h1>
+        </div>
+        <div class="row">
+            <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+                <ng-template let-category pTemplate="item">
+                    <div class="category-card">
+                        <div class="image">
+                            <img [src]="category.img" alt="category.name">
+                        </div>
+                        <div class="body">
+                            <h4 class="title mb-0">{{category.name}}</h4>
+                            <i class="pi pi-arrow-right" id="translate-icon"></i>
+                        </div>
                     </div>
-                    <div class="body">
-                        <h4 class="title mb-0">{{category.name}}</h4>
-                        <i class="pi pi-arrow-right" id="translate-icon"></i>
-                    </div>
-                </div>
-            </ng-template>
-        </p-carousel>
+                </ng-template>
+            </p-carousel>
+        </div>
     </div>
 </section>
 
-<section class="light-50" #soluciones>
+<section class="section-content light-50" id="soluciones">
     <div class="container py-5">
         <div class="row">
             <div class="col-12">
@@ -167,11 +168,18 @@
     </div>
 </section>
 
-<section class="dark-blue-secondary" #clientes>
+<section class="section-content dark-blue-secondary" id="clientes">
     <div class="container py-5">
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="subheader">
+                    <h2>Nuestros principales clientes</h2>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
-                <p-carousel [value]="clients" [numVisible]="1" [numScroll]="1" [autoplayInterval]="3500" [showNavigators]="false" [showIndicators]="false" [circular]="true" [responsiveOptions]="responsiveClientOptions" #clientCarousel>
+                <p-carousel [value]="clients" [numVisible]="1" [numScroll]="1" [autoplayInterval]="3000" [showNavigators]="false" [showIndicators]="false" [circular]="true" [responsiveOptions]="responsiveClientOptions" #clientCarousel>
                     <ng-template let-client pTemplate="item">
                         <div class="svg-container">
                             <img [src]="client.svg" alt="client.name">
@@ -180,17 +188,10 @@
                 </p-carousel>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                <div class="subheader">
-                    <h4>Ayudamos a empresas innovadoras a escalar más rápido.</h4>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
-<section #beneficios>
+<section class="section-content" id="beneficios">
     <div class="container py-5">
         <div class="row">
             <div class="col-12">
