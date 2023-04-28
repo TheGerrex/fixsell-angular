@@ -2,15 +2,13 @@
 .hero-background {
     background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #CFDEED);
     // background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #C5E0FB);
-	background-size: 400% 400%;
+    background-size: 400% 400%;
     width: 100%;
     height: calc(100% - 50px);
-	animation: gradient 10s ease infinite;
-
-    ::before {
+    animation: gradient 10s ease infinite;
+     ::before {
         filter: blur(10px);
     }
-    
 }
 
 // .hero-background {
@@ -19,19 +17,17 @@
 //     width: 100%;
 //     height: calc(100% - 50px);    
 // }
-
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
-
 
 .hero-title {
     font-size: 2.2em;
@@ -64,14 +60,14 @@
 
 @keyframes fadeInAndScaleUp {
     0% {
-      opacity: 0;
-      transform: scale(0.9) translateX(-20%);
+        opacity: 0;
+        transform: scale(0.9) translateX(-20%);
     }
     100% {
-      opacity: 1;
-      transform: scale(1) translateX(0%);
+        opacity: 1;
+        transform: scale(1) translateX(0%);
     }
-  }
+}
 
 .hero-message {
     font-size: 1em;
@@ -97,10 +93,10 @@
 
 @keyframes fadeIn {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
     100% {
-      opacity: 1;
+        opacity: 1;
     }
 }
 
@@ -110,13 +106,16 @@
 }
 
 .section-content {
-    opacity: 1; /* Set the section to be invisible by default */
-    transition: opacity 1s ease-in-out; /* Add a transition for a smooth fade-in effect */
-  }
-  
-  .section-content.animate {
-    opacity: 1; /* When the 'animate' class is added, the section becomes visible */
-  }
+    opacity: 1;
+    /* Set the section to be invisible by default */
+    transition: opacity 1s ease-in-out;
+    /* Add a transition for a smooth fade-in effect */
+}
+
+.section-content.animate {
+    opacity: 1;
+    /* When the 'animate' class is added, the section becomes visible */
+}
 
 .section-title {
     font-weight: 600;
@@ -159,15 +158,13 @@
     }
 }
 
-
 #proveedores {
     opacity: 0;
     animation: fadeInAndGoUp 1s ease-in-out 1s forwards;
     img {
-        width:15%;
+        width: 15%;
         aspect-ratio: 3/2;
         object-fit: contain;
-
         &:hover {
             transition: transform .3s ease-in;
             transform: scale(1.1);
@@ -177,12 +174,12 @@
 
 @keyframes fadeInAndGoUp {
     0% {
-      opacity: 0;
-      transform: translateY(-20%);
+        opacity: 0;
+        transform: translateY(-20%);
     }
     100% {
-      opacity: 1;
-      transform: translateY(0%);
+        opacity: 1;
+        transform: translateY(0%);
     }
 }
 
@@ -249,6 +246,10 @@
             transition: transform .2s ease-in-out;
             transform: translate(5px);
         }
+        // .body {
+        //     transition: .2s ease-in-out;
+        //     transform: translate(5px);
+        // }
     }
 }
 
@@ -258,7 +259,6 @@
 //         transform: translate(10px);
 //     }
 // }
-
 :host ::ng-deep .p-carousel-item {
     max-height: 100%;
     padding: 10px;
@@ -346,9 +346,8 @@
         width: 100px;
         height: 100px;
     }
-
-    :hover {
-        transform: scale(1.05); 
+     :hover {
+        transform: scale(1.05);
     }
 }
 

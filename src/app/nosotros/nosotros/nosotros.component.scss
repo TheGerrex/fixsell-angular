@@ -1,0 +1,76 @@
+.hero-container {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.hero-description {
+    padding: 64px 48px 64px 48px;
+    h1 {
+        color: #3F4756;
+    }
+    p {
+        font-weight: 500;
+        color: #434655;
+    }
+}
+
+.about-card {
+    .img-container {
+        img {
+            width: 100%;
+        }
+    }
+    .content {
+        padding: 48px;
+        background-color: #F8FAFC;
+        h2 {
+            font-weight: 600;
+            color: #3F4756;
+        }
+        p {
+            font-weight: 400;
+            color: #434655;
+        }
+    }
+}
+
+.mision {
+    padding: 80px 48px 80px 48px;
+    h2 {
+        font-weight: 600;
+        color: #3F4756;
+        margin-bottom: 1em;
+    }
+    p {
+        font-weight: 400;
+        color: #434655;
+    }
+}
+
+.vision {
+    padding: 80px 48px 80px 48px;
+    h2 {
+        font-weight: 600;
+        color: #3F4756;
+        margin-bottom: 1em;
+    }
+    p {
+        font-weight: 400;
+        color: #434655;
+    }
+}
+
+.valores {
+    padding: 80px 48px 80px 48px;
+    h2 {
+        font-weight: 600;
+        color: #3F4756;
+        margin-bottom: 1em;
+    }
+    p {
+        font-weight: 400;
+        color: #434655;
+    }
+}
