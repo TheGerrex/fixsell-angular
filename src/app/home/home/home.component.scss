@@ -4,7 +4,7 @@
     // background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #C5E0FB);
 	background-size: 400% 400%;
     width: 100%;
-    height: calc(100% - 50px);
+    height: calc(100vh - 84px);
 	animation: gradient 10s ease infinite;
 
     ::before {
@@ -170,7 +170,7 @@
 
         &:hover {
             transition: transform .3s ease-in;
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
     }
 }
