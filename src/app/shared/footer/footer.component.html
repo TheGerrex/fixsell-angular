@@ -74,26 +74,26 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <h4 class="footer-title">Escríbenos</h4>
                 <p>Mandanos un mensaje y uno de nuestros asesores se pondra en contacto contigo.</p>
-                <div class="form-contact mt-3">
+                <form class="form-contact mt-3" name="contact" method="POST" data-netlify="true">
                     <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText class="w-100"> 
+                        <input id="float-input" type="text" pInputText class="w-100" name="name"> 
                         <label for="float-input">Nombre o Empresa</label>
                     </span>
                     <span class="p-float-label">
-                        <p-inputNumber class="w-100"></p-inputNumber>
+                        <p-inputNumber class="w-100" name="number"></p-inputNumber>
                         <label for="float-input">Teléfono</label>
                     </span>
                     <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText class="w-100"> 
+                        <input id="float-input" type="text" pInputText class="w-100" name="email"> 
                         <label for="float-input">Email</label>
                     </span>
                     <span class="p-float-label">
-                        <textarea pInputTextarea class="w-100"></textarea> 
+                        <textarea pInputTextarea class="w-100" name="message"></textarea> 
                         <label for="float-input">Mensaje</label>
                     </span>
-                    <button pButton type="button" label="Enviar" class="p-button-raised p-button-rounded w-100 mt-3"></button>
+                    <button pButton type="submit" label="Enviar" class="p-button-raised p-button-rounded w-100 mt-3"></button>
                 
-                </div>
+                </form>
             </div>
         </div>
     </div>
