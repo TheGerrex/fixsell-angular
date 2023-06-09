@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "192.168.0.70",
+            "port": 33306,
+            "driver": "MySQL",
+            "name": "FixsellDB",
+            "database": "fixsellDB",
+            "username": "root"
+        }
+    ]
+}

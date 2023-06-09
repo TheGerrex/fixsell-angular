@@ -1,0 +1,119 @@
+.hero-container {
+    // background-image: url('../../../assets/img/about_us/nosotros-hero-image.jpg');
+    // background-size: cover;
+    // height: calc(100vh - 50px);
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.hero-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 64px 48px 64px 48px;
+    height: 100%;
+    h1 {
+        color: #3F4756;
+    }
+    p {
+        font-weight: 500;
+        color: #434655;
+    }
+}
+
+.about-card {
+    width: 100%;
+    overflow: hidden;
+    .img-container {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        img {
+            flex-shrink: 1;
+            max-width: 100%;
+        }
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 48px;
+        background-color: #F8FAFC;
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
+        h2 {
+            font-weight: 600;
+            color: #3F4756;
+            width: 100%;
+            text-align: start;
+        }
+        p {
+            font-weight: 400;
+            color: #434655;
+        }
+        // Small devices (landscape phones, 576px and up)
+        @media (min-width: 340px) {
+            padding: 48px;
+        }
+        // Small devices (landscape phones, 576px and up)
+        @media (min-width: 576px) {
+            padding: 48px;
+        }
+        // Medium devices (tablets, 768px and up)
+        @media (min-width: 768px) {
+            padding: 48px;
+        }
+        // Large devices (desktops, 992px and up)
+        @media (min-width: 992px) {
+            padding: 64px;
+        }
+        // X-Large devices (large desktops, 1200px and up)
+        @media (min-width: 1200px) {
+            padding: 80px;
+        }
+    }
+}
+
+.mision {
+    padding: 80px 48px 80px 48px;
+    h2 {
+        font-weight: 600;
+        color: #3F4756;
+        margin-bottom: 1em;
+    }
+    p {
+        font-weight: 400;
+        color: #434655;
+    }
+}
+
+.vision {
+    padding: 80px 48px 80px 48px;
+    h2 {
+        font-weight: 600;
+        color: #3F4756;
+        margin-bottom: 1em;
+    }
+    p {
+        font-weight: 400;
+        color: #434655;
+    }
+}
+
+.valores {
+    padding: 80px 48px 80px 48px;
+    h2 {
+        font-weight: 600;
+        color: #3F4756;
+        margin-bottom: 1em;
+    }
+    p {
+        font-weight: 400;
+        color: #434655;
+    }
+}
