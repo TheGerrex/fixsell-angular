@@ -1,12 +1,11 @@
 @import "src/styles.scss";
 .hero-background {
     background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #CFDEED);
-    // background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #C5E0FB);
     background-size: 400% 400%;
     width: 100%;
     height: calc(100vh - 84px);
 	animation: gradient 10s ease infinite;
-
+    position: relative;
     ::before {
         filter: blur(10px);
     }
@@ -30,6 +29,15 @@
     }
 }
 
+.row-align-hero {
+    height: 100%;
+    align-items: top;
+    @media (min-width: 768px) {
+        align-items: center;
+    }
+    
+}
+
 .hero-title {
     font-size: 2.2em;
     font-weight: 600;
@@ -37,6 +45,8 @@
     color: #475569;
     transform: scale(0.9) translateX(-10%);
     animation: fadeInAndScaleUp 1s ease-in-out forwards;
+    position: relative;
+    z-index: 1;
     // Small devices (landscape phones, 576px and up)
     @media (min-width: 340px) {
         font-size: 3em;
@@ -77,19 +87,45 @@
     color: #434655;
     opacity: 0;
     animation: fadeIn 1s ease-out 1s forwards;
+    position: relative;
+    z-index: 2;
     // Small devices (landscape phones, 576px and up)
     @media (min-width: 340px) {
-        font-size: 1.25em;
+        font-size: 1.16em;
     }
     // Small devices (landscape phones, 576px and up)
     @media (min-width: 576px) {
-        font-size: 1.40em;
+        font-size: 1.2em;
     }
 }
 
 .action-container {
     opacity: 0;
     animation: fadeIn 1s ease-out 1s forwards;
+    position: relative;
+    z-index: 2;
+    @media (min-width: 992px) {
+        button:nth-of-type(2) {
+            margin-left: 10px;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+        button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    @media (min-width: 362px) and (max-width: 767px) {
+        button:nth-of-type(2) {
+            margin-left: 10px;
+        }
+    }
+    @media (max-width: 361px) {
+        button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
 }
 
 @keyframes fadeIn {
@@ -101,7 +137,12 @@
     }
 }
 
-.hero-image {
+.hero-image .absolute {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 640px;
     opacity: 0;
     animation: fadeInAndGoUp .5s ease-in-out forwards;
 }
