@@ -1,1 +1,37 @@
-<p>venta works!</p>
+<div class="banner">
+    <div class="wrapper">
+        <div class="title">
+            <h1>Venta</h1>
+        </div>
+        <div class="body">
+            <p>Somos el destino definitivo para todas sus necesidades de impresión. Tanto si es una empresa que desea actualizar sus equipos de oficina como si es un particular que busca una solución de impresión fiable, nuestra amplia gama de impresoras
+                y nuestro excepcional servicio están aquí para satisfacer sus necesidades. Con nuestra amplia selección, precios competitivos y asesoramiento experto, nuestro objetivo es hacer que su experiencia de compra de impresoras sea fluida y satisfactoria.
+                Prepárese para explorar un mundo de tecnología de impresión de vanguardia y encontrar la impresora perfecta que se adapte a sus necesidades, todo en un solo lugar.</p>
+        </div>
+        <div class="backdrop">
+            <h1>VENTA</h1>
+        </div>
+    </div>
+</div>
+
+<section class="section-content" id="categorias">
+    <div class="container">
+        <div class="row">
+            <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+                <ng-template let-category pTemplate="item">
+                    <div class="category-card">
+                        <div class="image">
+                            <img [src]="category.img" alt="category.name">
+                        </div>
+                        <div class="body">
+                            <h4 class="title mb-0">{{category.name}}</h4>
+                            <i class="pi pi-arrow-right" id="translate-icon"></i>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</section>
+
+<!-- <div class="white-space"></div> -->

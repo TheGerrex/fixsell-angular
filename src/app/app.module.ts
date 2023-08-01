@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home/home.component';
 import { NosotrosComponent } from './nosotros/nosotros/nosotros.component';
 import { SharedModule } from './shared/shared.module';
 import { PrimengModule } from './primeng/primeng.module';
+import { ProductoModule } from './producto/producto.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PrimengModule } from './primeng/primeng.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    PrimengModule
+    PrimengModule,
+    ProductoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
