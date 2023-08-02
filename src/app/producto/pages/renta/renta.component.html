@@ -1,1 +1,71 @@
-<p>renta works!</p>
+<div class="banner">
+    <div class="wrapper">
+        <div class="title">
+            <h1>Renta</h1>
+        </div>
+        <div class="body">
+            <p>Entendemos que cada empresa, organización o individuo tiene necesidades de impresión únicas que a menudo requieren una solución flexible y rentable. Por eso ofrecemos una forma cómoda y sin complicaciones de acceder a impresoras de alta calidad
+                sin la carga de la propiedad. Tanto si se trata de una pequeña empresa emergente como de una oficina con mucho trabajo o de un estudiante que necesita capacidad de impresión temporal, nuestro servicio de alquiler es la respuesta perfecta.
+            </p>
+        </div>
+        <div class="backdrop">
+            <h1>RENTA</h1>
+        </div>
+    </div>
+</div>
+
+<section class="section-content" id="categorias">
+    <div class="container">
+        <div class="row">
+            <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showNavigators]="false" [showIndicators]="false">
+                <ng-template let-category pTemplate="item">
+                    <div class="category-card">
+                        <div class="image">
+                            <img [src]="category.img" alt="category.name">
+                        </div>
+                        <div class="body">
+                            <h4 class="title mb-0">{{category.name}}</h4>
+                            <i class="pi pi-arrow-right" id="translate-icon"></i>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</section>
+
+<section class="aspectos-destacados">
+    <div class="title">
+        <h1>Aquí están los aspectos más destacados que nos distinguen</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p-carousel [value]="aspectos" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptionsAspectos" [showNavigators]="false" class="d-md-none">
+                <ng-template let-aspectos pTemplate="item">
+                    <div class="aspectos-card">
+                        <div class="title">
+                            <h1>{{aspectos.title}}</h1>
+                        </div>
+                        <div class="body">
+                            <p>{{aspectos.description}}</p>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+            <p-carousel [value]="aspectos" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptionsAspectos" class="d-none d-md-block">
+                <ng-template let-aspectos pTemplate="item">
+                    <div class="aspectos-card">
+                        <div class="title">
+                            <h1>{{aspectos.title}}</h1>
+                        </div>
+                        <div class="body">
+                            <p>{{aspectos.description}}</p>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</section>
+
+<!-- <div class="white-space"></div> -->

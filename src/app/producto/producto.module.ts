@@ -5,6 +5,7 @@ import { RentaComponent } from './pages/renta/renta.component';
 import { ConsumiblesComponent } from './pages/consumibles/consumibles.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { PrimengModule } from '../primeng/primeng.module';
 
 
 
@@ -17,7 +18,8 @@ import { ServiciosComponent } from './pages/servicios/servicios.component';
     ServiciosComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PrimengModule
   ]
 })
 export class ProductoModule { }

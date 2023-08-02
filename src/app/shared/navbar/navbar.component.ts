@@ -21,6 +21,7 @@ export class NavbarComponent {
             {
               label: 'Renta',
               icon: 'pi pi-print',
+              routerLink: ['/renta'],
               items: [
                   {label: 'Oficina'},
                   {label: 'Producción'},
@@ -31,6 +32,7 @@ export class NavbarComponent {
             {
               label: 'Venta',
               icon: 'pi pi-dollar',
+              routerLink: ['/venta'],
               items: [
                   {label: 'Oficina'},
                   {label: 'Producción'},

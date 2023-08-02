@@ -161,7 +161,7 @@
 
 .section-title {
     font-weight: 600;
-    font-size: 2.2em;
+    font-size: 100px;
     color: #64748b;
     text-align: center;
     // Small devices (landscape phones, 576px and up)
@@ -282,16 +282,13 @@
             font-size: 16px;
             line-height: 20px;
         }
-    }
-    &:hover {
-        #translate-icon {
-            transition: transform .2s ease-in-out;
-            transform: translate(5px);
+        &:hover {
+            #translate-icon {
+                transition: transform .2s ease-in-out;
+                transform: translate(5px);
+            }
+            background: #ebedf0;
         }
-        // .body {
-        //     transition: .2s ease-in-out;
-        //     transform: translate(5px);
-        // }
     }
 }
 
