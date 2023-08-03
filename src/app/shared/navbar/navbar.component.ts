@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { NosotrosComponent } from 'src/app/nosotros/nosotros/nosotros.component';
 
 @Component({
   selector: 'app-navbar',
