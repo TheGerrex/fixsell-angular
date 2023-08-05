@@ -1,5 +1,6 @@
+@import url("../../../styles.scss");
 .FilterComponent {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     padding: 32px 16px 32px 16px;
     background: #F8FAFC;
@@ -208,7 +209,7 @@
                     display: flex;
                     .Renta {
                         color: #EC4769;
-                        font-size: 12px;
+                        font-size: 1rem;
                         font-family: Cera Pro;
                         font-weight: 700;
                         word-wrap: break-word;
@@ -277,27 +278,6 @@
             justify-content: flex-start;
             align-items: flex-start;
             display: flex;
-            .button-primary {
-                width: 100%;
-                padding-left: 32px;
-                padding-right: 32px;
-                padding-top: 12px;
-                padding-bottom: 12px;
-                background: #3C81F6;
-                border-radius: 50px;
-                border: 0.50px #3C81F6 solid;
-                justify-content: center;
-                align-items: center;
-                gap: 8px;
-                display: inline-flex;
-                p {
-                    color: white;
-                    font-size: 14px;
-                    font-weight: 500;
-                    word-wrap: break-word;
-                    margin: 0;
-                }
-            }
         }
     }
 }
