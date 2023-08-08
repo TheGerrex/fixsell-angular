@@ -1,8 +1,73 @@
 @import url("../../../../styles.scss");
-.product-list-container {
+
+.container-products {
+    display: flex;
+}
+
+.products-row {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
     gap: 16px;
+
+  
+    // Medium devices (tablets, 768px and up)
+    @media (max-width: 698px) {
+        flex-direction: column;
+    }
+   
 }
+
+.filter-col {
+    
+    width: 100%;
+    height: max-content;
+    
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 698px) {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 1%;
+        z-index: 1;
+        width: 300px;
+    }
+}
+
+.product-list-col {
+    flex-grow: 1;
+    background-color: #ffffff; /* Add your desired background color */
+    z-index: 0;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Center the spinner vertically */
+}
+
+.product-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Add spacing between product cards */
+}
+
+// .spinner-container {
+//     width: 100%;
+//     padding: 50px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
+
+
+// .product-list-container {
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     width: 100%;
+//     gap: 16px;
+
+//     // padding: 1rem 0;
+// }
