@@ -12,6 +12,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DividerModule} from 'primeng/divider';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     InputNumberModule,
     DividerModule,
     InputTextareaModule,
+    ToggleButtonModule,
   ]
 })
 export class PrimengModule { }

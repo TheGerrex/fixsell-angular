@@ -2,109 +2,99 @@
     <div class="Header">
         <div class="Filtros">
             <div class="Titulo">
-                <i class="pi pi-filter-fill" style="font-size: 1.5rem; color: #434655;"></i>
+                <i class="pi pi-filter-fill" style="font-size: 1.3rem; color: #434655;"></i>
                 <h1>Filtros</h1>
             </div>
         </div>
-        <div class="AngleButton">
+        <div class="AngleButton" (click)="toggleFilterSections()">
             <i class="pi pi-angle-down" style="font-size: 1rem; color: #434655;"></i>
         </div>
     </div>
-    <div class="FilterSection">
+    <div class="Content">
+        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
         <div class="Title">Producto</div>
         <div class="buttons-container">
             <div class="wrapper">
-                <button class="Chip">
+                <!-- <button class="Chip" [class.Active]="checked" (click)="toggleButtons()">
                     <div class="ChipName">Venta</div>
                 </button>
                 <button class="Chip">
                     <div class="ChipName">Renta</div>
-                </button>
+                </button> -->
+                <p-toggleButton onLabel="Venta" offLabel="Venta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+                <p-toggleButton onLabel="Renta" offLabel="Renta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
             </div>
         </div>
-    </div>
-    <div class="FilterSection">
-        <div class="Title">Marca</div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxkonica" value="first_checkbox" />
-            <label>Konica Minolta</label>
         </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxkyocera" value="first_checkbox" />
-            <label>Kyocera</label>
+        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
+            <div class="Title">Marca</div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxkonica" value="first_checkbox" />
+                <label>Konica Minolta</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxkyocera" value="first_checkbox" />
+                <label>Kyocera</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxepson" value="first_checkbox" />
+                <label>Epson</label>
+            </div>
         </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxepson" value="first_checkbox" />
-            <label>Epson</label>
+        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
+            <div class="Title">Tamaño de papel</div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxcarta" value="first_checkbox" />
+                <label>Carta</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxlegal" value="first_checkbox" />
+                <label>Legal</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxsra3" value="first_checkbox" />
+                <label>SRA3</label>
+            </div>
         </div>
-    </div>
-    <div class="FilterSection">
-        <div class="Title">Tamaño de papel</div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxcarta" value="first_checkbox" />
-            <label>Carta</label>
+        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
+            <div class="Title">Tipo</div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxb/n" value="first_checkbox" />
+                <label>B&N</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
+                <label>Color</label>
+            </div>
         </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxlegal" value="first_checkbox" />
-            <label>Legal</label>
+        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
+            <div class="Title">Velocidad de impresión</div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxb/n" value="first_checkbox" />
+                <label>Hasta 20 ppm</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
+                <label>21 a 35 ppm</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
+                <label>36 a 49 ppm</label>
+            </div>
+            <div class="Checkbox">
+                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
+                <label>Más de 50</label>
+            </div>
         </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxsra3" value="first_checkbox" />
-            <label>SRA3</label>
-        </div>
-    </div>
-    <div class="FilterSection">
-        <div class="Title">Tipo</div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxb/n" value="first_checkbox" />
-            <label>B&N</label>
-        </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-            <label>Color</label>
-        </div>
-    </div>
-    <div class="FilterSection">
-        <div class="Title">Velocidad de impresión</div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxb/n" value="first_checkbox" />
-            <label>Hasta 20 ppm</label>
-        </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-            <label>21 a 35 ppm</label>
-        </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-            <label>36 a 49 ppm</label>
-        </div>
-        <div class="Checkbox">
-            <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-            <label>Más de 50</label>
-        </div>
-    </div>
-    <div class="FilterSection">
-        <div class="Title">Categorias</div>
-        <div class="buttons-container">
-            <div class="wrapper">
-                <button class="Chip">
-                  <div class="ChipName">Oficina</div>
-              </button>
-                <button class="Chip">
-                  <div class="ChipName">Producción</div>
-              </button>
-                <button class="Chip">
-                  <div class="ChipName">Etiquetas</div>
-              </button>
-                <button class="Chip">
-                  <div class="ChipName">Plotters</div>
-              </button>
-                <button class="Chip">
-                  <div class="ChipName">Inyección de Tinta</div>
-              </button>
-                <button class="Chip">
-                  <div class="ChipName">Artes Gráficas</div>
-              </button>
+        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
+            <div class="Title">Categorias</div>
+            <div class="buttons-container">
+                <p-toggleButton onLabel="Oficina" offLabel="Oficina" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+                <p-toggleButton onLabel="Producción" offLabel="Producción" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+                <p-toggleButton onLabel="Etiquetas" offLabel="Etiquetas" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+                <p-toggleButton onLabel="Plotters" offLabel="Plotters" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+                <p-toggleButton onLabel="Inyección de Tinta" offLabel="Inyección de Tinta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+                <p-toggleButton onLabel="Artes Gráficas" offLabel="Artes Gráficas" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
             </div>
         </div>
     </div>
