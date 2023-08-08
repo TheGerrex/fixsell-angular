@@ -1,165 +1,15 @@
 <div class="container-fluid">
     <div class="row py-5">
         <div class="col-md-3 col-12">
-            <div class="FilterComponent">
-                <div class="Header">
-                    <div class="Filtros">
-                        <div class="Titulo">
-                            <i class="pi pi-filter-fill" style="font-size: 1.5rem; color: #434655;"></i>
-                            <h1>Filtros</h1>
-                        </div>
-                    </div>
-                    <div class="AngleButton">
-                        <i class="pi pi-angle-down" style="font-size: 1rem; color: #434655;"></i>
-                    </div>
-                </div>
-                <div class="FilterSection">
-                    <div class="Title">Producto</div>
-                    <div class="buttons-container">
-                        <div class="wrapper">
-                            <button class="Chip">
-                                <div class="ChipName">Venta</div>
-                            </button>
-                            <button class="Chip">
-                                <div class="ChipName">Renta</div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="FilterSection">
-                    <div class="Title">Marca</div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxkonica" value="first_checkbox" />
-                        <label>Konica Minolta</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxkyocera" value="first_checkbox" />
-                        <label>Kyocera</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxepson" value="first_checkbox" />
-                        <label>Epson</label>
-                    </div>
-                </div>
-                <div class="FilterSection">
-                    <div class="Title">Tamaño de papel</div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxcarta" value="first_checkbox" />
-                        <label>Carta</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxlegal" value="first_checkbox" />
-                        <label>Legal</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxsra3" value="first_checkbox" />
-                        <label>SRA3</label>
-                    </div>
-                </div>
-                <div class="FilterSection">
-                    <div class="Title">Tipo</div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxb/n" value="first_checkbox" />
-                        <label>B&N</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                        <label>Color</label>
-                    </div>
-                </div>
-                <div class="FilterSection">
-                    <div class="Title">Velocidad de impresión</div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxb/n" value="first_checkbox" />
-                        <label>Hasta 20 ppm</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                        <label>21 a 35 ppm</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                        <label>36 a 49 ppm</label>
-                    </div>
-                    <div class="Checkbox">
-                        <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                        <label>Más de 50</label>
-                    </div>
-                </div>
-                <div class="FilterSection">
-                    <div class="Title">Categorias</div>
-                    <div class="buttons-container">
-                        <div class="wrapper">
-                            <button class="Chip">
-                              <div class="ChipName">Oficina</div>
-                          </button>
-                            <button class="Chip">
-                              <div class="ChipName">Producción</div>
-                          </button>
-                            <button class="Chip">
-                              <div class="ChipName">Etiquetas</div>
-                          </button>
-                            <button class="Chip">
-                              <div class="ChipName">Plotters</div>
-                          </button>
-                            <button class="Chip">
-                              <div class="ChipName">Inyección de Tinta</div>
-                          </button>
-                            <button class="Chip">
-                              <div class="ChipName">Artes Gráficas</div>
-                          </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-filter></app-filter>
         </div>
         <div class="col-md-9 col-12">
+            <div *ngIf="loading;">
+                Loading...
+            </div>
+
             <div class="product-list-container">
-                <div class="ProductCard">
-                    <div class="Header">
-                        <div class="HeaderTitle">
-                            <div class="ModelBrand">
-                                <div class="Brand">
-                                    <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera-logo">
-                                </div>
-                                <div class="TypeBlob">
-                                    <div class="Renta">Renta</div>
-                                </div>
-                            </div>
-                            <div class="Model">Ecosys 3645idn</div>
-                        </div>
-                    </div>
-                    <div class="Body">
-                        <div class="ImageContainer">
-                            <!-- <img class="Ecosym36451" style="width: 250px; height: 208px" src="https://via.placeholder.com/250x208" /> -->
-                            <img src="../../../assets/img/productos/kyocera/ECOSYS-M3645idn-full-front.jpg" alt="" style="width: 100%; height: 300px">
-                        </div>
-                        <div class="DetailsContainer">
-                            <div class="ContentContainer" style="align-self: stretch; height: 20px; flex-direction: column; justify-content: center; align-items: center; gap: 16px; display: flex">
-                                <div class="FeatureList">
-                                    <div class="Feature">
-                                        <div class="Ellipse29" style="width: 20px; height: 20px; background: conic-gradient(from 180deg at 0.00% 100.00%, #FF0000 0deg, #FF7A1A 37deg, #FFF730 67deg, #90FF4B 106deg, #66FF6C 144deg, #00FF75 174deg, #00FFE0 198deg, #00B2FF 226deg, #0038FF 249deg, #2400FF 279deg, #AF06FF 301deg, #FF00D6 324deg, #FF002E 360deg); border-radius: 9999px"></div>
-                                        <p class="Color">Color</p>
-                                    </div>
-                                    <div class="Feature">
-                                        <i class="pi pi-window-minimize"></i>
-                                        <p class="PrintSize">A4</p>
-                                    </div>
-                                    <div class="Feature">
-                                        <i class="pi pi-clock"></i>
-                                        <p class="PrintSize">45 ppm</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ActionContainer">
-                            <button class="button button-primary button-rounded button-full">
-                              <span class="button-label">Más Info</span>
-                              <i class="pi pi-arrow-right" style="color: white; font-size: 1rem;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <app-product-card [printer]="printer" *ngFor="let printer of printers"></app-product-card>
                 <!-- <div class="ProductCard" style="width: 350px; height: 544px; background: white; border-radius: 6px; border: 0.50px #E2E8F0 solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
                     <div class="HeaderContainer" style="align-self: stretch; height: 92px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 20px; display: flex">
                         <div class="Frame5076" style="align-self: stretch; height: 92px; background: #F8FAFC; border-top-left-radius: 6px; border-top-right-radius: 6px; border: 0.50px #E2E8F0 solid; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; display: flex">
@@ -233,6 +83,8 @@
                     </div>
                 </div> -->
             </div>
+
+
         </div>
     </div>
 </div>

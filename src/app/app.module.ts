@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
+import { ProductosRoutingModule } from './productos/productos-routing.module';
 
 import { PrimengModule } from './primeng/primeng.module';
 import { SharedModule } from './shared/shared.module';
@@ -15,7 +18,7 @@ import { RentaComponent } from './pages/renta/renta.component';
 import { ConsumiblesComponent } from './pages/consumibles/consumibles.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
-import { ProductosComponent } from './pages/productos/productos.component';
+// import { ProductosComponent } from './productos/pages/productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +30,15 @@ import { ProductosComponent } from './pages/productos/productos.component';
     ConsumiblesComponent,
     PromocionesComponent,
     ServiciosComponent,
-    ProductosComponent
-
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    PrimengModule
+    PrimengModule,
+    ProductosRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
