@@ -4,7 +4,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { RentaComponent } from './pages/renta/renta.component';
-import { ProductosComponent } from './pages/productos/productos.component';
 
 const routes: Routes = [
   {
@@ -26,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'productos',
-    component: ProductosComponent,
+    loadChildren: () => import('./productos/productos.module').then( m => m.ProductosModule),
   },
   {
     path: '**',

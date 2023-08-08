@@ -9,13 +9,14 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent {
   items!: MenuItem[];
 
-    constructor() { }
+  constructor() {}
 
-    ngOnInit() {
+  ngOnInit() {
       this.items = [
         {
           label: 'Productos',
           icon: 'pi pi-shopping-bag',
+          routerLink: ['/productos'],
           items: [
             {
               label: 'Renta',
@@ -71,4 +72,5 @@ export class NavbarComponent {
         }
       ];
   }
+
 }
