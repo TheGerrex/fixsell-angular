@@ -1,7 +1,7 @@
 <div class="container-products">
     <div class="products-row py-3 px-3">
         <div class="filter-col">
-            <app-filter></app-filter>
+            <app-filter (filteredPrintersChange)="handleFilteredPrintersChange($event)"></app-filter>
         </div>
         <div class="product-list-col">
             <div class="spinner-container" *ngIf="loading;">
@@ -9,7 +9,7 @@
             </div>
 
             <div class="product-list-container">
-                <app-product-card [printer]="printer" *ngFor="let printer of printers"></app-product-card>
+                <app-product-card [printer]="printer" *ngFor="let printer of filteredPrinters"></app-product-card>
             </div>
         </div>
     </div>

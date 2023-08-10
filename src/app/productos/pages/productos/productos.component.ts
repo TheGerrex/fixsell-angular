@@ -8,6 +8,7 @@ import { Printer } from '../../interfaces/printer.interface';
   styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit{
+  filteredPrinters: Printer[] = [];
   printers: Printer[] = [];
   loading = true;
 
@@ -17,10 +18,15 @@ export class ProductosComponent implements OnInit{
     this.productosService.getPrinters().subscribe(
       (printers_response: Printer[]) => {
         console.log(printers_response);
-        this.printers = printers_response;
+        this.filteredPrinters = printers_response;
         this.loading = false;
       }
     )
+  }
+
+  handleFilteredPrintersChange(filteredPrinters: any[]): void {
+    // Receive the filtered data emitted from FilterComponent
+    this.filteredPrinters = filteredPrinters;
   }
 }
 

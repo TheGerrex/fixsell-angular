@@ -12,6 +12,7 @@ export interface Printer {
     dimensions: string
     printVelocity: string
     maxPrintSize: string
+    maxPrintSizeSimple: string
     maxPaperWeight: string
     duplexUnit: boolean
     paperSizes: string
