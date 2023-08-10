@@ -12,59 +12,33 @@
     </div>
     <div class="Content">
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-        <div class="Title">Producto</div>
-        <div class="buttons-container">
-            <div class="wrapper">
-                <!-- <button class="Chip" [class.Active]="checked" (click)="toggleButtons()">
-                    <div class="ChipName">Venta</div>
-                </button>
-                <button class="Chip">
-                    <div class="ChipName">Renta</div>
-                </button> -->
-                <p-toggleButton onLabel="Venta" offLabel="Venta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
-                <p-toggleButton onLabel="Renta" offLabel="Renta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+            <div class="Title">Producto</div>
+            <div class="buttons-container">
+                <div class="wrapper">
+                    <p-toggleButton onLabel="Venta" offLabel="Venta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(true)"></p-toggleButton>
+                    <p-toggleButton onLabel="Renta" offLabel="Renta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(false)"></p-toggleButton>
+                </div>
             </div>
-        </div>
         </div>
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
             <div class="Title">Marca</div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxkonica" value="first_checkbox" />
-                <label>Konica Minolta</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxkyocera" value="first_checkbox" />
-                <label>Kyocera</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxepson" value="first_checkbox" />
-                <label>Epson</label>
+            <div class="Checkbox" *ngFor="let brand of brands">
+                <input type="checkbox" [id]="brand" [value]="brand" [checked]="selectedBrands.includes(brand)" (change)="toggleBrandFilter(brand)" />
+                <label>{{brand}}</label>
             </div>
         </div>
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
             <div class="Title">Tamaño de papel</div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxcarta" value="first_checkbox" />
-                <label>Carta</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxlegal" value="first_checkbox" />
-                <label>Legal</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxsra3" value="first_checkbox" />
-                <label>SRA3</label>
+            <div class="Checkbox" *ngFor="let printSize of printSizesFilter">
+                <input type="checkbox" [id]="printSize" [value]="printSize" [checked]="selectedPrintSizeFilters.includes(printSize)" (change)="togglePrintSizeFilter(printSize)" />
+                <label>{{printSize}}</label>
             </div>
         </div>
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
             <div class="Title">Tipo</div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxb/n" value="first_checkbox" />
-                <label>B&N</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                <label>Color</label>
+            <div class="Checkbox" *ngFor="let color of colorFilter">
+                <input type="checkbox" [id]="color" [value]="color" [checked]="selectedColors.includes(color)" (change)="toggleColorFilter(color)" />
+                <label>{{color}}</label>
             </div>
         </div>
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
