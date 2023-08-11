@@ -43,32 +43,21 @@
         </div>
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
             <div class="Title">Velocidad de impresión</div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxb/n" value="first_checkbox" />
-                <label>Hasta 20 ppm</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                <label>21 a 35 ppm</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                <label>36 a 49 ppm</label>
-            </div>
-            <div class="Checkbox">
-                <input type="checkbox" id="cboxcolor" value="first_checkbox" />
-                <label>Más de 50</label>
+            <div class="Checkbox" *ngFor="let range of printVelocities">
+                <input type="checkbox" [id]="range" [value]="range" [checked]="selectedPrintVelocities.includes(range)" (change)="togglePrintVelocityFilter(range)" />
+                <label>{{ range }}</label>
             </div>
         </div>
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
             <div class="Title">Categorias</div>
             <div class="buttons-container">
-                <p-toggleButton onLabel="Oficina" offLabel="Oficina" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
-                <p-toggleButton onLabel="Producción" offLabel="Producción" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
-                <p-toggleButton onLabel="Etiquetas" offLabel="Etiquetas" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
-                <p-toggleButton onLabel="Plotters" offLabel="Plotters" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
-                <p-toggleButton onLabel="Inyección de Tinta" offLabel="Inyección de Tinta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
-                <p-toggleButton onLabel="Artes Gráficas" offLabel="Artes Gráficas" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right"></p-toggleButton>
+                <p-toggleButton *ngFor="let category of categories" onLabel="{{ category }}" offLabel="{{ category }}" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleCategoryFilter(category)">
+                </p-toggleButton>
+            </div>
+        </div>
+        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
+            <div class="filter-reset">
+                <p-button label="Borrar Filtros" icon="pi pi-trash" styleClass="p-button-link w-100" (click)="resetFilters()"></p-button>
             </div>
         </div>
     </div>
