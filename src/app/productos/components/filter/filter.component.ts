@@ -36,7 +36,13 @@ export class FilterComponent implements OnInit {
   brands: String[] = ['Konica Minolta', 'Kyocera', 'Epson'];
   selectedRentableOptions: boolean[] = [false, true];
   rentableOptions: boolean[] = [false, true];
+  selectedPrintVelocities: String[] = [];
+  printVelocities: String[] = ["24 a 30", "30 a 40", "40 a 50", "50 a 60", "60 a 80", "80 a 100", "100 y más"];
+  selectedCategories: String[] = []; 
+  categories: String[] = ["Oficina", "Producción", "Etiquetas", "Plotters", "Inyección de Tinta", "Artes Gráficas"];
 
+
+  
   filterSectionsState = 'open';
   checked = false;
 
@@ -74,6 +80,26 @@ export class FilterComponent implements OnInit {
     if (this.selectedRentableOptions.length > 0) {
       this.filteredPrinters = this.filteredPrinters.filter((printer) =>
         this.selectedRentableOptions.includes(printer.rentable)
+      );
+    }
+
+    if (this.selectedPrintVelocities.length > 0) {
+      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
+        this.selectedPrintVelocities.some((range) => {
+          if (range === "100 y más") {
+            return parseInt(printer.printVelocity, 10) >= 100;
+          }
+  
+          const [min, max] = range.split(" a ");
+          const velocity = parseInt(printer.printVelocity, 10);
+          return velocity >= parseInt(min, 10) && velocity <= parseInt(max, 10);
+        })
+      );
+    }
+
+    if (this.selectedCategories.length > 0) {
+      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
+        this.selectedCategories.includes(printer.category)
       );
     }
 
@@ -117,6 +143,37 @@ export class FilterComponent implements OnInit {
     }
     this.applyFilters();
   }
+
+  togglePrintVelocityFilter(range: String): void {
+    if (this.selectedPrintVelocities.includes(range)) {
+      this.selectedPrintVelocities = this.selectedPrintVelocities.filter((v) => v !== range);
+    } else {
+      this.selectedPrintVelocities.push(range);
+    }
+    this.applyFilters();
+  }
+
+  toggleCategoryFilter(category: String): void {
+    if (this.selectedCategories.includes(category)) {
+      this.selectedCategories = this.selectedCategories.filter((c) => c !== category);
+    } else {
+      this.selectedCategories.push(category);
+    }
+    this.applyFilters();
+  }
+  
+  resetFilters(): void {
+    this.selectedPrintSizeFilters = [];
+    this.selectedColors = [];
+    this.selectedBrands = [];
+    this.selectedRentableOptions = [];
+    this.selectedPrintVelocities = [];
+    this.selectedCategories = [];
+  
+    this.applyFilters(); // Apply filters after resetting
+  }
+  
+  
   
 
   toggleFilterSections() {
