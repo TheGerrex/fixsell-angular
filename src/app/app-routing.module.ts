@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { RentaComponent } from './pages/renta/renta.component';
+import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'renta',
     component: RentaComponent,
+  },
+  {
+    path: 'aviso-de-privacidad',
+    component: AvisoDePrivacidadComponent,
   },
   {
     path: 'productos',

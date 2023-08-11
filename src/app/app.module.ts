@@ -18,6 +18,7 @@ import { RentaComponent } from './pages/renta/renta.component';
 import { ConsumiblesComponent } from './pages/consumibles/consumibles.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
 // import { ProductosComponent } from './productos/pages/productos/productos.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ServiciosComponent } from './pages/servicios/servicios.component';
     ConsumiblesComponent,
     PromocionesComponent,
     ServiciosComponent,
+    AvisoDePrivacidadComponent,
   ],
   imports: [
     BrowserModule,
