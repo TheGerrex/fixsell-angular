@@ -44,27 +44,27 @@ export class NavbarComponent {
             },
           ]
         },
-        {
-          label: 'Servicios',
-          icon: 'pi pi-table',
-          items: [
-              {label: 'Servicio Técnico', icon: 'pi pi-wrench'},
-              {label: 'Digitalización', icon: 'pi pi-cloud'},
-              {label: 'Gestión Documental', icon: 'pi pi-book'},
-          ]
-        },
-        {
-          label: 'Consumibles',
-          icon: 'pi pi-box',
-          items: [
-              {label: 'Toner', icon:'pi pi-palette'},
-              {label: 'Refacciones', icon: 'pi pi-cog'},
-          ]
-        },
-        {
-          label: 'Promociones',
-          icon: 'pi pi-bolt',
-        },
+        // {
+        //   label: 'Servicios',
+        //   icon: 'pi pi-table',
+        //   items: [
+        //       {label: 'Servicio Técnico', icon: 'pi pi-wrench'},
+        //       {label: 'Digitalización', icon: 'pi pi-cloud'},
+        //       {label: 'Gestión Documental', icon: 'pi pi-book'},
+        //   ]
+        // },
+        // {
+        //   label: 'Consumibles',
+        //   icon: 'pi pi-box',
+        //   items: [
+        //       {label: 'Toner', icon:'pi pi-palette'},
+        //       {label: 'Refacciones', icon: 'pi pi-cog'},
+        //   ]
+        // },
+        // {
+        //   label: 'Promociones',
+        //   icon: 'pi pi-bolt',
+        // },
         {
           label: 'Nosotros',
           icon: 'pi pi-users',
