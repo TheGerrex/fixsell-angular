@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Printer } from '../../interfaces/printer.interface';
-import { ProductosService } from '../../services/productos.service';
+import { PrintersService } from '../../services/printers.service';
 
 @Component({
   selector: 'app-filter',
@@ -47,10 +47,10 @@ export class FilterComponent implements OnInit {
   checked = false;
 
 
-  constructor(private printerService: ProductosService) {}
+  constructor(private printerService: PrintersService) {}
 
   ngOnInit(): void {
-    this.printerService.getPrinters().subscribe((data) => {
+    this.printerService.getPrinters().subscribe((data: any) => {
       this.printers = data;
       this.filteredPrinters = data;
     })

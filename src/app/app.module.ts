@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { ProductosRoutingModule } from './productos/productos-routing.module';
+import { PrinterRoutingModule } from './printers/printer-routing.module';
 
 import { PrimengModule } from './primeng/primeng.module';
 import { SharedModule } from './shared/shared.module';
@@ -39,7 +39,7 @@ import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de
     AppRoutingModule,
     SharedModule,
     PrimengModule,
-    ProductosRoutingModule,
+    PrinterRoutingModule,
     HttpClientModule,
   ],
   providers: [],
