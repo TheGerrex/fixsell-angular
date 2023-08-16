@@ -5,7 +5,6 @@
                 <div class="Brand" [innerHTML]="printer.brand | brandType">
                 </div>
                 <div [innerHTML]="printer.rentable | productType">
-                    <!-- <div class="Renta">Renta</div> -->
                 </div>
             </div>
             <div class="Model">{{printer.model}}</div>
@@ -34,7 +33,7 @@
             </div>
         </div>
         <div class="ActionContainer">
-            <button class="button button-primary button-rounded button-full">
+            <button class="button button-primary button-rounded button-full" [routerLink]="['/printers', printer._id]">
               <span class="button-label">Más Info</span>
               <i class="pi pi-arrow-right" style="color: white; font-size: 1rem;"></i>
             </button>

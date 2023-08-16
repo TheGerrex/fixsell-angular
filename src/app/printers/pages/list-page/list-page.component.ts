@@ -1,21 +1,21 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ProductosService } from '../../services/productos.service';
+import { Component, OnInit } from '@angular/core';
+import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
 
 @Component({
-  selector: 'app-productos',
-  templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.scss']
+  selector: 'app-list-page',
+  templateUrl: './list-page.component.html',
+  styleUrls: ['./list-page.component.scss']
 })
-export class ProductosComponent implements OnInit{
+export class ListPageComponent implements OnInit {
   filteredPrinters: Printer[] = [];
   printers: Printer[] = [];
   loading = true;
 
-  constructor(private productosService: ProductosService) { }
+  constructor(private printersService: PrintersService) { }
 
   ngOnInit(): void {
-    this.productosService.getPrinters().subscribe(
+    this.printersService.getPrinters().subscribe(
       (printers_response: Printer[]) => {
         console.log(printers_response);
         this.filteredPrinters = printers_response;
@@ -29,4 +29,3 @@ export class ProductosComponent implements OnInit{
     this.filteredPrinters = filteredPrinters;
   }
 }
-

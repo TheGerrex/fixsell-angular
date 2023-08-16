@@ -16,7 +16,7 @@ export class NavbarComponent {
         {
           label: 'Productos',
           icon: 'pi pi-shopping-bag',
-          routerLink: ['/productos'],
+          routerLink: ['/printers/list'],
           items: [
             {
               label: 'Renta',

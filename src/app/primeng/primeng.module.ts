@@ -13,6 +13,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {DividerModule} from 'primeng/divider';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { GalleriaModule } from 'primeng/galleria';
 
 
 
@@ -31,6 +32,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     DividerModule,
     InputTextareaModule,
     ToggleButtonModule,
+    GalleriaModule,
   ]
 })
 export class PrimengModule { }

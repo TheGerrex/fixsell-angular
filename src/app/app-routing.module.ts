@@ -5,6 +5,7 @@ import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { RentaComponent } from './pages/renta/renta.component';
 import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
+import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 
 const routes: Routes = [
   {
@@ -29,12 +30,16 @@ const routes: Routes = [
     component: AvisoDePrivacidadComponent,
   },
   {
-    path: 'productos',
-    loadChildren: () => import('./productos/productos.module').then( m => m.ProductosModule),
+    path: '404',
+    component: Error404PageComponent,
+  },
+  {
+    path: 'printers',
+    loadChildren: () => import('./printers/printers.module').then( m => m.PrinterModule),
   },
   {
     path: '**',
-    redirectTo: '/'
+    redirectTo: '404',
   },
 ];
 
