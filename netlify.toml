@@ -1,0 +1,4 @@
+[build]
+  [build.budgets]
+    [build.budgets.CSS]
+      maximumBudget = 12
