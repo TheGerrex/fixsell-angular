@@ -1,3 +1,3 @@
 export const environment = {
-    baseUrl: "http://localhost:3000"
+    baseUrl: "ec2-54-173-181-60.compute-1.amazonaws.com"
 }
