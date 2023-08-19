@@ -22,25 +22,25 @@ export class NavbarComponent {
               label: 'Renta',
               icon: 'pi pi-print',
               routerLink: ['/renta'],
-              items: [
-                  {label: 'Oficina'},
-                  {label: 'Producción'},
-                  {label: 'Artes Gráficas'},
-                  {label: 'Inyección de Tinta'},
-              ]
+              // items: [
+              //     {label: 'Oficina'},
+              //     {label: 'Producción'},
+              //     {label: 'Artes Gráficas'},
+              //     {label: 'Inyección de Tinta'},
+              // ]
             },
             {
               label: 'Venta',
               icon: 'pi pi-dollar',
               routerLink: ['/venta'],
-              items: [
-                  {label: 'Oficina'},
-                  {label: 'Producción'},
-                  {label: 'Etiquetas'},
-                  {label: 'Plotters'},
-                  {label: 'Inyección de Tinta'},
-                  {label: 'Artes Gráficas'},
-              ]
+              // items: [
+              //     {label: 'Oficina'},
+              //     {label: 'Producción'},
+              //     {label: 'Etiquetas'},
+              //     {label: 'Plotters'},
+              //     {label: 'Inyección de Tinta'},
+              //     {label: 'Artes Gráficas'},
+              // ]
             },
           ]
         },

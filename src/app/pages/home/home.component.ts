@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -72,7 +73,7 @@ export class HomeComponent {
   responsiveOptions: any;
   responsiveClientOptions: any;
 
-  constructor() {
+  constructor(private router: Router) {
     this.responsiveOptions = [
       {
         breakpoint: '3000px',
@@ -157,5 +158,9 @@ export class HomeComponent {
     
     
     
+  }
+
+  navigateToProductList(category: string) {
+    this.router.navigate(['/printers/list'], { queryParams: { category } });
   }
 }

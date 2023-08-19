@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
+import { ActivatedRoute } from '@angular/router';
+import { FilterComponent } from '../../components/filter/filter.component';
 
 @Component({
   selector: 'app-list-page',
@@ -8,20 +10,35 @@ import { Printer } from '../../interfaces/printer.interface';
   styleUrls: ['./list-page.component.scss']
 })
 export class ListPageComponent implements OnInit {
+  @Input() selectedCategory?: string;
+  @Input() rentable?: boolean;
   filteredPrinters: Printer[] = [];
   printers: Printer[] = [];
   loading = true;
 
-  constructor(private printersService: PrintersService) { }
+  @ViewChild('filterComponent', { static: false }) filterComponent!: FilterComponent;
+
+  constructor(private printersService: PrintersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.route.queryParams.subscribe(params => {
+      // console.log('Route Parameters:', params);
+      const selectedCategory = params['category'];
+      const rentable = params['rentable']; 
+      // console.log('Extracted Selected Category:', selectedCategory);
+      // console.log('Extracted Rentable:', rentable);
+      this.filterComponent.applyFilters();
+    });
+
     this.printersService.getPrinters().subscribe(
       (printers_response: Printer[]) => {
         console.log(printers_response);
         this.filteredPrinters = printers_response;
         this.loading = false;
       }
-    )
+    );
+    console.log('ListPageComponent ngOnInit: End');
   }
 
   handleFilteredPrintersChange(filteredPrinters: any[]): void {
