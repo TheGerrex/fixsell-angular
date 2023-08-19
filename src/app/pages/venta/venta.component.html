@@ -17,26 +17,13 @@
 <section class="section-content" id="categorias">
     <div class="container">
         <div class="row">
-            <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showNavigators]="false" class="d-md-none">
-                <ng-template let-category pTemplate="item">
-                    <div class="category-card">
-                        <div class="image">
-                            <img [src]="category.img" alt="category.name">
-                        </div>
-                        <div class="body">
-                            <h4 class="title mb-0">{{category.name}}</h4>
-                            <i class="pi pi-arrow-right" id="translate-icon"></i>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-carousel>
             <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showNavigators]="true" class="d-none d-md-block">
                 <ng-template let-category pTemplate="item">
                     <div class="category-card">
                         <div class="image">
                             <img [src]="category.img" alt="category.name">
                         </div>
-                        <div class="body">
+                        <div class="body" (click)="navigateToProductList(category.name, false)">
                             <h4 class="title mb-0">{{category.name}}</h4>
                             <i class="pi pi-arrow-right" id="translate-icon"></i>
                         </div>

@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Printer } from '../../interfaces/printer.interface';
 import { PrintersService } from '../../services/printers.service';
 
@@ -25,6 +25,8 @@ import { PrintersService } from '../../services/printers.service';
 })
 export class FilterComponent implements OnInit {
   @Output() filteredPrintersChange = new EventEmitter<Printer[]>(); // Output event
+  @Input() selectedCategory?: string;
+  @Input() rentable?: boolean;
   // FILTERS
   printers: Printer[] = [];
   filteredPrinters: Printer[] = [];
@@ -50,9 +52,14 @@ export class FilterComponent implements OnInit {
   constructor(private printerService: PrintersService) {}
 
   ngOnInit(): void {
+    console.log('FilterComponent ngOnInit: Start');
+
+    console.log('Selected Category:', this.selectedCategory);
+    console.log('Rentable:', this.rentable);
     this.printerService.getPrinters().subscribe((data: any) => {
       this.printers = data;
       this.filteredPrinters = data;
+      console.log('FilterComponent ngOnInit: End');
     })
   }
 
@@ -103,8 +110,15 @@ export class FilterComponent implements OnInit {
       );
     }
 
+    if (this.rentable !== undefined) {
+      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
+        printer.rentable === this.rentable
+      );
+    }
+
     this.filteredPrintersChange.emit(this.filteredPrinters);
     console.log(this.filteredPrinters)
+    
   }
 
   togglePrintSizeFilter(printSize: String): void {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-venta',
@@ -64,13 +65,10 @@ export class VentaComponent {
     }
   ];
 
-   
-
-
   responsiveOptions: any;
   responsiveOptionsAspectos: any;
   
-  constructor() {
+  constructor(private router: Router) {
     this.responsiveOptions = [
       {
         breakpoint: '3000px',
@@ -145,5 +143,9 @@ export class VentaComponent {
           numScroll: 1
       }
     ];
+  }
+  navigateToProductList(category: string, rentable: boolean) {
+    console.log('Im working');
+    this.router.navigate(['/printers/list'], { queryParams: { category, rentable } });
   }
 }

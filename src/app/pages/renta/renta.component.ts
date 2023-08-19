@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-renta',
@@ -56,13 +57,10 @@ export class RentaComponent {
     }
   ];
 
-   
-
-
   responsiveOptions: any;
   responsiveOptionsAspectos: any;
   
-  constructor() {
+  constructor(private router: Router) {
     this.responsiveOptions = [
       {
         breakpoint: '3000px',
@@ -137,5 +135,8 @@ export class RentaComponent {
           numScroll: 1
       }
     ];
+  }
+  navigateToProductList(category: string, rentable: boolean) {
+    this.router.navigate(['/printers/list'], { queryParams: { category, rentable } });
   }
 }
