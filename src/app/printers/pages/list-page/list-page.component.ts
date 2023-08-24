@@ -26,19 +26,15 @@ export class ListPageComponent implements OnInit {
       // console.log('Route Parameters:', params);
       const selectedCategory = params['category'];
       const rentable = params['rentable']; 
-      // console.log('Extracted Selected Category:', selectedCategory);
-      // console.log('Extracted Rentable:', rentable);
-      this.filterComponent.applyFilters();
+      // this.filterComponent.applyFilters();
     });
 
     this.printersService.getPrinters().subscribe(
       (printers_response: Printer[]) => {
-        console.log(printers_response);
         this.filteredPrinters = printers_response;
         this.loading = false;
       }
     );
-    console.log('ListPageComponent ngOnInit: End');
   }
 
   handleFilteredPrintersChange(filteredPrinters: any[]): void {

@@ -29,7 +29,6 @@ export class PrinterPageComponent implements OnInit{
     ).subscribe( printer => {
       if (!printer) return this.router.navigate(['printers/list']);
       this.printer = printer;
-      console.log(printer);
       this.images = this.printer.img_url.map(url => ({
         itemImageSrc: url,
         thumbnailImageSrc: url // You can use the same URL for thumbnails or provide a different URL

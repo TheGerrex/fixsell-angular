@@ -6,6 +6,7 @@ import { VentaComponent } from './pages/venta/venta.component';
 import { RentaComponent } from './pages/renta/renta.component';
 import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
+import { SuccessComponent } from './pages/success/success.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'aviso-de-privacidad',
     component: AvisoDePrivacidadComponent,
+  },
+  {
+    path: 'success',
+    component: SuccessComponent,
   },
   {
     path: '404',

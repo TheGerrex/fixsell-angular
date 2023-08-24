@@ -52,14 +52,9 @@ export class FilterComponent implements OnInit {
   constructor(private printerService: PrintersService) {}
 
   ngOnInit(): void {
-    console.log('FilterComponent ngOnInit: Start');
-
-    console.log('Selected Category:', this.selectedCategory);
-    console.log('Rentable:', this.rentable);
     this.printerService.getPrinters().subscribe((data: any) => {
       this.printers = data;
       this.filteredPrinters = data;
-      console.log('FilterComponent ngOnInit: End');
     })
   }
 

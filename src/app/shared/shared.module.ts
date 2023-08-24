@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { PrimengModule } from '../primeng/primeng.module';
@@ -15,7 +16,8 @@ import { Error404PageComponent } from './pages/error404-page/error404-page.compo
     ],
     imports: [
         CommonModule,
-        PrimengModule
+        PrimengModule,
+        ReactiveFormsModule
     ],
     exports: [
         NavbarComponent,
