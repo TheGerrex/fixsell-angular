@@ -10,7 +10,7 @@ import { PrintersService } from '../../services/printers.service';
   animations: [
     trigger('filterSectionsAnimation', [
       state('open', style({
-        display: 'block',
+        display: 'flex',
         height: '*'
       })),
       state('closed', style({
@@ -45,7 +45,7 @@ export class FilterComponent implements OnInit {
 
 
   
-  filterSectionsState = 'open';
+  filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
   checked = false;
 
 
@@ -56,6 +56,16 @@ export class FilterComponent implements OnInit {
       this.printers = data;
       this.filteredPrinters = data;
     })
+
+    window.addEventListener('resize', this.onResize);
+  }
+
+  onResize = () => {
+    this.filterSectionsState = window.innerWidth > 768 ? 'open' : 'closed';
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.onResize);
   }
 
   applyFilters(): void {

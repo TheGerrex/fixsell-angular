@@ -1,25 +1,9 @@
 @import './_variables.scss';
 @font-face {
     font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro/Cera Pro Regular.otf');
-}
-
-@font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro/Cera Pro Medium.otf');
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro/Cera Pro Bold.otf');
-    font-weight: 600;
-}
-
-@font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro/Cera Pro Regular Italic.otf');
-    font-style: italic;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/Cera-Pro/Cera Pro Regular.otf') format('otf'), url('./assets/fonts/Cera-Pro/Cera Pro Medium.otf') format('otf') 500, url('./assets/fonts/Cera-Pro/Cera Pro Bold.otf') format('otf') 600, url('./assets/fonts/Cera-Pro/Cera Pro Regular Italic.otf') format('otf') italic;
 }
 
 body {

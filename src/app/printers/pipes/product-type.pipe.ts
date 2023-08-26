@@ -12,7 +12,7 @@ export class ProductTypePipe implements PipeTransform {
 
   transform(value: boolean): SafeHtml {
     const rentaTag = `
-      <div class="TypeBlob" style="width: 76px;
+      <div class="TypeBlob" style="width: 60px;
       height: fit-content;
       align-self: stretch;
       padding-left: 8px;
@@ -27,15 +27,12 @@ export class ProductTypePipe implements PipeTransform {
       gap: 10px;
       display: flex;">
         <div style="color: #EC4769;
-        font-size: 1rem;
-        font-family: Cera Pro;
-        font-weight: 700;
-        word-wrap: break-word;
-        height: auto;">Renta</div>
+        font-size: .9rem;
+        font-weight: 700;">Renta</div>
       </div>
     `;
     const ventaTag = `
-      <div class="TypeBlob" style="width: 76px;
+      <div class="TypeBlob" style="width: 60px;
       height: fit-content;
       align-self: stretch;
       padding-left: 8px;
@@ -49,7 +46,7 @@ export class ProductTypePipe implements PipeTransform {
       align-items: center;
       gap: 10px;
       display: flex;">
-        <div style="color: #22C55E; font-size: 16px; font-weight: 700;">Venta</div>
+        <div style="color: #22C55E; font-size: .9em; font-weight: 700;">Venta</div>
       </div>
     `;
 

@@ -2,15 +2,15 @@
     <div class="Header">
         <div class="Filtros">
             <div class="Titulo">
-                <i class="pi pi-filter-fill" style="font-size: 1.3rem; color: #434655;"></i>
-                <h1>Filtros</h1>
+                <i class="pi pi-filter" style="font-size: 1.3rem; color: #3F4756;"></i>
+                <h3>Filtros</h3>
             </div>
         </div>
         <div class="AngleButton" (click)="toggleFilterSections()">
-            <i class="pi pi-angle-down" style="font-size: 1rem; color: #434655;"></i>
+            <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"></i>
         </div>
     </div>
-    <div class="Content">
+    <div class="Content" [@filterSectionsAnimation]="filterSectionsState">
         <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
             <div class="Title">Producto</div>
             <div class="buttons-container">

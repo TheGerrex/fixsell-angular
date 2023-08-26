@@ -1,8 +1,10 @@
 @import url("../../../../styles.scss");
+@import "../../../../variables";
 .FilterComponent {
-    width: 300px;
-    height: auto;
-    padding: 32px 16px 32px 16px;
+    width: 100%;
+    min-width: 300px;
+    height: 100%;
+    padding: 16px 16px 16px 16px;
     background: #F8FAFC;
     border-radius: 6px;
     overflow: hidden;
@@ -35,11 +37,9 @@
                 width: 100%;
                 flex-direction: row;
                 gap: 8px;
-                h1 {
-                    color: #3F4756;
-                    font-size: 28px;
+                h3 {
+                    color: $text;
                     font-weight: 700;
-                    line-height: 42px;
                     word-wrap: break-word;
                     margin: 0;
                 }
@@ -58,6 +58,7 @@
             justify-content: center;
             align-items: center;
             display: flex;
+            background: #E2E8F0;
             &:hover {
                 background: #E2E8F0;
             }

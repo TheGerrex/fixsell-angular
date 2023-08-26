@@ -1,6 +1,17 @@
 <section>
     <div class="section-card-product">
         <div class="product-container">
+            <div class="product-description-container-mobile" *ngIf="printer">
+                <div class="Header">
+                    <div class="brand-type">
+                        <div class="Brand" [innerHTML]="printer.brand | brandType">
+                        </div>
+                        <div [innerHTML]="printer.rentable | productType">
+                        </div>
+                    </div>
+                    <h1 class="Model">{{printer.model}}</h1>
+                </div>
+            </div>
             <div class="product-gallery-container">
                 <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [showIndicators]="true " [showItemNavigatorsOnHover]="true" [showThumbnails]="false" [showItemNavigators]="true" indicatorsPosition="left" [changeItemOnIndicatorHover]="true" [containerStyle]="{ 'max-width': '640px' }"
                     [numVisible]="5">
@@ -24,9 +35,6 @@
                     </div>
                     <h1 class="Model">{{printer.model}}</h1>
                 </div>
-                <!-- <div class="actions-container">
-                    <button class="button button-primary button-rounded"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
-                </div> -->
                 <div class="description">
                     <p>
                         {{printer.description}}

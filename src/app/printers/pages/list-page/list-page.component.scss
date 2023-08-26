@@ -8,27 +8,29 @@
     flex-direction: row;
     gap: 16px;
     // Medium devices (tablets, 768px and up)
-    @media (max-width: 698px) {
+    @media (max-width: 768px) {
         flex-direction: column;
     }
 }
 
 .filter-col {
-    width: 300px;
+    width: 100%;
+    // max-width: 300px;
     height: max-content;
-    // Medium devices (tablets, 768px and up)
-    // @media (min-width: 698px) {
-    //     position: sticky;
-    //     position: -webkit-sticky;
-    //     top: 1%;
-    //     z-index: 1;
-    //     width: 300px;
-    // }
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 768px) {
+        max-width: 300px;
+    }
+    // @media (min-width: 768px) { ... }
+    // @media (min-width: 992px) { ... }
+    // @media (min-width: 1200px) { ... }
+    // @media (min-width: 1400px) { ... }
 }
 
 .product-list-col {
     flex-grow: 1;
     background-color: #ffffff;
+    width: 100%;
     /* Add your desired background color */
     z-index: 0;
 }

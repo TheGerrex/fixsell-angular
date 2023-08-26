@@ -54,7 +54,7 @@ export class PrinterPageComponent implements OnInit{
 
   openWhatsApp() {
     if (this.printer) {
-      const phoneNumber = '8115555783';
+      const phoneNumber = '+528115555784';
       const message = `Me interesa cotizar el producto ${this.printer.model}, me puedes dar mas información al respecto?`;
       const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
       
