@@ -46,7 +46,7 @@ export class ProductTypePipe implements PipeTransform {
       align-items: center;
       gap: 10px;
       display: flex;">
-        <div style="color: #22C55E; font-size: .9em; font-weight: 700;">Venta</div>
+        <div style="color: #0F572A; font-size: .9em; font-weight: 700;">Venta</div>
       </div>
     `;
 

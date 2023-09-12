@@ -12,6 +12,7 @@ import { PrimengModule } from '../primeng/primeng.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { PrinterPageComponent } from './pages/printer-page/printer-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 
@@ -31,6 +32,7 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
     CommonModule,
     PrinterRoutingModule,
     PrimengModule,
+    SwiperModule
   ]
 })
 export class PrinterModule { }

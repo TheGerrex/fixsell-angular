@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PrintersService } from '../../services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Printer } from '../../interfaces/printer.interface';
+// import Swiper core and required modules
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs } from 'swiper';
+
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
 
 @Component({
   selector: 'app-printer-page',
   templateUrl: './printer-page.component.html',
-  styleUrls: ['./printer-page.component.scss']
+  styleUrls: ['./printer-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PrinterPageComponent implements OnInit{
 
   public printer?: Printer;
   public images: any[] = [];
-  responsiveOptions: any[] = [];
-  showIndicatorsOnItem: boolean = false;
+  thumbsSwiper: any;
 
   constructor(
     private printersService: PrintersService,
@@ -31,25 +36,10 @@ export class PrinterPageComponent implements OnInit{
       this.printer = printer;
       this.images = this.printer.img_url.map(url => ({
         itemImageSrc: url,
-        thumbnailImageSrc: url // You can use the same URL for thumbnails or provide a different URL
+        thumbnailImageSrc: url
       }));
       return;
     })
-    
-    this.responsiveOptions = [
-      {
-          breakpoint: '1024px',
-          numVisible: 5
-      },
-      {
-          breakpoint: '768px',
-          numVisible: 3
-      },
-      {
-          breakpoint: '560px',
-          numVisible: 1
-      }
-    ];
   }
 
   openWhatsApp() {
