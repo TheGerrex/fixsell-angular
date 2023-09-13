@@ -1,95 +1,116 @@
-<section class="container">
-    <div class="section-card-product">
-        <div class="product-container">
-            <div class="product-description-container-mobile" *ngIf="printer">
-                <div class="Header">
-                    <div class="brand-type">
-                        <div class="Brand" [innerHTML]="printer.brand | brandType">
-                        </div>
-                        <div [innerHTML]="printer.rentable | productType">
-                        </div>
+<section>
+    <div class="product-section">
+        <div class="product-image">
+            <div class="product-image-inner">
+                <div class="product-image-container">
+                    <div class="swiper-container">
+                        <swiper
+                        style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6"
+                        [slidesPerView]="1"
+                        [spaceBetween]="10"
+                        [navigation]="true"
+                        [pagination]="{ clickable: true }" 
+                        [scrollbar]="{ draggable: true }"
+                        [centeredSlides]="true"
+                        [autoplay]="true"
+                        [thumbs]="{swiper: thumbsSwiper}"
+                        >
+                            <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt="printer.model" class="swiper-image"></ng-template>
+                        </swiper>
+                        <swiper
+                        (swiper)="thumbsSwiper = $event"
+                        [spaceBetween]="10"
+                        [slidesPerView]="4"
+                        [freeMode]="true"
+                        [watchSlidesProgress]="true"
+                        class="mySwiper"
+                        >
+                        <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt=""></ng-template>
+                        </swiper>
                     </div>
-                    <h1 class="Model">{{printer.model}}</h1>
                 </div>
             </div>
-            <div class="swiper-container">
-                <swiper
-                style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6"
-                [slidesPerView]="1"
-                [spaceBetween]="10"
-                [navigation]="true"
-                [pagination]="{ clickable: true }" 
-                [scrollbar]="{ draggable: true }"
-                [centeredSlides]="true"
-                [autoplay]="true"
-                [thumbs]="{swiper: thumbsSwiper}"
-                >
-                    <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt=""></ng-template>
-                </swiper>
-                <swiper
-                (swiper)="thumbsSwiper = $event"
-                [spaceBetween]="10"
-                [slidesPerView]="4"
-                [freeMode]="true"
-                [watchSlidesProgress]="true"
-                class="mySwiper"
-                >
-                <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt=""></ng-template>
-                </swiper>
-            </div>
-            <div class="product-description-container" *ngIf="printer">
-                <div class="Header">
-                    <div class="brand-type">
-                        <div class="Brand" [innerHTML]="printer.brand | brandType">
-                        </div>
-                        <div [innerHTML]="printer.rentable | productType">
+        </div>
+        <div class="product-info" *ngIf="printer">
+            <div class="product-info-column">
+                <div class="product-info-inner">
+                    <div class="product-info-block heading-block">
+                        <div class="product-header">
+                            <div class="product-brand">
+                                <div class="Brand" [innerHTML]="printer.brand | brandType"></div>
+                            </div>
+                            <h1 class="product-title">{{printer.model}}</h1>
+                            <div class="product-tags">
+                                <div [innerHTML]="printer.rentable | productType"></div>
+                            </div>
                         </div>
                     </div>
-                    <h1 class="Model">{{printer.model}}</h1>
-                </div>
-                <div class="description">
-                    <p>
-                        {{printer.description}}
-                    </p>
-                </div>
-                <div class="Functions">
-                    <div class="Feature">
-                        <div class="feature-container">
-                            <i class="pi pi-th-large"></i>
-                            <h4 class="titulo">Funciones</h4>
+                    <div class="product-info-block">
+                        <div class="product-description">
+                            <p>
+                                {{printer.description}}
+                            </p>
                         </div>
-                        <p class="dato">Impresión</p>
                     </div>
-                    <div class="Feature">
-                        <div class="feature-container">
-                            <i class="pi pi-window-maximize"></i>
-                            <h4 class="titulo">Tamaño</h4>
+                    <div class="product-info-block">
+                        <div class="Functions">
+                            <div class="Feature">
+                                <div class="feature-container">
+                                    <i class="pi pi-th-large"></i>
+                                    <h4 class="titulo">Funciones</h4>
+                                </div>
+                                <p class="dato">Impresión</p>
+                            </div>
+                            <div class="Feature">
+                                <div class="feature-container">
+                                    <i class="pi pi-window-maximize"></i>
+                                    <h4 class="titulo">Tamaño</h4>
+                                </div>
+                                <p class="dato">{{printer.maxPrintSizeSimple}}</p>
+                            </div>
+                            <div class="Feature">
+                                <div class="feature-container">
+                                    <i class="pi pi-clock"></i>
+                                    <h4 class="titulo">Velocidad</h4>
+                                </div>
+                                <p class="dato">{{printer.printVelocity}}</p>
+                            </div>
+                            <div class="Feature">
+                                <div class="feature-container">
+                                    <i class="pi pi-tag"></i>
+                                    <h4 class="titulo">Tipo</h4>
+                                </div>
+                                <p class="dato">{{printer.color ? 'Color' : 'B/N'}}</p>
+                            </div>
                         </div>
-                        <p class="dato">{{printer.maxPrintSizeSimple}}</p>
                     </div>
-                    <div class="Feature">
-                        <div class="feature-container">
-                            <i class="pi pi-clock"></i>
-                            <h4 class="titulo">Velocidad</h4>
-                        </div>
-                        <p class="dato">{{printer.printVelocity}}</p>
+                    
+                    
+                    
+                    <!-- <hr class="product-hr"> -->
+                    <div class="actions-container">
+                        <button class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
+                        <!-- <a href="#">Ficha Técnica</a> -->
                     </div>
-                    <div class="Feature">
-                        <div class="feature-container">
-                            <i class="pi pi-tag"></i>
-                            <h4 class="titulo">Tipo</h4>
-                        </div>
-                        <p class="dato">{{printer.color ? 'Color' : 'B/N'}}</p>
-                    </div>
-                </div>
-                <!-- <hr class="product-hr"> -->
-                <div class="actions-container">
-                    <button class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
-                    <!-- <a href="#">Ficha Técnica</a> -->
                 </div>
             </div>
         </div>
     </div>
+    <!-- <div class="section-card-product">
+        <div class="product-container">
+            <div class="product-info-mobile" *ngIf="printer">
+                <div class="Header">
+                    <div class="brand-type">
+                        <div class="Brand" [innerHTML]="printer.brand | brandType">
+                        </div>
+                        <div [innerHTML]="printer.rentable | productType">
+                        </div>
+                    </div>
+                    <h1 class="Model">{{printer.model}}</h1>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </section>
 <section class="section-product-specs">
     <div class="container">
