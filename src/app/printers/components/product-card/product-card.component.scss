@@ -1,3 +1,4 @@
+@import '../../../../variables';
 .ProductCard {
     width: 100%;
     height: 550px;
@@ -160,140 +161,136 @@
     }
 }
 
-.ProductCardMobile {
-    width: 100%;
-    // height: 250px;
-    background: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
-    border: 0.50px #E2E8F0 solid;
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {
-        display: none;
-    }
-    .ProductCardContent {
-        width: 100%;
-        padding: 16px;
-        .Content {
-            // display: flex;
-            // width: 100%;
-            // height: 100%;
-            // justify-content: center;
-            // align-items: flex-start;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            /* Image and Details columns */
-            grid-gap: 16px;
-            align-items: center;
-            .ImageContainer {
-                // padding: 8px;
-                width: 100%;
-                height: 100%;
+.product-card {
+    .product-card-container {
+        cursor: pointer;
+        .product-image-wrap {
+            // padding: 8px;
+            position: relative;
+            .product-feature-image {
+                position: relative;
+                padding: 0 12px;
+                min-height: 250px;
+                overflow: hidden;
                 display: flex;
                 align-items: center;
-                img {
+                .product-image {
                     width: 100%;
-                    // max-width: 400px;
-                    height: auto;
-                    object-fit: contain;
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
-            .Details {
+            
+        }
+        .product-info {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+            padding: 3px 12px 0;
+            background-color: $gray-50;
+            .product-info-col {
                 width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: center;
-                gap: 16px;
-                .Header {
-                    width: 100%;
-                    justify-content: space-between;
-                    align-items: center;
-                    gap: 8px;
-                    display: flex;
-                    width: 100%;
-                    .ContainerBrand {
-                        flex-direction: column;
-                        justify-content: flex-start;
-                        align-items: flex-start;
-                        gap: 5px;
-                        display: flex;
-                        width: 100%;
-                        .Brand {
-                            width: 100%;
-                            height: 25.10px;
-                            position: relative;
-                        }
-                        .Model {
-                            color: #1E293B;
-                            font-size: 20px;
-                            font-family: Cera Pro;
-                            font-weight: 700;
-                            word-wrap: break-word;
-                        }
-                    }
-                    .Type {
-                        justify-content: flex-end;
-                        display: flex;
-                        width: 100%;
+                .product-tag {
+                    margin: 0 0 8px;
+                    
+                }
+                .product-name {
+                    margin: 0 0 16px;
+                    font-weight: 600;
+                }
+                .product-brand {
+                    margin: 0 0 6px;
+                    img {
+                        width: 80px !important;
                     }
                 }
-                .Bottom {
+                .product-features {
                     display: flex;
-                    gap: 16px;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    // flex-wrap: wrap;
                     flex-direction: column;
-                    .DetailsContainer {
-                        width: 100%;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                        align-items: flex-start;
-                        // padding-bottom: 16px;
+                    gap: 12px;
+                    width: 100%;
+                    margin: 0 0 16px;
+                    .feature {
                         display: flex;
-                        .FeatureList {
-                            justify-content: flex-start;
-                            align-items: center;
-                            gap: 16px;
-                            display: inline-flex;
-                            width: 100%;
-                            .Feature {
-                                justify-content: center;
-                                align-items: center;
-                                gap: 5px;
-                                display: flex;
-                                width: 100%;
-                                .ColorCircle {
-                                    width: 20px;
-                                    height: 20px;
-                                    background: conic-gradient(from 180deg at 0.00% 100.00%, #FF0000 0deg, #FF7A1A 37deg, #FFF730 67deg, #90FF4B 106deg, #66FF6C 144deg, #00FF75 174deg, #00FFE0 198deg, #00B2FF 226deg, #0038FF 249deg, #2400FF 279deg, #AF06FF 301deg, #FF00D6 324deg, #FF002E 360deg);
-                                    border-radius: 9999px;
-                                }
-                                .BlackCircle {
-                                    width: 20px;
-                                    height: 20px;
-                                    background: conic-gradient(from 180deg at 0.00% 100.00%, black 0deg, white 360deg);
-                                    border-radius: 9999px;
-                                }
-                                p {
-                                    color: #1E293B;
-                                    font-size: 14px;
-                                    font-family: Cera Pro;
-                                    font-weight: 700;
-                                    word-wrap: break-word;
-                                    margin: 0;
-                                }
-                            }
+                        justify-content: center;
+                        align-items: center;
+                        
+                        gap: 5px;
+                        .ColorCircle {
+                            width: 20px;
+                            height: 20px;
+                            background: conic-gradient(from 180deg at 0.00% 100.00%, #FF0000 0deg, #FF7A1A 37deg, #FFF730 67deg, #90FF4B 106deg, #66FF6C 144deg, #00FF75 174deg, #00FFE0 198deg, #00B2FF 226deg, #0038FF 249deg, #2400FF 279deg, #AF06FF 301deg, #FF00D6 324deg, #FF002E 360deg);
+                            border-radius: 9999px;
+                        }
+                        .BlackCircle {
+                            width: 20px;
+                            height: 20px;
+                            background: conic-gradient(from 180deg at 0.00% 100.00%, black 0deg, white 360deg);
+                            border-radius: 9999px;
+                        }
+                        p {
+                            color: #1E293B;
+                            font-size: 14px;
+                            font-family: Cera Pro;
+                            font-weight: 500;
+                            word-wrap: break-word;
+                            margin: 0;
                         }
                     }
-                    .ActionContainer {
-                        width: 100%;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                        align-items: flex-start;
-                        display: flex;
+                }
+                .product-action {
+                    background: $gray-50;
+                    position: absolute;
+                    width: 100%;
+                    height: 56px;
+                    left: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    // padding-left: 24px;
+                    gap: 12px;
+                    cursor: pointer;
+                    transition: background .4s;
+                    span {
+                        color: $primary-color;
+                        font-weight: 600;
+                    }
+                    i {
+                        color: $primary-color !important;
+                    }
+                    @media(max-width: 1023px) {
+                        background: $primary-color;
+                        padding-left: 0px;
+                        justify-content: center;
+                        height: 46px;
+                        span {
+                            color: #FFF;
+                            font-weight: 600;
+                        }
+                        i {
+                            color: #FFF;
+                        }
                     }
                 }
             }
+        }
+    }
+}
+
+.product-card:hover .product-action {
+    @media(min-width: 768px) {
+        background: $primary-color !important;
+        padding-left: 0 !important;
+        justify-content: center;
+        span {
+            color: #FFF !important;
+        }
+        i {
+            color: #FFF !important;
         }
     }
 }

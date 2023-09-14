@@ -1,6 +1,6 @@
 <div class="container-products py-3">
     <div class="products-row px-3">
-        <div class="filter-col">
+        <div class="filter-col d-none d-lg-flex">
             <app-filter (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
         </div>
         <div class="product-list-col">
@@ -9,7 +9,7 @@
             </div>
 
             <div class="product-list-container">
-                <printer-product-card [printer]="printer" *ngFor="let printer of filteredPrinters"></printer-product-card>
+                <printer-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></printer-product-card>
             </div>
         </div>
     </div>

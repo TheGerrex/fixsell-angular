@@ -1,15 +1,23 @@
-@import url("../../../../styles.scss");
+@import '../../../../variables';
 .container-products {
     display: flex;
+    justify-content: center;
 }
 
 .products-row {
     display: flex;
     flex-direction: row;
     gap: 16px;
-    // Medium devices (tablets, 768px and up)
+    padding: 16px 12px;
+    margin: 0 auto;
     @media (max-width: 768px) {
-        flex-direction: column;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    @media (min-width: 1440px) {
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 1280px;
     }
 }
 
@@ -47,9 +55,29 @@
 .product-list-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    column-gap: 8px;
     width: 100%;
     /* Add spacing between product cards */
+}
+
+.printer-product-card {
+    width: calc(50% - 6px);
+    min-height: 287px;
+    border-radius: 6px;
+    border: 0.50px #E2E8F0 solid;
+    position: relative;
+    background: $light-50;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    // width: calc(50% - 6px);
+    // min-height: 287px;
+    padding-bottom: 58px;
+    @media(min-width: 768px) {
+        width: calc(33.3% - 8px);
+        min-height: 306px;
+        margin-bottom: 16px;
+    }
 }
 
 // .spinner-container {

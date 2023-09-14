@@ -1,4 +1,4 @@
-<div class="ProductCard">
+<!-- <div class="ProductCard">
     <div class="Header">
         <div class="HeaderTitle">
             <div class="ModelBrand">
@@ -41,48 +41,39 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="ProductCardMobile">
-    <div class="ProductCardContent">
-        <div class="Content">
-            <div class="ImageContainer">
+<div class="product-card">
+    <div class="product-card-container" [routerLink]="['/printers', printer._id]">
+        <div class="product-image-wrap">
+            <div class="product-feature-image">
                 <img [src]="printer.img_url[0]" alt="" class="product-image">
             </div>
-            <div class="Details">
-                <div class="Header">
-                    <div class="ContainerBrand">
-                        <div class="Brand" [innerHTML]="printer.brand | brandType"></div>
-                        <div class="Model">{{printer.model}}</div>
+        </div>
+        <div class="product-info">
+            <div class="product-info-col">
+                <div class="product-tag">
+                    <div [innerHTML]="printer.rentable | productType"></div>   
+                </div>
+                <div class="product-brand" [innerHTML]="printer.brand | brandType"></div>
+                <p class="product-name">{{printer.model}}</p>
+                <div class="product-features">
+                    <div class="feature">
+                        <div [class]="printer.color | productColorIcon: 'ColorCircle' : 'BlackCircle' "></div>
+                        <p>{{printer.color ? 'Color' : 'B/N'}}</p>
                     </div>
-                    <div class="Type">
-                        <div [innerHTML]="printer.rentable | productType">
-                        </div>
+                    <div class="feature">
+                        <i class="pi pi-window-minimize"></i>
+                        <p class="PrintSize">{{printer.maxPrintSizeSimple}}</p>
+                    </div>
+                    <div class="feature">
+                        <i class="pi pi-clock"></i>
+                        <p class="PrintVelocity">{{printer.printVelocity}} ppm</p>
                     </div>
                 </div>
-                <div class="Bottom">
-                    <div class="DetailsContainer">
-                        <div class="FeatureList">
-                            <div class="Feature">
-                                <div [class]="printer.color | productColorIcon: 'ColorCircle' : 'BlackCircle' "></div>
-                                <p>{{printer.color ? 'Color' : 'B/N'}}</p>
-                            </div>
-                            <div class="Feature">
-                                <i class="pi pi-window-minimize"></i>
-                                <p class="PrintSize">{{printer.maxPrintSizeSimple}}</p>
-                            </div>
-                            <div class="Feature">
-                                <i class="pi pi-clock"></i>
-                                <p class="PrintVelocity">{{printer.printVelocity}} ppm</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ActionContainer">
-                        <button class="button button-primary button-rounded button-full" [routerLink]="['/printers', printer._id]">
-                          <span class="button-label">Más Info</span>
-                          <i class="pi pi-arrow-right" style="color: white; font-size: 1rem;"></i>
-                        </button>
-                    </div>
+                <div class="product-action">
+                    <span class="button-label">Ver más</span>
+                    <!-- <i class="pi pi-arrow-right" style="color: white; font-size: .95rem;"></i> -->
                 </div>
             </div>
         </div>

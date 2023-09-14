@@ -15,10 +15,10 @@ export class ProductTypePipe implements PipeTransform {
       <div class="TypeBlob" style="width: 60px;
       height: fit-content;
       align-self: stretch;
-      padding-left: 8px;
-      padding-right: 8px;
-      padding-top: 6px;
-      padding-bottom: 6px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-top: 2px;
+      padding-bottom: 2px;
       background: #FFA7B8;
       border-radius: 8px;
       border: 0.50px #FFA7B8 solid;
@@ -26,8 +26,8 @@ export class ProductTypePipe implements PipeTransform {
       align-items: center;
       gap: 10px;
       display: flex;">
-        <div style="color: #EC4769;
-        font-size: .9rem;
+        <div style="color: #AE003A;
+        font-size: 12px;
         font-weight: 700;">Renta</div>
       </div>
     `;
@@ -35,10 +35,10 @@ export class ProductTypePipe implements PipeTransform {
       <div class="TypeBlob" style="width: 60px;
       height: fit-content;
       align-self: stretch;
-      padding-left: 8px;
-      padding-right: 8px;
-      padding-top: 6px;
-      padding-bottom: 6px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-top: 2px;
+      padding-bottom: 2px;
       background: #BEF4D2;
       border-radius: 8px;
       border: 0.50px #BEF4D2 solid;
@@ -46,7 +46,7 @@ export class ProductTypePipe implements PipeTransform {
       align-items: center;
       gap: 10px;
       display: flex;">
-        <div style="color: #0F572A; font-size: .9em; font-weight: 700;">Venta</div>
+        <div style="color: #0F572A; font-size: 12px; font-weight: 700;">Venta</div>
       </div>
     `;
 
