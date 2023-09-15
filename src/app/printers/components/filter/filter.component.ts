@@ -30,18 +30,24 @@ export class FilterComponent implements OnInit {
   // FILTERS
   printers: Printer[] = [];
   filteredPrinters: Printer[] = [];
-  selectedPrintSizeFilters: String[] = [];
-  printSizesFilter: String[] = ['13" x 47', 'Banner', 'Legal', 'Super-B', 'A4', 'Tabloide', 'Tabloide +'];
-  selectedColors: String[] = [];
-  colorFilter: String[] = ['Color', 'B&N'];
-  selectedBrands: String[] = [];
-  brands: String[] = ['Konica Minolta', 'Kyocera', 'Epson'];
+  selectedPrintSizeFilters: string[] = [];
+  printSizesFilter: string[] = ['Carta', 'Doble Carta', 'Tabloide', 'Tabloide +', 'Rollo 4"', 'Rollo 4.25"','Rollo 8"','Rollo 8.34"', 'Rollo 13"'  ];
+  selectedColors: string[] = [];
+  colorFilter: string[] = ['Color', 'B&N'];
+  selectedBrands: string[] = [];
+  brands: string[] = ['Konica Minolta', 'Kyocera', 'Epson'];
   selectedRentableOptions: boolean[] = [false, true];
   rentableOptions: boolean[] = [false, true];
-  selectedPrintVelocities: String[] = [];
-  printVelocities: String[] = ["24 a 30", "30 a 40", "40 a 50", "50 a 60", "60 a 80", "80 a 100", "100 y más"];
-  selectedCategories: String[] = []; 
-  categories: String[] = ["Oficina", "Producción", "Etiquetas", "Plotters", "Inyección de Tinta", "Artes Gráficas"];
+  selectedPrintVelocities: string[] = [];
+  printVelocities: string[] = ["24 a 30", "30 a 40", "40 a 50", "50 a 60", "60 a 80", "80 a 100", "100 y más"];
+  selectedCategories: string[] = []; 
+  categories: string[] = ["Oficina", "Producción", "Etiquetas", "Plotters", "Inyección de Tinta", "Artes Gráficas"];
+  isSectionVisibleProduct: boolean = true;
+  isSectionVisibleBrand: boolean = true;
+  isSectionVisibleSize: boolean = true;
+  isSectionVisibleType: boolean = true;
+  isSectionVisibleVelocity: boolean = true;
+  isSectionVisibleCategory: boolean = true;
 
 
   
@@ -59,6 +65,25 @@ export class FilterComponent implements OnInit {
 
     window.addEventListener('resize', this.onResize);
   }
+  
+  toggleFilterSectionProduct() {
+    this.isSectionVisibleProduct = !this.isSectionVisibleProduct;
+  }
+  toggleFilterSectionBrand() {
+    this.isSectionVisibleBrand = !this.isSectionVisibleBrand;
+  }
+  toggleFilterSectionSize() {
+    this.isSectionVisibleSize = !this.isSectionVisibleSize;
+  }
+  toggleFilterSectionType() {
+    this.isSectionVisibleType = !this.isSectionVisibleType;
+  }
+  toggleFilterSectionVelocity() {
+    this.isSectionVisibleVelocity = !this.isSectionVisibleVelocity;
+  }
+  toggleFilterSectionCategory() {
+    this.isSectionVisibleCategory = !this.isSectionVisibleCategory;
+  }
 
   onResize = () => {
     this.filterSectionsState = window.innerWidth > 768 ? 'open' : 'closed';
@@ -71,7 +96,7 @@ export class FilterComponent implements OnInit {
   applyFilters(): void {
     if (this.selectedPrintSizeFilters.length > 0) {
       this.filteredPrinters = this.printers.filter((printer) =>
-        this.selectedPrintSizeFilters.includes(printer.maxPrintSizeSimple)
+        this.selectedPrintSizeFilters.includes(printer.PrintSize)
       );
     } else {
       this.filteredPrinters = this.printers;
@@ -126,7 +151,7 @@ export class FilterComponent implements OnInit {
     
   }
 
-  togglePrintSizeFilter(printSize: String): void {
+  togglePrintSizeFilter(printSize: string): void {
     if (this.selectedPrintSizeFilters.includes(printSize)) {
       this.selectedPrintSizeFilters = this.selectedPrintSizeFilters.filter((b) => b !== printSize);
     } else {
@@ -135,7 +160,7 @@ export class FilterComponent implements OnInit {
     this.applyFilters();
   }
 
-  toggleColorFilter(color: String): void {
+  toggleColorFilter(color: string): void {
     // Toggle color filters
     if (this.selectedColors.includes(color)) {
       this.selectedColors = this.selectedColors.filter((c) => c !== color);
@@ -145,7 +170,7 @@ export class FilterComponent implements OnInit {
     this.applyFilters(); // Apply filters after toggling
   }
 
-  toggleBrandFilter(brand: String): void {
+  toggleBrandFilter(brand: string): void {
     if (this.selectedBrands.includes(brand)) {
       this.selectedBrands = this.selectedBrands.filter((b) => b !== brand);
     } else {
@@ -163,7 +188,7 @@ export class FilterComponent implements OnInit {
     this.applyFilters();
   }
 
-  togglePrintVelocityFilter(range: String): void {
+  togglePrintVelocityFilter(range: string): void {
     if (this.selectedPrintVelocities.includes(range)) {
       this.selectedPrintVelocities = this.selectedPrintVelocities.filter((v) => v !== range);
     } else {
@@ -172,7 +197,7 @@ export class FilterComponent implements OnInit {
     this.applyFilters();
   }
 
-  toggleCategoryFilter(category: String): void {
+  toggleCategoryFilter(category: string): void {
     if (this.selectedCategories.includes(category)) {
       this.selectedCategories = this.selectedCategories.filter((c) => c !== category);
     } else {
@@ -192,12 +217,27 @@ export class FilterComponent implements OnInit {
     this.applyFilters(); // Apply filters after resetting
   }
   
-  
+  toggleCheckbox(event: Event, brand: string) {
+    // Prevent the default click behavior, which may trigger the input twice
+    event.preventDefault();
+
+    // Find the associated input element by its ID
+    const inputElement = document.getElementById(brand) as HTMLInputElement;
+
+    if (inputElement) {
+      // Toggle the checked state of the input
+      inputElement.checked = !inputElement.checked;
+
+      // Trigger a change event on the input (if needed)
+      const event = new Event('change', { bubbles: true });
+      inputElement.dispatchEvent(event);
+
+      // You can also update your selectedBrands array or perform other actions here
+    }
+  }
   
 
-  toggleFilterSections() {
-    this.filterSectionsState = this.filterSectionsState === 'open' ? 'closed' : 'open';
-  }
+  
   
   toggleButtons() {
     this.checked = !this.checked;

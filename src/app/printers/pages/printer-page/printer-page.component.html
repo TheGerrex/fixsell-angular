@@ -84,9 +84,6 @@
             <div class="header-specs">
                 <h2>Especificaciones</h2>
             </div>
-            <div class="action-container">
-                <a [href]="printer?.datasheet_url" target="_blank">Ficha Técnica</a>
-            </div>
             <div class="body-specs">
                 <div class="spec">
                     <h4 class="spec-title">Consumo de Energía</h4>
@@ -112,6 +109,9 @@
                     <h4 class="spec-title">Sistemas Operativos</h4>
                     <p class="spec-data">{{printer?.applicableOS}}</p>
                 </div>
+            </div>
+            <div class="action-container">
+                <a [href]="printer?.datasheet_url" target="_blank">Ficha Técnica</a>
             </div>
         </div>
     </div>

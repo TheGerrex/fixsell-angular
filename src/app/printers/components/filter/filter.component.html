@@ -1,64 +1,115 @@
-<div class="FilterComponent">
-    <div class="Header">
-        <div class="Filtros">
-            <div class="Titulo">
-                <i class="pi pi-filter" style="font-size: 1.3rem; color: #3F4756;"></i>
+<div class="filter">
+    <div class="filter-header">
+        <div class="filter-header-inner">
+            <div class="filter-header-title">
+                <i class="pi pi-filter-fill" style="font-size: .9em; color: #111827;"></i>
                 <h3>Filtros</h3>
             </div>
         </div>
-        <div class="AngleButton" (click)="toggleFilterSections()">
+        <!-- <div class="AngleButton" (click)="toggleFilterSections()">
             <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"></i>
-        </div>
+        </div> -->
     </div>
-    <div class="Content" [@filterSectionsAnimation]="filterSectionsState">
-        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-            <div class="Title">Producto</div>
-            <div class="buttons-container">
-                <div class="wrapper">
-                    <p-toggleButton onLabel="Venta" offLabel="Venta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(true)"></p-toggleButton>
-                    <p-toggleButton onLabel="Renta" offLabel="Renta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(false)"></p-toggleButton>
+    <!-- <hr style="width: 100%; color: #111827; margin: 0;"> -->
+    <div class="filter-content">
+        <div class="filter-section">
+            <div class="filter-section-header"  (click)="toggleFilterSectionProduct()">
+                <div class="filter-section-title">Producto</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleProduct"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleProduct}">
+                <div class="buttons-container">
+                    <div class="wrapper">
+                        <p-toggleButton onLabel="Venta" offLabel="Venta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(true)"></p-toggleButton>
+                        <p-toggleButton onLabel="Renta" offLabel="Renta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(false)"></p-toggleButton>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-            <div class="Title">Marca</div>
-            <div class="Checkbox" *ngFor="let brand of brands">
-                <input type="checkbox" [id]="brand" [value]="brand" [checked]="selectedBrands.includes(brand)" (change)="toggleBrandFilter(brand)" />
-                <label>{{brand}}</label>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionBrand()">
+                <div class="filter-section-title">Marca</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleBrand"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleBrand}">
+                <div class="checkbox" *ngFor="let brand of brands">
+                    <div class="checkbox-container" (click)="toggleCheckbox($event, brand)">
+                        <input type="checkbox" class="checkbox-input" [id]="brand" [value]="brand" [checked]="selectedBrands.includes(brand)" (change)="toggleBrandFilter(brand)" />
+                        <label>{{brand}}</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-            <div class="Title">Tamaño de papel</div>
-            <div class="Checkbox" *ngFor="let printSize of printSizesFilter">
-                <input type="checkbox" [id]="printSize" [value]="printSize" [checked]="selectedPrintSizeFilters.includes(printSize)" (change)="togglePrintSizeFilter(printSize)" />
-                <label>{{printSize}}</label>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionSize()">
+                <div class="filter-section-title">Tamaño de papel</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleSize"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleSize}">
+                <div class="checkbox" *ngFor="let printSize of printSizesFilter">
+                    <div class="checkbox-container" (click)="toggleCheckbox($event, printSize)">
+                        <input type="checkbox" class="checkbox-input" [id]="printSize" [value]="printSize" [checked]="selectedPrintSizeFilters.includes(printSize)" (change)="togglePrintSizeFilter(printSize)" />
+                        <label>{{printSize}}</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-            <div class="Title">Tipo</div>
-            <div class="Checkbox" *ngFor="let color of colorFilter">
-                <input type="checkbox" [id]="color" [value]="color" [checked]="selectedColors.includes(color)" (change)="toggleColorFilter(color)" />
-                <label>{{color}}</label>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionType()">
+                <div class="filter-section-title">Tipo</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleType"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleType}">
+                <div class="checkbox" *ngFor="let color of colorFilter">
+                    <div class="checkbox-container" (click)="toggleCheckbox($event, color)">
+                        <input type="checkbox" class="checkbox-input" [id]="color" [value]="color" [checked]="selectedColors.includes(color)" (change)="toggleColorFilter(color)" />
+                        <label>{{color}}</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-            <div class="Title">Velocidad de impresión</div>
-            <div class="Checkbox" *ngFor="let range of printVelocities">
-                <input type="checkbox" [id]="range" [value]="range" [checked]="selectedPrintVelocities.includes(range)" (change)="togglePrintVelocityFilter(range)" />
-                <label>{{ range }}</label>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionVelocity()">
+                <div class="filter-section-title">Velocidad de impresión</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleVelocity"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleVelocity}">
+                <div class="checkbox" *ngFor="let range of printVelocities">
+                    <div class="checkbox-container" (click)="toggleCheckbox($event, range)">
+                        <input type="checkbox" class="checkbox-input" [id]="range" [value]="range" [checked]="selectedPrintVelocities.includes(range)" (change)="togglePrintVelocityFilter(range)" style="border: 2px solid #3C81F6;"/>
+                        <label>{{ range }}</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-            <div class="Title">Categorias</div>
-            <div class="buttons-container">
-                <p-toggleButton *ngFor="let category of categories" onLabel="{{ category }}" offLabel="{{ category }}" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleCategoryFilter(category)">
-                </p-toggleButton>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionCategory()">
+                <div class="filter-section-title">Categorias</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleCategory"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleCategory}">
+                <div class="buttons-container">
+                    <p-toggleButton *ngFor="let category of categories" onLabel="{{ category }}" offLabel="{{ category }}" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleCategoryFilter(category)">
+                    </p-toggleButton>
+                </div>
             </div>
         </div>
-        <div class="FilterSection" [@filterSectionsAnimation]="filterSectionsState">
-            <div class="filter-reset">
-                <p-button label="Borrar Filtros" icon="pi pi-trash" styleClass="p-button-link w-100" (click)="resetFilters()"></p-button>
+        <!-- <div class="filter-section">
+            <div class="filter-reset" (click)="resetFilters()">
+                <i class="pi pi-trash" style="font-size: 1rem;"></i><p>Borrar Filtros</p>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

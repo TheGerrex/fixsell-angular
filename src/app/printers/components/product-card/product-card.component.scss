@@ -167,6 +167,7 @@
         .product-image-wrap {
             // padding: 8px;
             position: relative;
+            background-color: $gray-200;
             .product-feature-image {
                 position: relative;
                 padding: 0 12px;
@@ -185,7 +186,7 @@
             display: flex;
             flex-wrap: wrap;
             align-content: space-between;
-            padding: 3px 12px 0;
+            padding: 12px 12px 0;
             background-color: $gray-50;
             .product-info-col {
                 width: 100%;
@@ -206,11 +207,15 @@
                     display: flex;
                     justify-content: flex-start;
                     align-items: flex-start;
-                    // flex-wrap: wrap;
                     flex-direction: column;
                     gap: 12px;
                     width: 100%;
                     margin: 0 0 16px;
+                    @media(min-width: 768px) {
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        align-items: center;
+                    }
                     .feature {
                         display: flex;
                         justify-content: center;

@@ -1,4 +1,30 @@
-<div class="container-products py-3">
+<div class="container-products relative">
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Eleva tu negocio</h1>
+            <p>Dispositivos de impresión para toda ocasión</p>
+        </div>
+    </div>
+    <div class="filter-mobile d-flex d-lg-none" (click)="onToggleFilterBar()">
+        <div class="filter-title">
+            <i class="pi pi-filter-fill" style="font-size: .9em; color: #111827;"></i>
+            <h3>Filtros</h3>
+        </div>
+    </div>
+    <div class="filter-shade" [class.activated]="this.filterBarOpen"></div>
+    <div class="filter-bar" [class.activated]="this.filterBarOpen">
+        <div class="filter-header">
+            <div class="filter-header-inner">
+                <p class="filter-header-title">Filter</p>
+                <div class="filter-close-button" (click)="closeFilterBar()">
+                    <i class="pi pi-times" style="color: #111827;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="filter-content">
+            <app-filter (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
+        </div>
+    </div>
     <div class="products-row px-3">
         <div class="filter-col d-none d-lg-flex">
             <app-filter (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
@@ -9,7 +35,15 @@
             </div>
 
             <div class="product-list-container">
-                <printer-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></printer-product-card>
+                <ng-container *ngIf="filteredPrinters.length > 0; else noProducts">
+                    <printer-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></printer-product-card>
+                </ng-container>
+                <ng-template #noProducts>
+                    <div class="not-found">
+                        <i class="pi pi-exclamation-circle" style="font-size: 4rem;"></i>
+                        <h2>No se encontraron productos</h2>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>

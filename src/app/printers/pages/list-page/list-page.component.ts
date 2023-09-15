@@ -15,6 +15,7 @@ export class ListPageComponent implements OnInit {
   filteredPrinters: Printer[] = [];
   printers: Printer[] = [];
   loading = true;
+  filterBarOpen = false;
 
   @ViewChild('filterComponent', { static: false }) filterComponent!: FilterComponent;
 
@@ -40,5 +41,13 @@ export class ListPageComponent implements OnInit {
   handleFilteredPrintersChange(filteredPrinters: any[]): void {
     // Receive the filtered data emitted from FilterComponent
     this.filteredPrinters = filteredPrinters;
+  }
+
+  onToggleFilterBar() {
+    this.filterBarOpen = !this.filterBarOpen;
+  }
+
+  closeFilterBar() {
+    this.filterBarOpen = false;
   }
 }
