@@ -41,7 +41,7 @@ export class FilterComponent implements OnInit {
   selectedPrintVelocities: string[] = [];
   printVelocities: string[] = ["24 a 30", "30 a 40", "40 a 50", "50 a 60", "60 a 80", "80 a 100", "100 y más"];
   selectedCategories: string[] = []; 
-  categories: string[] = ["Oficina", "Producción", "Etiquetas", "Plotters", "Inyección de Tinta", "Artes Gráficas"];
+  categories: string[] = ["Oficina", "Produccion", "Etiquetas", "Plotters", "Inyección de Tinta", "Artes Gráficas"];
   isSectionVisibleProduct: boolean = true;
   isSectionVisibleBrand: boolean = true;
   isSectionVisibleSize: boolean = true;
