@@ -144,10 +144,10 @@
                 label {
                     color: $text;
                     font-size: 16px;
-                    font-family: Cera Pro;
                     font-weight: 500;
                     line-height: 24px;
                     word-wrap: break-word;
+                    user-select: none;
                 }
             }
         }

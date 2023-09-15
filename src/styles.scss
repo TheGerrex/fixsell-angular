@@ -1,5 +1,4 @@
 @import './_variables.scss';
-
 @font-face {
     font-family: 'Cera Pro';
     font-style: normal;
@@ -14,6 +13,7 @@
     url('./assets/fonts/Cera-Pro-Woff/CeraProBlackItalic.woff') format('woff') 700 italic;
 }
 
+$font-family: 'Cera Pro';
 
 body {
     width: 100%;
@@ -31,6 +31,7 @@ h6,
 p,
 ul,
 li,
+label,
 small,
 a {
     font-family: $font-family;
