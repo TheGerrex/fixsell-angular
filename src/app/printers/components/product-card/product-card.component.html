@@ -52,11 +52,11 @@
         </div>
         <div class="product-info">
             <div class="product-info-col">
-                <div class="product-tag">
-                    <div [innerHTML]="printer.rentable | productType"></div>   
-                </div>
                 <div class="product-brand" [innerHTML]="printer.brand | brandType"></div>
                 <p class="product-name">{{printer.model}}</p>
+                <div class="product-tag">
+                    <div [innerHTML]="printer.rentable | productType"></div>
+                </div>
                 <div class="product-features">
                     <div class="feature">
                         <div [class]="printer.color | productColorIcon: 'ColorCircle' : 'BlackCircle' "></div>
@@ -64,15 +64,15 @@
                     </div>
                     <div class="feature">
                         <i class="pi pi-window-minimize"></i>
-                        <p class="PrintSize">{{printer.maxPrintSizeSimple}}</p>
+                        <p class="PrintSize">{{printer.PrintSize}}</p>
                     </div>
                     <div class="feature">
                         <i class="pi pi-clock"></i>
-                        <p class="PrintVelocity">{{printer.printVelocity}} ppm</p>
+                        <p class="PrintVelocity">{{printer.printVelocity}} {{printer.category === "Etiquetas" ? 'mm/s' : 'ppm'}}</p>
                     </div>
                 </div>
                 <div class="product-action">
-                    <span class="button-label">Ver más</span>
+                    <span>Ver más</span>
                     <!-- <i class="pi pi-arrow-right" style="color: white; font-size: .95rem;"></i> -->
                 </div>
             </div>

@@ -63,7 +63,7 @@
 .printer-product-card {
     width: calc(50% - 6px);
     min-height: 287px;
-    border-radius: 6px;
+    border-radius: 10px !important;
     border: 0.50px #E2E8F0 solid;
     position: relative;
     background: $light-50;
@@ -72,7 +72,7 @@
     overflow: hidden;
     // width: calc(50% - 6px);
     // min-height: 287px;
-    padding-bottom: 58px;
+    // padding-bottom: 58px;
     @media(min-width: 768px) {
         width: calc(33.3% - 8px);
         min-height: 306px;

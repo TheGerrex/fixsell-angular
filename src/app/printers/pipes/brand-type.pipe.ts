@@ -37,12 +37,12 @@ export class BrandTypePipe implements PipeTransform {
         break;
       case 'kyocera':
         imagePath = '../../../assets/svg/home/proveedores/kyocera.svg';
-        imgWidth = this.isMobile ? '100%' : '125px';
+        imgWidth = this.isMobile ? '100px' : '125px';
         imgHeight = 'auto';
         break;
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
-        imgWidth = this.isMobile ? '100%' : '100px';
+        imgWidth = this.isMobile ? '80px' : '100px';
         imgHeight = 'auto';
         break;
       default:

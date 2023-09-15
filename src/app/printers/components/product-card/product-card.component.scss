@@ -170,7 +170,7 @@
             .product-feature-image {
                 position: relative;
                 padding: 0 12px;
-                min-height: 250px;
+                min-height: 200px;
                 overflow: hidden;
                 display: flex;
                 align-items: center;
@@ -180,7 +180,6 @@
                     object-fit: cover;
                 }
             }
-            
         }
         .product-info {
             display: flex;
@@ -190,19 +189,18 @@
             background-color: $gray-50;
             .product-info-col {
                 width: 100%;
-                .product-tag {
-                    margin: 0 0 8px;
-                    
-                }
-                .product-name {
-                    margin: 0 0 16px;
-                    font-weight: 600;
-                }
                 .product-brand {
                     margin: 0 0 6px;
-                    img {
-                        width: 80px !important;
+                }
+                .product-name {
+                    margin: 0 0 8px;
+                    font-weight: 600;
+                    @media(min-width: 1024px) {
+                        font-size: 21px;
                     }
+                }
+                .product-tag {
+                    margin: 16px 0 16px 0;
                 }
                 .product-features {
                     display: flex;
@@ -217,7 +215,6 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        
                         gap: 5px;
                         .ColorCircle {
                             width: 20px;
@@ -243,7 +240,8 @@
                 }
                 .product-action {
                     background: $gray-50;
-                    position: absolute;
+                    position: sticky;
+                    margin: 0 0 8px;
                     width: 100%;
                     height: 56px;
                     left: 0;
@@ -254,6 +252,7 @@
                     // padding-left: 24px;
                     gap: 12px;
                     cursor: pointer;
+                    border-radius: 10px;
                     transition: background .4s;
                     span {
                         color: $primary-color;
