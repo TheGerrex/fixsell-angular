@@ -204,6 +204,7 @@
                 .product-tags {
                     margin: 16px 0 16px 0;
                     display: flex;
+                    flex-wrap: wrap;
                     gap: 6px;
                     .tag {
                         display: flex; 
