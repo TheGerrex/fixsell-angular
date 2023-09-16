@@ -13,6 +13,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { PrinterPageComponent } from './pages/printer-page/printer-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { SwiperModule } from 'swiper/angular';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -32,7 +33,8 @@ import { SwiperModule } from 'swiper/angular';
     CommonModule,
     PrinterRoutingModule,
     PrimengModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ]
 })
 export class PrinterModule { }

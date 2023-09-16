@@ -14,6 +14,7 @@ import {DividerModule} from 'primeng/divider';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 
@@ -33,6 +34,7 @@ import { GalleriaModule } from 'primeng/galleria';
     InputTextareaModule,
     ToggleButtonModule,
     GalleriaModule,
+    CheckboxModule,
   ]
 })
 export class PrimengModule { }

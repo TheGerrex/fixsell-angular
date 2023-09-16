@@ -48,7 +48,7 @@ export class FilterComponent implements OnInit {
   isSectionVisibleType: boolean = true;
   isSectionVisibleVelocity: boolean = true;
   isSectionVisibleCategory: boolean = true;
-
+  selectedPrintVelocityStates: { [key: string]: boolean } = {};
 
   
   filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
@@ -217,22 +217,20 @@ export class FilterComponent implements OnInit {
     this.applyFilters(); // Apply filters after resetting
   }
   
-  toggleCheckbox(event: Event, brand: string) {
-    // Prevent the default click behavior, which may trigger the input twice
-    event.preventDefault();
-
-    // Find the associated input element by its ID
-    const inputElement = document.getElementById(brand) as HTMLInputElement;
-
-    if (inputElement) {
-      // Toggle the checked state of the input
-      inputElement.checked = !inputElement.checked;
-
-      // Trigger a change event on the input (if needed)
-      const event = new Event('change', { bubbles: true });
-      inputElement.dispatchEvent(event);
-
-      // You can also update your selectedBrands array or perform other actions here
+  toggleCheckbox(data: string, group: string) {
+    switch (group) {
+      case 'printBrands':
+        this.toggleBrandFilter(data);
+        break;
+      case 'printSizes':
+        this.togglePrintSizeFilter(data);
+        break;
+      case 'printType':
+        this.toggleColorFilter(data);
+        break;
+      case 'printVelocities':
+        this.togglePrintVelocityFilter(data);
+        break;
     }
   }
   

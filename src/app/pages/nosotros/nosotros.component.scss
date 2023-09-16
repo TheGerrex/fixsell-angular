@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 .hero-container {
     // background-image: url('../../../assets/img/about_us/nosotros-hero-image.jpg');
     // background-size: cover;
@@ -16,11 +18,12 @@
     padding: 64px 48px 64px 48px;
     height: 100%;
     h1 {
-        color: #3F4756;
+        color: $header-text;
+        font-weight: 500;
     }
     p {
-        font-weight: 500;
-        color: #434655;
+        font-weight: 400;
+        color: $text;
     }
 }
 
@@ -48,13 +51,13 @@
         height: 100%;
         h2 {
             font-weight: 600;
-            color: #3F4756;
+            color: $header-text;
             width: 100%;
             text-align: start;
         }
         p {
             font-weight: 400;
-            color: #434655;
+            color: $text;
         }
         // Small devices (landscape phones, 576px and up)
         @media (min-width: 340px) {
@@ -79,41 +82,129 @@
     }
 }
 
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px 12px;
+}
+
+.card-about {
+    display: flex;
+    flex-direction: column;
+    border: $gray-200 1px solid;
+    border-radius: 10px;
+    .card-img-container {
+        width: 100%;
+        
+        img {
+            width: 100%;
+            background-size: cover;
+            border-radius: 10px 10px 0px 0px;
+        }
+    }
+    .card-content {
+        padding: 32px;
+        background-color: $gray-50;
+        border-radius: 0px 0px 10px 10px;
+        h2 {
+            font-weight: 600;
+        }
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.company-values {
+    background-color: $light-800;
+    
+}
+
 .mision {
     padding: 80px 48px 80px 48px;
+    position: relative;
+    z-index: 2;
     h2 {
         font-weight: 600;
-        color: #3F4756;
+        color: $light-200;
         margin-bottom: 1em;
+        position: relative;
+        z-index: 2;
     }
     p {
         font-weight: 400;
-        color: #434655;
+        color: $white;
+        position: relative;
+        z-index: 2;
+    }
+
+    img {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 15%;
+        left: 20%;
+        z-index: 1;
+        color: $white;
+        opacity: .2;
     }
 }
 
 .vision {
     padding: 80px 48px 80px 48px;
+    position: relative;
+    
     h2 {
         font-weight: 600;
-        color: #3F4756;
+        color: $light-200;
         margin-bottom: 1em;
+        position: relative;
+        z-index: 2;
     }
     p {
         font-weight: 400;
-        color: #434655;
+        color: $white;
+        position: relative;
+        z-index: 2;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 15%;
+        left: 20%;
+        z-index: 1;
+        color: $white;
+        opacity: .2;
     }
 }
 
 .valores {
     padding: 80px 48px 80px 48px;
+    position: relative;
+    z-index: 2;
     h2 {
         font-weight: 600;
-        color: #3F4756;
+        color: $light-200;
         margin-bottom: 1em;
+        position: relative;
+        z-index: 2;
     }
-    p {
+    li {
         font-weight: 400;
-        color: #434655;
+        color: $white;
+        position: relative;
+        z-index: 2;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 15%;
+        left: 20%;
+        z-index: 1;
+        color: $white;
+        opacity: .2;
     }
 }
