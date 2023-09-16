@@ -1,30 +1,16 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, ElementRef, ViewChild } from '@angular/core';
 import { Printer } from '../../interfaces/printer.interface';
 import { PrintersService } from '../../services/printers.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss'],
-  animations: [
-    trigger('filterSectionsAnimation', [
-      state('open', style({
-        display: 'flex',
-        height: '*'
-      })),
-      state('closed', style({
-        display: 'none',
-        height: '0'
-      })),
-      transition('open <=> closed', [
-        animate('0.3s')
-      ])
-    ])
-  ]
+  styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
   @Output() filteredPrintersChange = new EventEmitter<Printer[]>(); // Output event
+  @Output() filtersApplied = new EventEmitter<void>();
   @Input() selectedCategory?: string;
   @Input() rentable?: boolean;
   // FILTERS
@@ -37,7 +23,6 @@ export class FilterComponent implements OnInit {
   selectedBrands: string[] = [];
   brands: string[] = ['Konica Minolta', 'Kyocera', 'Epson'];
   selectedRentableOptions: boolean[] = [false, true];
-  rentableOptions: boolean[] = [false, true];
   selectedPrintVelocities: string[] = [];
   printVelocities: string[] = ["24 a 30", "30 a 40", "40 a 50", "50 a 60", "60 a 80", "80 a 100", "100 y más"];
   selectedCategories: string[] = []; 
@@ -49,19 +34,42 @@ export class FilterComponent implements OnInit {
   isSectionVisibleVelocity: boolean = true;
   isSectionVisibleCategory: boolean = true;
   selectedPrintVelocityStates: { [key: string]: boolean } = {};
+  isRentable?: boolean;
 
   
   filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
   checked = false;
 
 
-  constructor(private printerService: PrintersService) {}
+
+  constructor(private printerService: PrintersService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.printerService.getPrinters().subscribe((data: any) => {
       this.printers = data;
       this.filteredPrinters = data;
-    })
+
+      // this.applyFilters();
+      // this.route.queryParams.subscribe(params => {
+      //   const categoryQueryParam = params['category'];
+      //   const rentableQueryParam = params['rentable'] === 'true';
+      //   this.selectedRentableOptions = [rentableQueryParam]
+      //   if (categoryQueryParam) {
+      //       // Use the category value to set the initial state of your filter buttons
+      //       this.toggleCategoryFilter(categoryQueryParam);
+      //   }
+  
+      //   if (rentableQueryParam) {
+      //       // Use the rentable value to set the initial state of your filter buttons
+      //       this.toggleRentableOptionFilter(rentableQueryParam);
+      //   }
+      // });
+    });
+    this.route.queryParams.subscribe(params => {
+      this.isRentable = params['rentable'] === 'true';
+    });
+    
+    
 
     window.addEventListener('resize', this.onResize);
   }
@@ -118,6 +126,8 @@ export class FilterComponent implements OnInit {
       this.filteredPrinters = this.filteredPrinters.filter((printer) =>
         this.selectedRentableOptions.includes(printer.rentable)
       );
+      console.log('selectedRentableOptions',this.selectedRentableOptions)
+      console.log('FIltered Printers:',this.filteredPrinters)
     }
 
     if (this.selectedPrintVelocities.length > 0) {
@@ -147,8 +157,14 @@ export class FilterComponent implements OnInit {
     }
 
     this.filteredPrintersChange.emit(this.filteredPrinters);
+    this.filtersApplied.emit();
+    this.scrollToTop();
     console.log(this.filteredPrinters)
     
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 480, behavior: 'smooth' });
   }
 
   togglePrintSizeFilter(printSize: string): void {
@@ -180,6 +196,7 @@ export class FilterComponent implements OnInit {
   }
 
   toggleRentableOptionFilter(option: boolean): void {
+    console.log('toggleRentableOptionFilter', option);
     if (this.selectedRentableOptions.includes(option)) {
       this.selectedRentableOptions = this.selectedRentableOptions.filter((o) => o !== option);
     } else {

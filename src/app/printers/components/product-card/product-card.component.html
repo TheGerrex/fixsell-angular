@@ -54,8 +54,11 @@
             <div class="product-info-col">
                 <div class="product-brand" [innerHTML]="printer.brand | brandType"></div>
                 <p class="product-name">{{printer.model}}</p>
-                <div class="product-tag">
+                <div class="product-tags">
                     <div [innerHTML]="printer.rentable | productType"></div>
+                    <div class="tag">
+                            <div class="tag-title">{{printer.category}}</div>
+                    </div>
                 </div>
                 <div class="product-features">
                     <div class="feature">

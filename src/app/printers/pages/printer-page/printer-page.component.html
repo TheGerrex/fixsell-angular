@@ -26,6 +26,9 @@
                             <h1 class="product-title">{{printer.model}}</h1>
                             <div class="product-tags">
                                 <div [innerHTML]="printer.rentable | productType"></div>
+                                <div class="tag">
+                                    <div class="tag-title">{{printer.category}}</div>
+                            </div>
                             </div>
                         </div>
                     </div>

@@ -66,6 +66,30 @@
             font-weight: 700;
             margin: 0;
         }
+        .product-tags {
+            display: flex;
+            gap: 6px;
+            .tag {
+                display: flex; 
+                gap: 10px;
+                justify-content: center;
+                align-items: center;
+                align-self: stretch;
+                padding-left: 8px;
+                padding-right: 8px;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                background: $gray-200;
+                border-radius: 8px;
+                // border: 0.50px $gray-50 solid;
+
+                .tag-title {
+                    color: $gray-700;
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+            }
+        }
     }
     .product-description {
         p {
