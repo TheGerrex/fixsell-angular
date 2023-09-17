@@ -44,7 +44,7 @@ export class VentaComponent {
       img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg'
     },
     {
-      name: 'Producción',
+      name: 'Produccion',
       img:'../../../assets/img/home/categories/konica-c2060-production.jpg'
     },
     {

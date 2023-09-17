@@ -16,6 +16,7 @@ export class ListPageComponent implements AfterViewInit {
   printers: Printer[] = [];
   loading = true;
   filterBarOpen = false;
+  appliedFiltersCount: number = 0;
 
   @ViewChild(FilterComponent)
   filterComponent!: FilterComponent;
@@ -43,7 +44,7 @@ export class ListPageComponent implements AfterViewInit {
             // console.log("rentable param:", params['rentable']);
             const isRentable = params['rentable'] === 'false';
             if (this.filterComponent) {
-              this.filterComponent.toggleRentableOptionFilter(isRentable);
+              this.filterComponent.toggleRentableOptionFilter(isRentable ? 0 : 1);
             }
           }
         });
@@ -56,6 +57,11 @@ export class ListPageComponent implements AfterViewInit {
     if (this.productList) {
       this.renderer.setProperty(this.productList.nativeElement, 'scrollTop', 0);
     }
+  }
+
+  onAppliedFiltersCountChange(count: number): void {
+    console.log('onAppliedFiltersCountChange', count);
+    this.appliedFiltersCount = count;
   }
 
 

@@ -13,6 +13,7 @@ export class FilterComponent implements OnInit {
   @Output() filtersApplied = new EventEmitter<void>();
   @Input() selectedCategory?: string;
   @Input() rentable?: boolean;
+  @Output() appliedFiltersCountChange = new EventEmitter<number>();
   // FILTERS
   printers: Printer[] = [];
   filteredPrinters: Printer[] = [];
@@ -22,7 +23,8 @@ export class FilterComponent implements OnInit {
   colorFilter: string[] = ['Color', 'B&N'];
   selectedBrands: string[] = [];
   brands: string[] = ['Konica Minolta', 'Kyocera', 'Epson'];
-  selectedRentableOptions: boolean[] = [false, true];
+  selectedRentableOptions: boolean[] = [false, false];
+  rentableButtonStates: boolean[] = [false, false];
   selectedPrintVelocities: string[] = [];
   printVelocities: string[] = ["24 a 30", "30 a 40", "40 a 50", "50 a 60", "60 a 80", "80 a 100", "100 y más"];
   selectedCategories: string[] = []; 
@@ -35,6 +37,11 @@ export class FilterComponent implements OnInit {
   isSectionVisibleCategory: boolean = true;
   selectedPrintVelocityStates: { [key: string]: boolean } = {};
   isRentable?: boolean;
+  rentableCount: number = 0;
+  isVentaHighlighted: boolean = false;
+  isRentaHighlighted: boolean = false;
+  appliedFiltersCount: number = 0;
+  pageLoaded = false;
 
   
   filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
@@ -48,22 +55,7 @@ export class FilterComponent implements OnInit {
     this.printerService.getPrinters().subscribe((data: any) => {
       this.printers = data;
       this.filteredPrinters = data;
-
-      // this.applyFilters();
-      // this.route.queryParams.subscribe(params => {
-      //   const categoryQueryParam = params['category'];
-      //   const rentableQueryParam = params['rentable'] === 'true';
-      //   this.selectedRentableOptions = [rentableQueryParam]
-      //   if (categoryQueryParam) {
-      //       // Use the category value to set the initial state of your filter buttons
-      //       this.toggleCategoryFilter(categoryQueryParam);
-      //   }
-  
-      //   if (rentableQueryParam) {
-      //       // Use the rentable value to set the initial state of your filter buttons
-      //       this.toggleRentableOptionFilter(rentableQueryParam);
-      //   }
-      // });
+      this.pageLoaded = true;
     });
     this.route.queryParams.subscribe(params => {
       this.isRentable = params['rentable'] === 'true';
@@ -155,9 +147,21 @@ export class FilterComponent implements OnInit {
         printer.rentable === this.rentable
       );
     }
+    
+    this.appliedFiltersCount =
+    this.selectedPrintSizeFilters.length +
+    this.rentableCount +
+    this.selectedColors.length +
+    this.selectedBrands.length +
+    this.selectedPrintVelocities.length +
+    this.selectedCategories.length;
 
     this.filteredPrintersChange.emit(this.filteredPrinters);
-    this.filtersApplied.emit();
+    if (this.pageLoaded) {
+      this.filtersApplied.emit();
+    }
+
+    this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
     this.scrollToTop();
     console.log(this.filteredPrinters)
     
@@ -195,15 +199,55 @@ export class FilterComponent implements OnInit {
     this.applyFilters();
   }
 
-  toggleRentableOptionFilter(option: boolean): void {
-    console.log('toggleRentableOptionFilter', option);
-    if (this.selectedRentableOptions.includes(option)) {
-      this.selectedRentableOptions = this.selectedRentableOptions.filter((o) => o !== option);
-    } else {
-      this.selectedRentableOptions.push(option);
+  toggleRentableOptionFilter(optionIndex: number): void {
+    this.rentableButtonStates[optionIndex] = !this.rentableButtonStates[optionIndex];
+    const bothButtonsActivated = this.rentableButtonStates[0] && this.rentableButtonStates[1];
+
+  // Update the selectedRentableOptions array based on the button states
+   
+    this.selectedRentableOptions = this.rentableButtonStates.map((state) => state);
+
+    if (bothButtonsActivated) {
+      this.selectedRentableOptions = [];
+    } else if (this.rentableButtonStates[0]) {
+      // If "Venta" button is activated, show only non-rentable products
+      this.selectedRentableOptions = [false];
+    } else if (this.rentableButtonStates[1]) {
+      // If "Renta" button is activated, show only rentable products
+      this.selectedRentableOptions = [true];
     }
+    
+    if (this.rentableButtonStates[optionIndex]) {
+      // Button is activated, increment the appliedFiltersCount
+      this.rentableCount += 1;
+    } else {
+      // Button is deactivated, reset the appliedFiltersCount to zero
+      console.log("Button is deactivated");
+      this.rentableCount -= 1;
+    }
+
+
+    // Apply filters
     this.applyFilters();
   }
+  // toggleRentableOptionFilter(option: boolean): void {
+  //   console.log('toggleRentableOptionFilter', option);
+  //   if (this.selectedRentableOptions.includes(option)) {
+  //     this.selectedRentableOptions = this.selectedRentableOptions.filter((o) => o !== option);
+  //   } else {
+  //     this.selectedRentableOptions.push(option);
+  //   }
+  //   this.applyFilters();
+  //   this.isRentable = option;
+  //   if (option) {
+  //     this.isVentaHighlighted = !this.isVentaHighlighted;
+  //   } else {
+  //     this.isRentaHighlighted = !this.isRentaHighlighted;
+  //   }
+
+  //   // this.isRentaHighlighted = option === false;
+  //   // this.isVentaHighlighted = option === true;
+  // }
 
   togglePrintVelocityFilter(range: string): void {
     if (this.selectedPrintVelocities.includes(range)) {
@@ -230,6 +274,13 @@ export class FilterComponent implements OnInit {
     this.selectedRentableOptions = [];
     this.selectedPrintVelocities = [];
     this.selectedCategories = [];
+
+    // Reset button states
+    this.rentableButtonStates = [false, false];
+    this.rentableCount = 0;
+  
+    // Reset appliedFiltersCount
+    // this.appliedFiltersCount = 0;
   
     this.applyFilters(); // Apply filters after resetting
   }
@@ -252,7 +303,10 @@ export class FilterComponent implements OnInit {
   }
   
 
-  
+  // updateAppliedFiltersCount(count: number): void {
+  //   this.appliedFiltersCount = count;
+  //   this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
+  // }
   
   toggleButtons() {
     this.checked = !this.checked;

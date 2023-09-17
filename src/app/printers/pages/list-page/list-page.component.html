@@ -10,11 +10,14 @@
             <div class="filter-title">
                 <i class="pi pi-filter-fill" style="font-size: .9em; color: #111827;"></i>
                 <h3>Filtros</h3>
+                <div class="counter">
+                    {{appliedFiltersCount}}
+                </div>
             </div>
         </div>
         <div class="products-row px-3">
             <div class="filter-col d-none d-lg-flex">
-                <app-filter (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
+                <app-filter (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
             </div>
             <div class="product-list-col">
                 <div class="spinner-container" *ngIf="loading;">
@@ -48,6 +51,6 @@
         </div>
     </div>
     <div class="filter-content">
-        <app-filter (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
+        <app-filter (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
     </div>
 </div>

@@ -4,6 +4,9 @@
             <div class="filter-header-title">
                 <i class="pi pi-filter-fill" style="font-size: .9em; color: #111827;"></i>
                 <h3>Filtros</h3>
+                <div class="counter">
+                    {{appliedFiltersCount}}
+                </div>
             </div>
         </div>
         <!-- <div class="AngleButton" (click)="toggleFilterSections()">
@@ -22,9 +25,39 @@
             <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleProduct}">
                 <div class="buttons-container">
                     <div class="wrapper">
-                        <p-toggleButton [ngClass]="{ 'p-highlight': isRentable  === false }" onLabel="Venta" offLabel="Venta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(true)"></p-toggleButton>
-                        <p-toggleButton [ngClass]="{ 'p-highlight': isRentable  === true }" onLabel="Renta" offLabel="Renta" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleRentableOptionFilter(false)"></p-toggleButton>
+                        <button class="button-filter" (click)="toggleRentableOptionFilter(0)" [ngClass]="{ 'highlight': rentableButtonStates[0] }">Venta</button>
+                        <button class="button-filter" (click)="toggleRentableOptionFilter(1)" [ngClass]="{ 'highlight': rentableButtonStates[1] }">Renta</button>
+                        
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionType()">
+                <div class="filter-section-title">Tipo</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleType"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleType}">
+                <div class="checkbox" *ngFor="let color of colorFilter">
+                    <div class="checkbox-container" (click)="toggleCheckbox(color, 'printType')">
+                        <input type="checkbox" class="checkbox-input" [id]="color" [value]="color" [checked]="selectedColors.includes(color)" (change)="toggleColorFilter(color)" (click)="toggleCheckbox(color, 'printType')"/>
+                        <label>{{color}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionCategory()">
+                <div class="filter-section-title">Categorias</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleCategory"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleCategory}">
+                <div class="buttons-container">
+                    <button *ngFor="let category of categories" class="button-filter" (click)="toggleCategoryFilter(category)" [ngClass]="{ 'highlight': selectedCategories.includes(category) }">{{category}}</button>
                 </div>
             </div>
         </div>
@@ -61,22 +94,6 @@
             </div>
         </div>
         <div class="filter-section">
-            <div class="filter-section-header" (click)="toggleFilterSectionType()">
-                <div class="filter-section-title">Tipo</div>
-                <div class="AngleButton">
-                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleType"></i>
-                </div>
-            </div>
-            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleType}">
-                <div class="checkbox" *ngFor="let color of colorFilter">
-                    <div class="checkbox-container" (click)="toggleCheckbox(color, 'printType')">
-                        <input type="checkbox" class="checkbox-input" [id]="color" [value]="color" [checked]="selectedColors.includes(color)" (change)="toggleColorFilter(color)" (click)="toggleCheckbox(color, 'printType')"/>
-                        <label>{{color}}</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="filter-section">
             <div class="filter-section-header" (click)="toggleFilterSectionVelocity()">
                 <div class="filter-section-title">Velocidad de impresión</div>
                 <div class="AngleButton">
@@ -92,20 +109,7 @@
                 </div>
             </div>
         </div>
-        <div class="filter-section">
-            <div class="filter-section-header" (click)="toggleFilterSectionCategory()">
-                <div class="filter-section-title">Categorias</div>
-                <div class="AngleButton">
-                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3F4756;"  [class.flip]="!isSectionVisibleCategory"></i>
-                </div>
-            </div>
-            <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleCategory}">
-                <div class="buttons-container">
-                    <p-toggleButton *ngFor="let category of categories" onLabel="{{ category }}" offLabel="{{ category }}" onIcon="pi pi-check" offIcon="pi pi-times" iconPos="right" (click)="toggleCategoryFilter(category)">
-                    </p-toggleButton>
-                </div>
-            </div>
-        </div>
+        
         <div class="filter-section pb-5">
             <div class="filter-reset" (click)="resetFilters()">
                 <p>Borrar Filtros</p><i class="pi pi-trash" style="font-size: 1rem;"></i>
