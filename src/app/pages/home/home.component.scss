@@ -1,4 +1,8 @@
 @import "src/styles.scss";
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+@import 'swiper/scss/autoplay';
 .hero-background {
     background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #CFDEED);
     background-size: 400% 400%;
@@ -232,6 +236,22 @@
     z-index: 9999;
 }
 
+.box-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .swiper-container {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow: hidden;
+        list-style: none;
+        padding: 0;
+        z-index: 1;
+        // height: 100%;
+    }
+}
+
 .category-card {
     height: auto;
     width: 100%;
@@ -242,17 +262,27 @@
     align-items: center;
     justify-content: center;
     border: 1px solid #CBD5E1;
+    cursor: pointer;
+    &:hover {
+        .body {
+            #translate-icon {
+                transition: transform .2s ease-in-out;
+                transform: translate(5px);
+            }
+            background: #ebedf0;
+        }
+    }
     .image {
         background-color: #fff;
         width: 100%;
-        height: 300px;
+        max-height: 250px;
         border-radius: 6px 6px 0px 0px;
         overflow: hidden;
         display: flex;
         img {
             object-fit: scale-down;
             width: 100%;
-            height: 300px;
+            height: 250px;
         }
     }
     .body {
@@ -265,7 +295,6 @@
         gap: 7px;
         width: 100%;
         height: 60px;
-        cursor: pointer;
         /* light-50 */
         background: #F8FAFC;
         border-top: 1px solid #CBD5E1;
@@ -281,13 +310,13 @@
             font-size: 16px;
             line-height: 20px;
         }
-        &:hover {
-            #translate-icon {
-                transition: transform .2s ease-in-out;
-                transform: translate(5px);
-            }
-            background: #ebedf0;
-        }
+        // &:hover {
+        //     #translate-icon {
+        //         transition: transform .2s ease-in-out;
+        //         transform: translate(5px);
+        //     }
+        //     background: #ebedf0;
+        // }
     }
 }
 

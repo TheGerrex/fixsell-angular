@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay } from 'swiper';
+
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
+  thumbsSwiper: any;
   
   categories = [
   {
@@ -68,7 +74,40 @@ export class HomeComponent {
       svg:'../../../assets/img/home/logo-clientes/Blanco/thomas-betts-white.svg'
   }];
 
-
+  config: SwiperOptions = {
+    slidesPerView: 2,
+    spaceBetween: 8,
+    navigation: false,
+    autoplay: false,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 24,
+        navigation: true,
+        autoplay: false,
+        scrollbar: { draggable: true },
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 16,
+        navigation: false,
+        autoplay: false,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+      // 425: {
+      //   slidesPerView: 1,
+      //   spaceBetween: 8,
+      //   navigation: true,
+      //   autoplay: true,
+      //   pagination: { clickable: true },
+      //   scrollbar: { draggable: true },
+      // },
+    },
+    // thumbs: {swiper: this.thumbsSwiper}
+  };
 
   responsiveOptions: any;
   responsiveClientOptions: any;

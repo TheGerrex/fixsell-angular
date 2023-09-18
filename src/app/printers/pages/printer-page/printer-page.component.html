@@ -4,8 +4,7 @@
             <div class="product-image-inner">
                 <div class="product-image-container">
                     <div class="swiper-container">
-                        <swiper style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6" [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [centeredSlides]="true" [autoplay]="true"
-                            [thumbs]="{swiper: thumbsSwiper}">
+                        <swiper style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6" [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [centeredSlides]="true" [thumbs]="{swiper: thumbsSwiper}">
                             <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt="printer.model" class="swiper-image"></ng-template>
                         </swiper>
                         <swiper (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="4" [freeMode]="true" [watchSlidesProgress]="true" class="mySwiper">
@@ -28,7 +27,7 @@
                                 <div [innerHTML]="printer.rentable | productType"></div>
                                 <div class="tag">
                                     <div class="tag-title">{{printer.category}}</div>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>
