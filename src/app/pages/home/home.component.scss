@@ -255,6 +255,22 @@
     }
 }
 
+.product-swiper-next-btn {
+    position: absolute;
+    top: 28%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+    @media(min-width: 1024px) {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
 .category-card {
     height: auto;
     width: 100%;

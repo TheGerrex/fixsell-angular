@@ -54,9 +54,9 @@
             </p-carousel> -->
             <div class="box-container">
                 <div class="swiper-container">
-                    <swiper style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6" [config]="config" [thumbs]="{swiper: thumbsSwiper}">
+                    <swiper #swiper class="pb-5 px-md-5 pb-md-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
                         <ng-template swiperSlide *ngFor="let images of categories">
-                            <div class="category-card mb-5">
+                            <div class="category-card">
                                 <div class="image" (click)="navigateToProductList(images.name)">
                                     <img [src]="images.img" alt="images.name">
                                 </div>
@@ -66,6 +66,18 @@
                                 </div>
                             </div>
                         </ng-template>
+                        <!-- <div class="custom-swiper-navigation">
+                            <div class="custom-swiper-next-button" (click)="swiper?.slideNext()">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 6.69002e-06 24 5.53125e-06C10.7452 4.37247e-06 3.25692e-06 10.7452 2.09815e-06 24C9.39372e-07 37.2548 10.7452 48 24 48ZM45.7143 24C45.7143 35.9925 35.9925 45.7143 24 45.7143C12.0075 45.7143 2.28572 35.9925 2.28572 24C2.28572 12.0075 12.0075 2.28572 24 2.28572C35.9925 2.28572 45.7143 12.0075 45.7143 24ZM21.1998 30.7396C21.647 31.2276 22.3779 31.2276 22.825 30.7396L28.7878 24.2321C29.2281 23.7516 29.2281 22.9774 28.7878 22.4969L22.825 15.9894C22.3779 15.5014 21.647 15.5014 21.1998 15.9894C20.7595 16.4699 20.7595 17.2441 21.1998 17.7246L26.3675 23.3645L21.1998 29.0043C20.7595 29.4849 20.7595 30.259 21.1998 30.7396Z" fill="#333333"></path>
+                                </svg>
+                            </div>
+                            <div class="custom-swiper-prev-button" (click)="swiper?.slidePrev()">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 6.69002e-06 24 5.53125e-06C10.7452 4.37247e-06 3.25692e-06 10.7452 2.09815e-06 24C9.39372e-07 37.2548 10.7452 48 24 48ZM45.7143 24C45.7143 35.9925 35.9925 45.7143 24 45.7143C12.0075 45.7143 2.28572 35.9925 2.28572 24C2.28572 12.0075 12.0075 2.28572 24 2.28572C35.9925 2.28572 45.7143 12.0075 45.7143 24ZM21.1998 30.7396C21.647 31.2276 22.3779 31.2276 22.825 30.7396L28.7878 24.2321C29.2281 23.7516 29.2281 22.9774 28.7878 22.4969L22.825 15.9894C22.3779 15.5014 21.647 15.5014 21.1998 15.9894C20.7595 16.4699 20.7595 17.2441 21.1998 17.7246L26.3675 23.3645L21.1998 29.0043C20.7595 29.4849 20.7595 30.259 21.1998 30.7396Z" fill="#333333"></path>
+                                </svg>
+                            </div>
+                        </div> -->
                     </swiper>
                 </div>
             </div>

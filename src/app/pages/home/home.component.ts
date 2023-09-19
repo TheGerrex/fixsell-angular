@@ -75,9 +75,9 @@ export class HomeComponent {
   }];
 
   config: SwiperOptions = {
-    slidesPerView: 2,
+    slidesPerView: 1,
     spaceBetween: 8,
-    navigation: false,
+    // navigation: true,
     autoplay: false,
     pagination: { clickable: true },
     scrollbar: { draggable: true },
@@ -85,26 +85,26 @@ export class HomeComponent {
       1024: {
         slidesPerView: 4,
         spaceBetween: 24,
-        navigation: true,
+        // navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
       },
       768: {
         slidesPerView: 3,
         spaceBetween: 16,
-        navigation: false,
+        // navigation: true,
         autoplay: false,
         pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
-      // 425: {
-      //   slidesPerView: 1,
-      //   spaceBetween: 8,
-      //   navigation: true,
-      //   autoplay: true,
-      //   pagination: { clickable: true },
-      //   scrollbar: { draggable: true },
-      // },
+      360: {
+        slidesPerView: 2,
+        spaceBetween: 8,
+        // navigation: false,
+        autoplay: true,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
     },
     // thumbs: {swiper: this.thumbsSwiper}
   };
