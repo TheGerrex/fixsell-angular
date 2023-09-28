@@ -207,7 +207,7 @@
                     flex-wrap: wrap;
                     gap: 6px;
                     .tag {
-                        display: flex; 
+                        display: flex;
                         gap: 10px;
                         justify-content: center;
                         align-items: center;
@@ -219,7 +219,6 @@
                         background: $gray-200;
                         border-radius: 8px;
                         // border: 0.50px $gray-50 solid;
-
                         .tag-title {
                             color: $gray-700;
                             font-size: 12px;
@@ -280,7 +279,7 @@
                     // padding-left: 24px;
                     gap: 12px;
                     cursor: pointer;
-                    border-radius: 10px;
+                    border-radius: 56px;
                     transition: background .4s;
                     span {
                         color: $primary-color;
