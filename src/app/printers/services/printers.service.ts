@@ -29,5 +29,16 @@ export class PrintersService {
       catchError(error => of(undefined) )
     );
   }
+
+  getDealPrinters(): Observable<Printer[]> {
+    return this.http.get<Printer[]>(`${this.baseUrl}/printers/deal`)
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching deal printers:', error);
+          return [];
+        })
+      );
+  }
+  
 }
 

@@ -61,10 +61,11 @@ export class NavbarComponent {
         //       {label: 'Refacciones', icon: 'pi pi-cog'},
         //   ]
         // },
-        // {
-        //   label: 'Promociones',
-        //   icon: 'pi pi-bolt',
-        // },
+        {
+          label: 'Promociones',
+          icon: 'pi pi-bolt',
+          routerLink: ['/promociones']
+        },
         {
           label: 'Nosotros',
           icon: 'pi pi-users',

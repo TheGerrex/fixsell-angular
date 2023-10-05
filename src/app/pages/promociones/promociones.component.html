@@ -1,1 +1,26 @@
-<p>promociones works!</p>
+<div class="hero-banner"></div>
+
+<section class="section-content" id="promociones">
+    <div class="container py-5">
+        <div class="row pb-3 justify-content-center">
+            <h1 class="section-title">Promociones en venta de impresoras B/N</h1>
+        </div>
+        <div class="box-container">
+            <div class="swiper-container">
+                <swiper #swiper class="pb-5 px-md-5 pb-md-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [slidesPerView]="3" [spaceBetween]="10" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [navigation]="true"
+                    [thumbs]="{swiper: thumbsSwiper}">
+                    <ng-template swiperSlide *ngFor="let printer of dealPrinters">
+                        <div class="printer-product-card-container">
+                            <app-product-card [printer]="printer" class="printer-product-card"></app-product-card>
+                        </div>
+                    </ng-template>
+                </swiper>
+                <!-- <swiper #swiper class="pb-5 px-md-5 pb-md-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
+                    <ng-template swiperSlide *ngFor="let printer of dealPrinters">
+                        <app-product-card [printer]="printer" class="printer-product-card"></app-product-card>
+                    </ng-template>
+                </swiper> -->
+            </div>
+        </div>
+    </div>
+</section>

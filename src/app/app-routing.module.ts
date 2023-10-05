@@ -7,6 +7,7 @@ import { RentaComponent } from './pages/renta/renta.component';
 import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
 import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 import { SuccessComponent } from './pages/success/success.component';
+import { PromocionesComponent } from './pages/promociones/promociones.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'nosotros',
     component: NosotrosComponent,
+  },
+  {
+    path: 'promociones',
+    component: PromocionesComponent,
   },
   {
     path: 'venta',

@@ -22,6 +22,7 @@ import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de
 import { SuccessComponent } from './pages/success/success.component';
 // import { SwiperModule } from '../../node_modules/swiper';
 import { SwiperModule } from 'swiper/angular';
+import { PrinterModule } from './printers/printers.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SwiperModule } from 'swiper/angular';
     PrimengModule,
     PrinterRoutingModule,
     HttpClientModule,
-    SwiperModule
+    SwiperModule,
+    PrinterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

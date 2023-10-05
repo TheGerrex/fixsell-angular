@@ -21,10 +21,10 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     FilterComponent,
-    ProductCardComponent,
     ProductTypePipe,
     ProductColorIconPipe,
     BrandTypePipe,
+    ProductCardComponent,
     LayoutPageComponent,
     PrinterPageComponent,
     ListPageComponent
@@ -35,6 +35,11 @@ import { FormsModule } from '@angular/forms';
     PrimengModule,
     SwiperModule,
     FormsModule
+  ],
+  exports: [
+    ProductTypePipe,
+    ProductColorIconPipe,
+    BrandTypePipe
   ]
 })
 export class PrinterModule { }
