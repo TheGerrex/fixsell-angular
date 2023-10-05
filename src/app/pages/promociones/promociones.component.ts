@@ -20,21 +20,23 @@ export class PromocionesComponent implements OnInit {
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 8,
-    // navigation: true,
+    navigation: false,
     autoplay: false,
     pagination: { clickable: true },
     scrollbar: { draggable: true },
+    
     breakpoints: {
       1024: {
         slidesPerView: 4,
         spaceBetween: 24,
-        // navigation: true,
+        navigation: true,
         autoplay: false,
+        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 16,
+        spaceBetween: 16, 
         // navigation: true,
         autoplay: false,
         pagination: { clickable: true },
@@ -43,7 +45,7 @@ export class PromocionesComponent implements OnInit {
       360: {
         slidesPerView: 2,
         spaceBetween: 8,
-        // navigation: false,
+        navigation: false,
         autoplay: true,
         pagination: { clickable: true },
         scrollbar: { draggable: true },

@@ -12,14 +12,19 @@
 // Select the database to use.
 use('fixsell_db');
 
+
+const currentDate = new Date();
+const oneWeekFromNow = new Date();
+oneWeekFromNow.setDate(currentDate.getDate() + 7); 
+
 // Add fields to all documents in the "printers" collection.
 db.getCollection('printers').updateMany({}, {
     $set: {
         isDeal: false, // Set isDeal to false for all documents initially
-        dealPrice: null, // Set dealPrice to null initially
-        dealStartDate: null, // Set dealStartDate to null initially
-        dealEndDate: null, // Set dealEndDate to null initially
-        dealDiscountPercentage: null, // Set dealDiscountPercentage to null initially
+        dealPrice: 25000, // Set dealPrice to null initially
+        dealStartDate: currentDate, // Set dealStartDate to null initially
+        dealEndDate: oneWeekFromNow, // Set dealEndDate to null initially
+        dealDiscountPercentage: 0.3, // Set dealDiscountPercentage to null initially
         dealDescription: null, // Set dealDescription to null initially
     }
 });

@@ -14,6 +14,7 @@ import { PrinterPageComponent } from './pages/printer-page/printer-page.componen
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { SwiperModule } from 'swiper/angular';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -34,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     PrinterRoutingModule,
     PrimengModule,
     SwiperModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports: [
     ProductTypePipe,

@@ -20,4 +20,16 @@ export interface Printer {
     duplexUnit: boolean
     paperSizes: string
     applicableOS: string
+    dealEndDate: {
+      $date: Date;
+    };
+    dealStartDate: {
+      $date: Date;
+    };
+    dealPrice: number
+    isDeal: boolean
+    dealDiscountPercentage: {
+      $numberDecimal: number;
+    };
+    dealDescription: string
   }

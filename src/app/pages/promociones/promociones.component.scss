@@ -13,24 +13,28 @@
     background-color: #EBEEF5;
 }
 
-// .printer-product-card {
-//     width: calc(50% - 6px) !important;
-//     min-height: 287px;
-//     border-radius: 10px !important;
-//     border: 0.50px #E2E8F0 solid;
-//     position: relative;
-//     border-radius: 16px;
-//     margin-bottom: 20px;
-//     overflow: hidden;
-//     // width: calc(50% - 6px);
-//     // min-height: 287px;
-//     // padding-bottom: 58px;
-//     @media(min-width: 768px) {
-//         width: calc(33.3% - 8px) !important;
-//         min-height: 306px;
-//         margin-bottom: 16px;
-//     }
-// }
+.printer-product-card-container {
+    display: flex;
+    width: 100%;
+}
+
+.printer-product-card {
+    max-width: 300px;
+    min-height: 287px;
+    border-radius: 10px;
+    border: 0.50px #E2E8F0 solid;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    // width: calc(50% - 6px);
+    // min-height: 287px;
+    // padding-bottom: 58px;
+    @media(min-width: 768px) {
+        width: 100%;
+        min-height: 306px;
+        margin-bottom: 16px;
+    }
+}
 .box-container {
     width: 100%;
     height: 100%;
@@ -66,19 +70,15 @@
     }
     // Large devices (desktops, 992px and up)
     @media (min-width: 992px) {
-        font-size: 3.5em;
+        font-size: 3em;
     }
     // X-Large devices (large desktops, 1200px and up)
     @media (min-width: 1200px) {
-        font-size: 4em;
+        font-size: 3em;
     }
     // XX-Large devices (larger desktops, 1400px and up)
     @media (min-width: 1400px) {
-        font-size: 4em;
+        font-size: 3em;
     }
 }
 
-.printer-product-card-container {
-    // display: flex;
-    width: 100%;
-}

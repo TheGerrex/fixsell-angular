@@ -1,8 +1,11 @@
 <section>
     <div class="product-section">
-        <div class="product-image">
+        <div class="product-image" *ngIf="printer">
             <div class="product-image-inner">
                 <div class="product-image-container">
+                    <div class="product-deal-tag" *ngIf="printer?.isDeal">
+                        <p class="deal-tag-title">{{(printer.dealDiscountPercentage.$numberDecimal * 100)}}% Descuento</p>
+                    </div>
                     <div class="swiper-container">
                         <swiper style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6" [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [centeredSlides]="true" [thumbs]="{swiper: thumbsSwiper}">
                             <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt="printer.model" class="swiper-image"></ng-template>
@@ -24,6 +27,9 @@
                             </div>
                             <h1 class="product-title">{{printer.model}}</h1>
                             <div class="product-tags">
+                                <div class="tag-deal" *ngIf="printer.isDeal">
+                                    <div class="tag-title">Promoción</div>
+                                </div>
                                 <div [innerHTML]="printer.rentable | productType"></div>
                                 <div class="tag">
                                     <div class="tag-title">{{printer.category}}</div>
@@ -32,7 +38,8 @@
                         </div>
                     </div>
                     <div class="actions-container">
-                        <button class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
+                        <button *ngIf="!printer.isDeal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
+                        <button *ngIf="printer.isDeal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsAppDeal()"><span class="button-label">Cotiza la promoción por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
                     </div>
                     <div class="product-info-block">
                         <div class="product-description">

@@ -51,4 +51,13 @@ export class PrinterPageComponent implements OnInit{
       window.open(url, '_blank');
     }
   }
+  openWhatsAppDeal() {
+    if (this.printer) {
+      const phoneNumber = '+528115555784';
+      const message = `Me interesa cotizar el producto ${this.printer.model}, que contiene una promoción de ${this.printer.dealDiscountPercentage.$numberDecimal * 100}% me puedes dar mas información al respecto?`;
+      const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+      
+      window.open(url, '_blank');
+    }
+  }
 }
