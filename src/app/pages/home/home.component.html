@@ -41,7 +41,7 @@
         <div class="row">
             <div class="box-container">
                 <div class="swiper-container">
-                    <swiper #swiper class="pb-5 px-md-5 pb-md-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
+                    <swiper #swiper class="pb-5 px-md-5 pb-lg-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
                         <ng-template swiperSlide *ngFor="let images of categories">
                             <div class="category-card" (click)="navigateToProductList(images.name)">
                                 <div class="image">

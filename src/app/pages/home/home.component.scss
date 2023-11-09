@@ -44,7 +44,7 @@
 
 .hero-title {
     font-size: 2.2em;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1;
     color: #475569;
     transform: scale(0.9) translateX(-10%);
@@ -439,6 +439,12 @@
 
 .panel {
     margin-bottom: 20px;
+}
+
+.panel-header {
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #1E293B;
 }
 
 :host ::ng-deep p-panel {
