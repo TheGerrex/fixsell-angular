@@ -16,7 +16,7 @@ export class ContactFormService {
 
   submitForm(data: any) {
     const formData = data;
-    console.log(formData);
+    // console.log(formData);
     this.toastService.showSuccess('El formulario se ha mandado correctamente','Pronto nos pondremos en contacto contigo');
     // Make an HTTP POST request to your NestJS server
     this.http.post(`${this.baseUrl}/email/send-email`, formData)

@@ -59,7 +59,7 @@ export class FooterComponent {
       return;
     }
     const formData = this.contactForm.value;
-    console.log(formData);
+    // console.log(formData);
     this.contactFormService.submitForm(formData);
     this.contactForm.reset();
   }
