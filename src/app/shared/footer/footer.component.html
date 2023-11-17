@@ -6,11 +6,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md">
                 <h4 class="footer-title">Acerca de Nosotros</h4>
                 <p class="footer-company-bio">Empresa dedicada a la venta, renta, servicio de equipos de impresión y gestión documental. Utilizando tecnologías de innovación para añadir valor a las empresas. </p>
                 <div class="icons">
-                    
+
                     <a href="https://www.facebook.com/fixsell1" target="_blank">
                         <i class="pi pi-facebook" style="font-size: 2rem"></i>
                     </a>
@@ -19,22 +19,30 @@
                     </a>
                 </div>
             </div>
-            <p-divider class="d-block d-md-none"></p-divider>
-            <div class="col-12 col-md-6 col-lg-4">
+            <p-divider class="d-block d-lg-none"></p-divider>
+            <div class="col-12 col-md">
                 <h4 class="footer-title">Mapa del Sitio</h4>
-                <ul>
+                <!-- <ul>
                     <li>Renta</li>
                     <li>Venta</li>
                     <li>Servicios</li>
                     <li>Consumibles</li>
                     <li>Promociones</li>
                     <li>Nosotros</li>
-                </ul>
+                </ul> -->
+                <div class="d-flex flex-wrap gap-3 flex-column flex-md-row">
+                    <h5 href="#">Renta</h5>
+                    <h5 href="#">Venta</h5>
+                    <h5 href="#">Servicios</h5>
+                    <h5 href="#">Consumibles</h5>
+                    <h5 href="#">Promociones</h5>
+                    <h5 href="#">Nosotros</h5>
+                </div>
             </div>
-            <p-divider class="d-block d-md-none"></p-divider>
-            <div class="col-12 col-md-6 col-lg-4">
-                <h4 class="footer-title">Contacto</h4>
-                <div class="footer-contact-container">
+            <p-divider class="d-block d-lg-none"></p-divider>
+            <div class="col-12">
+                <h4 class="footer-title mt-lg-3">Contacto</h4>
+                <div class="footer-contact-container flex-md-row gap-3">
                     <div class="wrap">
                         <h6 class="wrap-title">División Monterrey</h6>
                         <div class="wrap-item">
@@ -75,31 +83,46 @@
                     </div>
                 </div>
             </div>
-            <!-- <p-divider class="d-block d-md-none"></p-divider>
-            <div class="col-12 col-md-6 col-lg-4">
+        </div>
+        <div class="row">
+            <p-divider class="d-block d-lg-none"></p-divider>
+            <div class="col-12">
                 <h4 class="footer-title">Escríbenos</h4>
+
                 <p>Mandanos un mensaje y uno de nuestros asesores se pondra en contacto contigo.</p>
-                <form class="form-contact mt-3" name="contact" method="POST" netlify [formGroup]="contactForm" (ngSubmit)="submitForm()">
-                    <input type="hidden" name="form-name" value="contact">
-                    <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText class="w-100" formControlName="name" required> 
-                        <label for="float-input">Nombre o Empresa</label>
-                    </span>
-                    <span class="p-float-label">
-                        <input pInputText class="w-100" formControlName="number" required>
-                        <label for="float-input">Teléfono</label>
-                    </span>
-                    <span class="p-float-label">
-                        <input id="float-input" type="text" pInputText class="w-100" formControlName="email" required> 
-                        <label for="float-input">Email</label>
-                    </span>
-                    <span class="p-float-label">
-                        <textarea pInputTextarea class="w-100" formControlName="message" required></textarea> 
-                        <label for="float-input">Mensaje</label>
-                    </span>
+
+                <form class="form-contact mt-3" method="POST" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre o Empresa</label>
+                        <input type="text" formControlName="name" class="form-control" placeholder="Nombre o Empresa">
+                        <span *ngIf="isValidField('name')" class="form-text text-danger">
+                            {{ getFieldError('name') }}
+                        </span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Teléfono</label>
+                        <input type="text" formControlName="number" class="form-control" placeholder="XX-XX-XX-XX-XX">
+                        <span *ngIf="isValidField('number')" class="form-text text-danger">
+                            {{ getFieldError('number') }}
+                        </span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="text" formControlName="email" class="form-control" placeholder="ejemplo@mail.com">
+                        <span *ngIf="isValidField('email')" class="form-text text-danger">
+                            {{ getFieldError('email') }}
+                        </span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mensaje</label>
+                        <textarea type="text" formControlName="message" class="form-control" placeholder="Escribe un mensaje e inicia una conversación con nosotros"></textarea>
+                        <span *ngIf="isValidField('message')" class="form-text text-danger">
+                            {{ getFieldError('message') }}
+                        </span>
+                    </div>
                     <button pButton type="submit" label="Enviar" class=" p-button-raised p-button-rounded w-100 mt-3 "></button>
                 </form>
-            </div> -->
+            </div>
         </div>
     </div>
 </section>

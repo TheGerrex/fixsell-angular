@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject} from '@angular/core';
-import { environment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { Printer } from '../interfaces/printer.interface';
 import { Observable, catchError, of } from 'rxjs';
 

@@ -25,7 +25,7 @@ import { ProductTypePipe } from './pipes/product-type.pipe';
     imports: [
         CommonModule,
         PrimengModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     exports: [
         NavbarComponent,

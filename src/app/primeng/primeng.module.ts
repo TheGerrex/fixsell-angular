@@ -15,6 +15,9 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { GalleriaModule } from 'primeng/galleria';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 
 
 
@@ -35,6 +38,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     ToggleButtonModule,
     GalleriaModule,
     CheckboxModule,
-  ]
+    ToastModule,
+  ],
+  providers: [MessageService]
 })
 export class PrimengModule { }

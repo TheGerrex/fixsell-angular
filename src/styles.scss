@@ -3,18 +3,10 @@
     font-family: 'Cera Pro';
     font-style: normal;
     font-weight: 400;
-    src: 
-    url('./assets/fonts/Cera-Pro-Woff/CeraProRegular.woff') format('woff'), 
-    url('./assets/fonts/Cera-Pro-Woff/CeraProLight.woff') format('woff') 300, 
-    url('./assets/fonts/Cera-Pro-Woff/CeraProMedium.woff') format('woff') 500, 
-    url('./assets/fonts/Cera-Pro-Woff/CeraProBold.woff') format('woff') 600, 
-    url('./assets/fonts/Cera-Pro-Woff/CeraProBlack.woff') format('woff') 700, 
-    url('./assets/fonts/Cera-Pro-Woff/CeraProRegularItalic.woff') format('woff') italic,
-    url('./assets/fonts/Cera-Pro-Woff/CeraProBlackItalic.woff') format('woff') 700 italic;
+    src: url('./assets/fonts/Cera-Pro-Woff/CeraProRegular.woff') format('woff'), url('./assets/fonts/Cera-Pro-Woff/CeraProLight.woff') format('woff') 300, url('./assets/fonts/Cera-Pro-Woff/CeraProMedium.woff') format('woff') 500, url('./assets/fonts/Cera-Pro-Woff/CeraProBold.woff') format('woff') 600, url('./assets/fonts/Cera-Pro-Woff/CeraProBlack.woff') format('woff') 700, url('./assets/fonts/Cera-Pro-Woff/CeraProRegularItalic.woff') format('woff') italic, url('./assets/fonts/Cera-Pro-Woff/CeraProBlackItalic.woff') format('woff') 700 italic;
 }
 
 $font-family: 'Cera Pro';
-
 body {
     width: 100%;
     height: 100%;
@@ -33,6 +25,8 @@ ul,
 li,
 label,
 small,
+input,
+textarea,
 a {
     font-family: $font-family;
 }
