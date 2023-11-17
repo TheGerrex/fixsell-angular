@@ -1,6 +1,6 @@
 // environment.ts
 export const environment = {
-    production: false,
-    baseUrl: 'http://localhost:3000', // Change this to your local NestJS server address
-  };
+    production: true,
+    baseUrl: 'https://nest-fixsell-backend-production.up.railway.app',
+};
   
