@@ -31,6 +31,7 @@ export class ListPageComponent implements AfterViewInit {
     this.printersService.getPrinters().subscribe(
       (printers_response: Printer[]) => {
         this.filteredPrinters = printers_response;
+        console.log(printers_response);
         this.loading = false;
         this.route.queryParams.subscribe((params) => {
           if (params['category']) {

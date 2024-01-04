@@ -13,4 +13,9 @@ export class ProductCardComponent implements OnInit{
   ngOnInit(): void {
     if(!this.printer) throw new Error('Printer property is required');
   }
+
+  logPrinter() {
+    console.log(this.printer);
+  }
+  
 }
