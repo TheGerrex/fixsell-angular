@@ -13,15 +13,39 @@ export class PrintersService {
 
   constructor(private http: HttpClient) { }
 
-  getPrinters(): Observable<Printer[]> {
-    return this.http.get<Printer[]>(`${this.baseUrl}/printers`)
-      .pipe(
-        catchError(error => {
-          console.error('Error al traer los productos:', error);
-          return [];
-        })
-      );
-  }
+  // getPrinters(limit?: number, offset?: number): Observable<Printer[]> {
+  //   return this.http.get<Printer[]>(`${this.baseUrl}/printers?limit=${limit}&offset=${offset}`)
+  //       .pipe(
+  //           catchError(error => {
+  //               console.error('Error al traer los productos:', error);
+  //               return of([]);
+  //           })
+  //       );
+  // }
+
+  getPrinters(limit?: number, offset?: number): Observable<Printer[]> {
+    let url = `${this.baseUrl}/printers`;
+    if (limit != undefined && offset != undefined) {
+        url += `?limit=${limit}&offset=${offset}`;
+    }
+    return this.http.get<Printer[]>(url)
+        .pipe(
+            catchError(error => {
+                console.error('Error al traer los productos:', error);
+                return of([]);
+            })
+        );
+}
+
+  // getPrinters(): Observable<Printer[]> {
+  //   return this.http.get<Printer[]>(`${this.baseUrl}/printers`)
+  //     .pipe(
+  //       catchError(error => {
+  //         console.error('Error al traer los productos:', error);
+  //         return [];
+  //       })
+  //     );
+  // }
 
   getPrinterById(id: string): Observable<Printer | undefined> {
     return this.http.get<Printer>(`${this.baseUrl}/printers/${id}`)

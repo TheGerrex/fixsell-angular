@@ -255,3 +255,64 @@
     background-color: $primary-color;
     color: $white;
 }
+
+.pagination-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1em;
+    gap: 8px;
+    .pagination-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+        .pagination-button-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50px;
+            background-color: #E2E8F0;
+            border: none;
+            span {
+                font-weight: 500;
+                color: #1E3A8A;
+            }
+        }
+        .pagination-button-number.active {
+            background-color: $primary-color; // Change this to the color you want for the active button
+            span {
+                color: #ffffff;
+            }
+        }
+        .pagination-button-direction {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            padding: 4px 12px;
+            border: none;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+            margin: 0;
+            background-color: transparent;
+            font-weight: 500;
+            color: #1E3A8A;
+        }
+        .pagination-button-direction:hover {
+            background-color: #E2E8F0;
+        }
+    }
+    .pagination-quantity {
+        select {
+            background-color: $light-50;
+            border: 1px solid $light-200;
+            border-radius: 6px;
+            height: 35px;
+        }
+    }
+}

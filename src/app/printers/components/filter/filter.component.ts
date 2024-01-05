@@ -52,7 +52,10 @@ export class FilterComponent implements OnInit {
   constructor(private printerService: PrintersService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.printerService.getPrinters().subscribe((data: any) => {
+    const page = 1; // or whatever page you want to fetch
+    const limit = 20; // or whatever limit you want to set
+    const offset = (page - 1) * limit;
+    this.printerService.getPrinters(limit, offset).subscribe((data: any) => {
       this.printers = data;
       this.filteredPrinters = data;
       this.pageLoaded = true;

@@ -23,7 +23,22 @@
                 <div class="spinner-container" *ngIf="loading;">
                     <i class="pi pi-spin pi-spinner" style="font-size: 4rem;"></i>
                 </div>
-
+                <div class="pagination-container">
+                    <!-- <div class="pagination-quantity">
+                        <select [(ngModel)]="limit" (change)="fetchPrinters()">
+                            <option value="20">20</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div> -->
+                    <div class="pagination-buttons">
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" [disabled]="currentPage === 1">< Atras</button>
+                        <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
+                            <span>{{page}}</span>
+                        </button>
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente ></button>
+                    </div>
+                </div>
                 <div class="product-list-container" #productList>
                     <ng-container *ngIf="filteredPrinters.length > 0; else noProducts">
                         <!-- <printer-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></printer-product-card> -->
@@ -35,6 +50,22 @@
                             <h2>No se encontraron productos</h2>
                         </div>
                     </ng-template>
+                </div>
+                <div class="pagination-container">
+                    <!-- <div class="pagination-quantity">
+                        <select [(ngModel)]="limit" (change)="fetchPrinters()">
+                            <option value="20">20</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div> -->
+                    <div class="pagination-buttons">
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" [disabled]="currentPage === 1">< Atras</button>
+                        <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
+                            <span>{{page}}</span>
+                        </button>
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente ></button>
+                    </div>
                 </div>
             </div>
         </div>
