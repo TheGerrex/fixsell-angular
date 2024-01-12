@@ -48,11 +48,11 @@ export class RentaComponent {
       img:'../../../assets/img/home/categories/konica-c2060-production.jpg'
     },
     {
-      name: 'Inyección de Tinta',
+      name: 'Inyeccion de Tinta',
       img:'../../../assets/img/home/categories/epson-wf-m5799-ink.jpg'
     },
     {
-      name: 'Artes Gráficas',
+      name: 'Artes Graficas',
       img:'../../../assets/img/home/categories/bizhub-pro-1060.jpg'
     }
   ];
@@ -137,6 +137,6 @@ export class RentaComponent {
     ];
   }
   navigateToProductList(category: string, rentable: boolean) {
-    this.router.navigate(['/printers/list'], { queryParams: { category, rentable } });
+    this.router.navigate(['/printers/list'], { queryParams: {  categories: category, rentable: rentable } });
   }
 }

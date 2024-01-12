@@ -145,7 +145,6 @@ export class VentaComponent {
     ];
   }
   navigateToProductList(category: string, rentable: boolean) {
-    console.log('Im working');
-    this.router.navigate(['/printers/list'], { queryParams: { category, rentable } });
+    this.router.navigate(['/printers/list'], { queryParams: {  categories: category, rentable: rentable } });
   }
 }
