@@ -48,7 +48,7 @@ export class VentaComponent {
       img:'../../../assets/img/home/categories/konica-c2060-production.jpg'
     },
     {
-      name: 'Inyección de Tinta',
+      name: 'Inyeccion de Tinta',
       img:'../../../assets/img/home/categories/epson-wf-m5799-ink.jpg'
     },
     {
@@ -60,7 +60,7 @@ export class VentaComponent {
       img:'../../../assets/img/home/categories/epson-plotter.jpg'
     },
     {
-      name: 'Artes Gráficas',
+      name: 'Artes Graficas',
       img:'../../../assets/img/home/categories/bizhub-pro-1060.jpg'
     }
   ];
