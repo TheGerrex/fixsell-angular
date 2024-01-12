@@ -137,6 +137,6 @@ export class RentaComponent {
     ];
   }
   navigateToProductList(category: string, rentable: boolean) {
-    this.router.navigate(['/printers/list'], { queryParams: {  categories: category, rentable: rentable } });
+    this.router.navigate(['/printers/list'], { queryParams: {  categories: category, rentable: rentable, filterCount: 2 } });
   }
 }
