@@ -55,8 +55,8 @@ export class ListPageComponent implements OnInit {
         this.currentPage = +params['page'] || 1; // Use 1 as the default page number
         this.applyFilters(params);
         this.fetchPrintersForCurrentPage();
+        this.loading = false;
       });
-      this.loading = false;
     });
   }
 
