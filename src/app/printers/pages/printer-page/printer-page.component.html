@@ -3,8 +3,8 @@
         <div class="product-image" *ngIf="printer">
             <div class="product-image-inner">
                 <div class="product-image-container">
-                    <div class="product-deal-tag" *ngIf="printer?.isDeal">
-                        <p class="deal-tag-title">{{(printer.dealDiscountPercentage.$numberDecimal * 100)}}% Descuento</p>
+                    <div class="product-deal-tag" *ngIf="printer?.deal">
+                        <p class="deal-tag-title">{{(printer.deal.dealDiscountPercentage)}}% Descuento</p>
                     </div>
                     <div class="swiper-container">
                         <swiper style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6" [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [centeredSlides]="true" [thumbs]="{swiper: thumbsSwiper}">
@@ -27,7 +27,7 @@
                             </div>
                             <h1 class="product-title">{{printer.model}}</h1>
                             <div class="product-tags">
-                                <div class="tag-deal" *ngIf="printer.isDeal">
+                                <div class="tag-deal" *ngIf="printer.deal">
                                     <div class="tag-title">Promoción</div>
                                 </div>
                                 <div [innerHTML]="printer.rentable | productType"></div>
@@ -38,8 +38,8 @@
                         </div>
                     </div>
                     <div class="actions-container">
-                        <button *ngIf="!printer.isDeal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
-                        <button *ngIf="printer.isDeal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsAppDeal()"><span class="button-label">Cotiza la promoción por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
+                        <button *ngIf="!printer.deal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
+                        <button *ngIf="printer.deal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsAppDeal()"><span class="button-label">Cotiza la promoción por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
                     </div>
                     <div class="product-info-block">
                         <div class="product-description">
@@ -55,14 +55,14 @@
                                     <i class="pi pi-th-large"></i>
                                     <h4 class="titulo">Funciones</h4>
                                 </div>
-                                <p class="dato">{{printer.functions}}</p>
+                                <p class="dato">{{printer.printerFunctions}}</p>
                             </div>
                             <div class="Feature">
                                 <div class="feature-container">
                                     <i class="pi pi-window-maximize"></i>
                                     <h4 class="titulo">Tamaño</h4>
                                 </div>
-                                <p class="dato">{{printer.PrintSize}} (Máximo: {{printer.maxPrintSizeSimple}})</p>
+                                <p class="dato">{{printer.printSize}} (Máximo: {{printer.maxPrintSizeSimple}})</p>
                             </div>
                             <div class="Feature">
                                 <div class="feature-container">

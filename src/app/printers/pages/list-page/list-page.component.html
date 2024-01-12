@@ -17,42 +17,27 @@
         </div>
         <div class="products-row px-3">
             <div class="filter-col d-none d-lg-flex">
-                <app-filter (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
+                <app-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory"></app-filter>
             </div>
-            <div class="product-list-col">
-                <div class="spinner-container" *ngIf="loading;">
-                    <i class="pi pi-spin pi-spinner" style="font-size: 4rem;"></i>
-                </div>
-                <div class="pagination-container">
-                    <!-- <div class="pagination-quantity">
-                        <select [(ngModel)]="limit" (change)="fetchPrinters()">
-                            <option value="20">20</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                        </select>
-                    </div> -->
-                    <div class="pagination-buttons">
-                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" [disabled]="currentPage === 1">< Atras</button>
-                        <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
-                            <span>{{page}}</span>
-                        </button>
-                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente ></button>
+            <div class="product-container">
+                <div class="product-list-col">
+                    <div class="spinner-container" *ngIf="loading;">
+                        <i class="pi pi-spin pi-spinner" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="product-list-container" #productList>
+                        <ng-container *ngIf="filteredPrinters.length > 0; else noProducts">
+                            <app-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></app-product-card>
+                        </ng-container>
+                        <ng-template #noProducts>
+                            <div class="not-found">
+                                <i class="pi pi-exclamation-circle" style="font-size: 4rem;"></i>
+                                <h2>No se encontraron productos</h2>
+                            </div>
+                        </ng-template>
                     </div>
                 </div>
-                <div class="product-list-container" #productList>
-                    <ng-container *ngIf="filteredPrinters.length > 0; else noProducts">
-                        <!-- <printer-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></printer-product-card> -->
-                        <app-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></app-product-card>
-                    </ng-container>
-                    <ng-template #noProducts>
-                        <div class="not-found">
-                            <i class="pi pi-exclamation-circle" style="font-size: 4rem;"></i>
-                            <h2>No se encontraron productos</h2>
-                        </div>
-                    </ng-template>
-                </div>
-                <div class="pagination-container">
-                    <!-- <div class="pagination-quantity">
+                <div class="pagination-container" *ngIf="filteredPrinters.length > 0 && totalPages > 1;">
+                    <!-- <div class="pagination-quantity" *ngIf="!isMobile">
                         <select [(ngModel)]="limit" (change)="fetchPrinters()">
                             <option value="20">20</option>
                             <option value="40">40</option>
@@ -60,11 +45,14 @@
                         </select>
                     </div> -->
                     <div class="pagination-buttons">
-                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" [disabled]="currentPage === 1">< Atras</button>
-                        <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
-                            <span>{{page}}</span>
-                        </button>
-                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente ></button>
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" *ngIf="currentPage !== 1"><span>Atras</span></button>
+                        <span *ngIf="isMobile" class="pagination-button-number active"><span>{{currentPage}}</span></span>
+                        <div *ngIf="!isMobile" class="pagination-wrap">
+                            <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
+                                <span>{{page}}</span>
+                            </button>
+                        </div>
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" *ngIf="currentPage !== totalPages"><span>Siguiente</span></button>
                     </div>
                 </div>
             </div>
@@ -76,13 +64,13 @@
 <div class="filter-bar" [class.activated]="this.filterBarOpen">
     <div class="filter-header">
         <div class="filter-header-inner">
-            <p class="filter-header-title">Filter</p>
+            <p class="filter-header-title">Filtro</p>
             <div class="filter-close-button" (click)="closeFilterBar()">
                 <i class="pi pi-times" style="color: #111827;"></i>
             </div>
         </div>
     </div>
-    <div class="filter-content">
-        <app-filter (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory" [rentable]="rentable"></app-filter>
+    <div class="filter-content pt-3">
+        <app-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory"></app-filter>
     </div>
 </div>

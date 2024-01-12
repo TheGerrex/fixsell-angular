@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, ElementRef, ViewChild, SimpleChanges } from '@angular/core';
 import { Printer } from '../../interfaces/printer.interface';
 import { PrintersService } from '../../services/printers.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-filter',
@@ -9,64 +9,71 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  @Output() filteredPrintersChange = new EventEmitter<Printer[]>(); // Output event
-  @Output() filtersApplied = new EventEmitter<void>();
-  @Input() selectedCategory?: string;
-  @Input() rentable?: boolean;
+  @Output() filteredPrintersChange = new EventEmitter<any>(); // Output event
   @Output() appliedFiltersCountChange = new EventEmitter<number>();
+  @Input() selectedCategory?: string;
+  @Input() initialAppliedFiltersCount: number = 0;
+
   // FILTERS
   printers: Printer[] = [];
   filteredPrinters: Printer[] = [];
-  selectedPrintSizeFilters: string[] = [];
-  printSizesFilter: string[] = ['Carta', 'Doble Carta', 'Tabloide', 'Tabloide +', 'Rollo 4"', 'Rollo 4.25"','Rollo 8"','Rollo 8.34"', 'Rollo 13"'  ];
-  selectedColors: string[] = [];
+  printSizesFilter: string[] = ['Carta', 'Doble Carta', 'Tabloide', 'Tabloide Plus', 'Rollo 4', 'Rollo 4.25','Rollo 8','Rollo 8.34', 'Rollo 13'  ];
   colorFilter: string[] = ['Color', 'B&N'];
+  colorParams: any;
   selectedBrands: string[] = [];
-  brands: string[] = ['Konica Minolta', 'Kyocera', 'Epson'];
-  selectedRentableOptions: boolean[] = [false, false];
-  rentableButtonStates: boolean[] = [false, false];
   selectedPrintVelocities: string[] = [];
-  printVelocities: string[] = ["24 a 30", "30 a 40", "40 a 50", "50 a 60", "60 a 80", "80 a 100", "100 y más"];
   selectedCategories: string[] = []; 
-  categories: string[] = ["Oficina", "Produccion", "Etiquetas", "Plotters", "Inyección de Tinta", "Artes Gráficas"];
+  selectedPrintSizes: string[] = [];
+  selectedPrintVelocityStates: { [key: string]: boolean } = {};
+  selectedColors: string[] = [];
+  brands: string[] = ['Konica Minolta', 'Kyocera', 'Epson'];
+  categories: string[] = ["Oficina", "Produccion", "Etiquetas", "Inyeccion de Tinta", "Artes Graficas"];
+  printVelocities: string[] = ["24-30", "30-40", "40-50", "50-60", "60-80", "80-100", "100-200"];
   isSectionVisibleProduct: boolean = true;
   isSectionVisibleBrand: boolean = true;
   isSectionVisibleSize: boolean = true;
   isSectionVisibleType: boolean = true;
   isSectionVisibleVelocity: boolean = true;
   isSectionVisibleCategory: boolean = true;
-  selectedPrintVelocityStates: { [key: string]: boolean } = {};
-  isRentable?: boolean;
+  rentable?: boolean = false;
+  sellable?: boolean = false;
   rentableCount: number = 0;
   isVentaHighlighted: boolean = false;
   isRentaHighlighted: boolean = false;
   appliedFiltersCount: number = 0;
   pageLoaded = false;
-
-  
   filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
   checked = false;
+  isMobile?: boolean;
 
-
-
-  constructor(private printerService: PrintersService, private route: ActivatedRoute) {}
+  constructor(
+    private printerService: PrintersService, 
+    private route: ActivatedRoute,
+    private router: Router) {}
 
   ngOnInit(): void {
-    const page = 1; // or whatever page you want to fetch
-    const limit = 20; // or whatever limit you want to set
-    const offset = (page - 1) * limit;
-    this.printerService.getPrinters(limit, offset).subscribe((data: any) => {
-      this.printers = data;
-      this.filteredPrinters = data;
-      this.pageLoaded = true;
-    });
     this.route.queryParams.subscribe(params => {
-      this.isRentable = params['rentable'] === 'true';
+      this.sellable = params['sellable'] ? JSON.parse(params['sellable']) : undefined;
+      this.rentable = params['rentable'] ? JSON.parse(params['rentable']) : undefined;
+      this.selectedBrands = params['brand'] ? params['brand'].split(',') : [];
+      this.selectedCategories = params['categories'] ? params['categories'].split(',') : [];
+      this.selectedPrintSizes = params['printSizes'] ? params['printSizes'].split(',') : [];
+      this.selectedPrintVelocities = params['printVelocities'] ? params['printVelocities'].split(',') : [];
+      this.colorParams = params['color'] !== undefined ? params['color'] === 'true' : undefined;
+      this.selectedColors = [];
+      if (this.colorParams !== undefined) {
+        this.selectedColors.push(this.colorParams ? 'Color' : 'B&N');
+      }
     });
-    
-    
-
+    this.checkIfMobile();
     window.addEventListener('resize', this.onResize);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('initialAppliedFiltersCount' in changes) {
+      this.appliedFiltersCount = changes['initialAppliedFiltersCount'].currentValue;
+    }
+    console.log("Filter count", this.initialAppliedFiltersCount)
   }
   
   toggleFilterSectionProduct() {
@@ -96,196 +103,141 @@ export class FilterComponent implements OnInit {
     window.removeEventListener('resize', this.onResize);
   }
 
-  applyFilters(): void {
-    if (this.selectedPrintSizeFilters.length > 0) {
-      this.filteredPrinters = this.printers.filter((printer) =>
-        this.selectedPrintSizeFilters.includes(printer.PrintSize)
-      );
-    } else {
-      this.filteredPrinters = this.printers;
-    }
-
-    if (this.selectedColors.length > 0) {
-      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
-        this.selectedColors.includes(printer.color ? 'Color' : 'B&N')
-      );
-    }
-    
-    if (this.selectedBrands.length > 0) {
-      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
-        this.selectedBrands.includes(printer.brand)
-      );
-    }
-
-    if (this.selectedRentableOptions.length > 0) {
-      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
-        this.selectedRentableOptions.includes(printer.rentable)
-      );
-      console.log('selectedRentableOptions',this.selectedRentableOptions)
-      console.log('FIltered Printers:',this.filteredPrinters)
-    }
-
-    if (this.selectedPrintVelocities.length > 0) {
-      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
-        this.selectedPrintVelocities.some((range) => {
-          if (range === "100 y más") {
-            return parseInt(printer.printVelocity, 10) >= 100;
-          }
-  
-          const [min, max] = range.split(" a ");
-          const velocity = parseInt(printer.printVelocity, 10);
-          return velocity >= parseInt(min, 10) && velocity <= parseInt(max, 10);
-        })
-      );
-    }
-
-    if (this.selectedCategories.length > 0) {
-      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
-        this.selectedCategories.includes(printer.category)
-      );
-    }
-
-    if (this.rentable !== undefined) {
-      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
-        printer.rentable === this.rentable
-      );
-    }
-    
-    this.appliedFiltersCount =
-    this.selectedPrintSizeFilters.length +
-    this.rentableCount +
-    this.selectedColors.length +
-    this.selectedBrands.length +
-    this.selectedPrintVelocities.length +
-    this.selectedCategories.length;
-
-    this.filteredPrintersChange.emit(this.filteredPrinters);
-    if (this.pageLoaded) {
-      this.filtersApplied.emit();
-    }
-
-    this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-    this.scrollToTop();
-    console.log(this.filteredPrinters)
-    
-  }
-
   scrollToTop() {
     window.scrollTo({ top: 480, behavior: 'smooth' });
   }
 
-  togglePrintSizeFilter(printSize: string): void {
-    if (this.selectedPrintSizeFilters.includes(printSize)) {
-      this.selectedPrintSizeFilters = this.selectedPrintSizeFilters.filter((b) => b !== printSize);
-    } else {
-      this.selectedPrintSizeFilters.push(printSize);
-    }
-    this.applyFilters();
+  checkIfMobile() {
+    this.isMobile = window.innerWidth <= 768;
   }
 
-  toggleColorFilter(color: string): void {
-    // Toggle color filters
-    if (this.selectedColors.includes(color)) {
-      this.selectedColors = this.selectedColors.filter((c) => c !== color);
-    } else {
-      this.selectedColors.push(color);
+  toggleSellableOptionFilter(): void {
+    const wasSellable = this.sellable;
+    this.sellable = !this.sellable;
+    this.rentable = !this.sellable;
+  
+    if (wasSellable !== this.sellable) {
+      this.appliedFiltersCount = this.sellable ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
     }
-    this.applyFilters(); // Apply filters after toggling
-  }
-
-  toggleBrandFilter(brand: string): void {
-    if (this.selectedBrands.includes(brand)) {
-      this.selectedBrands = this.selectedBrands.filter((b) => b !== brand);
-    } else {
-      this.selectedBrands.push(brand);
-    }
-    this.applyFilters();
-  }
-
-  toggleRentableOptionFilter(optionIndex: number): void {
-    this.rentableButtonStates[optionIndex] = !this.rentableButtonStates[optionIndex];
-    const bothButtonsActivated = this.rentableButtonStates[0] && this.rentableButtonStates[1];
-
-  // Update the selectedRentableOptions array based on the button states
-   
-    this.selectedRentableOptions = this.rentableButtonStates.map((state) => state);
-
-    if (bothButtonsActivated) {
-      this.selectedRentableOptions = [];
-    } else if (this.rentableButtonStates[0]) {
-      // If "Venta" button is activated, show only non-rentable products
-      this.selectedRentableOptions = [false];
-    } else if (this.rentableButtonStates[1]) {
-      // If "Renta" button is activated, show only rentable products
-      this.selectedRentableOptions = [true];
-    }
-    
-    if (this.rentableButtonStates[optionIndex]) {
-      // Button is activated, increment the appliedFiltersCount
-      this.rentableCount += 1;
-    } else {
-      // Button is deactivated, reset the appliedFiltersCount to zero
-      console.log("Button is deactivated");
-      this.rentableCount -= 1;
-    }
-
-
-    // Apply filters
-    this.applyFilters();
-  }
-  // toggleRentableOptionFilter(option: boolean): void {
-  //   console.log('toggleRentableOptionFilter', option);
-  //   if (this.selectedRentableOptions.includes(option)) {
-  //     this.selectedRentableOptions = this.selectedRentableOptions.filter((o) => o !== option);
-  //   } else {
-  //     this.selectedRentableOptions.push(option);
-  //   }
-  //   this.applyFilters();
-  //   this.isRentable = option;
-  //   if (option) {
-  //     this.isVentaHighlighted = !this.isVentaHighlighted;
-  //   } else {
-  //     this.isRentaHighlighted = !this.isRentaHighlighted;
-  //   }
-
-  //   // this.isRentaHighlighted = option === false;
-  //   // this.isVentaHighlighted = option === true;
-  // }
-
-  togglePrintVelocityFilter(range: string): void {
-    if (this.selectedPrintVelocities.includes(range)) {
-      this.selectedPrintVelocities = this.selectedPrintVelocities.filter((v) => v !== range);
-    } else {
-      this.selectedPrintVelocities.push(range);
-    }
-    this.applyFilters();
-  }
-
-  toggleCategoryFilter(category: string): void {
-    if (this.selectedCategories.includes(category)) {
-      this.selectedCategories = this.selectedCategories.filter((c) => c !== category);
-    } else {
-      this.selectedCategories.push(category);
-    }
-    this.applyFilters();
+  
+    this.route.queryParams.subscribe(params => {
+      const updatedParams = { ...params, sellable: this.sellable ? 'true' : 'false', rentable: this.rentable ? 'true' : 'false', filterCount: this.appliedFiltersCount, page: '1' };
+      this.router.navigate([], { queryParams: updatedParams, queryParamsHandling: 'merge' });
+    });
   }
   
+  toggleRentableOptionFilter(): void {
+    const wasRentable = this.rentable;
+    this.rentable = !this.rentable;
+    this.sellable = !this.rentable;
+  
+    if (wasRentable !== this.rentable) {
+      this.appliedFiltersCount = this.rentable ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
+    }
+  
+    this.route.queryParams.subscribe(params => {
+      const updatedParams = { ...params, rentable: this.rentable ? 'true' : 'false', sellable: this.sellable ? 'true' : 'false', filterCount: this.appliedFiltersCount, page: '1' };
+      this.router.navigate([], { queryParams: updatedParams, queryParamsHandling: 'merge' });
+    });
+  }
+
+  toggleBrandFilter(filterBrand: string): void {
+    const wasIncluded = this.selectedBrands.includes(filterBrand);
+    if (wasIncluded) {
+        this.selectedBrands = this.selectedBrands.filter((b) => b !== filterBrand);
+        this.appliedFiltersCount--;
+    } else {
+        this.selectedBrands.push(filterBrand);
+        this.appliedFiltersCount++;
+    }
+    this.emitFilters();
+  }
+  
+  toggleColorFilter(color: string): void {
+      const wasIncluded = this.selectedColors.includes(color);
+      if (wasIncluded) {
+          this.selectedColors.splice(this.selectedColors.indexOf(color), 1);
+          this.appliedFiltersCount--;
+      } else {
+          this.selectedColors.push(color);
+          this.appliedFiltersCount++;
+      }
+      // Rest of your code...
+      this.emitFilters();
+  }
+  
+  toggleCategoryFilter(category: string): void {
+      const wasIncluded = this.selectedCategories.includes(category);
+      if (wasIncluded) {
+          this.selectedCategories.splice(this.selectedCategories.indexOf(category), 1);
+          this.appliedFiltersCount--;
+      } else {
+          this.selectedCategories.push(category);
+          this.appliedFiltersCount++;
+      }
+      this.emitFilters();
+  }
+  
+  togglePrintSizeFilter(printSize: string): void {
+      const wasIncluded = this.selectedPrintSizes.includes(printSize);
+      if (wasIncluded) {
+          this.selectedPrintSizes.splice(this.selectedPrintSizes.indexOf(printSize), 1);
+          this.appliedFiltersCount--;
+      } else {
+          this.selectedPrintSizes.push(printSize);
+          this.appliedFiltersCount++;
+      }
+      this.emitFilters();
+  }
+  
+  togglePrintVelocityFilter(velocity: string): void {
+      const wasIncluded = this.selectedPrintVelocities.includes(velocity);
+      if (wasIncluded) {
+          this.selectedPrintVelocities.splice(this.selectedPrintVelocities.indexOf(velocity), 1);
+          this.appliedFiltersCount--;
+      } else {
+          this.selectedPrintVelocities.push(velocity);
+          this.appliedFiltersCount++;
+      }
+      this.emitFilters();
+  }
+
+
   resetFilters(): void {
-    this.selectedPrintSizeFilters = [];
+    this.selectedPrintSizes = [];
     this.selectedColors = [];
     this.selectedBrands = [];
-    this.selectedRentableOptions = [];
     this.selectedPrintVelocities = [];
     this.selectedCategories = [];
+    this.rentable = undefined;
+    this.sellable = undefined;
+    this.appliedFiltersCount = 0;
 
-    // Reset button states
-    this.rentableButtonStates = [false, false];
-    this.rentableCount = 0;
-  
-    // Reset appliedFiltersCount
-    // this.appliedFiltersCount = 0;
-  
-    this.applyFilters(); // Apply filters after resetting
+    // Emit the changes
+    this.emitFilters();
+    this.appliedFiltersCountChange.emit(0);
+
+    // Update the URL to reflect the reset filters
+    this.router.navigate([], { queryParams: {} });
+  }
+
+  emitFilters(): void {
+    const filters = {
+        brand: this.selectedBrands.join(','),
+        color: this.selectedColors.includes('Color') ? 'true' : this.selectedColors.includes('B&N') ? 'false' : undefined,
+        categories: this.selectedCategories.join(','),
+        printSizes: this.selectedPrintSizes.join(','),
+        printVelocities: this.selectedPrintVelocities.join(','),
+        sellable: this.sellable,
+        rentable: this.rentable,
+        filterCount: this.appliedFiltersCount,
+        // Add other filters here...
+    };
+
+    this.filteredPrintersChange.emit(filters);
+    this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
+
+    this.router.navigate([], { queryParams: filters, queryParamsHandling: 'merge' });
   }
   
   toggleCheckbox(data: string, group: string) {
@@ -306,14 +258,14 @@ export class FilterComponent implements OnInit {
   }
   
 
-  // updateAppliedFiltersCount(count: number): void {
-  //   this.appliedFiltersCount = count;
-  //   this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-  // }
+//   // updateAppliedFiltersCount(count: number): void {
+//   //   this.appliedFiltersCount = count;
+//   //   this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
+//   // }
   
-  toggleButtons() {
-    this.checked = !this.checked;
-    console.log('Toggling');
-  }
+//   toggleButtons() {
+//     this.checked = !this.checked;
+//     console.log('Toggling');
+//   }
 
 }

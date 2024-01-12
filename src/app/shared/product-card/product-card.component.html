@@ -8,41 +8,43 @@
                 </div>
             </div>
         </div>
-        <div class="product-info">
-            <div class="product-info-col">
-                <div class="product-brand" [innerHTML]="printer.brand | productBrand"></div>
-                <p class="product-name">{{printer.model}}</p>
-                <div class="product-tags">
-                    <div class="tag deal" *ngIf="printer.isDeal">
-                        <div class="tag-title">Promoción</div>
+        <div class="product-body">
+            <div class="product-info">
+                <div class="product-info-col">
+                    <div class="product-brand" [innerHTML]="printer.brand | productBrand"></div>
+                    <p class="product-name">{{printer.model}}</p>
+                    <div class="product-tags">
+                        <div class="tag deal" *ngIf="printer.isDeal">
+                            <div class="tag-title">Promoción</div>
+                        </div>
+                        <div [innerHTML]="printer.rentable | productType"></div>
+                        <div class="tag">
+                            <div class="tag-title">{{printer.category}}</div>
+                        </div>
                     </div>
-                    <div [innerHTML]="printer.rentable | productType"></div>
-                    <div class="tag">
-                        <div class="tag-title">{{printer.category}}</div>
+                    <div class="product-features">
+                        <div class="feature">
+                            <div [class]="printer.color | productColor: 'ColorCircle' : 'BlackCircle' "></div>
+                            <p>{{printer.color ? 'Color' : 'B/N'}}</p>
+                        </div>
+                        <div class="feature">
+                            <i class="pi pi-window-minimize"></i>
+                            <p class="PrintSize">{{printer.printSize}}</p>
+                        </div>
+                        <div class="feature">
+                            <i class="pi pi-clock"></i>
+                            <p class="PrintVelocity">{{printer.printVelocity}} {{printer.category === "Etiquetas" ? 'mm/s' : 'ppm'}}</p>
+                        </div>
                     </div>
                 </div>
-                <div class="product-features">
-                    <div class="feature">
-                        <div [class]="printer.color | productColor: 'ColorCircle' : 'BlackCircle' "></div>
-                        <p>{{printer.color ? 'Color' : 'B/N'}}</p>
-                    </div>
-                    <div class="feature">
-                        <i class="pi pi-window-minimize"></i>
-                        <p class="PrintSize">{{printer.PrintSize}}</p>
-                    </div>
-                    <div class="feature">
-                        <i class="pi pi-clock"></i>
-                        <p class="PrintVelocity">{{printer.printVelocity}} {{printer.category === "Etiquetas" ? 'mm/s' : 'ppm'}}</p>
-                    </div>
-                </div>
-                <div class="product-action-deal" *ngIf="printer.isDeal">
-                    <i class="pi pi-shopping-cart"></i>
-                    <span class="product-price-deal">${{printer.dealPrice.$numberDecimal}}USD</span>
-                    <s class="product-price d-none d-md-block">${{printer.price}}</s>
-                </div>
-                <div class="product-action" *ngIf="!printer.isDeal">
-                    <span class="product-action-title">Ver más</span>
-                </div>
+            </div>
+            <div class="product-action-deal" *ngIf="printer.isDeal">
+                <i class="pi pi-shopping-cart"></i>
+                <span class="product-price-deal">${{printer.dealPrice.$numberDecimal}}USD</span>
+                <s class="product-price d-none d-md-block">${{printer.price}}</s>
+            </div>
+            <div class="product-action" *ngIf="!printer.isDeal">
+                <span class="product-action-title">Ver más</span>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject} from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Printer } from '../interfaces/printer.interface';
@@ -23,19 +23,29 @@ export class PrintersService {
   //       );
   // }
 
-  getPrinters(limit?: number, offset?: number): Observable<Printer[]> {
+  getPrinters(limit?: number, offset?: number, filters?: any): Observable<Printer[]> {
     let url = `${this.baseUrl}/printers`;
+    let params = new HttpParams();
     if (limit != undefined && offset != undefined) {
         url += `?limit=${limit}&offset=${offset}`;
     }
-    return this.http.get<Printer[]>(url)
+    if (filters) {
+      for (let filter in filters) {
+          params = params.append(filter, filters[filter]);
+      }
+    }
+    return this.http.get<Printer[]>(url, {params})
         .pipe(
             catchError(error => {
                 console.error('Error al traer los productos:', error);
                 return of([]);
             })
         );
-}
+  }
+
+  // getBrands(): Observable<any> {
+
+  // }
 
   // getPrinters(): Observable<Printer[]> {
   //   return this.http.get<Printer[]>(`${this.baseUrl}/printers`)

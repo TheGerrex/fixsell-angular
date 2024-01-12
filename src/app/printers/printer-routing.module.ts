@@ -10,6 +10,7 @@ const routes: Routes = [
     component: LayoutPageComponent,
     children: [
       {path: 'list', component: ListPageComponent},
+      { path: 'list/:page', component: ListPageComponent },
       {path: ':id', component: PrinterPageComponent},
     ]
   }

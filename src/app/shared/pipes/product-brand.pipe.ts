@@ -32,7 +32,7 @@ export class ProductBrandPipe implements PipeTransform {
     switch (brandName.toLowerCase()) {
       case 'konica minolta':
         imagePath = '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
-        imgWidth = this.isMobile ? '120px' : '165px';
+        imgWidth = this.isMobile ? '120px' : '226px';
         imgHeight = 'auto';
         
         break;
@@ -43,7 +43,7 @@ export class ProductBrandPipe implements PipeTransform {
         break;
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
-        imgWidth = this.isMobile ? '80px' : '100px';
+        imgWidth = this.isMobile ? '80px' : '118px';
         imgHeight = 'auto';
         break;
       default:
