@@ -144,7 +144,7 @@ export class VentaComponent {
       }
     ];
   }
-  navigateToProductList(category: string, rentable: boolean) {
-    this.router.navigate(['/printers/list'], { queryParams: {  categories: category, rentable: rentable } });
+  navigateToProductList(category: string, sellable: boolean) {
+    this.router.navigate(['/printers/list'], { queryParams: {  categories: category, sellable: sellable } });
   }
 }
