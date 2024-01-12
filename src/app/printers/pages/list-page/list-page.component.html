@@ -25,7 +25,7 @@
                         <i class="pi pi-spin pi-spinner" style="font-size: 4rem;"></i>
                     </div>
                     <div class="product-list-container" #productList>
-                        <ng-container *ngIf="filteredPrinters.length > 0; else noProducts">
+                        <ng-container *ngIf="filteredPrinters.length > 0 && !loading; else noProducts">
                             <app-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></app-product-card>
                         </ng-container>
                         <ng-template #noProducts>
