@@ -50,7 +50,7 @@
                 gap: 4px;
                 h3 {
                     color: $header-text;
-                    font-weight: 700;
+                    font-weight: 600;
                     word-wrap: break-word;
                     margin: 0;
                     font-size: 18px;
@@ -177,7 +177,7 @@
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     background-color: $light-200;
-    font-weight: 500;
+    font-weight: 600;
     color: #1E3A8A;
 }
 
@@ -281,7 +281,7 @@
         .ChipName {
             color: #1E3A8A;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 24px;
         }
     }
@@ -290,7 +290,7 @@
         .ChipName {
             color: #FFF;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 24px;
         }
     }
@@ -311,7 +311,7 @@
     display: flex;
     border: none;
     span {
-        font-weight: 500;
+        font-weight: 600;
     }
 }
 

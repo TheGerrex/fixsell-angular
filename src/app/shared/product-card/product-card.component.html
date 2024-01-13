@@ -3,8 +3,8 @@
         <div class="product-image-wrap">
             <div class="product-feature-image">
                 <img [src]="printer.img_url[0]" alt="" class="product-image">
-                <div class="product-deal-tag" *ngIf="printer.isDeal">
-                    <p class="deal-tag-title">{{(printer.dealDiscountPercentage.$numberDecimal * 100)}}% Descuento</p>
+                <div class="product-deal-tag" *ngIf="printer.deal">
+                    <p class="deal-tag-title">{{(printer.deal.dealDiscountPercentage)}}% Descuento</p>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                     <div class="product-brand" [innerHTML]="printer.brand | productBrand"></div>
                     <p class="product-name">{{printer.model}}</p>
                     <div class="product-tags">
-                        <div class="tag deal" *ngIf="printer.isDeal">
+                        <div class="tag deal" *ngIf="printer.deal">
                             <div class="tag-title">Promoción</div>
                         </div>
                         <div [innerHTML]="printer.rentable | productType"></div>
@@ -38,12 +38,12 @@
                     </div>
                 </div>
             </div>
-            <div class="product-action-deal" *ngIf="printer.isDeal">
+            <div class="product-action-deal" *ngIf="printer.deal">
                 <i class="pi pi-shopping-cart"></i>
-                <span class="product-price-deal">${{printer.dealPrice.$numberDecimal}}USD</span>
+                <span class="product-price-deal">${{printer.deal.dealPrice}}USD</span>
                 <s class="product-price d-none d-md-block">${{printer.price}}</s>
             </div>
-            <div class="product-action" *ngIf="!printer.isDeal">
+            <div class="product-action" *ngIf="!printer.deal">
                 <span class="product-action-title">Ver más</span>
             </div>
         </div>

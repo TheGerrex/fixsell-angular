@@ -64,108 +64,121 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12">
-                <h1 class="section-title mb-2">Soluciones & Servicios</h1>
-                <p class="section-description mb-2">
-                    Benefíciate de las ideas inteligentes, menores costes, mayor productividad. Elige entre las impresoras, las soluciones de software y los consumibles galardonados.
-                </p>
+                <div class="section-header">
+                    <h1 class="section-title mb-2">Soluciones y Servicios</h1>
+                    <p class="section-description mb-2">
+                        Benefíciate de las soluciones inteligentes, menores costes y mayor productividad. Elige entre las impresoras, las soluciones de software y los consumibles galardonados.
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <p-tabView>
-                <p-tabPanel header="Equipos de Impresión">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="tab-image">
-                                <img src="../../../assets//img/home/soluciones-servicios/equipos-de-impresion.png" alt="equipos-de-impresion">
-                            </div>
+        <div class="solucion-wrapper">
+            <div class="solucion" #servicio>
+                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png" alt="tecnico-impresoras"></div>
+                <div class="solucion-container">
+                    <div class="solucion-title"><h2>Servicio Técnico</h2></div>
+                    <div class="solucion-body">
+                        <div class="solucion-item service-column-card">
+                                <i class="pi pi-cog"></i>
+                                <p><b>Reparación de equipos de impresión:</b> Si tu impresora presenta alguna falla, error o desperfecto, nosotros la reparamos con rapidez y eficacia. Contamos con técnicos especializados y certificados por las principales marcas de impresoras, como Konica Minolta, Kyocera y Epson. Además, tenemos un extenso inventario de refacciones, piezas y consumibles, para que tu impresora quede funcionando.</p>
                         </div>
-                        <div class="col-12 col-md-6 mt-3">
-                            <div class="row tab-container">
-                                <div class="col-12 tab-content">
-                                    <p>Utiliza equipos de impresión con la tecnología más avanzada para mejorar los tiempos, calidad y presupuestos que facilíten los flujos de trabajo para tu negocio en tareas de impresión.</p>
-                                    <ul>
-                                        <li>Renta</li>
-                                        <li>Venta</li>
-                                        <li>Artes Graficas</li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-md-6 align-self-end">
-                                    <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
-                                </div>
+                        <div class="solucion-item service-column-card">
+                                <i class="pi pi-exclamation-triangle"></i>
+                                <p><b>Mantenimiento preventivo y correctivo:</b> Para evitar que tu impresora se dañe o pierda calidad, te ofrecemos un servicio de mantenimiento preventivo y correctivo. Con este servicio, revisamos periódicamente el estado de tu impresora, limpiamos sus componentes, ajustamos sus configuraciones, y reemplazamos las piezas que lo requieran. Así, podrás extender la vida útil y el buen funcionamiento de tu equipo de impresión.</p>
+                        </div>
+                        <div class="solucion-item service-column-card">
+                                <i class="pi pi-file"></i>
+                                <p><b>Pólizas de servicio técnico todo incluido:</b> Si quieres tener la tranquilidad de contar con un servicio técnico de impresoras siempre disponible y a un precio fijo, te recomendamos contratar una de nuestras pólizas de servicio técnico todo incluido. Con estas pólizas, tendrás acceso ilimitado a nuestro servicio de reparación y mantenimiento, así como a todos los consumibles y refacciones que necesites. Además, tendrás prioridad en la atención, soporte técnico telefónico y en línea, y garantía de satisfacción.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="solucion" #consumibles>
+                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/consumibles.jpg" alt="consumibles-impresoras"></div>
+                <div class="solucion-container">
+                    <div class="solucion-title"><h2>Consumibles y Refacciones</h2></div>
+                    <div class="solucion-body">
+                        <div class="solucion-item">
+                            <p>
+                                Los consumibles y refacciones de impresoras son elementos indispensables para el correcto funcionamiento y mantenimiento de tus equipos de impresión. Sin ellos, no podrías imprimir tus documentos con la calidad y rapidez que necesitas. 
+                                <br><br>
+                                En Fixsell del Norte, te ofrecemos los mejores productos de las marcas Konica Minolta, Kyocera, Fuji y Epson, las cuales vendemos al público. Estos son algunos de los aspectos que nos distinguen:
+                            </p>
+                        </div>
+                        <div class="solucion-items-container">
+                            <div class="solucion-item-card" id="consumibleStock">
+                                    <i class="pi pi-box"></i>
+                                    <p>Contamos con un buen stock de refacciones y consumibles, para que siempre encuentres lo que necesitas.</p>
+                            </div>
+                            <div class="solucion-item-card" id="consumiblePrecio">
+                                    <i class="pi pi-dollar"></i>
+                                    <p>Te ofrecemos precios competitivos y garantía de calidad, para que ahorres dinero y tiempo.</p>
+                            </div>
+                            <div class="solucion-item-card" id="consumibleEnvio">
+                                    <i class="pi pi-shopping-cart"></i>
+                                    <p>Te enviamos tus productos a todo México, con rapidez y seguridad, para que los recibas en tu domicilio u oficina.</p>
                             </div>
                         </div>
                     </div>
-
-                </p-tabPanel>
-                <p-tabPanel header="Servicio Técnico">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="tab-image">
-                                <img src="../../../assets//img/home/soluciones-servicios/tecnico-arreglando-copiadora.jpg" alt="tecnico-arreglando-copiadora">
-                            </div>
+                </div>
+            </div>
+            <div class="solucion" #equipos>
+                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/impresora.png" alt="BH-C300i"></div>
+                <div class="solucion-container">
+                    <div class="solucion-title"><h2>Equipos de Impresión</h2></div>
+                    <div class="solucion-body">
+                        <div class="solucion-item">
+                                <p>¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus tareas de impresión? Entonces, necesitas nuestros equipos de impresión de última generación. Nuestras impresoras te ofrecen una velocidad, una eficiencia y una nitidez incomparables, que facilitan los flujos de trabajo de tu negocio.</p>
                         </div>
-                        <div class="col-12 col-md-6 mt-3">
-                            <div class="row tab-container">
-                                <div class="col-12 tab-content">
-                                    <ul>
-                                        <li>Reparación de equipos de impresión.</li>
-                                        <li>Mantenimiento preventivo para extender la duración y el buen funcionamiento de su equipo de impresión.</li>
-                                        <li>Mantenimiento Correctivo para componer cualquier tipo de falla, error o desperfecto que presente su equipo, contamos con un extenso inventario en refacciones, piezas y consumibles.</li>
-                                        <li>Pólizas de servicio técnico todo incluido.</li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-md-6 align-self-end">
-                                    <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
-                                </div>
-                            </div>
+                        <div class="solucion-item">
+                                <i class="pi pi-check" style="font-size: 24px;"></i>
+                                <p><b>Impresoras con velocidad, eficiencia y nitidez incomparables que facilitan los flujos de trabajo de tu negocio.</b></p>
                         </div>
-                    </div>
-                </p-tabPanel>
-                <p-tabPanel header="Gestión documental">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="tab-image">
-                                <img src="../../../assets//img/home/soluciones-servicios/document-administration.jpg" alt="documentos">
-                            </div>
+                        <div class="solucion-item">
+                                <i class="pi pi-check" style="font-size: 24px;"></i>
+                                <p><b>Posibilidad de imprimir documentos de alta calidad en segundos, reducir los costes de mantenimiento, administrar tus impresiones y mucho más.</b></p>
                         </div>
-                        <div class="col-12 col-md-6 mt-3">
-                            <div class="row tab-container">
-                                <div class="col-12 tab-content">
-                                    <p>Digitaliza y asegura tu información para compartirla exitosamente. Aumenta tu productividad, almacena tu archivo histórico, asigna jerarquías, autoriza vía remota, o encuentra documentos con pocos clics desde cualquier
-                                        lugar, en cualquier dispositivo y en cualquier momento.</p>
-                                </div>
-
-                                <div class="col-12 col-md-6 align-self-end">
-                                    <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
-                                </div>
-                            </div>
+                        <div class="solucion-item">
+                                <i class="pi pi-check" style="font-size: 24px;"></i>
+                                <p><b>Reducir los costes de mantenimiento, gracias a nuestro sistema de consumibles continua y nuestro servicio técnico especializado.</b></p>
+                        </div>
+                        <div class="solucion-action">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/printers/list"><span class="button-label">Ir a Productos</span></button>
                         </div>
                     </div>
-                </p-tabPanel>
-                <p-tabPanel header="Consumibles">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="tab-image">
-                                <img src="../../../assets//img/home/soluciones-servicios/consumibles.jpg" alt="consumible">
-                            </div>
+                </div>
+            </div>
+            <div class="solucion" #softwares>
+                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/gestion-documental-impresion.jpg" alt="document-administration"></div>
+                <div class="solucion-container">
+                    <div class="solucion-title"><h2>Gestión Documental y de Impresión</h2></div>
+                    <div class="solucion-body">
+                        <div class="solucion-item">
+                                <p>
+                                    Servicios esenciales para optimizar el flujo de trabajo y la seguridad de tu información. Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos de impresión, mejorar la productividad y la colaboración, y acceder a tus documentos desde cualquier lugar, dispositivo y momento.
+                                    <br><br>
+                                    En Fixsell del Norte, ofrecemos los mejores softwares de gestión documental y gestión de la impresión del mercado estos softwares te permiten:
+                                </p>
                         </div>
-                        <div class="col-12 col-md-6 mt-3">
-                            <div class="row tab-container">
-                                <div class="col-12 tab-content">
-                                    <p>Determinantes para el proceso de impresión ya que sin los mismos las impresoras no funcionaran. </p>
-                                    <ul>
-                                        <li>Tóner</li>
-                                        <li>Refacciones</li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-md-6 align-self-end">
-                                    <button pButton type="button" label="Ver más" class="p-button-raised p-button-rounded w-100"></button>
-                                </div>
-                            </div>
+                        <div class="solucion-item-gestion">
+                                <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
+                                <p><b>PaperCut:</b> Es un software que <b>te ayuda a gestionar y monitorizar la impresión en tu organización.</b> Con PaperCut, puedes establecer cuotas, políticas y restricciones de impresión, asignar costos por departamento o proyecto, generar informes detallados, y habilitar la impresión móvil y segura.</p>
+                        </div>
+                        <div class="solucion-item-gestion">
+                                <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="papercut">
+                                <p><b>Ysoft:</b> Es una plataforma que te <b>ofrece soluciones integradas de impresión, escaneo y administración de dispositivos.</b> Con Ysoft, puedes automatizar los procesos de escaneo y digitalización, mejorar la seguridad y el cumplimiento de los documentos, y reducir el desperdicio y el consumo de energía.</p>
+                        </div>
+                        <div class="solucion-item-gestion">
+                                <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="papercut">
+                                <p><b>KFS:</b> Es un software que te <b>permite gestionar y mantener tus equipos de impresión de forma remota.</b> Con KFS, puedes monitorear el estado y el rendimiento de tus dispositivos, recibir alertas y notificaciones, realizar diagnósticos y actualizaciones, y optimizar el servicio técnico.</p>
+                        </div>
+                        <div class="solucion-item-gestion">
+                                <img src="../../../assets/svg/home/proveedores/docuware.svg" alt="papercut">
+                                <p><b>Docuware:</b> Es un software que te <b>facilita la gestión documental en la nube.</b> Con Docuware, puedes almacenar, organizar, buscar y compartir tus documentos de forma segura y rápida. Además, puedes integrar Docuware con otras aplicaciones, crear flujos de trabajo automatizados, y cumplir con las normativas legales y fiscales.</p>
                         </div>
                     </div>
-                </p-tabPanel>
-            </p-tabView>
+                </div>
+            </div>
         </div>
     </div>
 </section>

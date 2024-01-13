@@ -63,7 +63,7 @@
         }
         .product-title {
             color: $header-text;
-            font-weight: 700;
+            font-weight: 600;
             margin: 0;
         }
         .product-tags {
@@ -85,7 +85,7 @@
                 .tag-title {
                     color: $gray-700;
                     font-size: 12px;
-                    font-weight: 700;
+                    font-weight: 600;
                 }
             }
             .tag-deal {
@@ -103,7 +103,7 @@
                 .tag-title {
                     color: $promotion-text-color;
                     font-size: 12px;
-                    font-weight: 700;
+                    font-weight: 600;
                 }
             }
         }
@@ -280,7 +280,7 @@
                 p {
                     color: $promotion-text-color;
                     font-size: 16px;
-                    font-weight: 700;
+                    font-weight: 600;
                     margin: 0;
                 }
             }
@@ -366,6 +366,17 @@
     }
 }
 
+.printer-deal-price {
+    margin-bottom: 32px;
+}
+
+.printer-price {
+    font-size: 20px;
+    text-decoration: line-through;
+    color: $gray-400;
+    font-weight: 500;
+}
+
 .actions-container {
     display: inline-flex;
     gap: 1em;
@@ -376,15 +387,6 @@
         justify-content: flex-start;
     }
 }
-
-// .product-gallery-container img {
-//     max-width: 100%;
-//     /* Make sure images don't exceed the container width */
-//     max-height: 100%;
-//     /* Limit the height to avoid overflow */
-//     object-fit: contain;
-//     /* Maintain aspect ratio and fit image within the container */
-// }
 
 /* If you want to style the thumbnails */
 
@@ -420,7 +422,7 @@
     .header-specs {
         width: 100%;
         h2 {
-            font-weight: 700;
+            font-weight: 600;
             color: $header-text;
             margin: 0;
         }
@@ -436,11 +438,15 @@
         justify-content: space-between;
         width: 100%;
         .spec {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             border-bottom: $gray-200 1px solid;
             padding: 16px 0;
         }
         .spec-title {
             color: $header-text;
+            font-weight: 500;
         }
         .spec-data {
             color: $text;

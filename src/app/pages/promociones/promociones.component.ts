@@ -59,8 +59,8 @@ export class PromocionesComponent implements OnInit {
   constructor(private router: Router, private printersService: PrintersService) {}
 
   ngOnInit(): void {
-    this.printersService.getDealPrinters().subscribe((printers) => {
-      this.dealPrinters = printers;
+    this.printersService.getPrinters().subscribe((printers) => {
+      this.dealPrinters = printers.filter(printer => printer.deal !== null);
       console.log(this.dealPrinters);
     });
   }

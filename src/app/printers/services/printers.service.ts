@@ -13,16 +13,6 @@ export class PrintersService {
 
   constructor(private http: HttpClient) { }
 
-  // getPrinters(limit?: number, offset?: number): Observable<Printer[]> {
-  //   return this.http.get<Printer[]>(`${this.baseUrl}/printers?limit=${limit}&offset=${offset}`)
-  //       .pipe(
-  //           catchError(error => {
-  //               console.error('Error al traer los productos:', error);
-  //               return of([]);
-  //           })
-  //       );
-  // }
-
   getPrinters(limit?: number, offset?: number, filters?: any): Observable<Printer[]> {
     let url = `${this.baseUrl}/printers`;
     let params = new HttpParams();
@@ -42,20 +32,6 @@ export class PrintersService {
             })
         );
   }
-
-  // getBrands(): Observable<any> {
-
-  // }
-
-  // getPrinters(): Observable<Printer[]> {
-  //   return this.http.get<Printer[]>(`${this.baseUrl}/printers`)
-  //     .pipe(
-  //       catchError(error => {
-  //         console.error('Error al traer los productos:', error);
-  //         return [];
-  //       })
-  //     );
-  // }
 
   getPrinterById(id: string): Observable<Printer | undefined> {
     return this.http.get<Printer>(`${this.baseUrl}/printers/${id}`)
