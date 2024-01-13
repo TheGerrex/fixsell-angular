@@ -65,6 +65,12 @@ export class FilterComponent implements OnInit {
         this.selectedColors.push(this.colorParams ? 'Color' : 'B&N');
       }
     });
+    this.printerService.getPrinters().subscribe((printers) => {
+      this.brands = Array.from(new Set(printers.map(printer => printer.brand)));
+      this.categories = Array.from(new Set(printers.map(printer => printer.category)));
+      this.printSizesFilter = Array.from(new Set(printers.map(printer => printer.printSize)));
+      console.log(this.categories);
+    });
     this.checkIfMobile();
     window.addEventListener('resize', this.onResize);
   }

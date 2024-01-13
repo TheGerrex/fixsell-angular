@@ -408,11 +408,11 @@
     width: 100%;
 }
 
-.section-card-product-specs {
+.product-specs {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
     align-items: flex-start;
+    margin-top: 16px;
     gap: 1rem;
     align-self: stretch;
     // border-radius: 0.375rem;
