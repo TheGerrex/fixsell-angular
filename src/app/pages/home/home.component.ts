@@ -200,6 +200,6 @@ export class HomeComponent {
   }
 
   navigateToProductList(category: string) {
-    this.router.navigate(['/printers/list'], { queryParams: { category } });
+    this.router.navigate(['/printers/list'], { queryParams: { categories: category } });
   }
 }
