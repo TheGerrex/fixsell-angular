@@ -163,30 +163,14 @@
     /* When the 'animate' class is added, the section becomes visible */
 }
 
-.section-header {
+
     .section-title {
         font-weight: 600;
-        font-size: 2em;
+        font-size: 2.5em;
         color: $section-title;
-        // Small devices (landscape phones, 576px and up)
-        @media (min-width: 576px) {
-            font-size: 2.5em;
-        }
+        margin-bottom: $p-1;
         // Medium devices (tablets, 768px and up)
         @media (min-width: 768px) {
-            font-size: 3em;
-            text-align: left;
-        }
-        // Large devices (desktops, 992px and up)
-        @media (min-width: 992px) {
-            font-size: 3.5em;
-        }
-        // X-Large devices (large desktops, 1200px and up)
-        @media (min-width: 1200px) {
-            font-size: 3em;
-        }
-        // XX-Large devices (larger desktops, 1400px and up)
-        @media (min-width: 1400px) {
             font-size: 3em;
         }
     }
@@ -197,7 +181,7 @@
         line-height: 1.3;
         color: $text;
     }
-}
+
 
 #proveedores {
     opacity: 0;
