@@ -20,10 +20,19 @@
     }
     p {
         font-size: 16px;
-        font-weight: 400;
+        font-weight: 500;
         line-height: 21px;
+
         color: $secondary-text;
     }
+<<<<<<< HEAD:src/app/shared/components/footer/footer.component.scss
+=======
+
+    h5 {
+        font-weight: 500;
+    }
+
+>>>>>>> 000940780db3cc26088574dc28cb08f024e3edf1:src/app/shared/footer/footer.component.scss
     ul {
         padding: 0;
         li {

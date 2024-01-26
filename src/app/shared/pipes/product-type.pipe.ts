@@ -26,7 +26,7 @@ export class ProductTypePipe implements PipeTransform {
       display: flex;">
         <div style="color: #AE003A;
         font-size: 12px;
-        font-weight: 700;">Renta</div>
+        font-weight: 600;">Renta</div>
       </div>
     `;
     const ventaTag = `
@@ -44,7 +44,7 @@ export class ProductTypePipe implements PipeTransform {
       align-items: center;
       gap: 10px;
       display: flex;">
-        <div style="color: #0F572A; font-size: 12px; font-weight: 700;">Venta</div>
+        <div style="color: #0F572A; font-size: 12px; font-weight: 600;">Venta</div>
       </div>
     `;
 

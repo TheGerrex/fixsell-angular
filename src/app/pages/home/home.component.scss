@@ -44,7 +44,7 @@
 
 .hero-title {
     font-size: 2.2em;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1;
     color: #475569;
     transform: scale(0.9) translateX(-10%);
@@ -86,7 +86,7 @@
 
 .hero-message {
     font-size: 1em;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.3;
     color: #434655;
     opacity: 0;
@@ -163,45 +163,25 @@
     /* When the 'animate' class is added, the section becomes visible */
 }
 
-.section-title {
-    font-weight: 600;
-    font-size: 2em;
-    color: $section-title;
-    // Small devices (landscape phones, 576px and up)
-    @media (min-width: 576px) {
-        font-size: 2.5em;
-    }
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {
-        font-size: 3em;
-        text-align: left;
-    }
-    // Large devices (desktops, 992px and up)
-    @media (min-width: 992px) {
-        font-size: 3.5em;
-    }
-    // X-Large devices (large desktops, 1200px and up)
-    @media (min-width: 1200px) {
-        font-size: 3em;
-    }
-    // XX-Large devices (larger desktops, 1400px and up)
-    @media (min-width: 1400px) {
-        font-size: 3em;
-    }
-}
 
-.section-description {
-    font-weight: 400;
-    font-size: 1.25em;
-    line-height: 1.3;
-    color: #64748B;
-    text-align: center;
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {
-        text-align: left;
-        font-size: 1.25em;
+    .section-title {
+        font-weight: 600;
+        font-size: 2.5em;
+        color: $section-title;
+        margin-bottom: $p-1;
+        // Medium devices (tablets, 768px and up)
+        @media (min-width: 768px) {
+            font-size: 3em;
+        }
     }
-}
+    
+    .section-description {
+        font-weight: 400;
+        font-size: 1.25em;
+        line-height: 1.3;
+        color: $text;
+    }
+
 
 #proveedores {
     opacity: 0;
@@ -227,6 +207,247 @@
         transform: translateY(0%);
     }
 }
+
+
+.solucion-wrapper {
+    display: flex;
+    width: 100%;
+    padding: 32px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 64px;
+}
+
+.solucion {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    .solucion-image {
+        width: 100%;
+        height: 100%;
+        @media(min-width: 768px) {
+            width: 500px;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: $border-radius;
+            @media(min-width: 768px) {
+                max-width: 500px;
+            }
+        }
+    }
+    .solucion-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+        flex-grow: 1;
+        @media(max-width: 992px) {
+            width: 100%;
+        }
+    }
+
+    @media(max-width: 992px) {
+        flex-direction: column;
+    }
+    
+}
+
+
+.solucion-title {
+    display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+    border-bottom: 2px solid $gray-300;
+    padding-bottom: $p-1;
+   
+    @media(min-width: 992px) {
+        flex-direction: column;
+        padding-bottom: $p-2;
+        // border: none;
+    }
+  
+    h2 {
+        font-weight: 600;
+        color: $text;
+        margin: 0;
+    }
+
+}
+.solucion-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1 0 0;
+
+    .solucion-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        // @media(max-width: 768px) {
+        //     align-items: flex-start;
+        //     flex-direction: column;
+        // }
+
+        img {
+            width: 150px;
+            max-height: 50px;
+        }
+
+        i {
+            font-size: 32px;
+        }
+
+        p {
+            margin: 0;
+            color: $text;
+        }
+    }
+
+    .solucion-action {
+        display: flex;
+        width: 100%;
+        margin-top: $p-2;
+    }
+
+    .service-column-card {
+        align-items: flex-start;
+        flex-direction: row;
+        @media(max-width:992px) {
+            // background-color: $gray-50;
+            // border-radius: $border-radius;
+            // border: 1px solid $light-200;
+            flex-direction: column;
+            padding: $p-2 0px;
+            gap: 32px;
+        }
+    }
+
+    .solucion-item-gestion {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        flex: 1;
+        flex-direction: column;
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: $p-2;
+
+        @media(min-width: 992px) {
+            align-items: center;
+            flex-direction: row;
+        }
+
+        img {
+            width: 150px;
+            max-height: 50px;
+        }
+
+        i {
+            font-size: 32px;
+        }
+
+        p {
+            margin: 0;
+            color: $text;
+        }
+    }
+
+
+    .solucion-items-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+        align-self: stretch;
+        margin-top: $p-3;
+        @media(max-width:768px) {
+            flex-direction: column;
+        }
+
+        .solucion-item-card {
+            display: flex;
+            padding: 24px;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+            flex: 1 0 0;
+            align-self: stretch;
+            border-radius: 4px;
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            border: 1px solid $light-300;
+            background-color: $light-50;
+            @media(min-width:769px) {
+                width: 100px;
+                flex-direction: column;
+                align-items: flex-start;
+                i {
+                    font-size: 48px !important;
+                }
+            }
+
+            i {
+                font-size: 40px;
+                // color: var(--info-color, #3B82F6);
+            }
+
+            p {
+                margin: 0;
+                font-weight: 600;
+                color: $text;
+            }
+        }
+    }
+}
+
+.solucion-item-card:hover {
+    transform: scale(1.03);
+}
+
+#consumibleStock {
+    // border: 1px solid $info-color;
+    // background-color: $light-100;
+    i {
+        color: $info-color-hover;
+    }
+
+    // p {
+    //     color: $info-color-active;
+    // }
+
+    
+}
+
+#consumiblePrecio {
+    // border: 1px solid $success-color;
+    // background-color: $success-color-text;
+    i {
+        color: $success-color-hover;
+    }
+
+    // p {
+    //     color: $success-color-active;
+    // }
+}
+
+#consumibleEnvio {
+    // border: 1px solid $danger-color;
+    // background-color: $danger-color-text;
+    i {
+        color: $danger-color-hover;
+    }
+
+    // p {
+    //     color: $danger-color-active;
+    // }
+}
+
+
 
 .link-wrap {
     position: fixed;
@@ -325,7 +546,7 @@
         flex-grow: 0;
         .title {
             color: #1E293B;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 16px;
             line-height: 20px;
         }
