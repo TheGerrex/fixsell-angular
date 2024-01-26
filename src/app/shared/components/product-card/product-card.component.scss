@@ -1,4 +1,4 @@
-@import '../../../variables';
+@import 'src/_variables.scss';
 .product-card {
     // width: calc(50% - 6px);
     width: 100%;
@@ -8,10 +8,9 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    border-radius: 10px !important;
-    border: 0.50px #E2E8F0 solid;
+    border-radius: 10px;
+    // border: 0.50px #E2E8F0 solid;
     position: relative;
-    border-radius: 16px;
     // margin-bottom: 20px;
     overflow: hidden;
     box-sizing: border-box;
@@ -73,6 +72,7 @@
             justify-content: space-between;
             flex-grow: 1;
             background-color: $gray-50;
+            border-radius: 10px;
             .product-info {
                 display: flex;
                 flex-direction: column;
@@ -221,18 +221,13 @@
                 }
             }
             .product-action-deal {
-                background: $gray-50;
-                position: sticky;
-                margin: 0 0 8px;
-                width: 100%;
-                height: 56px;
-                left: 0;
-                bottom: 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                // padding-left: 24px;
                 gap: 8px;
+                background: $gray-50;
+                margin: 8px 8px 8px 8px;
+                height: 56px;
                 cursor: pointer;
                 border-radius: 56px;
                 transition: background .4s;
