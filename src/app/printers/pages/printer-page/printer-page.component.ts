@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PrintersService } from '../../services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
@@ -15,11 +15,12 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
   styleUrls: ['./printer-page.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PrinterPageComponent implements OnInit{
+export class PrinterPageComponent implements OnInit, AfterViewInit{
 
   public printer?: Printer;
   public images: any[] = [];
   thumbsSwiper: any;
+  loading = true;
 
   constructor(
     private printersService: PrintersService,
@@ -38,8 +39,13 @@ export class PrinterPageComponent implements OnInit{
         itemImageSrc: url,
         thumbnailImageSrc: url
       }));
+      this.loading = false;
       return;
     })
+  }
+
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0);
   }
 
   openWhatsApp() {

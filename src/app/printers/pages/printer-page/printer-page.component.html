@@ -1,5 +1,12 @@
 <section>
-    <div class="product-section">
+    <div class="loading-screen" *ngIf="loading">
+        <div class="spinner-container">
+            <i class="pi pi-spin pi-spinner" style="font-size: 4rem;"></i>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="product-section" *ngIf="!loading">
         <div class="product-image" *ngIf="printer">
             <div class="product-image-inner">
                 <div class="product-image-container">
@@ -124,6 +131,7 @@
         </div>
     </div>
 </section>
+
 <!-- <section class="section-product-specs">
     <div class="container">
         <div class="section-card-product-specs">

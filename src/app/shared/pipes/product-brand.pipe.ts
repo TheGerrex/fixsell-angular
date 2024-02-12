@@ -54,7 +54,7 @@ export class ProductBrandPipe implements PipeTransform {
     }
 
     // Return the HTML img tag with the appropriate image path
-    const imgTag = `<img src="${imagePath}" alt="${brandName} Logo" style="width: ${imgWidth}; height:${imgHeight};">`;
+    const imgTag = `<img src="${imagePath}" alt="${brandName} Logo" style="width: ${imgWidth}; max-width: 180px; height:${imgHeight};">`;
 
     // Mark the HTML as safe
     return this.sanitizer.bypassSecurityTrustHtml(imgTag);

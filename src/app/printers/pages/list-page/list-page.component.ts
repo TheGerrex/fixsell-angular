@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, Input, Renderer2, ViewChild, ElementRef, OnInit, HostListener } from '@angular/core';
+import { AfterViewInit, Component, Input, Renderer2, ViewChild, ElementRef, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterEvent, Scroll } from '@angular/router';
 import { FilterComponent } from '../../components/filter/filter.component';
-import { Observable, map } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-list-page',
@@ -19,6 +20,8 @@ export class ListPageComponent implements OnInit {
   loading = true;
   filterBarOpen = false;
   appliedFiltersCount: number = 0;
+  scrollPosition: number = 0;
+  scrollAnchor: string = "";
   limit = 21;
   offset = 0;
   currentPage = 1;
@@ -34,7 +37,9 @@ export class ListPageComponent implements OnInit {
     private printersService: PrintersService,
     private route: ActivatedRoute,
     private router: Router, 
-    private renderer: Renderer2) { }
+    private renderer: Renderer2,
+    private changeDetector: ChangeDetectorRef,
+    private viewportScroller: ViewportScroller) { }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -43,6 +48,25 @@ export class ListPageComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.router.events.pipe(
+      filter((e): e is Scroll => e instanceof Scroll)
+    ).subscribe(e => {
+      if (e.position) {
+        // The user has just used the back/forward button. The router
+        // will restore the scroll position, but we want to delay this
+        // until after the data has finished loading.
+        // So, save the scroll position and tell the router to scroll to the top.
+        this.scrollPosition = e.position[1];
+        this.viewportScroller.scrollToPosition([0, 0]);
+      } else if (e.anchor) {
+        // The user just navigated to an anchor link. The router will
+        // scroll to the anchor element, but we want to delay this until
+        // after the data has finished loading.
+        // So, save the anchor and tell the router to scroll to the top.
+        this.scrollAnchor = e.anchor;
+        this.viewportScroller.scrollToPosition([0, 0]);
+      }
+    });
     this.checkIfMobile();
     this.adjustLimit();
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
@@ -56,6 +80,14 @@ export class ListPageComponent implements OnInit {
         this.applyFilters(params);
         this.fetchPrintersForCurrentPage();
         this.loading = false;
+        this.changeDetector.detectChanges();
+        if (this.scrollPosition) {
+          this.viewportScroller.scrollToPosition([0, this.scrollPosition]);
+          this.scrollPosition = 0;
+        } else if (this.scrollAnchor) {
+          this.viewportScroller.scrollToAnchor(this.scrollAnchor);
+          this.scrollAnchor = "";
+        }
       });
     });
   }
