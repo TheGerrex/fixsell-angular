@@ -52,7 +52,7 @@ export class BrandTypePipe implements PipeTransform {
         imgHeight = 'auto';
         break;
       case 'audley':
-        imagePath = '../../../assets/svg/home/proveedores/audley.webp';
+        imagePath = '../../../assets/svg/home/proveedores/audley.png';
         imgWidth = this.isMobile ? '100px' : '125px';
         imgHeight = 'auto';
         break;
