@@ -1,11 +1,10 @@
-import { Pipe, PipeTransform, HostListener  } from '@angular/core';
+import { Pipe, PipeTransform, HostListener } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'productBrand'
+  name: 'productBrand',
 })
 export class ProductBrandPipe implements PipeTransform {
-
   private isMobile: boolean = false;
 
   constructor(private sanitizer: DomSanitizer) {
@@ -25,16 +24,17 @@ export class ProductBrandPipe implements PipeTransform {
 
   transform(brandName: string): SafeHtml {
     let imagePath: string;
-    let imgWidth: string= "100px"
-    let imgHeight: string = "25px"
-    
+    let imgWidth: string = '100px';
+    let imgHeight: string = '25px';
+
     // Map the brand names to their respective image paths
     switch (brandName.toLowerCase()) {
       case 'konica minolta':
-        imagePath = '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
+        imagePath =
+          '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
         imgWidth = this.isMobile ? '120px' : '226px';
         imgHeight = 'auto';
-        
+
         break;
       case 'kyocera':
         imagePath = '../../../assets/svg/home/proveedores/kyocera.svg';
@@ -44,6 +44,16 @@ export class ProductBrandPipe implements PipeTransform {
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
         imgWidth = this.isMobile ? '80px' : '118px';
+        imgHeight = 'auto';
+        break;
+      case 'prixato':
+        imagePath = '../../../assets/svg/home/proveedores/eurotrade.png';
+        imgWidth = this.isMobile ? '100px' : '125px';
+        imgHeight = 'auto';
+        break;
+      case 'audley':
+        imagePath = '../../../assets/svg/home/proveedores/audley.webp';
+        imgWidth = this.isMobile ? '100px' : '125px';
         imgHeight = 'auto';
         break;
       default:
@@ -59,5 +69,4 @@ export class ProductBrandPipe implements PipeTransform {
     // Mark the HTML as safe
     return this.sanitizer.bypassSecurityTrustHtml(imgTag);
   }
-
 }
