@@ -60,7 +60,7 @@ export class PrinterPageComponent implements OnInit, AfterViewInit{
   openWhatsAppDeal() {
     if (this.printer) {
       const phoneNumber = '+528115555784';
-      const message = `Me interesa cotizar el producto ${this.printer.model}, que contiene una promoción de ${this.printer.deal.dealDiscountPercentage}% me puedes dar mas información al respecto?`;
+      const message = `Me interesa cotizar el producto ${this.printer.model}, que contiene una promoción de ${this.printer.deals[0].dealDiscountPercentage}% al momento. Me puedes dar mas información al respecto?`;
       const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
       
       window.open(url, '_blank');

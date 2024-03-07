@@ -60,7 +60,7 @@ export class PromocionesComponent implements OnInit {
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
-      this.dealPrinters = printers.filter(printer => printer.deal !== null);
+      this.dealPrinters = printers.filter(printer => printer.deals.length > 0);
       console.log(this.dealPrinters);
     });
   }

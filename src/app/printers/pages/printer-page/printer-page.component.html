@@ -10,8 +10,8 @@
         <div class="product-image" *ngIf="printer">
             <div class="product-image-inner">
                 <div class="product-image-container">
-                    <div class="product-deal-tag" *ngIf="printer?.deal">
-                        <p class="deal-tag-title">{{(printer.deal.dealDiscountPercentage)}}% Descuento</p>
+                    <div class="product-deal-tag" *ngIf="printer.deals.length > 0">
+                        <p class="deal-tag-title">{{(printer.deals[0].dealDiscountPercentage)}}% Descuento</p>
                     </div>
                     <div class="swiper-container">
                         <swiper style="--swiper-navigation-color: #172A3A;--swiper-pagination-color: #3C81F6" [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [centeredSlides]="true" [thumbs]="{swiper: thumbsSwiper}">
@@ -34,7 +34,7 @@
                             </div>
                             <h1 class="product-title">{{printer.model}}</h1>
                             <div class="product-tags">
-                                <div class="tag-deal" *ngIf="printer.deal">
+                                <div class="tag-deal" *ngIf="printer?.deals && printer.deals.length > 0">
                                     <div class="tag-title">Promoción</div>
                                 </div>
                                 <div [innerHTML]="printer.rentable | productType"></div>
@@ -44,12 +44,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="printer-deal-price" *ngIf="printer.deal">
-                        <h3>${{printer.deal.dealPrice}} USD <span class="printer-price">${{printer.price}} USD</span></h3>
+                    <div class="printer-deal-price" *ngIf="printer?.deals && printer.deals.length > 0">
+                        <h3>${{printer.deals[0].dealPrice}} USD <span class="printer-price">${{printer.price}} USD</span></h3>
                     </div>
                     <div class="actions-container">
-                        <button *ngIf="!printer.deal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
-                        <button *ngIf="printer.deal" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsAppDeal()"><span class="button-label">Aplica la promoción por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
+                        <button *ngIf="!(printer?.deals && printer.deals.length > 0)" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsApp()"><span class="button-label">Cotiza por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
+                        <button *ngIf="printer?.deals && printer.deals.length > 0" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937;" (click)="openWhatsAppDeal()"><span class="button-label">Aplica la promoción por Whatsapp</span><i class="pi pi-whatsapp"></i></button>
                     </div>
                     <div class="product-info-block">
                         <div class="product-description">
