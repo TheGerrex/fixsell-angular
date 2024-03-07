@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform, HostListener  } from '@angular/core';
+import { Pipe, PipeTransform, HostListener } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'brandType'
+  name: 'brandType',
 })
 export class BrandTypePipe implements PipeTransform {
   private isMobile: boolean = false;
@@ -24,16 +24,17 @@ export class BrandTypePipe implements PipeTransform {
 
   transform(brandName: string): SafeHtml {
     let imagePath: string;
-    let imgWidth: string= "100px"
-    let imgHeight: string = "25px"
-    
+    let imgWidth: string = '100px';
+    let imgHeight: string = '25px';
+
     // Map the brand names to their respective image paths
     switch (brandName.toLowerCase()) {
       case 'konica minolta':
-        imagePath = '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
+        imagePath =
+          '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
         imgWidth = this.isMobile ? '120px' : '165px';
         imgHeight = 'auto';
-        
+
         break;
       case 'kyocera':
         imagePath = '../../../assets/svg/home/proveedores/kyocera.svg';
@@ -43,6 +44,16 @@ export class BrandTypePipe implements PipeTransform {
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
         imgWidth = this.isMobile ? '80px' : '100px';
+        imgHeight = 'auto';
+        break;
+      case 'prixato':
+        imagePath = '../../../assets/svg/home/proveedores/eurotrade.png';
+        imgWidth = this.isMobile ? '100px' : '125px';
+        imgHeight = 'auto';
+        break;
+      case 'audley':
+        imagePath = '../../../assets/svg/home/proveedores/audley.png';
+        imgWidth = this.isMobile ? '100px' : '125px';
         imgHeight = 'auto';
         break;
       default:
