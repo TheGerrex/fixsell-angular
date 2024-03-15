@@ -44,7 +44,7 @@ export class HomeComponent {
       img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
     },
     {
-      name: 'Plotters',
+      name: 'Plotter',
       img: '../../../assets/img/home/categories/epson-plotter.jpg',
     },
     {
