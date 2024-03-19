@@ -1,0 +1,220 @@
+@import "src/styles.scss";
+.banner {
+  background-color: #781f41;
+  color: #fff;
+  width: 100%;
+  padding: 64px 12px 100px 12px;
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    padding: 64px 32px 100px 32px;
+  }
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    padding: 64px 64px 100px 64px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  padding-bottom: 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+}
+
+.backdrop {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  border-color: red;
+  h1 {
+    color: var(--white, #fff);
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 39px;
+    opacity: 15%;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 1;
+    bottom: 0%;
+    left: 0%;
+    user-select: none;
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 576px) {
+      font-size: 8em;
+    }
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+      font-size: 10em;
+    }
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) {
+      font-size: 12em;
+    }
+    // X-Large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) {
+      font-size: 14em;
+    }
+    // XX-Large devices (larger desktops, 1400px and up)
+    @media (min-width: 1400px) {
+      font-size: 16em;
+    }
+  }
+}
+
+#categorias {
+  transform: translateY(-100px);
+  height: 380px;
+}
+
+.category-card {
+  height: auto;
+  width: 100%;
+  background-color: #fff;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cbd5e1;
+  .image {
+    background-color: #fff;
+    width: 100%;
+    height: 300px;
+    border-radius: 6px 6px 0px 0px;
+    overflow: hidden;
+    display: flex;
+    img {
+      object-fit: scale-down;
+      width: 100%;
+      height: 300px;
+    }
+  }
+  .body {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17.5px;
+    gap: 7px;
+    width: 100%;
+    height: 60px;
+    cursor: pointer;
+    /* light-50 */
+    background: #f8fafc;
+    border-top: 1px solid #cbd5e1;
+    border-radius: 0px 0px 6px 6px;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    .title {
+      color: #1e293b;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+  &:hover {
+    #translate-icon {
+      transition: transform 0.2s ease-in-out;
+      transform: translate(5px);
+    }
+    .body {
+      background: $light-100;
+    }
+  }
+}
+
+:host ::ng-deep .p-carousel-item {
+  max-height: 100%;
+  padding: 10px;
+}
+
+:host ::ng-deep .p-carousel-indicator {
+  .p-link {
+    border-radius: 50% !important;
+    height: 0.8rem !important;
+    width: 0.8rem !important;
+  }
+}
+
+:host ::ng-deep p-tabview.p-element {
+  padding: 0;
+  .p-tabview.p-component {
+    border-radius: 6px;
+    border: #dee2e6 1px solid;
+  }
+  .p-tabview-nav-container {
+    border-radius: 6px 6px 0 0;
+  }
+  .p-tabview-panels {
+    background-color: #fff;
+  }
+}
+
+.white-space {
+  width: 100%;
+  height: 400px;
+}
+
+.aspectos-destacados {
+  display: flex;
+  width: 100%;
+  padding: 64px 12px;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  background: var(--light-50, #f8fafc);
+  .title {
+    color: var(--text, #434655);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 42px;
+    /* 150% */
+  }
+  @media (min-width: 768px) {
+    padding: 64px 32px;
+  }
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    padding: 64px 64px;
+  }
+}
+
+.aspectos-card {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 32px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border, #ced4da);
+  background: var(--light-200, #e2e8f0);
+  .title h1 {
+    color: var(--text-2, #3f4756);
+    /* h3-medium */
+    font-family: Cera Pro;
+    font-size: 24.5px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36.75px;
+    /* 150% */
+  }
+  p {
+    align-self: stretch;
+    color: var(--text-2, #3f4756);
+    /* body-medium */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+  }
+}
