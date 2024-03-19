@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'nosotros',
@@ -45,7 +45,15 @@ const routes: Routes = [
   },
   {
     path: 'printers',
-    loadChildren: () => import('./printers/printers.module').then( m => m.PrinterModule),
+    loadChildren: () =>
+      import('./printers/printers.module').then((m) => m.PrinterModule),
+  },
+  {
+    path: 'consumables',
+    loadChildren: () =>
+      import('./consumables/consumables.module').then(
+        (m) => m.ConsumablesModule
+      ),
   },
   {
     path: '**',
@@ -55,6 +63,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
