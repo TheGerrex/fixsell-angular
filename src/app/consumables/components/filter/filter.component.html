@@ -23,43 +23,10 @@
       <div class="filter-reset" (click)="resetFilters()">
         <p>Borrar Filtros</p>
       </div>
-      <div class="filter-section-header" (click)="toggleFilterSectionProduct()">
-        <div class="filter-section-title">Producto</div>
-        <div class="AngleButton">
-          <i
-            class="pi pi-angle-down"
-            style="font-size: 1rem; color: #3f4756"
-            [class.flip]="!isSectionVisibleProduct"
-          ></i>
-        </div>
-      </div>
-      <div
-        class="filter-section-content"
-        [ngClass]="{ hidden: !isSectionVisibleProduct }"
-      >
-        <div class="buttons-container">
-          <div class="wrapper">
-            <button
-              class="button-filter"
-              (click)="toggleSellableOptionFilter()"
-              [ngClass]="{ highlight: sellable }"
-            >
-              Venta
-            </button>
-            <button
-              class="button-filter"
-              (click)="toggleRentableOptionFilter()"
-              [ngClass]="{ highlight: rentable }"
-            >
-              Renta
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="filter-section">
       <div class="filter-section-header" (click)="toggleFilterSectionType()">
-        <div class="filter-section-title">Tipo</div>
+        <div class="filter-section-title">Color</div>
         <div class="AngleButton">
           <i
             class="pi pi-angle-down"
@@ -154,7 +121,7 @@
     </div>
     <div class="filter-section">
       <div class="filter-section-header" (click)="toggleFilterSectionOrigen()">
-        <div class="filter-section-title">Origen</div>
+        <div class="filter-section-title">Origen del producto</div>
         <div class="AngleButton">
           <i
             class="pi pi-angle-down"
@@ -190,7 +157,7 @@
     </div>
     <div class="filter-section">
       <div class="filter-section-header" (click)="toggleFilterSectionYield()">
-        <div class="filter-section-title">Yield</div>
+        <div class="filter-section-title">Vida Util @ 5%</div>
         <div class="AngleButton">
           <i
             class="pi pi-angle-down"
