@@ -1,0 +1,123 @@
+<div class="container-products relative">
+  <div class="banner">
+    <div class="banner-content">
+      <h1>Eleva tu negocio</h1>
+      <p>Dispositivos de impresión para toda ocasión</p>
+    </div>
+  </div>
+  <div class="product-view">
+    <div
+      class="filter-mobile d-flex d-lg-none"
+      (click)="onToggleFilterBar()"
+      #filter
+    >
+      <div class="filter-title">
+        <i
+          class="pi pi-filter-fill"
+          style="font-size: 0.9em; color: #111827"
+        ></i>
+        <h3>Filtros</h3>
+        <div class="counter">
+          {{ appliedFiltersCount }}
+        </div>
+      </div>
+    </div>
+    <div class="products-row px-3">
+      <div class="filter-col d-none d-lg-flex">
+        <app-consumible-filter
+          [initialAppliedFiltersCount]="appliedFiltersCount"
+          (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)"
+          (filteredPrintersChange)="handleFilteredPrintersChange($event)"
+          (filtersApplied)="scrollToContainer()"
+          [selectedCategory]="selectedCategory"
+        ></app-consumible-filter>
+      </div>
+      <div class="product-container">
+        <div class="product-list-col">
+          <div class="spinner-container" *ngIf="loading">
+            <i class="pi pi-spin pi-spinner" style="font-size: 4rem"></i>
+          </div>
+          <div class="product-list-container" #productList>
+            <ng-container
+              *ngIf="filteredConsumable.length > 0; else noProducts"
+            >
+              <consumable-product-card
+                [consumible]="consumable"
+                *ngFor="let consumable of filteredConsumable"
+                class="printer-product-card"
+              ></consumable-product-card>
+            </ng-container>
+            <ng-template #noProducts>
+              <div class="not-found" *ngIf="!loading">
+                <i class="pi pi-exclamation-circle" style="font-size: 4rem"></i>
+                <h2>No se encontraron productos</h2>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <div
+          class="pagination-container"
+          *ngIf="filteredConsumable.length > 0 && totalPages > 1"
+        >
+          <!-- <div class="pagination-quantity" *ngIf="!isMobile">
+                        <select [(ngModel)]="limit" (change)="fetchPrinters()">
+                            <option value="20">20</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div> -->
+          <div class="pagination-buttons">
+            <button
+              class="pagination-button-direction"
+              (click)="fetchPrinters(currentPage - 1)"
+              *ngIf="currentPage !== 1"
+            >
+              <span>Atras</span>
+            </button>
+            <span *ngIf="isMobile" class="pagination-button-number active"
+              ><span>{{ currentPage }}</span></span
+            >
+            <div *ngIf="!isMobile" class="pagination-wrap">
+              <button
+                class="pagination-button-number"
+                *ngFor="let page of getPageNumbers()"
+                [class.active]="currentPage === page"
+                (click)="fetchPrinters(page)"
+              >
+                <span>{{ page }}</span>
+              </button>
+            </div>
+            <button
+              class="pagination-button-direction"
+              (click)="fetchPrinters(currentPage + 1)"
+              *ngIf="currentPage !== totalPages"
+            >
+              <span>Siguiente</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-shade" [class.activated]="this.filterBarOpen"></div>
+<div class="filter-bar" [class.activated]="this.filterBarOpen">
+  <div class="filter-header">
+    <div class="filter-header-inner">
+      <p class="filter-header-title">Filtro</p>
+      <div class="filter-close-button" (click)="closeFilterBar()">
+        <i class="pi pi-times" style="color: #111827"></i>
+      </div>
+    </div>
+  </div>
+  <div class="filter-content pt-3">
+    <app-consumible-filter
+      [initialAppliedFiltersCount]="appliedFiltersCount"
+      (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)"
+      (filteredPrintersChange)="handleFilteredPrintersChange($event)"
+      (filtersApplied)="scrollToContainer()"
+      [selectedCategory]="selectedCategory"
+    ></app-consumible-filter>
+  </div>
+</div>

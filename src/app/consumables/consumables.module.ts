@@ -9,9 +9,18 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ConsumablesIntroComponent } from './pages/consumables-intro/consumables-intro.component';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
+import { ListPageComponent } from './pages/list-page/list-page.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
-  declarations: [LayoutPageComponent, ConsumablesIntroComponent],
+  declarations: [
+    LayoutPageComponent,
+    ConsumablesIntroComponent,
+    ListPageComponent,
+    FilterComponent,
+    ProductCardComponent,
+  ],
   imports: [
     CommonModule,
     ConsumablesRoutingModule,

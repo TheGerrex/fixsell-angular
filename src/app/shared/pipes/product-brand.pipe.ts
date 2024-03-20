@@ -56,6 +56,12 @@ export class ProductBrandPipe implements PipeTransform {
         imgWidth = this.isMobile ? '100px' : '125px';
         imgHeight = 'auto';
         break;
+
+      case 'okidata':
+        imagePath = '../../../assets/svg/home/proveedores/okidata.svg';
+        imgWidth = this.isMobile ? '70px' : '90px';
+        imgHeight = 'auto';
+        break;
       default:
         // Return a default image path or handle unsupported brand names as needed
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
