@@ -138,10 +138,7 @@
         [ngClass]="{ hidden: !isSectionVisibleBrand }"
       >
         <div class="checkbox" *ngFor="let brand of brands">
-          <div
-            class="checkbox-container"
-            (click)="toggleCheckbox(brand, 'printBrands')"
-          >
+          <div class="checkbox-container">
             <input
               type="checkbox"
               class="checkbox-input"
@@ -149,87 +146,76 @@
               [value]="brand"
               [checked]="selectedBrands.includes(brand)"
               (change)="toggleBrandFilter(brand)"
-              (click)="
-                toggleCheckbox(brand, 'consumibleBrands');
-                $event.stopPropagation()
-              "
             />
-            <label>{{ brand }}</label>
+            <label for="{{ brand }}">{{ brand }}</label>
           </div>
         </div>
       </div>
     </div>
     <div class="filter-section">
-      <div class="filter-section-header" (click)="toggleFilterSectionSize()">
-        <div class="filter-section-title">Tamaño de papel</div>
+      <div class="filter-section-header" (click)="toggleFilterSectionOrigen()">
+        <div class="filter-section-title">Origen</div>
         <div class="AngleButton">
           <i
             class="pi pi-angle-down"
             style="font-size: 1rem; color: #3f4756"
-            [class.flip]="!isSectionVisibleSize"
+            [class.flip]="!isSectionVisibleOrigen"
           ></i>
         </div>
       </div>
       <div
         class="filter-section-content"
-        [ngClass]="{ hidden: !isSectionVisibleSize }"
+        [ngClass]="{ hidden: !isSectionVisibleOrigen }"
       >
-        <div class="checkbox" *ngFor="let printSize of printSizesFilter">
+        <div class="checkbox" *ngFor="let origen of origens">
           <div
             class="checkbox-container"
-            (click)="toggleCheckbox(printSize, 'printSizes')"
+            (click)="toggleCheckbox(origen, 'origens')"
           >
             <input
               type="checkbox"
               class="checkbox-input"
-              [id]="printSize"
-              [value]="printSize"
-              [checked]="selectedPrintSizes.includes(printSize)"
-              (change)="togglePrintSizeFilter(printSize)"
+              [id]="origen"
+              [value]="origen"
+              [checked]="selectedOrigens.includes(origen)"
+              (change)="toggleOrigenFilter(origen)"
               (click)="
-                toggleCheckbox(printSize, 'printSizes');
-                $event.stopPropagation()
+                toggleCheckbox(origen, 'origens'); $event.stopPropagation()
               "
             />
-            <label>{{ printSize }}</label>
+            <label>{{ origen }}</label>
           </div>
         </div>
       </div>
     </div>
     <div class="filter-section">
-      <div
-        class="filter-section-header"
-        (click)="toggleFilterSectionVelocity()"
-      >
-        <div class="filter-section-title">Velocidad de impresión</div>
+      <div class="filter-section-header" (click)="toggleFilterSectionYield()">
+        <div class="filter-section-title">Yield</div>
         <div class="AngleButton">
           <i
             class="pi pi-angle-down"
             style="font-size: 1rem; color: #3f4756"
-            [class.flip]="!isSectionVisibleVelocity"
+            [class.flip]="!isSectionVisibleYield"
           ></i>
         </div>
       </div>
       <div
         class="filter-section-content"
-        [ngClass]="{ hidden: !isSectionVisibleVelocity }"
+        [ngClass]="{ hidden: !isSectionVisibleYield }"
       >
-        <div class="checkbox" *ngFor="let range of printVelocities">
+        <div class="checkbox" *ngFor="let range of yields">
           <div
             class="checkbox-container"
-            (click)="toggleCheckbox(range, 'printVelocities')"
+            (click)="toggleCheckbox(range, 'yields')"
           >
             <input
               type="checkbox"
               class="checkbox-input"
               [id]="range"
               [value]="range"
-              [checked]="selectedPrintVelocities.includes(range)"
-              (change)="togglePrintVelocityFilter(range)"
-              (click)="
-                toggleCheckbox(range, 'printVelocities');
-                $event.stopPropagation()
-              "
+              [checked]="selectedYields.includes(range)"
+              (change)="toggleYieldFilter(range)"
+              (click)="toggleCheckbox(range, 'yield'); $event.stopPropagation()"
               style="border: 2px solid #3c81f6"
             />
             <label>{{ range }}</label>

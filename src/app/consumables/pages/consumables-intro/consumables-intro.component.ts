@@ -151,7 +151,7 @@ export class ConsumablesIntroComponent {
     ];
   }
   navigateToProductList(category: string, sellable: boolean) {
-    this.router.navigate(['/printers/list'], {
+    this.router.navigate(['/consumables/list'], {
       queryParams: { categories: category, sellable: sellable, filterCount: 2 },
     });
   }

@@ -177,8 +177,8 @@ export class ListPageComponent implements OnInit {
     }
 
     // Apply color filter
-    if (queryFilters.color !== undefined) {
-      const color = JSON.parse(queryFilters.color);
+    if (queryFilters.color) {
+      const color = queryFilters.color.split(',');
       console.log('color', color);
       this.filteredConsumable = this.filteredConsumable.filter((consumible) =>
         color.includes(consumible.color)
@@ -193,6 +193,34 @@ export class ListPageComponent implements OnInit {
       this.filteredConsumable = this.filteredConsumable.filter((consumable) =>
         categories.includes(consumable.category)
       );
+    }
+
+    //apply origen filter
+    if (queryFilters.origen) {
+      const origen = queryFilters.origen.split(',');
+      console.log(origen);
+      this.filteredConsumable = this.filteredConsumable.filter((consumable) =>
+        origen.includes(consumable.origen)
+      );
+    }
+
+    // Apply yield filter
+    if (queryFilters.yields) {
+      console.log('filtering by yield');
+      const yields = queryFilters.yields.split(',');
+      console.log('filteredConsumable: yields', this.filteredConsumable);
+      this.filteredConsumable = this.filteredConsumable.filter((consumable) => {
+        let isInRange = false;
+        for (let i = 0; i < yields.length; i++) {
+          const [min, max] = yields[i].split('-').map(Number);
+          const consumableYield = Number(consumable.yield);
+          if (consumableYield >= min && consumableYield <= max) {
+            isInRange = true;
+            break;
+          }
+        }
+        return isInRange;
+      });
     }
 
     // Recalculate total pages

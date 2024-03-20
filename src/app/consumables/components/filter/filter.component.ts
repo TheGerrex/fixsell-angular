@@ -26,29 +26,18 @@ export class FilterComponent implements OnInit {
   @Input() initialAppliedFiltersCount: number = 0;
 
   // FILTERS
-  printers: Printer[] = [];
   consumable: Consumible[] = [];
-  filteredPrinters: Printer[] = [];
   filteredConsumables: Consumible[] = [];
-  printSizesFilter: string[] = [
-    'Carta',
-    'Doble Carta',
-    'Tabloide',
-    'Tabloide Plus',
-    'Rollo 4',
-    'Rollo 4.25',
-    'Rollo 8',
-    'Rollo 8.34',
-    'Rollo 13',
-  ];
+  selectedOrigens: string[] = [];
   colorFilter: string[] = ['K', 'Y', 'M', 'C'];
+  origens: string[] = ['OEM', 'Generico', 'Recarga'];
   colorParams: any;
   selectedBrands: string[] = [];
   selectedPrintVelocities: string[] = [];
   selectedCategories: string[] = [];
-  selectedPrintSizes: string[] = [];
   selectedPrintVelocityStates: { [key: string]: boolean } = {};
   selectedColors: string[] = [];
+  selectedYields: string[] = [];
   brands: string[] = ['Konica Minolta', 'Kyocera', 'Epson'];
   categories: string[] = [
     'Oficina',
@@ -57,21 +46,21 @@ export class FilterComponent implements OnInit {
     'Inyeccion de Tinta',
     'Artes Graficas',
   ];
-  printVelocities: string[] = [
-    '24-30',
-    '30-40',
-    '40-50',
-    '50-60',
-    '60-80',
-    '80-100',
-    '100-200',
+  yields: string[] = [
+    '1000-5000',
+    '5000-10000',
+    '10000-20000',
+    '20000-50000',
+    '50000-100000',
   ];
+
   isSectionVisibleProduct: boolean = true;
   isSectionVisibleBrand: boolean = true;
   isSectionVisibleSize: boolean = true;
   isSectionVisibleType: boolean = true;
-  isSectionVisibleVelocity: boolean = true;
   isSectionVisibleCategory: boolean = true;
+  isSectionVisibleOrigen: boolean = true;
+  isSectionVisibleYield: boolean = true;
   rentable?: boolean = false;
   sellable?: boolean = false;
   rentableCount: number = 0;
@@ -84,7 +73,6 @@ export class FilterComponent implements OnInit {
   isMobile?: boolean;
 
   constructor(
-    private printerService: PrintersService,
     private consumableService: ConsumableService,
     private route: ActivatedRoute,
     private router: Router
@@ -92,33 +80,41 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.sellable = params['sellable']
-        ? JSON.parse(params['sellable'])
-        : undefined;
-      this.rentable = params['rentable']
-        ? JSON.parse(params['rentable'])
-        : undefined;
-      this.selectedBrands = params['brand'] ? params['brand'].split(',') : [];
-      this.selectedCategories = params['categories']
-        ? params['categories'].split(',')
-        : [];
-      this.selectedPrintSizes = params['printSizes']
-        ? params['printSizes'].split(',')
-        : [];
-      this.selectedPrintVelocities = params['printVelocities']
-        ? params['printVelocities'].split(',')
-        : [];
-      this.selectedColors = params['color'] ? params['color'].split(',') : [];
+      const sellable = params['sellable'];
+      this.sellable = sellable === 'true' || sellable === '';
+
+      const rentable = params['rentable'];
+      this.rentable = rentable === 'true' || rentable === '';
+
+      this.selectedBrands =
+        typeof params['brand'] === 'string' ? params['brand'].split(',') : [];
+      this.selectedCategories =
+        typeof params['categories'] === 'string'
+          ? params['categories'].split(',')
+          : [];
+      this.selectedOrigens =
+        typeof params['origen'] === 'string' ? params['origen'].split(',') : [];
+      this.selectedYields =
+        typeof params['yield'] === 'string' ? params['yield'].split(',') : [];
+      this.selectedColors =
+        typeof params['color'] === 'string' ? params['color'].split(',') : [];
     });
-    this.consumableService.getConsumables().subscribe((consumables) => {
-      this.brands = Array.from(
-        new Set(consumables.map((consumable) => consumable.brand))
-      );
-      this.categories = Array.from(
-        new Set(consumables.map((consumable) => consumable.category))
-      );
-      console.log(this.categories);
-    });
+
+    this.consumableService.getConsumables().subscribe(
+      (consumables) => {
+        this.brands = Array.from(
+          new Set(consumables.map((consumable) => consumable.brand))
+        );
+        this.categories = Array.from(
+          new Set(consumables.map((consumable) => consumable.category))
+        );
+        console.log('categories received..', this.categories);
+      },
+      (error) => {
+        console.error('Error fetching consumables:', error);
+      }
+    );
+
     this.checkIfMobile();
     window.addEventListener('resize', this.onResize);
   }
@@ -143,11 +139,15 @@ export class FilterComponent implements OnInit {
   toggleFilterSectionType() {
     this.isSectionVisibleType = !this.isSectionVisibleType;
   }
-  toggleFilterSectionVelocity() {
-    this.isSectionVisibleVelocity = !this.isSectionVisibleVelocity;
-  }
+
   toggleFilterSectionCategory() {
     this.isSectionVisibleCategory = !this.isSectionVisibleCategory;
+  }
+  toggleFilterSectionOrigen() {
+    this.isSectionVisibleOrigen = !this.isSectionVisibleOrigen;
+  }
+  toggleFilterSectionYield() {
+    this.isSectionVisibleYield = !this.isSectionVisibleYield;
   }
 
   onResize = () => {
@@ -265,42 +265,40 @@ export class FilterComponent implements OnInit {
     this.emitFilters();
   }
 
-  togglePrintSizeFilter(printSize: string): void {
-    const wasIncluded = this.selectedPrintSizes.includes(printSize);
+  toggleOrigenFilter(filterOrigen: string): void {
+    const wasIncluded = this.selectedOrigens.includes(filterOrigen);
     if (wasIncluded) {
-      this.selectedPrintSizes.splice(
-        this.selectedPrintSizes.indexOf(printSize),
-        1
+      this.selectedOrigens = this.selectedOrigens.filter(
+        (o) => o !== filterOrigen
       );
       this.appliedFiltersCount--;
     } else {
-      this.selectedPrintSizes.push(printSize);
+      this.selectedOrigens.push(filterOrigen);
       this.appliedFiltersCount++;
     }
     this.emitFilters();
   }
 
-  togglePrintVelocityFilter(velocity: string): void {
-    const wasIncluded = this.selectedPrintVelocities.includes(velocity);
+  toggleYieldFilter(yieldValue: string): void {
+    console.log('filtering by yield in filter');
+    const wasIncluded = this.selectedYields.includes(yieldValue);
     if (wasIncluded) {
-      this.selectedPrintVelocities.splice(
-        this.selectedPrintVelocities.indexOf(velocity),
-        1
-      );
+      this.selectedYields.splice(this.selectedYields.indexOf(yieldValue), 1);
       this.appliedFiltersCount--;
     } else {
-      this.selectedPrintVelocities.push(velocity);
+      this.selectedYields.push(yieldValue);
       this.appliedFiltersCount++;
     }
     this.emitFilters();
   }
 
   resetFilters(): void {
-    this.selectedPrintSizes = [];
     this.selectedColors = [];
     this.selectedBrands = [];
     this.selectedPrintVelocities = [];
     this.selectedCategories = [];
+    this.selectedOrigens = [];
+    this.selectedYields = [];
     this.rentable = undefined;
     this.sellable = undefined;
     this.appliedFiltersCount = 0;
@@ -318,8 +316,9 @@ export class FilterComponent implements OnInit {
       brand: this.selectedBrands.join(','),
       color: this.selectedColors.join(','),
       categories: this.selectedCategories.join(','),
-      printSizes: this.selectedPrintSizes.join(','),
+      origen: this.selectedOrigens.join(','),
       printVelocities: this.selectedPrintVelocities.join(','),
+      yields: this.selectedYields.join(','),
       sellable: this.sellable,
       rentable: this.rentable,
       filterCount: this.appliedFiltersCount,
@@ -340,25 +339,21 @@ export class FilterComponent implements OnInit {
       case 'consumibleBrands':
         this.toggleBrandFilter(data);
         break;
-      case 'printSizes':
-        this.togglePrintSizeFilter(data);
-        break;
+
       case 'colorType':
         this.toggleColorFilter(data);
         break;
-      case 'printVelocities':
-        this.togglePrintVelocityFilter(data);
+      case 'categories':
+        this.toggleCategoryFilter(data);
+        break;
+
+      case 'origen':
+        this.toggleOrigenFilter(data);
+        break;
+
+      case 'yields':
+        this.toggleYieldFilter(data);
         break;
     }
   }
-
-  //   // updateAppliedFiltersCount(count: number): void {
-  //   //   this.appliedFiltersCount = count;
-  //   //   this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-  //   // }
-
-  //   toggleButtons() {
-  //     this.checked = !this.checked;
-  //     console.log('Toggling');
-  //   }
 }
