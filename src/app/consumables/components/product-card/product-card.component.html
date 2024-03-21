@@ -23,8 +23,11 @@
           </div>
         </div>
         <div class="product-features">
-          <div class="feature">
-            <i class="pi pi-palette"></i>
+          <div class="feature" [ngSwitch]="consumible.color">
+            <div *ngSwitchCase="'K'" class="circle black"></div>
+            <div *ngSwitchCase="'C'" class="circle cyan"></div>
+            <div *ngSwitchCase="'M'" class="circle magenta"></div>
+            <div *ngSwitchCase="'Y'" class="circle yellow"></div>
             <p class="Color">{{ consumible.color }}</p>
           </div>
           <div class="feature">

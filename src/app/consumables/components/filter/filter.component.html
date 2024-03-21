@@ -26,7 +26,14 @@
     </div>
     <div class="filter-section">
       <div class="filter-section-header" (click)="toggleFilterSectionType()">
-        <div class="filter-section-title">Color</div>
+        <div class="filter-section-title-and-wheel">
+          <div class="filter-section-title">Color</div>
+          <img
+            src="assets/svg/colors/CMYK.svg"
+            class="filter-section-colorwheel"
+            alt="Color Filter"
+          />
+        </div>
         <div class="AngleButton">
           <i
             class="pi pi-angle-down"
@@ -54,7 +61,7 @@
                 toggleCheckbox(color, 'colorType'); $event.stopPropagation()
               "
             />
-            <label>{{ color }}</label>
+            <label>{{ colorDisplayNames[color] }}</label>
           </div>
         </div>
       </div>

@@ -30,6 +30,12 @@ export class FilterComponent implements OnInit {
   filteredConsumables: Consumible[] = [];
   selectedOrigens: string[] = [];
   colorFilter: string[] = ['K', 'Y', 'M', 'C'];
+  colorDisplayNames: { [key: string]: string } = {
+    K: 'Negro',
+    Y: 'Amarillo',
+    M: 'Magenta',
+    C: 'Cyan',
+  };
   origens: string[] = ['OEM', 'Generico', 'Recarga'];
   colorParams: any;
   selectedBrands: string[] = [];

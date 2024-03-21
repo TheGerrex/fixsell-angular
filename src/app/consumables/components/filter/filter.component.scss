@@ -113,13 +113,24 @@
         background: $light-50;
       }
     }
-    .filter-section-title {
-      color: $text;
-      font-size: 16px;
-      font-family: Cera Pro;
-      font-weight: 600;
-      line-height: 31.5px;
-      word-wrap: break-word;
+
+    .filter-section-title-and-wheel {
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+      align-items: center;
+      width: 100%;
+      .filter-section-title {
+        color: $text;
+        font-size: 16px;
+        font-family: Cera Pro;
+        font-weight: 600;
+        line-height: 31.5px;
+        word-wrap: break-word;
+      }
+      .filter-section-colorwheel {
+        max-height: 18px;
+      }
     }
   }
   .filter-section-content {
