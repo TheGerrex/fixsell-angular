@@ -1,0 +1,330 @@
+@import "../../../../variables";
+.container-products {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../../../../assets/img/list-page/print-quality.jpg");
+  background-size: cover;
+  background-position: 50% 90%;
+  background-repeat: no-repeat;
+  height: 400px;
+  padding: 64px;
+  .banner-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    h1 {
+      color: $white;
+      font-size: 40px;
+      font-weight: 600;
+    }
+    p {
+      color: $gray-200;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+}
+
+.filter-mobile {
+  display: flex;
+  width: 100%;
+  background-color: $gray-50;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border-bottom: $gray-200 1px solid;
+  .filter-title {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 4px;
+    h3 {
+      color: $header-text;
+      font-weight: 600;
+      word-wrap: break-word;
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+  &:active {
+    background-color: $gray-200;
+  }
+}
+
+.counter {
+  background-color: $gray-200;
+  border-radius: 50px;
+  color: $gray-800;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.filter-shade {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  z-index: 50;
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.filter-shade.activated {
+  display: block;
+}
+
+.filter-bar {
+  // display: none;
+  @media (max-width: 1023px) {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    height: calc(100% - 100px);
+    background-color: #fff;
+    transition: 0.3s;
+    transform: translate3d(0, 110%, 0);
+    border-top: none;
+    padding-top: 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  @media (min-width: 1024px) {
+    display: none;
+  }
+  .filter-header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 16px 16px;
+    .filter-header-title {
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: $text;
+      margin: 0;
+    }
+    .filter-close-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      i {
+        font-size: 22px;
+      }
+    }
+  }
+  .filter-content {
+    height: calc(100vh - 170px);
+    overflow: auto;
+  }
+}
+
+.filter-bar.activated {
+  @media (max-width: 1023px) {
+    transform: none;
+  }
+}
+
+.products-row {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px 12px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  @media (max-width: 768px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  @media (min-width: 1440px) {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 1280px;
+  }
+}
+
+.filter-col {
+  width: 100%;
+  max-width: 300px;
+  height: max-content;
+  flex: 1;
+  // position: sticky;
+  // top: 0;
+  // z-index: 1;
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 768px) {
+    max-width: 300px;
+  }
+  // @media (min-width: 768px) { ... }
+  // @media (min-width: 992px) { ... }
+  // @media (min-width: 1200px) { ... }
+  // @media (min-width: 1400px) { ... }
+}
+
+.product-list-col {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  // background-color: #ffffff;
+  width: 100%;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding-top: 64px;
+  @media (max-width: 1024px) {
+    padding: 32px;
+  }
+  /* Center the spinner vertically */
+}
+
+.product-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 8px;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.printer-product-card {
+  width: calc(50% - 6px);
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    width: calc(33.3% - 6px);
+    // min-height: 306px;
+    // margin-bottom: 16px;
+  }
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+  text-align: center;
+}
+
+.product-view {
+  position: relative;
+}
+
+.highlight {
+  background-color: $primary-color;
+  color: $white;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1em 1em;
+  gap: 8px;
+  .pagination-quantity {
+    select {
+      background-color: $light-50;
+      border: 1px solid $light-200;
+      border-radius: 6px;
+      height: 35px;
+    }
+  }
+}
+
+.pagination-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  .pagination-button-direction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    padding: 4px 12px;
+    border: none;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
+    margin: 0;
+    background-color: transparent;
+    font-weight: 500;
+    color: #1e3a8a;
+    span {
+      font-size: 0.9em;
+    }
+  }
+  .pagination-button-direction:hover {
+    background-color: #e2e8f0;
+  }
+}
+
+.pagination-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.pagination-button-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  background-color: #e2e8f0;
+  border: none;
+  span {
+    font-weight: 600;
+    color: #1e3a8a;
+  }
+}
+
+.pagination-button-number.active {
+  background-color: $primary-color; // Change this to the color you want for the active button
+  span {
+    color: #ffffff;
+  }
+}
+
+.product-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}

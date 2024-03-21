@@ -12,26 +12,25 @@ import { ProductColorPipe } from './pipes/product-color.pipe';
 import { ProductTypePipe } from './pipes/product-type.pipe';
 
 @NgModule({
-    declarations: [
-        NavbarComponent,
-        FooterComponent,
-        SocialHeaderComponent,
-        Error404PageComponent,
-        ProductCardComponent,
-        ProductBrandPipe,
-        ProductColorPipe,
-        ProductTypePipe
-    ],
-    imports: [
-        CommonModule,
-        PrimengModule,
-        ReactiveFormsModule,
-    ],
-    exports: [
-        NavbarComponent,
-        FooterComponent,
-        SocialHeaderComponent,
-        ProductCardComponent
-    ]
-  })
-  export class SharedModule { }
+  declarations: [
+    NavbarComponent,
+    FooterComponent,
+    SocialHeaderComponent,
+    Error404PageComponent,
+    ProductCardComponent,
+    ProductBrandPipe,
+    ProductColorPipe,
+    ProductTypePipe,
+  ],
+  imports: [CommonModule, PrimengModule, ReactiveFormsModule],
+  exports: [
+    NavbarComponent,
+    FooterComponent,
+    SocialHeaderComponent,
+    ProductCardComponent,
+    ProductBrandPipe,
+    ProductColorPipe,
+    ProductTypePipe,
+  ],
+})
+export class SharedModule {}
