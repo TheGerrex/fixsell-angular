@@ -118,35 +118,39 @@
             <div class="product-functions">
               <div class="Feature">
                 <div class="feature-container">
-                  <i class="pi pi-tag"></i>
-                  <h4 class="titulo">Tipo</h4>
+                  <img
+                    src="assets/svg/colors/CMYK.svg"
+                    alt="CMYK"
+                    class="color-wheel"
+                  />
+                  <h4 class="titulo">Color</h4>
                 </div>
                 <div [ngSwitch]="consumable.color">
                   <p *ngSwitchCase="'K'" class="dato">
                     <span
                       class="color-circle"
-                      [ngStyle]="{ 'background-color': 'black' }"
+                      [ngStyle]="{ 'background-color': '#231f20' }"
                     ></span>
                     Negro
                   </p>
                   <p *ngSwitchCase="'M'" class="dato">
                     <span
                       class="color-circle"
-                      [ngStyle]="{ 'background-color': 'magenta' }"
+                      [ngStyle]="{ 'background-color': '#ec008c' }"
                     ></span>
                     Magenta
                   </p>
                   <p *ngSwitchCase="'C'" class="dato">
                     <span
                       class="color-circle"
-                      [ngStyle]="{ 'background-color': 'cyan' }"
+                      [ngStyle]="{ 'background-color': '#00aeef' }"
                     ></span>
                     Cyan
                   </p>
                   <p *ngSwitchCase="'Y'" class="dato">
                     <span
                       class="color-circle"
-                      [ngStyle]="{ 'background-color': 'yellow' }"
+                      [ngStyle]="{ 'background-color': '#fff200' }"
                     ></span>
                     Yellow
                   </p>
@@ -166,12 +170,27 @@
                   <p class="spec-data">{{ consumable.sku }}</p>
                 </div>
                 <div class="spec">
-                  <h4 class="spec-title">yield @ 5%</h4>
+                  <h4 class="spec-title">vida util @ 5%</h4>
                   <p class="spec-data">{{ consumable.yield }}</p>
                 </div>
                 <div class="spec">
                   <h4 class="spec-title">Volumen</h4>
                   <p class="spec-data">{{ consumable.volume }} g</p>
+                </div>
+                <!-- array of compatible models -->
+                <div class="spec">
+                  <h4 class="spec-title">Modelos Compatibles</h4>
+                  <ul class="spec-data">
+                    <li
+                      *ngFor="
+                        let model of consumable.compatibleModels
+                          .toString()
+                          .split(',')
+                      "
+                    >
+                      {{ model }}
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
