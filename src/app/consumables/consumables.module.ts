@@ -12,6 +12,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ConsumablePageComponent } from './pages/consumable-page/consumable-page.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     ListPageComponent,
     FilterComponent,
     ProductCardComponent,
+    ConsumablePageComponent,
   ],
   imports: [
     CommonModule,

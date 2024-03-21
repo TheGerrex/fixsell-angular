@@ -2,10 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'productType'
+  name: 'productType',
 })
 export class ProductTypePipe implements PipeTransform {
-
   constructor(private sanitizer: DomSanitizer) {}
 
   transform(value: boolean): SafeHtml {
@@ -48,12 +47,10 @@ export class ProductTypePipe implements PipeTransform {
       </div>
     `;
 
-    if (value) { 
+    if (value) {
       return this.sanitizer.bypassSecurityTrustHtml(rentaTag);
-    } 
-    else { 
+    } else {
       return this.sanitizer.bypassSecurityTrustHtml(ventaTag);
-    };
+    }
   }
-
 }
