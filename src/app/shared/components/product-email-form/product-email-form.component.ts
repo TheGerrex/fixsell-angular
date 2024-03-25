@@ -12,6 +12,8 @@ export class ProductEmailFormComponent {
   phone = '';
   email = '';
   @Input() message: string = '';
+  @Input() product: string = '';
+  @Input() productType: string = '';
 
   constructor() {}
 
@@ -26,6 +28,10 @@ export class ProductEmailFormComponent {
       console.log('Teléfono:', this.phone);
       console.log('Email:', this.email);
       console.log('Mensaje:', this.message);
+
+      //create message in backend in sales
+
+      //open email client
 
       // Reset the form
       this.companyName = '';
