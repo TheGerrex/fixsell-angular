@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'product-email-form',
   templateUrl: './product-email-form.component.html',
@@ -11,11 +13,13 @@ export class ProductEmailFormComponent {
   companyName = '';
   phone = '';
   email = '';
+  leadId: number = 0; // Assign an initial value to leadId
+
   @Input() message: string = '';
   @Input() product: string = '';
   @Input() productType: string = '';
-
-  constructor() {}
+  private readonly baseUrl: string = environment.baseUrl;
+  constructor(private http: HttpClient) {}
 
   openEmailForm() {
     this.showEmailForm = true;
@@ -23,22 +27,62 @@ export class ProductEmailFormComponent {
 
   submitEmailForm(form: NgForm) {
     if (form.valid) {
-      // Handle form submission here
-      console.log('Nombre de la empresa:', this.companyName);
-      console.log('Teléfono:', this.phone);
-      console.log('Email:', this.email);
-      console.log('Mensaje:', this.message);
+      // Prepare the data
+      const data = {
+        client: this.companyName,
+        status: 'prospect',
+        product_interested: this.product,
+        type_of_product: this.productType,
+        email: this.email,
+        phone: this.phone,
+      };
 
-      //create message in backend in sales
+      // Make the POST request
+      this.http.post(`${this.baseUrl}/leads`, data).subscribe({
+        next: (response: any) => {
+          console.log('Lead created successfully:', response);
 
-      //open email client
+          // Store the id
+          this.leadId = response.id;
 
-      // Reset the form
-      this.companyName = '';
-      this.phone = '';
-      this.email = '';
-      this.message = '';
-      this.showEmailForm = false;
+          // Prepare the sales communication data
+          const salesCommunicationData = {
+            message: this.message,
+            date: new Date().toISOString(),
+            type: 'email',
+            leadId: this.leadId,
+            notes: 'generado automáticamente por el sistema',
+          };
+
+          // Make the POST request for sales communication
+          this.http
+            .post(`${this.baseUrl}/sale-communication`, salesCommunicationData)
+            .subscribe({
+              next: (salesResponse: any) => {
+                console.log(
+                  'Sales communication created successfully:',
+                  salesResponse
+                );
+              },
+              error: (salesError) => {
+                console.error(
+                  'Error creating sales communication:',
+                  salesError
+                );
+              },
+            });
+
+          // Reset the form
+          this.companyName = '';
+          this.phone = '';
+          this.email = '';
+          this.message = '';
+          this.showEmailForm = false;
+        },
+        error: (error) => {
+          console.error('Error creating lead:', error);
+        },
+      });
     }
   }
 }
