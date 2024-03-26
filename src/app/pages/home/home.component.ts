@@ -89,31 +89,65 @@ export class HomeComponent implements OnInit {
   ];
 
   config: SwiperOptions = {
-    slidesPerView: 1,
-    spaceBetween: 8,
-    // navigation: true,
+    slidesPerView: 2,
+    spaceBetween: 4,
+    navigation: false,
     autoplay: false,
     pagination: { clickable: true },
     scrollbar: { draggable: true },
     breakpoints: {
       1024: {
         slidesPerView: 4,
-        spaceBetween: 24,
+        spaceBetween: 16,
         // navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
       },
       768: {
-        slidesPerView: 3,
+        slidesPerView: 2,
         spaceBetween: 16,
         // navigation: true,
         autoplay: false,
         pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
-      360: {
+      426: {
         slidesPerView: 2,
-        spaceBetween: 8,
+        spaceBetween: 16,
+        // navigation: false,
+        autoplay: true,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+    },
+    // thumbs: {swiper: this.thumbsSwiper}
+  };
+  configFeatures: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 4,
+    navigation: false,
+    autoplay: false,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 16,
+        // navigation: true,
+        autoplay: false,
+        scrollbar: { draggable: true },
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 16,
+        // navigation: true,
+        autoplay: false,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+      426: {
+        slidesPerView: 2,
+        spaceBetween: 16,
         // navigation: false,
         autoplay: true,
         pagination: { clickable: true },

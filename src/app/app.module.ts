@@ -20,7 +20,6 @@ import { PromocionesComponent } from './pages/promociones/promociones.component'
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
 import { SuccessComponent } from './pages/success/success.component';
-// import { SwiperModule } from '../../node_modules/swiper';
 import { SwiperModule } from 'swiper/angular';
 import { PrinterModule } from './printers/printers.module';
 
