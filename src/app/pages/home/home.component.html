@@ -1,83 +1,89 @@
 <section class="hero-background">
-    <div class="container h-100">
-        <div class="row row-align-hero">
-            <div class="col-12 col-md-6 my-sm-5 my-3" id="hero-message-container">
-                <div class="col-12">
-                    <div class="hero-title-container">
-                        <h1 class="hero-title">Llevando tu <span style="color: #3C81F6; font-weight: 600;">productividad</span> al máximo</h1>
-                    </div>
-                    <p class="hero-message mt-3">Expertos en servicios de impresión y gestión documental en el ámbito profesional y corporativo.</p>
-                </div>
-                <div class="col-12 mt-4">
+    <div class="hero-container">
+        <div class="hero-banner">
+            <div class="hero-message-container">
+                <div class="hero-message">
+                    <h1 class="hero-title">Llevando tu <span style="color: #3C81F6; font-weight: 600;">productividad</span> al máximo</h1>
+                    <p class="hero-subtitle">Expertos en servicios de impresión y gestión documental en el ámbito profesional y corporativo.</p>
                     <div class="action-container">
                         <button class="button button-rounded button-primary button-raised" routerLink="/printers/list"><span class="button-label">Ver productos</span></button>
-                        <!-- <button class="button button-rounded button-secondary button-raised"><span class="button-label">Agenda una demo</span></button> -->
-                        <!-- <button pButton type="button" label="Ver productos" class="p-button-raised p-button-rounded p-button-danger"></button> -->
-                        <!-- <button pButton type="button" label="Agenda una demo" class="p-button-raised p-button-secondary p-button-rounded"></button> -->
                     </div>
-                </div>
-                <div class="col-12 d-none d-sm-block mt-5" id="proveedores">
-                    <div class="d-flex justify-content-around">
-                        <img src="../../../assets/svg/home/proveedores/konica_minolta.svg" alt="konica_minolta">
-                        <img src="../../../assets/svg/home/proveedores/epson.svg" alt="epson">
-                        <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
-                        <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
-                        <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft">
+                    <div class="proveedores mt-3">
+                        <div class="proveedores-container d-flex justify-content-around">
+                            <img src="../../../assets/svg/home/proveedores/konica_minolta.svg" alt="konica_minolta">
+                            <img src="../../../assets/svg/home/proveedores/epson.svg" alt="epson">
+                            <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
+                            <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
+                            <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 overflow-hidden">
-                <img src="assets/img/home/hero-image.png" alt="printers and plotter" class="img-fluid hero-image">
+            <div class="hero-image-container">
+                <div class="blob-mask-container">
+                    <div class="blob-mask"></div>
+                </div>
+                <img src="assets/img/home/hero-banner/hero-image.png" alt="printers and plotter" class="hero-image hero-image-large">
+                <img src="assets/img/home/hero-banner/bizhub_C754-transparent.png" alt="printers and plotter" class="hero-image hero-image-medium">
+                <!-- <img src="assets/img/home/hero-banner/printer-top.jpg" alt="printers and plotter" class="hero-image hero-image-medium"> -->
             </div>
         </div>
     </div>
 </section>
 
 <section class="section-content" id="features">
-    <div class="container py-5">
-        <div class="feature-cards-container">
-            <div class="feature-card" (click)="scrollTo('servicio')">
-                <div class="icon-container">
-                    <img class="inactive" src="../../../assets/svg/home/features/service.svg" alt="service">
-                    <img class="active" src="../../../assets/svg/home/features/service-active.svg" alt="service">
+    <div class="container py-3 py-lg-5">
+        <swiper [config]="configFeatures">
+            <ng-template swiperSlide>
+                <div class="feature-card" (click)="scrollTo('servicio')">
+                    <div class="icon-container">
+                        <img class="inactive" src="../../../assets/svg/home/features/service.svg" alt="service">
+                        <img class="active" src="../../../assets/svg/home/features/service-active.svg" alt="service">
+                    </div>
+                    <div class="title-container">Soluciones Técnicas a tu Alcance</div>
+                    <div class="content-container">Descubre nuestro completo servicio técnico: reparaciones ágiles, mantenimiento preventivo y pólizas todo incluido para mantener tus equipos en óptimas condiciones.</div>
                 </div>
-                <div class="title-container">Soluciones Técnicas a tu Alcance</div>
-                <div class="content-container">Descubre nuestro completo servicio técnico: reparaciones ágiles, mantenimiento preventivo y pólizas todo incluido para mantener tus equipos en óptimas condiciones.</div>
-            </div>
-            <div class="feature-card" (click)="scrollTo('consumibles')">
-                <div class="icon-container">
-                    <img class="inactive" src="../../../assets/svg/home/features/consumable.svg" alt="consumable">
-                    <img class="active" src="../../../assets/svg/home/features/consumable-active.svg" alt="consumable">
+            </ng-template>
+            <ng-template swiperSlide>
+                <div class="feature-card" (click)="scrollTo('consumibles')">
+                    <div class="icon-container">
+                        <img class="inactive" src="../../../assets/svg/home/features/consumable.svg" alt="consumable">
+                        <img class="active" src="../../../assets/svg/home/features/consumable-active.svg" alt="consumable">
+                    </div>
+                    <div class="title-container">Calidad y Confiabilidad para tus Consumibles</div>
+                    <div class="content-container">Descubre nuestra selección de productos de marcas líderes como Konica Minolta, Kyocera, Fuji y Epson, con envío rápido a todo México y garantía de calidad. Tu impresión, nuestra prioridad.</div>
                 </div>
-                <div class="title-container">Calidad y Confiabilidad para tus Consumibles</div>
-                <div class="content-container">Descubre nuestra selección de productos de marcas líderes como Konica Minolta, Kyocera, Fuji y Epson, con envío rápido a todo México y garantía de calidad. Tu impresión, nuestra prioridad.</div>
-            </div>
-            <div class="feature-card" (click)="scrollTo('equipos')">
-                <div class="icon-container">
-                    <img class="inactive" src="../../../assets/svg/home/features/printer.svg" alt="printer">
-                    <img class="active" src="../../../assets/svg/home/features/printer-active.svg" alt="printer">
+            </ng-template>
+            <ng-template swiperSlide>
+                <div class="feature-card" (click)="scrollTo('equipos')">
+                    <div class="icon-container">
+                        <img class="inactive" src="../../../assets/svg/home/features/printer.svg" alt="printer">
+                        <img class="active" src="../../../assets/svg/home/features/printer-active.svg" alt="printer">
+                    </div>
+                    <div class="title-container">Potencia tu Productividad con Nuestros Equipos</div>
+                    <div class="content-container">Descubre cómo nuestros equipos pueden mejorar tus tiempos, calidad y presupuesto de impresión, con un servicio técnico especializado y sistemas de consumo continuo que reducen tus costes de mantenimiento.</div>
                 </div>
-                <div class="title-container">Potencia tu Productividad con Nuestros Equipos</div>
-                <div class="content-container">Descubre cómo nuestros equipos pueden mejorar tus tiempos, calidad y presupuesto de impresión, con un servicio técnico especializado y sistemas de consumo continuo que reducen tus costes de mantenimiento.</div>
-            </div>
-            <div class="feature-card" (click)="scrollTo('softwares')">
-                <div class="icon-container">
-                    <img class="inactive" src="../../../assets/svg/home/features/software.svg" alt="software">
-                    <img class="active" src="../../../assets/svg/home/features/software-active.svg" alt="software">
+            </ng-template>
+            <ng-template swiperSlide>
+                <div class="feature-card" (click)="scrollTo('softwares')">
+                    <div class="icon-container">
+                        <img class="inactive" src="../../../assets/svg/home/features/software.svg" alt="software">
+                        <img class="active" src="../../../assets/svg/home/features/software-active.svg" alt="software">
+                    </div>
+                    <div class="title-container">Simplifica tu Gestión con Nuestros Servicios</div>
+                    <div class="content-container">Optimiza tu flujo de trabajo y protege tu información con nuestros servicios de gestión documental y de impresión. Desde la digitalización hasta el control de costos, te ofrecemos soluciones eficientes y ecológicas.</div>
                 </div>
-                <div class="title-container">Simplifica tu Gestión con Nuestros Servicios</div>
-                <div class="content-container">Optimiza tu flujo de trabajo y protege tu información con nuestros servicios de gestión documental y de impresión. Desde la digitalización hasta el control de costos, te ofrecemos soluciones eficientes y ecológicas.</div>
-            </div>
-        </div>
+            </ng-template>
+        </swiper>
     </div>
 </section>
 
 <section class="section-content" id="categorias">
-    <div class="container py-5">
-        <div class="row pb-3 justify-content-center">
-            <h1 class="section-title">Categorías</h1>
-        </div>
-        <div class="row">
+    <div class="container py-3 py-lg-5">
+        <div class="categoria-body">
+            <div class="section-title justify-content-center text-center">
+                <h1>Categorías</h1>
+            </div>
             <div class="box-container">
                 <div class="swiper-container">
                     <swiper #swiper class="pb-5 px-md-5 pb-lg-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
@@ -99,11 +105,11 @@
     </div>
 </section>
 
-<section class="section-content">
-    <div class="servicio" id="servicio">
+<section class="section-content" id="servicio">
+    <div class="servicio">
         <div class="container servicio-container">
             <div class="servicio-body">
-                <div class="servicio-title">
+                <div class="section-title">
                     <h1>Servicio Técnico</h1>
                 </div>
                 <div class="servicio-content">
@@ -162,14 +168,14 @@
     </div>
 </section>
 
-<section class="section-content">
-    <div class="consumible" id="consumibles">
+<section class="section-content" id="consumibles">
+    <div class="consumible">
         <!-- <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/consumibles.jpg" alt="consumibles-impresoras"></div> -->
-        <div class="container consumible-container">
-            <div class="consumible-title">
-                <h1>Consumibles y Refacciones</h1>
-            </div>
+        <div class="container py-3 py-lg-5 consumible-container">
             <div class="consumible-body">
+                <div class="section-title">
+                    <h1 class="white">Consumibles y Refacciones</h1>
+                </div>
                 <div class="consumible-item">
                     <h4>
                         En Fixsell del Norte, te ofrecemos los mejores productos de las marcas Konica Minolta, Kyocera, Fuji y Epson, las cuales vendemos al público. Estos son algunos de los aspectos que nos distinguen:
@@ -194,21 +200,27 @@
     </div>
 </section>
 
-<section class="section-content">
-    <div class="equipos" id="equipos">
-        <div class="container equipos-container">
+<section class="section-content" id="equipos">
+    <div class="equipos">
+        <div class="container py-3 py-lg-5 equipos-container">
             <div class="equipos-body">
-                <div class="equipos-title">
+                <div class="section-title">
                     <h1>Equipos de Impresión</h1>
+                </div>
+                <div class="section-subtitle">
+                    <h4>¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus tareas de impresión?</h4>
+                    <br>
+                    <h5>Entonces, necesitas nuestros equipos de impresión de última generación. Nuestras impresoras te ofrecen una velocidad, una eficiencia y una nitidez incomparables, que facilitan los flujos de trabajo de tu negocio.</h5>
                 </div>
                 <div class="equipos-content-image" [class.displayNone]="!isSmallScreen">
                     <div class="equipos-image"><img src="../../../assets/img/home/soluciones-servicios/impresora.png" alt="BH-C300i"></div>
                 </div>
                 <div class="equipos-content">
-                    <div class="equipos-item">
-                        <h4>¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus tareas de impresión? Entonces, necesitas nuestros equipos de impresión de última generación. Nuestras impresoras te ofrecen una velocidad, una eficiencia y una nitidez
-                            incomparables, que facilitan los flujos de trabajo de tu negocio.</h4>
-                    </div>
+                    <!-- <div class="equipos-item">
+                        <h4>¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus tareas de impresión?</h4>
+                        <br>
+                        <h5>Entonces, necesitas nuestros equipos de impresión de última generación. Nuestras impresoras te ofrecen una velocidad, una eficiencia y una nitidez incomparables, que facilitan los flujos de trabajo de tu negocio.</h5>
+                    </div> -->
                     <div class="equipos-item" id="velocidad">
                         <i class="pi pi-check" style="font-size: 24px;"></i>
                         <p>Impresoras con velocidad, eficiencia y nitidez incomparables que facilitan los flujos de trabajo de tu negocio.</p>
@@ -233,19 +245,21 @@
     </div>
 </section>
 
-<section class="section-content">
-    <div class="software" id="softwares">
+<section class="section-content" id="softwares">
+    <div class="software">
         <!-- <div class="software-image"><img src="../../../assets/img/home/soluciones-servicios/gestion-documental-impresion.jpg" alt="document-administration"></div> -->
-        <div class="container software-container">
+        <div class="container py-3 py-lg-5 software-container">
             <div class="software-body">
-                <div class="software-title">
+                <div class="section-title">
                     <h1>Gestión Documental y de Impresión</h1>
                 </div>
-                <div class="software-subtitle">
+                <div class="section-subtitle">
                     <h4>
-                        Servicios esenciales para optimizar el flujo de trabajo y la seguridad de tu información. Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos
-                        de impresión, mejorar la productividad y la colaboración, y acceder a tus documentos desde cualquier lugar, dispositivo y momento.
+                        Servicios esenciales para optimizar el flujo de trabajo y la seguridad de tu información.
                     </h4>
+                    <br>
+                    <h5>Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos de impresión, mejorar la productividad y la colaboración, y acceder
+                        a tus documentos desde cualquier lugar, dispositivo y momento.</h5>
                 </div>
                 <div class="software-content">
                     <div class="software-item-gestion-card">
@@ -274,170 +288,21 @@
     </div>
 </section>
 
-<!-- <section class="section-content light-50" id="soluciones">
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header">
-                    <h1 class="section-title">Soluciones y Servicios</h1>
-                    <p class="section-description mb-2">
-                        Benefíciate de las soluciones inteligentes, menores costes y mayor productividad. Elige entre las impresoras, las soluciones de software y los consumibles galardonados.
-                    </p>
-                </div>
+<section class="section-content" id="clientes">
+    <div class="container py-3 py-lg-5">
+        <div class="client-body">
+            <div class="section-title justify-content-center text-center">
+                <h1 class="white">Nuestros principales clientes</h1>
             </div>
-        </div>
-        <div class="solucion-wrapper">
-            <div class="solucion" #servicio>
-                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png" alt="tecnico-impresoras"></div>
-                <div class="solucion-container">
-                    <div class="solucion-title">
-                        <h2>Servicio Técnico</h2>
-                    </div>
-                    <div class="solucion-body">
-                        <div class="solucion-item service-column-card">
-                            <i class="pi pi-cog"></i>
-                            <p><b>Reparación de equipos de impresión:</b> Si tu impresora presenta alguna falla, error o desperfecto, nosotros la reparamos con rapidez y eficacia. Contamos con técnicos especializados y certificados por las principales marcas
-                                de impresoras, como Konica Minolta, Kyocera y Epson. Además, tenemos un extenso inventario de refacciones, piezas y consumibles, para que tu impresora quede funcionando.</p>
-                        </div>
-                        <div class="solucion-item service-column-card">
-                            <i class="pi pi-exclamation-triangle"></i>
-                            <p><b>Mantenimiento preventivo y correctivo:</b> Para evitar que tu impresora se dañe o pierda calidad, te ofrecemos un servicio de mantenimiento preventivo y correctivo. Con este servicio, revisamos periódicamente el estado de
-                                tu impresora, limpiamos sus componentes, ajustamos sus configuraciones, y reemplazamos las piezas que lo requieran. Así, podrás extender la vida útil y el buen funcionamiento de tu equipo de impresión.</p>
-                        </div>
-                        <div class="solucion-item service-column-card">
-                            <i class="pi pi-file"></i>
-                            <p><b>Pólizas de servicio técnico todo incluido:</b> Si quieres tener la tranquilidad de contar con un servicio técnico de impresoras siempre disponible y a un precio fijo, te recomendamos contratar una de nuestras pólizas de
-                                servicio técnico todo incluido. Con estas pólizas, tendrás acceso ilimitado a nuestro servicio de reparación y mantenimiento, así como a todos los consumibles y refacciones que necesites. Además, tendrás prioridad en la
-                                atención, soporte técnico telefónico y en línea, y garantía de satisfacción.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="solucion" #consumibles>
-                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/consumibles.jpg" alt="consumibles-impresoras"></div>
-                <div class="solucion-container">
-                    <div class="solucion-title">
-                        <h2>Consumibles y Refacciones</h2>
-                    </div>
-                    <div class="solucion-body">
-                        <div class="solucion-item">
-                            <p>
-                                Los consumibles y refacciones de impresoras son elementos indispensables para el correcto funcionamiento y mantenimiento de tus equipos de impresión. Sin ellos, no podrías imprimir tus documentos con la calidad y rapidez que necesitas.
-                                <br><br> En Fixsell del Norte, te ofrecemos los mejores productos de las marcas Konica Minolta, Kyocera, Fuji y Epson, las cuales vendemos al público. Estos son algunos de los aspectos que nos distinguen:
-                            </p>
-                        </div>
-                        <div class="solucion-items-container">
-                            <div class="solucion-item-card" id="consumibleStock">
-                                <i class="pi pi-box"></i>
-                                <p>Contamos con un buen stock de refacciones y consumibles, para que siempre encuentres lo que necesitas.</p>
-                            </div>
-                            <div class="solucion-item-card" id="consumiblePrecio">
-                                <i class="pi pi-dollar"></i>
-                                <p>Te ofrecemos precios competitivos y garantía de calidad, para que ahorres dinero y tiempo.</p>
-                            </div>
-                            <div class="solucion-item-card" id="consumibleEnvio">
-                                <i class="pi pi-shopping-cart"></i>
-                                <p>Te enviamos tus productos a todo México, con rapidez y seguridad, para que los recibas en tu domicilio u oficina.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="solucion" #equipos>
-                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/impresora.png" alt="BH-C300i"></div>
-                <div class="solucion-container">
-                    <div class="solucion-title">
-                        <h2>Equipos de Impresión</h2>
-                    </div>
-                    <div class="solucion-body">
-                        <div class="solucion-item">
-                            <p>¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus tareas de impresión? Entonces, necesitas nuestros equipos de impresión de última generación. Nuestras impresoras te ofrecen una velocidad, una eficiencia y una
-                                nitidez incomparables, que facilitan los flujos de trabajo de tu negocio.</p>
-                        </div>
-                        <div class="solucion-item">
-                            <i class="pi pi-check" style="font-size: 24px;"></i>
-                            <p><b>Impresoras con velocidad, eficiencia y nitidez incomparables que facilitan los flujos de trabajo de tu negocio.</b></p>
-                        </div>
-                        <div class="solucion-item">
-                            <i class="pi pi-check" style="font-size: 24px;"></i>
-                            <p><b>Posibilidad de imprimir documentos de alta calidad en segundos, reducir los costes de mantenimiento, administrar tus impresiones y mucho más.</b></p>
-                        </div>
-                        <div class="solucion-item">
-                            <i class="pi pi-check" style="font-size: 24px;"></i>
-                            <p><b>Reducir los costes de mantenimiento, gracias a nuestro sistema de consumibles continua y nuestro servicio técnico especializado.</b></p>
-                        </div>
-                        <div class="solucion-action">
-                            <button class="button button-rounded button-primary button-raised" routerLink="/printers/list"><span class="button-label">Ir a Productos</span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="solucion" #softwares>
-                <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/gestion-documental-impresion.jpg" alt="document-administration"></div>
-                <div class="solucion-container">
-                    <div class="solucion-title">
-                        <h2>Gestión Documental y de Impresión</h2>
-                    </div>
-                    <div class="solucion-body">
-                        <div class="solucion-item">
-                            <p>
-                                Servicios esenciales para optimizar el flujo de trabajo y la seguridad de tu información. Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos
-                                de impresión, mejorar la productividad y la colaboración, y acceder a tus documentos desde cualquier lugar, dispositivo y momento.
-                                <br><br> En Fixsell del Norte, ofrecemos los mejores softwares de gestión documental y gestión de la impresión del mercado estos softwares te permiten:
-                            </p>
-                        </div>
-                        <div class="solucion-item-gestion">
-                            <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
-                            <p><b>PaperCut:</b> Es un software que <b>te ayuda a gestionar y monitorizar la impresión en tu organización.</b> Con PaperCut, puedes establecer cuotas, políticas y restricciones de impresión, asignar costos por departamento
-                                o proyecto, generar informes detallados, y habilitar la impresión móvil y segura.</p>
-                        </div>
-                        <div class="solucion-item-gestion">
-                            <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="papercut">
-                            <p><b>Ysoft:</b> Es una plataforma que te <b>ofrece soluciones integradas de impresión, escaneo y administración de dispositivos.</b> Con Ysoft, puedes automatizar los procesos de escaneo y digitalización, mejorar la seguridad
-                                y el cumplimiento de los documentos, y reducir el desperdicio y el consumo de energía.</p>
-                        </div>
-                        <div class="solucion-item-gestion">
-                            <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="papercut">
-                            <p><b>KFS:</b> Es un software que te <b>permite gestionar y mantener tus equipos de impresión de forma remota.</b> Con KFS, puedes monitorear el estado y el rendimiento de tus dispositivos, recibir alertas y notificaciones, realizar
-                                diagnósticos y actualizaciones, y optimizar el servicio técnico.</p>
-                        </div>
-                        <div class="solucion-item-gestion">
-                            <img src="../../../assets/svg/home/proveedores/docuware.svg" alt="papercut">
-                            <p><b>Docuware:</b> Es un software que te <b>facilita la gestión documental en la nube.</b> Con Docuware, puedes almacenar, organizar, buscar y compartir tus documentos de forma segura y rápida. Además, puedes integrar Docuware
-                                con otras aplicaciones, crear flujos de trabajo automatizados, y cumplir con las normativas legales y fiscales.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-<section class="section-content dark-blue-secondary" id="clientes">
-    <div class="container py-5">
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="subheader">
-                    <h2>Nuestros principales clientes</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <p-carousel [value]="clients" [numVisible]="1" [numScroll]="1" [autoplayInterval]="3000" [showNavigators]="false" [showIndicators]="false" [circular]="true" [responsiveOptions]="responsiveClientOptions" #clientCarousel>
-                    <ng-template let-client pTemplate="item">
-                        <div class="svg-container">
-                            <img [src]="client.svg" alt="client.name">
-                        </div>
-                    </ng-template>
-                </p-carousel>
+            <div class="client-img-container">
+                <img [src]=client.svg alt="client" *ngFor="let client of clients">
             </div>
         </div>
     </div>
 </section>
 
-<section class="section-content" id="beneficios">
-    <div class="container py-5">
+<!-- <section class="section-content" id="beneficios">
+    <div class="container py-3 py-lg-5">
         <div class="row">
             <div class="col-12">
                 <h1 class="section-title">Principales Beneficios</h1>
@@ -566,4 +431,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
