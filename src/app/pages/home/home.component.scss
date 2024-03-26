@@ -175,10 +175,10 @@
         .blob-mask-container {
             position: absolute;
             right: -55%;
-            bottom: -10%;
+            bottom: -75%;
             left: 0;
             rotate: (135deg);
-            height: 50%;
+            height: 100%;
             z-index: 1;
             opacity: 0;
             animation: fadeInAndGoUp .5s ease-in-out forwards;
@@ -221,10 +221,10 @@
                 display: none !important; // Shown on larger screens
             }
             .hero-image-medium {
-                display: block !important; // Hidden on larger screens
-                right: 0%;
-                bottom: -20%;
-                rotate: (135deg);
+                display: block !important;
+                right: -30%;
+                bottom: 0%;
+                rotate: (133deg);
             }
         }
         @media (min-width: 426px) and (max-width: 768px) {
@@ -233,8 +233,8 @@
             }
             .hero-image-medium {
                 display: block !important;
-                right: -32%;
-                bottom: -13%;
+                right: -45%;
+                bottom: -55%;
                 rotate: (133deg);
             }
         }
@@ -243,8 +243,8 @@
             left: 50px;
             .hero-image-large {
                 display: block;
-                right: 10%;
-                bottom: -15%;
+                right: 0%;
+                bottom: -10%;
             }
             .hero-image-medium {
                 display: none;
@@ -410,10 +410,10 @@
         min-height: 420px;
     }
     @media(min-width: 1024px) {
-        min-height: 580px;
+        min-height: 574px;
     }
     @media(min-width: 1440px) {
-        min-height: 450px;
+        min-height: 580px;
     }
 }
 
