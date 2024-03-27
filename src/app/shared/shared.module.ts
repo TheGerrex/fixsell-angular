@@ -10,7 +10,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductBrandPipe } from './pipes/product-brand.pipe';
 import { ProductColorPipe } from './pipes/product-color.pipe';
 import { ProductTypePipe } from './pipes/product-type.pipe';
-
+import { ProductEmailFormComponent } from './components/product-email-form/product-email-form.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -21,8 +22,9 @@ import { ProductTypePipe } from './pipes/product-type.pipe';
     ProductBrandPipe,
     ProductColorPipe,
     ProductTypePipe,
+    ProductEmailFormComponent,
   ],
-  imports: [CommonModule, PrimengModule, ReactiveFormsModule],
+  imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
     NavbarComponent,
     FooterComponent,
@@ -31,6 +33,7 @@ import { ProductTypePipe } from './pipes/product-type.pipe';
     ProductBrandPipe,
     ProductColorPipe,
     ProductTypePipe,
+    ProductEmailFormComponent,
   ],
 })
 export class SharedModule {}

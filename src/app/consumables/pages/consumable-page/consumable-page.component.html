@@ -107,6 +107,15 @@
               ><i class="pi pi-whatsapp"></i>
             </button>
           </div>
+          <div class="actions-container">
+            <product-email-form
+              [message]="
+                'Hola, quiero saber mas sobre el consumible: ' + consumable.name
+              "
+              [product]="consumable.name"
+              [productType]="'consumible'"
+            ></product-email-form>
+          </div>
           <div class="product-info-block">
             <div class="product-description">
               <p>
