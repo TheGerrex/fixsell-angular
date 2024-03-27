@@ -72,6 +72,27 @@ export class ProductEmailFormComponent {
               },
             });
 
+          //email client
+          // Prepare the email data
+          const subject = encodeURIComponent(
+            `${this.companyName},: ${this.productType}, ${this.product}`
+          );
+          const body = encodeURIComponent(
+            `Hola, hablo por parte de: ${this.companyName}\n` +
+              `Message: ${this.message}` +
+              `me puedes dar más información al respecto?\n\n` +
+              `Email: ${this.email}\n` +
+              `Phone: ${this.phone}\n` +
+              `Product: ${this.product}\n` +
+              ``
+          );
+
+          // Construct the mailto link
+          const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+
+          // Open the email client in a new tab or window
+          window.open(mailtoLink, '_blank');
+
           // Reset the form
           this.companyName = '';
           this.phone = '';
