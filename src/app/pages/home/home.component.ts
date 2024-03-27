@@ -88,10 +88,10 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  config: SwiperOptions = {
+  configCategories: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 4,
-    navigation: false,
+    navigation: true,
     autoplay: false,
     pagination: { clickable: true },
     scrollbar: { draggable: true },
@@ -99,14 +99,14 @@ export class HomeComponent implements OnInit {
       1024: {
         slidesPerView: 4,
         spaceBetween: 16,
-        // navigation: true,
+        navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
       },
       768: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         spaceBetween: 16,
-        // navigation: true,
+        navigation: true,
         autoplay: false,
         pagination: { clickable: true },
         scrollbar: { draggable: true },
@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
       426: {
         slidesPerView: 2,
         spaceBetween: 16,
-        // navigation: false,
+        navigation: false,
         autoplay: true,
         pagination: { clickable: true },
         scrollbar: { draggable: true },

@@ -32,7 +32,7 @@
 </section>
 
 <section class="section-content" id="features">
-    <div class="container py-3 py-lg-5">
+    <div class="container py-5">
         <swiper [config]="configFeatures">
             <ng-template swiperSlide>
                 <div class="feature-card" (click)="scrollTo('servicio')">
@@ -79,14 +79,14 @@
 </section>
 
 <section class="section-content" id="categorias">
-    <div class="container py-3 py-lg-5">
+    <div class="container py-5">
         <div class="categoria-body">
             <div class="section-title justify-content-center text-center">
                 <h1>Categorías</h1>
             </div>
             <div class="box-container">
                 <div class="swiper-container">
-                    <swiper #swiper class="pb-5 px-md-5 pb-lg-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
+                    <swiper class="pb-5 px-md-5 pb-lg-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="configCategories" [thumbs]="{swiper: thumbsSwiper}">
                         <ng-template swiperSlide *ngFor="let images of categories">
                             <div class="category-card" (click)="navigateToProductList(images.name)">
                                 <div class="image">
@@ -171,7 +171,7 @@
 <section class="section-content" id="consumibles">
     <div class="consumible">
         <!-- <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/consumibles.jpg" alt="consumibles-impresoras"></div> -->
-        <div class="container py-3 py-lg-5 consumible-container">
+        <div class="container py-5 consumible-container">
             <div class="consumible-body">
                 <div class="section-title">
                     <h1 class="white">Consumibles y Refacciones</h1>
@@ -202,7 +202,7 @@
 
 <section class="section-content" id="equipos">
     <div class="equipos">
-        <div class="container py-3 py-lg-5 equipos-container">
+        <div class="container py-5 equipos-container">
             <div class="equipos-body">
                 <div class="section-title">
                     <h1>Equipos de Impresión</h1>
@@ -248,7 +248,7 @@
 <section class="section-content" id="softwares">
     <div class="software">
         <!-- <div class="software-image"><img src="../../../assets/img/home/soluciones-servicios/gestion-documental-impresion.jpg" alt="document-administration"></div> -->
-        <div class="container py-3 py-lg-5 software-container">
+        <div class="container py-5 software-container">
             <div class="software-body">
                 <div class="section-title">
                     <h1>Gestión Documental y de Impresión</h1>
@@ -289,7 +289,7 @@
 </section>
 
 <section class="section-content" id="clientes">
-    <div class="container py-3 py-lg-5">
+    <div class="container py-5">
         <div class="client-body">
             <div class="section-title justify-content-center text-center">
                 <h1 class="white">Nuestros principales clientes</h1>
@@ -302,7 +302,7 @@
 </section>
 
 <!-- <section class="section-content" id="beneficios">
-    <div class="container py-3 py-lg-5">
+    <div class="container py-5">
         <div class="row">
             <div class="col-12">
                 <h1 class="section-title">Principales Beneficios</h1>

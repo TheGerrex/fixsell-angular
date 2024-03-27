@@ -15,7 +15,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { NosotrosComponent } from './pages/nosotros/nosotros.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { RentaComponent } from './pages/renta/renta.component';
-import { ConsumiblesComponent } from './pages/consumibles/consumibles.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
@@ -30,7 +29,6 @@ import { PrinterModule } from './printers/printers.module';
     NosotrosComponent,
     VentaComponent,
     RentaComponent,
-    ConsumiblesComponent,
     PromocionesComponent,
     ServiciosComponent,
     AvisoDePrivacidadComponent,
