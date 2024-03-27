@@ -72,26 +72,25 @@ export class ProductEmailFormComponent {
               },
             });
 
-          //email client
           // Prepare the email data
-          const subject = encodeURIComponent(
-            `${this.companyName},: ${this.productType}, ${this.product}`
-          );
-          const body = encodeURIComponent(
-            `Hola, hablo por parte de: ${this.companyName}\n` +
-              `Message: ${this.message}` +
-              `me puedes dar más información al respecto?\n\n` +
-              `Email: ${this.email}\n` +
-              `Phone: ${this.phone}\n` +
-              `Product: ${this.product}\n` +
-              ``
-          );
+          const emailData = {
+            name: this.companyName,
+            number: this.phone,
+            email: this.email,
+            message: this.message,
+          };
 
-          // Construct the mailto link
-          const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
-
-          // Open the email client in a new tab or window
-          window.open(mailtoLink, '_blank');
+          // Send the email
+          this.http
+            .post(`${this.baseUrl}/email/send-email`, emailData)
+            .subscribe({
+              next: (emailResponse: any) => {
+                console.log('Email sent successfully:', emailResponse);
+              },
+              error: (emailError) => {
+                console.error('Error sending email:', emailError);
+              },
+            });
 
           // Reset the form
           this.companyName = '';
