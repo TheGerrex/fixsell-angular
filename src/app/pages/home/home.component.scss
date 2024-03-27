@@ -8,7 +8,7 @@
     background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #CFDEED);
     background-size: 400% 400%;
     width: 100%;
-    height: calc(100vh - 84px);
+    height: calc(85vh - 84px);
     animation: gradient 10s ease infinite;
     position: relative;
      ::before {
@@ -163,25 +163,23 @@
     /* When the 'animate' class is added, the section becomes visible */
 }
 
-
-    .section-title {
-        font-weight: 600;
-        font-size: 2.5em;
-        color: $section-title;
-        margin-bottom: $p-1;
-        // Medium devices (tablets, 768px and up)
-        @media (min-width: 768px) {
-            font-size: 3em;
-        }
+.section-title {
+    font-weight: 600;
+    font-size: 2.5em;
+    color: $section-title;
+    margin-bottom: $p-1;
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+        font-size: 3em;
     }
-    
-    .section-description {
-        font-weight: 400;
-        font-size: 1.25em;
-        line-height: 1.3;
-        color: $text;
-    }
+}
 
+.section-description {
+    font-weight: 400;
+    font-size: 1.25em;
+    line-height: 1.3;
+    color: $text;
+}
 
 #proveedores {
     opacity: 0;
@@ -208,6 +206,83 @@
     }
 }
 
+#features {
+    background-color: $light-900;
+}
+
+.feature-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    .feature-card {
+        flex: 1 0 calc(25% - 1em);
+        min-height: 338px;
+        padding: 2em;
+        text-decoration: none;
+        width: 300px;
+        border-radius: $border-radius;
+        border: 2px solid $white;
+        background-color: $white;
+        transition: all .3s ease-in-out;
+        &:hover {
+            border: 2px solid $primary-color;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            padding: 10px;
+            border-radius: 50%;
+            border: 1px solid $gray-100;
+            background-color: $gray-100;
+            transition: all .3s ease-in-out;
+            img {
+                width: 34px;
+                height: 34px;
+                transition: all .3s ease-in-out; // Move this line here
+            }
+        }
+        .title-container {
+            color: $text;
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: 0;
+            line-height: 30px;
+            margin: 20px 0;
+            min-height: 60px;
+            width: 100%;
+            // width: 256px;
+        }
+        .content-container {
+            color: $text;
+            font-size: 16px;
+            height: auto;
+            letter-spacing: 0;
+            line-height: 22px;
+            min-height: 88px;
+            width: 100%;
+            // width: 256px;
+        }
+    }
+}
+
+.icon-container .active {
+    display: none;
+}
+
+.icon-container .inactive {
+    display: block;
+}
+
+.feature-card:hover .icon-container .active {
+    display: block;
+}
+
+.feature-card:hover .icon-container .inactive {
+    display: none;
+}
 
 .solucion-wrapper {
     display: flex;
@@ -248,13 +323,10 @@
             width: 100%;
         }
     }
-
     @media(max-width: 992px) {
         flex-direction: column;
     }
-    
 }
-
 
 .solucion-title {
     display: flex;
@@ -262,62 +334,53 @@
     align-self: stretch;
     border-bottom: 2px solid $gray-300;
     padding-bottom: $p-1;
-   
     @media(min-width: 992px) {
         flex-direction: column;
         padding-bottom: $p-2;
         // border: none;
     }
-  
     h2 {
         font-weight: 600;
         color: $text;
         margin: 0;
     }
-
 }
+
 .solucion-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
     flex: 1 0 0;
-
     .solucion-item {
         display: flex;
         align-items: center;
         gap: 16px;
-
         // @media(max-width: 768px) {
         //     align-items: flex-start;
         //     flex-direction: column;
         // }
-
         img {
             width: 150px;
             max-height: 50px;
         }
-
         i {
             font-size: 32px;
         }
-
         p {
             margin: 0;
             color: $text;
         }
     }
-
     .solucion-action {
         display: flex;
         width: 100%;
         margin-top: $p-2;
     }
-
     .service-column-card {
         align-items: flex-start;
         flex-direction: row;
-        @media(max-width:992px) {
+        @media(max-width: 992px) {
             // background-color: $gray-50;
             // border-radius: $border-radius;
             // border: 1px solid $light-200;
@@ -326,7 +389,6 @@
             gap: 32px;
         }
     }
-
     .solucion-item-gestion {
         display: flex;
         align-items: flex-start;
@@ -336,28 +398,22 @@
         box-sizing: border-box;
         width: 100%;
         margin-top: $p-2;
-
         @media(min-width: 992px) {
             align-items: center;
             flex-direction: row;
         }
-
         img {
             width: 150px;
             max-height: 50px;
         }
-
         i {
             font-size: 32px;
         }
-
         p {
             margin: 0;
             color: $text;
         }
     }
-
-
     .solucion-items-container {
         display: flex;
         flex-direction: row;
@@ -365,10 +421,9 @@
         gap: 16px;
         align-self: stretch;
         margin-top: $p-3;
-        @media(max-width:768px) {
+        @media(max-width: 768px) {
             flex-direction: column;
         }
-
         .solucion-item-card {
             display: flex;
             padding: 24px;
@@ -382,7 +437,7 @@
             width: 100%;
             border: 1px solid $light-300;
             background-color: $light-50;
-            @media(min-width:769px) {
+            @media(min-width: 769px) {
                 width: 100px;
                 flex-direction: column;
                 align-items: flex-start;
@@ -390,12 +445,10 @@
                     font-size: 48px !important;
                 }
             }
-
             i {
                 font-size: 40px;
                 // color: var(--info-color, #3B82F6);
             }
-
             p {
                 margin: 0;
                 font-weight: 600;
@@ -409,18 +462,425 @@
     transform: scale(1.03);
 }
 
+.consumible {
+    width: 100%;
+    height: 100%;
+    background-color: #797F7E;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
+    background-size: cover;
+    background-position: center;
+    .consumible-container {
+        padding: 3em 1em;
+        @media(min-width: 768px) {
+            padding: 8em 0em;
+        }
+        .consumible-title {
+            display: flex;
+            align-items: flex-start;
+            align-self: stretch;
+            margin-bottom: $p-1;
+            @media(min-width: 992px) {
+                flex-direction: column;
+                margin-bottom: $p-2;
+                // border: none;
+            }
+            h1 {
+                font-weight: 600;
+                color: $white;
+                margin: 0;
+            }
+        }
+        .consumible-body {
+            .consumible-item {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                img {
+                    width: 150px;
+                    max-height: 50px;
+                }
+                i {
+                    font-size: 32px;
+                }
+                h4 {
+                    margin: 0;
+                    font-weight: 400;
+                    color: $gray-50;
+                }
+            }
+            .consumible-items-container {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 16px;
+                align-self: stretch;
+                margin-top: $p-3;
+                @media(max-width: 768px) {
+                    flex-direction: column;
+                }
+                .consumible-item-card {
+                    display: flex;
+                    padding: 2em 2em;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 16px;
+                    flex: 1 0 0;
+                    align-self: stretch;
+                    border-radius: 12px;
+                    transition: transform 0.3s ease-in-out;
+                    width: 100%;
+                    // border: 1px solid $gray-700;
+                    // background-color: $light-50;
+                    backdrop-filter: blur(50px);
+                    @media(min-width: 769px) {
+                        width: 100px;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        // i {
+                        //     font-size: 34px;
+                        // }
+                    }
+                    i {
+                        font-size: 34px;
+                    }
+                    p {
+                        margin: 0;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.servicio {
+    min-height: 750px;
+    overflow: hidden;
+    background-color: $light-50;
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
+    background-size: cover;
+    background-position: center;
+    .servicio-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        padding: 3em 1em;
+        @media(min-width: 768px) {
+            padding: 4em 0em;
+            flex-direction: row;
+        }
+        .servicio-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            .servicio-title {
+                display: flex;
+                align-items: flex-start;
+                align-self: stretch;
+                margin-bottom: $p-1;
+                @media(min-width: 992px) {
+                    flex-direction: column;
+                    margin-bottom: $p-2;
+                    // border: none;
+                }
+                h1 {
+                    font-weight: 600;
+                    color: $text;
+                    margin: 0;
+                }
+            }
+            .servicio-content {
+                display: flex;
+                flex-direction: column;
+                gap: 3em;
+                max-width: 700px;
+                .servicio-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    flex-direction: row;
+                    .icon-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid $gray-300;
+                        border-radius: 50px;
+                        padding: 1em;
+                        i {
+                            font-size: 32px;
+                        }
+                    }
+                    .servicio-item-body {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1em;
+                        margin-top: 1em;
+                        .servicio-item-title {
+                            h2 {
+                                font-weight: 400;
+                            }
+                        }
+                        .servicio-item-content {
+                            display: none;
+                        }
+                    }
+                    &:hover,
+                    &.active {
+                        align-items: flex-start;
+                        .icon-container {
+                            background-color: $primary-color;
+                            border: 1px solid $primary-color;
+                            i {
+                                color: $white;
+                            }
+                        }
+                        .servicio-item-content {
+                            display: block;
+                        }
+                        .servicio-item-title {
+                            h2 {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                    @media(max-width: 768px) {
+                        // background-color: $gray-50;
+                        // border-radius: $border-radius;
+                        // border: 1px solid $light-200;
+                        flex-direction: column;
+                        padding: $p-2 0px;
+                        gap: 32px;
+                    }
+                }
+            }
+        }
+        .servicio-content-image {
+            .servicio-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                @media(min-width: 768px) {
+                    max-width: 600px;
+                    max-height: 600px;
+                }
+                img {
+                    width: 100%;
+                    // height: 100%;
+                    border-radius: $border-radius;
+                    @media(min-width: 768px) {
+                        // max-width: 500px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.equipos {
+    min-height: 750px;
+    overflow: hidden;
+    background-color: $white;
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
+    background-size: cover;
+    background-position: center;
+    .equipos-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 3em 1em;
+        @media(min-width: 768px) {
+            padding: 4em 0em;
+            flex-direction: row;
+            gap: 0em;
+        }
+        .equipos-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            max-width: 600px;
+            .equipos-title {
+                display: flex;
+                align-items: flex-start;
+                align-self: stretch;
+                margin-bottom: $p-1;
+                @media(min-width: 992px) {
+                    flex-direction: column;
+                    margin-bottom: $p-2;
+                    // border: none;
+                }
+                h1 {
+                    font-weight: 600;
+                    color: $text;
+                    margin: 0;
+                }
+            }
+            .equipos-content {
+                display: flex;
+                flex-direction: column;
+                gap: 2em;
+                max-width: 700px;
+                .equipos-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    flex-direction: row;
+                    h4 {
+                        font-weight: 400;
+                        color: $text;
+                    }
+                    @media(max-width: 768px) {
+                        padding: $p-2 0px;
+                        gap: 1em;
+                    }
+                }
+            }
+        }
+        .equipos-content-image {
+            position: relative;
+            overflow: auto;
+            .equipos-feature-card {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                max-width: 350px;
+                gap: 1em;
+                padding: 1em;
+                flex-direction: row;
+                // border: 1px solid $light-300;
+                border-radius: $border-radius;
+                background-color: #FFF;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                p {
+                    margin: 0;
+                }
+            }
+            #velocidad {
+                bottom: 5%;
+                right: 5%;
+            }
+            #impresion {
+                bottom: 25%;
+                right: 5%;
+            }
+            #mantenimiento {
+                bottom: 50%;
+                right: 5%;
+            }
+            .equipos-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                @media(min-width: 768px) {
+                    // max-width: 600px;
+                    // max-height: 600px;
+                }
+                img {
+                    width: 100%;
+                    // height: 100%;
+                    border-radius: $border-radius;
+                    @media(min-width: 768px) {
+                        // max-width: 500px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.software {
+    min-height: 750px;
+    overflow: hidden;
+    background-color: $light-50;
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
+    background-size: cover;
+    background-position: center;
+    .software-container {
+        padding: 3em 1em;
+        @media(min-width: 768px) {
+            padding: 4em 0em;
+            flex-direction: row;
+            gap: 0em;
+        }
+        .software-body {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            .software-title {
+                display: flex;
+                align-items: flex-start;
+                align-self: stretch;
+                margin-bottom: $p-1;
+                @media(min-width: 992px) {
+                    flex-direction: column;
+                    margin-bottom: $p-2;
+                }
+                h1 {
+                    font-weight: 600;
+                    color: $text;
+                    margin: 0;
+                }
+            }
+            .software-subtitle {
+                h4 {
+                    font-weight: 400;
+                    margin: 0;
+                }
+            }
+            .software-content {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 2em;
+                .software-item-gestion-card {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 2em;
+                    // gap: 1em;
+                    // border: 1px solid $gray-300;
+                    background-color: $white;
+                    border-radius: $border-radius;
+                    flex: 1 0 auto;
+                    width: 100%;
+                    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+                    #ysoft {
+                        height: 40px;
+                    }
+                    img {
+                        width: 150px;
+                        max-height: 50px;
+                        margin-bottom: 1em;
+                    }
+                    h4 {
+                        font-weight: 400;
+                        color: $text;
+                    }
+                    p {
+                        margin: 0;
+                        color: $text;
+                    }
+                    @media(min-width: 1024px) {
+                        width: 25%;
+                    }
+                }
+            }
+        }
+    }
+}
+
 #consumibleStock {
     // border: 1px solid $info-color;
     // background-color: $light-100;
     i {
         color: $info-color-hover;
     }
-
     // p {
     //     color: $info-color-active;
     // }
-
-    
 }
 
 #consumiblePrecio {
@@ -429,7 +889,6 @@
     i {
         color: $success-color-hover;
     }
-
     // p {
     //     color: $success-color-active;
     // }
@@ -441,13 +900,10 @@
     i {
         color: $danger-color-hover;
     }
-
     // p {
     //     color: $danger-color-active;
     // }
 }
-
-
 
 .link-wrap {
     position: fixed;
@@ -683,4 +1139,8 @@
             min-height: 100%;
         }
     }
+}
+
+.displayNone {
+    display: none;
 }

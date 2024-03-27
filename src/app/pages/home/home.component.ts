@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import SwiperCore, {
   Navigation,
@@ -19,8 +19,12 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
   thumbsSwiper: any;
+  imageSrc = '../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png';
+  activeItem = 1;
+  isSmallScreen = false;
 
   categories = [
     {
@@ -206,9 +210,31 @@ export class HomeComponent {
     ];
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = event.target.innerWidth <= 768;
+  }
+
+  ngOnInit() {
+    this.isSmallScreen = window.innerWidth <= 768;
+  }
+
   navigateToProductList(category: string) {
     this.router.navigate(['/printers/list'], {
       queryParams: { categories: category },
     });
+  }
+
+  changeImage(newImageSrc: string) {
+      this.imageSrc = newImageSrc;
+  }
+  
+  setActiveItem(item: number) {
+    this.activeItem = item;
+  }
+
+  scrollTo(id: string): void {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
   }
 }
