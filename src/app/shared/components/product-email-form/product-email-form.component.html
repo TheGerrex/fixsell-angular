@@ -1,11 +1,11 @@
 <!-- Cotiza por Email -->
 <button class="button button-primary button-rounded" (click)="openEmailForm()">
-  <span class="button-label">Cotiza por Email</span
-  ><i class="pi pi-envelope"></i>
+  <i class="pi pi-envelope"></i>
+  <span class="button-label">Cotiza por Email</span>
 </button>
 
 <!-- Email Form -->
-<div *ngIf="showEmailForm">
+<div *ngIf="showEmailForm" class="email-form">
   <form
     class="form-contact mt-3"
     #emailForm="ngForm"

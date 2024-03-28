@@ -94,8 +94,8 @@
               style="background-color: #23d366 !important; color: #1f2937"
               (click)="openWhatsApp()"
             >
-              <span class="button-label">Cotiza por Whatsapp</span
-              ><i class="pi pi-whatsapp"></i>
+              <i class="pi pi-whatsapp"></i>
+              <span class="button-label">Cotiza por Whatsapp</span>
             </button>
             <button
               *ngIf="consumable?.deals && consumable.deals.length > 0"
@@ -114,58 +114,14 @@
               "
               [product]="consumable.name"
               [productType]="'consumible'"
+              class="w-100"
             ></product-email-form>
           </div>
           <div class="product-info-block">
             <div class="product-description">
               <p>
-                {{ consumable.shortDescription }}
+                {{ consumable.longDescription }}
               </p>
-            </div>
-          </div>
-          <div class="product-info-block">
-            <div class="product-functions">
-              <div class="Feature">
-                <div class="feature-container">
-                  <img
-                    src="assets/svg/colors/CMYK.svg"
-                    alt="CMYK"
-                    class="color-wheel"
-                  />
-                  <h4 class="titulo">Color</h4>
-                </div>
-                <div [ngSwitch]="consumable.color">
-                  <p *ngSwitchCase="'K'" class="dato">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#231f20' }"
-                    ></span>
-                    Negro
-                  </p>
-                  <p *ngSwitchCase="'M'" class="dato">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#ec008c' }"
-                    ></span>
-                    Magenta
-                  </p>
-                  <p *ngSwitchCase="'C'" class="dato">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#00aeef' }"
-                    ></span>
-                    Cyan
-                  </p>
-                  <p *ngSwitchCase="'Y'" class="dato">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#fff200' }"
-                    ></span>
-                    Yellow
-                  </p>
-                  <p *ngSwitchDefault class="dato">B/N</p>
-                </div>
-              </div>
             </div>
           </div>
           <div class="product-info-block">
@@ -175,12 +131,46 @@
               </div>
               <div class="body-specs">
                 <div class="spec">
+                  <h4 class="spec-title">Color</h4>
+                  <div [ngSwitch]="consumable.color">
+                  <p *ngSwitchCase="'K'" class="spec-data">
+                    <span
+                      class="color-circle"
+                      [ngStyle]="{ 'background-color': '#231f20' }"
+                    ></span>
+                    Negro
+                  </p>
+                  <p *ngSwitchCase="'M'" class="spec-data">
+                    <span
+                      class="color-circle"
+                      [ngStyle]="{ 'background-color': '#ec008c' }"
+                    ></span>
+                    Magenta
+                  </p>
+                  <p *ngSwitchCase="'C'" class="spec-data">
+                    <span
+                      class="color-circle"
+                      [ngStyle]="{ 'background-color': '#00aeef' }"
+                    ></span>
+                    Cyan
+                  </p>
+                  <p *ngSwitchCase="'Y'" class="spec-data">
+                    <span
+                      class="color-circle"
+                      [ngStyle]="{ 'background-color': '#fff200' }"
+                    ></span>
+                    Amarillo
+                  </p>
+                  <p *ngSwitchDefault class="spec-data">B/N</p>
+                </div>
+                </div>
+                <div class="spec">
                   <h4 class="spec-title">SKU</h4>
                   <p class="spec-data">{{ consumable.sku }}</p>
                 </div>
                 <div class="spec">
-                  <h4 class="spec-title">vida util @ 5%</h4>
-                  <p class="spec-data">{{ consumable.yield }}</p>
+                  <h4 class="spec-title">Vida Útil @ 5%</h4>
+                  <p class="spec-data">{{ consumable.yield }} páginas</p>
                 </div>
                 <div class="spec">
                   <h4 class="spec-title">Volumen</h4>

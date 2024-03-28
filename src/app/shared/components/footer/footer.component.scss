@@ -56,7 +56,14 @@
             p {
                 margin-bottom: 0;
                 color: $text;
+                &:hover {
+                    color: $primary-color;
+                }
             }
+            a {
+                text-decoration: none;
+                
+            }	
         }
     }
 }

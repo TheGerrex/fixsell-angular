@@ -22,7 +22,7 @@ export class ProductEmailFormComponent {
   constructor(private http: HttpClient) {}
 
   openEmailForm() {
-    this.showEmailForm = true;
+    this.showEmailForm = !this.showEmailForm;
   }
 
   submitEmailForm(form: NgForm) {
