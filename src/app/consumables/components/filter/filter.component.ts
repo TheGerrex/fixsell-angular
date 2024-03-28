@@ -67,11 +67,6 @@ export class FilterComponent implements OnInit {
   isSectionVisibleCategory: boolean = true;
   isSectionVisibleOrigen: boolean = true;
   isSectionVisibleYield: boolean = true;
-  rentable?: boolean = false;
-  sellable?: boolean = false;
-  rentableCount: number = 0;
-  isVentaHighlighted: boolean = false;
-  isRentaHighlighted: boolean = false;
   appliedFiltersCount: number = 0;
   pageLoaded = false;
   filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
@@ -86,11 +81,6 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      const sellable = params['sellable'];
-      this.sellable = sellable === 'true' || sellable === '';
-
-      const rentable = params['rentable'];
-      this.rentable = rentable === 'true' || rentable === '';
 
       this.selectedBrands =
         typeof params['brand'] === 'string' ? params['brand'].split(',') : [];
@@ -101,7 +91,7 @@ export class FilterComponent implements OnInit {
       this.selectedOrigens =
         typeof params['origen'] === 'string' ? params['origen'].split(',') : [];
       this.selectedYields =
-        typeof params['yield'] === 'string' ? params['yield'].split(',') : [];
+        typeof params['yields'] === 'string' ? params['yields'].split(',') : [];
       this.selectedColors =
         typeof params['color'] === 'string' ? params['color'].split(',') : [];
     });
@@ -114,7 +104,7 @@ export class FilterComponent implements OnInit {
         this.categories = Array.from(
           new Set(consumables.map((consumable) => consumable.category))
         );
-        console.log('categories received..', this.categories);
+        
       },
       (error) => {
         console.error('Error fetching consumables:', error);
@@ -172,61 +162,6 @@ export class FilterComponent implements OnInit {
     this.isMobile = window.innerWidth <= 768;
   }
 
-  toggleSellableOptionFilter(): void {
-    const wasSellable = this.sellable;
-    this.sellable = !this.sellable;
-    this.rentable = !this.sellable;
-
-    if (wasSellable !== this.sellable) {
-      this.appliedFiltersCount = this.sellable
-        ? this.appliedFiltersCount + 1
-        : this.appliedFiltersCount > 0
-        ? this.appliedFiltersCount - 1
-        : 0;
-    }
-
-    this.route.queryParams.subscribe((params) => {
-      const updatedParams = {
-        ...params,
-        sellable: this.sellable ? 'true' : 'false',
-        rentable: this.rentable ? 'true' : 'false',
-        filterCount: this.appliedFiltersCount,
-        page: '1',
-      };
-      this.router.navigate([], {
-        queryParams: updatedParams,
-        queryParamsHandling: 'merge',
-      });
-    });
-  }
-
-  toggleRentableOptionFilter(): void {
-    const wasRentable = this.rentable;
-    this.rentable = !this.rentable;
-    this.sellable = !this.rentable;
-
-    if (wasRentable !== this.rentable) {
-      this.appliedFiltersCount = this.rentable
-        ? this.appliedFiltersCount + 1
-        : this.appliedFiltersCount > 0
-        ? this.appliedFiltersCount - 1
-        : 0;
-    }
-
-    this.route.queryParams.subscribe((params) => {
-      const updatedParams = {
-        ...params,
-        rentable: this.rentable ? 'true' : 'false',
-        sellable: this.sellable ? 'true' : 'false',
-        filterCount: this.appliedFiltersCount,
-        page: '1',
-      };
-      this.router.navigate([], {
-        queryParams: updatedParams,
-        queryParamsHandling: 'merge',
-      });
-    });
-  }
 
   toggleBrandFilter(filterBrand: string): void {
     const wasIncluded = this.selectedBrands.includes(filterBrand);
@@ -286,7 +221,7 @@ export class FilterComponent implements OnInit {
   }
 
   toggleYieldFilter(yieldValue: string): void {
-    console.log('filtering by yield in filter');
+    console.log('Selected Yield Value:', yieldValue);
     const wasIncluded = this.selectedYields.includes(yieldValue);
     if (wasIncluded) {
       this.selectedYields.splice(this.selectedYields.indexOf(yieldValue), 1);
@@ -295,6 +230,8 @@ export class FilterComponent implements OnInit {
       this.selectedYields.push(yieldValue);
       this.appliedFiltersCount++;
     }
+    console.log('selectedYields after toggleYieldFilter:', this.selectedYields);
+    
     this.emitFilters();
   }
 
@@ -305,8 +242,6 @@ export class FilterComponent implements OnInit {
     this.selectedCategories = [];
     this.selectedOrigens = [];
     this.selectedYields = [];
-    this.rentable = undefined;
-    this.sellable = undefined;
     this.appliedFiltersCount = 0;
 
     // Emit the changes
@@ -323,13 +258,12 @@ export class FilterComponent implements OnInit {
       color: this.selectedColors.join(','),
       categories: this.selectedCategories.join(','),
       origen: this.selectedOrigens.join(','),
-      printVelocities: this.selectedPrintVelocities.join(','),
       yields: this.selectedYields.join(','),
-      sellable: this.sellable,
-      rentable: this.rentable,
       filterCount: this.appliedFiltersCount,
       // Add other filters here...
     };
+    console.log('selectedYields in emitFilters:', this.selectedYields);
+    console.log('Emitting filters:', filters);
 
     this.filteredPrintersChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
@@ -340,26 +274,23 @@ export class FilterComponent implements OnInit {
     });
   }
 
-  toggleCheckbox(data: string, group: string) {
-    switch (group) {
-      case 'consumibleBrands':
-        this.toggleBrandFilter(data);
-        break;
-
-      case 'colorType':
-        this.toggleColorFilter(data);
-        break;
-      case 'categories':
-        this.toggleCategoryFilter(data);
-        break;
-
-      case 'origen':
-        this.toggleOrigenFilter(data);
-        break;
-
-      case 'yields':
-        this.toggleYieldFilter(data);
-        break;
-    }
-  }
+  // toggleCheckbox(data: string, group: string) {
+  //   switch (group) {
+  //     case 'consumibleBrands':
+  //       this.toggleBrandFilter(data);
+  //       break;
+  //     case 'colorType':
+  //       this.toggleColorFilter(data);
+  //       break;
+  //     case 'categories':
+  //       this.toggleCategoryFilter(data);
+  //       break;
+  //     case 'origen':
+  //       this.toggleOrigenFilter(data);
+  //       break;
+  //     case 'yields':
+  //       this.toggleYieldFilter(data);
+  //       break;
+  //   }
+  // }
 }

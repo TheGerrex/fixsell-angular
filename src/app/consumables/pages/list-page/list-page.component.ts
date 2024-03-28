@@ -92,7 +92,6 @@ export class ListPageComponent implements OnInit {
         this.totalPages = Math.ceil(this.totalPrinters / this.limit);
         this.route.queryParams.subscribe((params) => {
           this.appliedFiltersCount = +params['filterCount'] || 0;
-          console.log('Listpage Filter Count', this.appliedFiltersCount);
           this.currentPage = +params['page'] || 1; // Use 1 as the default page number
           this.applyFilters(params);
           this.fetchPrintersForCurrentPage();
@@ -134,7 +133,6 @@ export class ListPageComponent implements OnInit {
   }
 
   fetchPrinters(page: number = this.currentPage) {
-    console.log('Click action', this.filteredConsumable);
     this.route.queryParams.subscribe((params) => {
       const updatedParams = { ...params, page: page };
       this.router.navigate(['/consumables/list'], {
@@ -145,7 +143,6 @@ export class ListPageComponent implements OnInit {
   }
 
   fetchPrintersForCurrentPage() {
-    console.log('Fetching printers Before', this.filteredConsumable);
     const start = (this.currentPage - 1) * this.limit;
     const end = start + this.limit;
     this.filteredConsumable = this.filteredConsumable.slice(start, end);
@@ -153,7 +150,6 @@ export class ListPageComponent implements OnInit {
   }
 
   async handleFilteredPrintersChange(queryFilters: any): Promise<void> {
-    console.log('Query', queryFilters);
     this.applyFilters(queryFilters);
     this.currentPage = 1;
     this.fetchPrinters(this.currentPage);
@@ -169,27 +165,22 @@ export class ListPageComponent implements OnInit {
     // Apply filters...
     if (queryFilters.brand) {
       const brands = queryFilters.brand.split(',');
-      console.log(brands);
       this.filteredConsumable = this.filteredConsumable.filter((consumable) =>
         brands.includes(consumable.brand)
       );
-      console.log('this.filteredPrinters', this.filteredConsumable);
     }
 
     // Apply color filter
     if (queryFilters.color) {
       const color = queryFilters.color.split(',');
-      console.log('color', color);
       this.filteredConsumable = this.filteredConsumable.filter((consumible) =>
         color.includes(consumible.color)
       );
-      console.log('color - printers', this.filteredConsumable);
     }
 
     // Apply category filter
     if (queryFilters.categories) {
       const categories = queryFilters.categories.split(',');
-      console.log(categories);
       this.filteredConsumable = this.filteredConsumable.filter((consumable) =>
         categories.includes(consumable.category)
       );
@@ -198,7 +189,6 @@ export class ListPageComponent implements OnInit {
     //apply origen filter
     if (queryFilters.origen) {
       const origen = queryFilters.origen.split(',');
-      console.log(origen);
       this.filteredConsumable = this.filteredConsumable.filter((consumable) =>
         origen.includes(consumable.origen)
       );
@@ -206,9 +196,7 @@ export class ListPageComponent implements OnInit {
 
     // Apply yield filter
     if (queryFilters.yields) {
-      console.log('filtering by yield');
       const yields = queryFilters.yields.split(',');
-      console.log('filteredConsumable: yields', this.filteredConsumable);
       this.filteredConsumable = this.filteredConsumable.filter((consumable) => {
         let isInRange = false;
         for (let i = 0; i < yields.length; i++) {
@@ -229,7 +217,6 @@ export class ListPageComponent implements OnInit {
   }
 
   scrollToContainer() {
-    console.log('scrollToContainer', this.productList);
     if (this.productList) {
       this.renderer.setProperty(this.productList.nativeElement, 'scrollTop', 0);
     }

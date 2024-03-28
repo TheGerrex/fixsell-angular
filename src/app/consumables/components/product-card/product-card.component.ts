@@ -12,8 +12,4 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
     if (!this.consumible) throw new Error('Consumable property is required');
   }
-
-  logPrinter() {
-    console.log(this.consumible);
-  }
 }

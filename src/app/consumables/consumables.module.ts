@@ -13,6 +13,7 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ConsumablePageComponent } from './pages/consumable-page/consumable-page.component';
+import { ConsumibleColorsPipe } from './pipes/consumible-colors.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ConsumablePageComponent } from './pages/consumable-page/consumable-page
     FilterComponent,
     ProductCardComponent,
     ConsumablePageComponent,
+    ConsumibleColorsPipe,
   ],
   imports: [
     CommonModule,
