@@ -40,7 +40,7 @@ export class ListPageComponent implements OnInit {
   offset = 0;
   currentPage = 1;
   totalPages = 4;
-  totalPrinters = 0;
+  totalConsumables = 0;
 
   @ViewChild(FilterComponent)
   filterComponent!: FilterComponent;
@@ -88,8 +88,8 @@ export class ListPageComponent implements OnInit {
       .getConsumables()
       .subscribe((consumables: Consumible[]) => {
         this.consumables = consumables;
-        this.totalPrinters = consumables.length;
-        this.totalPages = Math.ceil(this.totalPrinters / this.limit);
+        this.totalConsumables = consumables.length;
+        this.totalPages = Math.ceil(this.totalConsumables / this.limit);
         this.route.queryParams.subscribe((params) => {
           this.appliedFiltersCount = +params['filterCount'] || 0;
           this.currentPage = +params['page'] || 1; // Use 1 as the default page number
@@ -108,10 +108,22 @@ export class ListPageComponent implements OnInit {
       });
   }
 
-  getPageNumbers() {
-    return Array(this.totalPages)
-      .fill(0)
-      .map((x, i) => i + 1);
+  // getPageNumbers() {
+  //   return Array(this.totalPages)
+  //     .fill(0)
+  //     .map((x, i) => i + 1);
+  // }
+
+  getPageNumbers(): number[] {
+    if (this.totalPages <= 5) {
+      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    } else if (this.currentPage <= 4) {
+      return [2, 3, 4];
+    } else if (this.currentPage > this.totalPages - 3) {
+      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
+    } else {
+      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
+    }
   }
 
   getTotalConsumables(): Observable<number> {
@@ -121,8 +133,8 @@ export class ListPageComponent implements OnInit {
   }
 
   adjustLimit() {
-    if (window.innerWidth <= 7568) {
-      this.limit = 22;
+    if (window.innerWidth <= 768) {
+      this.limit = 21;
     } else {
       this.limit = 12; // Or whatever your default limit is
     }
@@ -212,8 +224,8 @@ export class ListPageComponent implements OnInit {
     }
 
     // Recalculate total pages
-    this.totalPrinters = this.filteredConsumable.length;
-    this.totalPages = Math.ceil(this.totalPrinters / this.limit);
+    this.totalConsumables = this.filteredConsumable.length;
+    this.totalPages = Math.ceil(this.totalConsumables / this.limit);
   }
 
   scrollToContainer() {

@@ -44,19 +44,43 @@
                             <option value="50">50</option>
                         </select>
                     </div> -->
-                    <div class="pagination-buttons">
+                    <!-- <div class="pagination-buttons">
                         <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" *ngIf="currentPage !== 1">
-              <span>Atras</span>
-            </button>
+                          <span>Atras</span>
+                        </button>
                         <span *ngIf="isMobile" class="pagination-button-number active"><span>{{ currentPage }}</span></span>
                         <div *ngIf="!isMobile" class="pagination-wrap">
                             <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
-                <span>{{ page }}</span>
-              </button>
+                              <span>{{ page }}</span>
+                            </button>
                         </div>
                         <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" *ngIf="currentPage !== totalPages">
-              <span>Siguiente</span>
-            </button>
+                          <span>Siguiente</span>
+                        </button>
+                    </div> -->
+                    <div class="pagination-buttons">
+                        <!-- previous button -->
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" *ngIf="currentPage !== 1">
+                          <span>Atras</span>
+                        </button>
+                        <span *ngIf="isMobile" class="pagination-button-number active"><span>{{ currentPage }}</span></span>
+                        <div *ngIf="!isMobile" class="pagination-wrap">
+                            <button class="pagination-button-number" [class.active]="currentPage === 1" (click)="fetchPrinters(1)">
+                              <span>1</span>
+                            </button>
+                            <span *ngIf="currentPage > 4">...</span>
+                            <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
+                              <span>{{ page }}</span>
+                            </button>
+                            <span *ngIf="currentPage < totalPages - 3">...</span>
+                            <button class="pagination-button-number" [class.active]="currentPage === totalPages" (click)="fetchPrinters(totalPages)">
+                              <span>{{ totalPages }}</span>
+                            </button>
+                        </div>
+                        <!-- next button -->
+                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" *ngIf="currentPage !== totalPages">
+                          <span>Siguiente</span>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -150,9 +150,9 @@ export class ConsumablesIntroComponent {
       },
     ];
   }
-  navigateToProductList(category: string, sellable: boolean) {
+  navigateToProductList(category: string) {
     this.router.navigate(['/consumables/list'], {
-      queryParams: { categories: category, sellable: sellable, filterCount: 2 },
+      queryParams: { categories: category,  filterCount: 1 },
     });
   }
 }

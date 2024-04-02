@@ -92,8 +92,16 @@ export class ListPageComponent implements OnInit {
     });
   }
 
-  getPageNumbers() {
-    return Array(this.totalPages).fill(0).map((x, i) => i + 1);
+  getPageNumbers(): number[] {
+    if (this.totalPages <= 5) {
+      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    } else if (this.currentPage <= 4) {
+      return [2, 3, 4];
+    } else if (this.currentPage > this.totalPages - 3) {
+      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
+    } else {
+      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
+    }
   }
 
   getTotalPrinters(): Observable<number> {
@@ -104,7 +112,7 @@ export class ListPageComponent implements OnInit {
 
   adjustLimit() {
     if (window.innerWidth <= 768) {
-        this.limit = 22;
+        this.limit = 21;
     } else {
         this.limit = 12; // Or whatever your default limit is
     }
