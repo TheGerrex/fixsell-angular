@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   imageSrc = '../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png';
   activeItem = 1;
   isSmallScreen = false;
+  isMediumScreen = false;
 
   categories = [
     {
@@ -247,10 +248,12 @@ export class HomeComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.isSmallScreen = event.target.innerWidth <= 768;
+    this.isMediumScreen = event.target.innerWidth <= 1024;
   }
 
   ngOnInit() {
     this.isSmallScreen = window.innerWidth <= 768;
+    this.isMediumScreen = window.innerWidth <= 1024;
   }
 
   navigateToProductList(category: string) {
