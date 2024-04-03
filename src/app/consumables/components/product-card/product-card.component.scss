@@ -271,6 +271,19 @@
     }
 }
 
+.product-card:hover .product-action-deal {
+    @media(min-width: 768px) {
+        background: $primary-color !important;
+        padding-left: 0 !important;
+        justify-content: center !important;
+        span,
+        i,
+        s {
+            color: #FFF !important;
+        }
+    }
+}
+
 // MOVE ME TO CORRECT PLACE
 .circle {
     width: 20px;

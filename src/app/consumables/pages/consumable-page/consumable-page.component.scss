@@ -468,39 +468,6 @@
     align-items: center;
 }
 
-.skeleton {
-    height: 100%;
-    width: 100%;
-    display: flex;
-  }
-
-.skeleton-info {
-    display: flex;
-    padding: 1em;
-    flex-direction: column;
-    
-}
-.skeleton-image {
-    height: 80vh;
-    width: 55.20833vw;
-}
-
-.skeleton-line {
-height: 30px;
-width: 500px;
- span {
-    border-radius: 14px;
- }
-}
-
-.skeleton-image,
-.skeleton-title,
-.skeleton-description {
-background-color: #ddd;
-/* Add other styles as needed */
-}
-
-
 .color-circle {
   display: inline-block;
   width: 10px;
