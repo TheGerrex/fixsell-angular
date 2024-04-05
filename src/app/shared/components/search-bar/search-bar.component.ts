@@ -1,17 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ConsumableService } from 'src/app/consumables/services/consumables.service';
+import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
 
 @Component({
   selector: 'shared-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent {
+export class SearchBarComponent implements OnInit {
   isInputFocused = false;  
   searchQuery = '';
-  consumables = ['consumable1', 'consumable2', 'consumable3']; // Replace this with your actual list of consumables
-  suggestions: string[] = [];
+  consumables: Consumible[] = []; // Replace this with your actual list of consumables
+  suggestions: Consumible[] = [];
 
-onInputChange() {
-  this.suggestions = this.consumables.filter(consumable => consumable.includes(this.searchQuery));
-}
+  constructor
+  (
+    private consumableService: ConsumableService,
+  ) {}
+
+  ngOnInit() {
+    this.getAllConsumables();
+  }
+
+    getAllConsumables() {
+    this.consumableService.getConsumables().subscribe(consumables => {
+      this.consumables = consumables;
+    });
+  }
+
+  onInputChange() {
+    const searchQueryUpper = this.searchQuery.toUpperCase();
+    this.suggestions = this.consumables.filter(consumable => consumable.name.toUpperCase().includes(searchQueryUpper));
+  }
+  
+  clearSuggestions() {
+    setTimeout(() => {
+      this.suggestions = [];
+    }, 200);
+  }
 }

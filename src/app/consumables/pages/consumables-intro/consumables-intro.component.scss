@@ -1,8 +1,12 @@
 @import "src/styles.scss";
 .banner {
     background-color: #781f41;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../../../assets/img/consumables-intro/consumables-banner-intro.jpg");
+    background-size: cover;
+    background-position: center;
     color: #fff;
     width: 100%;
+    height: 400px;
     padding: 64px 12px 100px 12px;
     // Medium devices (tablets, 768px and up)
     @media (min-width: 768px) {
@@ -16,11 +20,27 @@
 
 .wrapper {
     display: flex;
-    padding-bottom: 0px;
+    height: 100%;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    justify-content: center;
+    align-items: center;
     position: relative;
+
+    .banner-body {
+        text-align: center;
+        .banner-title {
+            margin-bottom: 8px;
+        }
+        .banner-subtitle {
+            color: $gray-200;
+            margin-bottom: 1.5em;
+        }
+        // .hr-divider {
+        //     background-color: $gray-50;
+        //     height: 1px;
+        //     margin: 8px 0px 8px 0px;
+        // }
+    }
 }
 
 .backdrop {
@@ -62,92 +82,28 @@
         }
     }
 }
+.section-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    .section-title {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+.carousel-container {
+    width: 100%;
+}
+
+
 
 #categorias {
     // transform: translateY(-100px);
     // height: 380px;
 }
 
-.search-box {
-    display: flex;
-    margin: 0 0 0 40px;
-    padding: 0 4px;
-    flex: 1;
-    flex-basis: 0.00000001px;
-    .search-form {
-        height: 40px;
-        position: relative;
-        flex: 1;
-        flex-basis: 0.000000001px;
-        display: flex;
-        flex-direction: row;
-        .search-form-container {
-            position: relative;
-            align-items: center;
-            background-color: $white;
-            border: 1px solid $gray-50;
-            border-right: none;
-            border-radius: 40px 0 0 40px;
-            // box-shadow: inset 0 1px 2px #000;
-            caret-color: var(--yt-spec-text-primary);
-            color: $text;
-            padding: 0 4px 0 16px;
-            margin-left: 32px;
-            flex: 1;
-            flex-basis: 0.000000001px;
-            display: flex;
-            flex-direction: row;
-            &:focus-within {
-                border: 1px solid $primary-color; // Replace $primary with your primary color variable
-            }
-            #search-icon {
-                // padding: 0 12px 0 16px;
-                // width: 20px;
-                // height: 20px;
-                margin-right: 8px;
-                display: inline-flex;
-            }
-            .search-input {
-                width: 100%;
-                input {
-                    width: 100%;
-                    box-sizing: border-box;
-                    padding: 1px 0;
-                    margin: 0;
-                    border: none;
-                    outline: none;
-                }
-            }
-            .search-clear-button {
-                height: 24px;
-                width: 24px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-    }
-    button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid $gray-100;
-        border-radius: 0 40px 40px 0;
-        cursor: pointer;
-        height: 40px;
-        width: 64px;
-        margin: 0;
-        background-color: $gray-100 !important;
-        border-color: $gray-100 !important;
-        &:hover {
-            // background-color: $gray-200 !important;
-            // border-color: $gray-200 !important;
-            i {
-                color: $primary-color-active;
-            }
-        }
-    }
-}
 
 .category-card {
     height: auto;

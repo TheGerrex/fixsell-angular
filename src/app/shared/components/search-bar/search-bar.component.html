@@ -8,12 +8,12 @@
                 <!-- <input type="email" name="hidden" id="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
                 <input type="password" name="hidden" id="hidden" style="width: 0; height: 0; border: 0; padding: 0" /> -->
                 <input id="search" type="text" [(ngModel)]="searchQuery" (input)="onInputChange()" autocapitalize="off" role="presentation" autocomplete="none" autocorrect="off" name="hidden" tabindex="0" spellcheck="false" placeholder="Buscar" aria-label="Buscar" aria-haspopup="false"
-                    autofocus="" role="combobox" aria-autocomplete="both" (focus)="isInputFocused = true" (blur)="isInputFocused = false">
+                    autofocus="" role="combobox" aria-autocomplete="both" (focus)="isInputFocused = true; onInputChange()" (blur)="isInputFocused = false; clearSuggestions()">
                 <div class="suggestions" *ngIf="suggestions.length > 0 && searchQuery.length > 0">
-                    <a *ngFor="let suggestion of suggestions" [routerLink]="['/detail', suggestion]">{{ suggestion }}</a>
+                    <a *ngFor="let suggestion of suggestions" [routerLink]="['/consumables', suggestion.id]">{{ suggestion.name }}</a>
                 </div>
             </div>
-            <div class="search-clear-button" *ngIf="searchQuery.length > 0">
+            <div class="search-clear-button" *ngIf="searchQuery.length > 0" (click)="searchQuery = ''">
                 <i class="pi pi-times"></i>
             </div>
         </div>

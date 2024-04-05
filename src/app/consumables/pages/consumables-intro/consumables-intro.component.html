@@ -1,14 +1,15 @@
 <div class="banner">
     <div class="wrapper container">
-        <div class="title">
-            <h1>Consumibles</h1>
-        </div>
-        <div class="body">
-            <p class="mb-3">
+        <div class="banner-body">
+            <!-- <p class="mb-3">
                 Nuestro servicio de suministro de consumibles para multifuncionales le brinda acceso a cartuchos de tóner, cartuchos de impresión y otros consumibles de alta calidad, sin la necesidad de realizar grandes compras por adelantado o de mantener un inventario
                 excesivo. Ya sea que necesite suministros para una pequeña oficina o para un entorno empresarial de gran volumen, nuestro servicio se adapta a sus requisitos específicos. Con entregas oportunas y precios competitivos, podemos ayudarlo
                 a optimizar sus operaciones de impresión, reducir los costos generales y minimizar el desperdicio.
-            </p>
+            </p> -->
+            <h1 class="banner-title">Consumibles</h1>
+            <h5 class="banner-subtitle">Abastece tus Multifuncionales con Nuestros Consumibles de Calidad</h5>
+            <!-- <hr class="hr-divider"> -->
+            <!-- <p class="mb-3">Entrega Rápida y Precios Competitivos</p> -->
             <shared-search-bar></shared-search-bar>
         </div>
         <!-- <div class="backdrop">
@@ -17,22 +18,27 @@
     </div>
 </div>
 
-<section class="section-content" id="categorias">
-    <div class="container">
-        <div class="row">
-            <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showNavigators]="true">
-                <ng-template let-category pTemplate="item">
-                    <div class="category-card" (click)="navigateToProductList(category.name)">
-                        <div class="image">
-                            <img [src]="category.img" alt="category.name" />
+<section id="categorias">
+    <div class="container py-5">
+        <div class="section-body">
+            <div class="section-title justify-content-center ">
+                <h1>Categorias</h1>
+            </div>
+            <div class="carousel-container">
+                <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showNavigators]="true">
+                    <ng-template let-category pTemplate="item">
+                        <div class="category-card" (click)="navigateToProductList(category.name)">
+                            <div class="image">
+                                <img [src]="category.img" alt="category.name" />
+                            </div>
+                            <div class="body">
+                                <h4 class="title mb-0">{{ category.name }}</h4>
+                                <i class="pi pi-arrow-right" id="translate-icon"></i>
+                            </div>
                         </div>
-                        <div class="body">
-                            <h4 class="title mb-0">{{ category.name }}</h4>
-                            <i class="pi pi-arrow-right" id="translate-icon"></i>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-carousel>
+                    </ng-template>
+                </p-carousel>
+            </div>
         </div>
     </div>
 </section>
