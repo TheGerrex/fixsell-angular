@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./consumables-intro.component.scss'],
 })
 export class ConsumablesIntroComponent {
+  isInputFocused = false;  
+  searchQuery = '';
   aspectos = [
     {
       title: 'Precios competitivos',

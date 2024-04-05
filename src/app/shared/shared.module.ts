@@ -12,6 +12,7 @@ import { ProductColorPipe } from './pipes/product-color.pipe';
 import { ProductTypePipe } from './pipes/product-type.pipe';
 import { ProductEmailFormComponent } from './components/product-email-form/product-email-form.component';
 import { FormsModule } from '@angular/forms';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     ProductColorPipe,
     ProductTypePipe,
     ProductEmailFormComponent,
+    SearchBarComponent,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -34,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     ProductColorPipe,
     ProductTypePipe,
     ProductEmailFormComponent,
+    SearchBarComponent,
   ],
 })
 export class SharedModule {}
