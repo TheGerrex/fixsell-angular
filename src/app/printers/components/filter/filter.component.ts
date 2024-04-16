@@ -262,16 +262,5 @@ export class FilterComponent implements OnInit {
         break;
     }
   }
-  
-
-//   // updateAppliedFiltersCount(count: number): void {
-//   //   this.appliedFiltersCount = count;
-//   //   this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-//   // }
-  
-//   toggleButtons() {
-//     this.checked = !this.checked;
-//     console.log('Toggling');
-//   }
 
 }

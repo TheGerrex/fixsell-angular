@@ -36,6 +36,7 @@
             .search-input {
                 width: 100%;
                 position: relative;
+                border: none;
                 input {
                     width: 100%;
                     box-sizing: border-box;
@@ -43,6 +44,7 @@
                     margin: 0;
                     border: none;
                     outline: none;
+                    border-radius: 8px;
                 }
             }
             .search-clear-button {

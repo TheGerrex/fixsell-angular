@@ -25,11 +25,11 @@
                         <i class="pi pi-spin pi-spinner" style="font-size: 4rem"></i>
                     </div>
                     <div class="search-bar-container">
-                        <app-search-bar-list (searchQueryChange)="onSearchQueryChange($event)"></app-search-bar-list>
+                        <app-search-bar-list [(searchQuery)]="searchQuery" (searchQueryChange)="onSearchQueryChange($event)"></app-search-bar-list>
                     </div>
                     <div class="product-list-container" #productList>
-                        <ng-container *ngIf="filteredConsumable.length > 0; else noProducts">
-                            <consumable-product-card [consumible]="consumable" *ngFor="let consumable of filteredConsumable" class="printer-product-card"></consumable-product-card>
+                        <ng-container *ngIf="filteredConsumables.length > 0; else noProducts">
+                            <consumable-product-card [consumible]="consumable" *ngFor="let consumable of filteredConsumables" class="printer-product-card"></consumable-product-card>
                         </ng-container>
                         <ng-template #noProducts>
                             <div class="not-found" *ngIf="!loading">
@@ -39,7 +39,7 @@
                         </ng-template>
                     </div>
                 </div>
-                <div class="pagination-container" *ngIf="filteredConsumable.length > 0 && totalPages > 1">
+                <div class="pagination-container" *ngIf="filteredConsumables.length > 0 && totalPages > 1">
                     <!-- <div class="pagination-quantity" *ngIf="!isMobile">
                         <select [(ngModel)]="limit" (change)="fetchPrinters()">
                             <option value="20">20</option>

@@ -10,8 +10,6 @@ import {
   OnDestroy,
   OnChanges,
 } from '@angular/core';
-import { Printer } from 'src/app/printers/interfaces/printer.interface';
-import { PrintersService } from 'src/app/printers/services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
 import { ConsumableService } from '../../services/consumables.service';
@@ -98,6 +96,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
         typeof params['yields'] === 'string' ? params['yields'].split(',') : [];
       this.selectedColors =
         typeof params['color'] === 'string' ? params['color'].split(',') : [];
+      this.searchQuery = params['search'] || '';
     });
 
     this.consumableService.getConsumables().subscribe(
@@ -256,33 +255,32 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     this.appliedFiltersCountChange.emit(0);
 
     // Update the URL to reflect the reset filters
-    this.router.navigate([], { queryParams: {} });
+    // this.router.navigate([], { queryParams: {} });
   }
 
   emitFilters(): void {
-    const filters = {
-      brand: this.selectedBrands.join(','),
-      color: this.selectedColors.join(','),
-      categories: this.selectedCategories.join(','),
-      origen: this.selectedOrigens.join(','),
-      yields: this.selectedYields.join(','),
-      filterCount: this.appliedFiltersCount,
-      page: 1,
-      search: this.searchQuery,
-    };
+  const filters = {
+    brand: this.selectedBrands.length > 0 ? this.selectedBrands.join(',') : null,
+    color: this.selectedColors.length > 0 ? this.selectedColors.join(',') : null,
+    categories: this.selectedCategories.length > 0 ? this.selectedCategories.join(',') : null,
+    origen: this.selectedOrigens.length > 0 ? this.selectedOrigens.join(',') : null,
+    yields: this.selectedYields.length > 0 ? this.selectedYields.join(',') : null,
+    filterCount: this.appliedFiltersCount > 0 ? this.appliedFiltersCount : null,
+    page: 1,
+    search: this.searchQuery?.trim() !== '' ? this.searchQuery : null,
+  };
 
-    this.filteredPrintersChange.emit(filters);
-    this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-    // this.scrollToTop();
+  this.filteredPrintersChange.emit(filters);
+  this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
 
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-   this.router.navigate([], {
+  this.router.navigate([], {
     queryParams: filters,
     queryParamsHandling: 'merge',
-      }).then(() => {
-        // Restore the scroll position after navigation
-        window.scrollTo(0, scrollPosition);
-    });
-  }
+  }).then(() => {
+    // Restore the scroll position after navigation
+    window.scrollTo(0, scrollPosition);
+  });
+}
 }
