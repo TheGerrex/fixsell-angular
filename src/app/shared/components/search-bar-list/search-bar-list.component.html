@@ -1,0 +1,22 @@
+<div class="search-box">
+    <form class="search-form">
+        <div class="search-form-container" autocomplete="none">
+            <div id="search-icon" *ngIf="isInputFocused">
+                <i class="pi pi-search"></i>
+            </div>
+            <div class="search-input">
+                <!-- <input type="email" name="hidden" id="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                <input type="password" name="hidden" id="hidden" style="width: 0; height: 0; border: 0; padding: 0" /> -->
+                <input id="search" type="text" [(ngModel)]="searchQuery" (input)="onInputChange()" autocapitalize="off" role="presentation" autocomplete="off" autocorrect="off" name="hidden" tabindex="0" spellcheck="false" placeholder="Buscar" aria-label="Buscar" aria-haspopup="false"
+                    autofocus="" role="combobox" aria-autocomplete="both" (focus)="isInputFocused = true; onInputChange()" (blur)="isInputFocused = false; clearSuggestions()">
+
+            </div>
+            <div class="search-clear-button" *ngIf="searchQuery.length > 0" (click)="searchQuery = ''">
+                <i class="pi pi-times"></i>
+            </div>
+        </div>
+    </form>
+    <!-- <button>
+        <i class="pi pi-search"></i>
+    </button> -->
+</div>

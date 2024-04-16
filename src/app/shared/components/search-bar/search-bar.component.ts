@@ -25,7 +25,7 @@ export class SearchBarComponent implements OnInit {
     this.getAllConsumables();
   }
 
-    getAllConsumables() {
+  getAllConsumables() {
     this.consumableService.getConsumables().subscribe(consumables => {
       this.consumables = consumables;
     });
@@ -42,23 +42,23 @@ export class SearchBarComponent implements OnInit {
     }, 200);
   }
 
-onKeyDown(event: KeyboardEvent) {
-  if (event.key === 'ArrowDown') {
-    event.preventDefault();
-    if (this.selectedSuggestionIndex < this.suggestions.length - 1) {
-      this.selectedSuggestionIndex++;
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (this.selectedSuggestionIndex < this.suggestions.length - 1) {
+        this.selectedSuggestionIndex++;
+      }
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (this.selectedSuggestionIndex > 0) {
+        this.selectedSuggestionIndex--;
+      }
     }
-  } else if (event.key === 'ArrowUp') {
-    event.preventDefault();
-    if (this.selectedSuggestionIndex > 0) {
-      this.selectedSuggestionIndex--;
+    if (this.selectedSuggestionIndex >= 0) {
+      this.searchQuery = this.suggestions[this.selectedSuggestionIndex].name;
+    }
+    if (this.selectedSuggestionIndex >= 0) {
+      this.suggestionItems.toArray()[this.selectedSuggestionIndex].nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
     }
   }
-  if (this.selectedSuggestionIndex >= 0) {
-    this.searchQuery = this.suggestions[this.selectedSuggestionIndex].name;
-  }
-  if (this.selectedSuggestionIndex >= 0) {
-    this.suggestionItems.toArray()[this.selectedSuggestionIndex].nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-  }
-}
 }

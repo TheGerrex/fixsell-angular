@@ -8,14 +8,17 @@ import {
   OnInit,
   HostListener,
   ChangeDetectorRef,
+  OnDestroy,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { PrintersService } from 'src/app/printers/services/printers.service';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 
-import { ActivatedRoute, Router, RouterEvent, Scroll } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterEvent, Scroll } from '@angular/router';
 import { FilterComponent } from '../../components/filter/filter.component';
-import { Observable, filter, map } from 'rxjs';
+import { Observable, Subject, filter, map, takeUntil } from 'rxjs';
 // consumables
 import { ConsumableService } from '../../services/consumables.service';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
@@ -25,10 +28,11 @@ import { Consumible } from '../../../printers/interfaces/consumible.interface';
   templateUrl: './list-page.component.html',
   styleUrls: ['./list-page.component.scss'],
 })
-export class ListPageComponent implements OnInit {
+export class ListPageComponent implements OnInit, OnDestroy {
   @Input() selectedCategory?: string;
-  @Input() rentable?: boolean;
+  @Output() searchQueryChange = new EventEmitter<string>();
   filteredConsumable: Consumible[] = [];
+  originalConsumables: Consumible[] = [];
   consumables: Consumible[] = [];
   isMobile?: boolean;
   loading = true;
@@ -41,6 +45,8 @@ export class ListPageComponent implements OnInit {
   currentPage = 1;
   totalPages = 4;
   totalConsumables = 0;
+  searchQuery: string = '';
+  private destroy$ = new Subject<void>();
 
   @ViewChild(FilterComponent)
   filterComponent!: FilterComponent;
@@ -63,56 +69,65 @@ export class ListPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events
-      .pipe(filter((e): e is Scroll => e instanceof Scroll))
-      .subscribe((e) => {
-        if (e.position) {
-          // The user has just used the back/forward button. The router
-          // will restore the scroll position, but we want to delay this
-          // until after the data has finished loading.
-          // So, save the scroll position and tell the router to scroll to the top.
-          this.scrollPosition = e.position[1];
-          this.viewportScroller.scrollToPosition([0, 0]);
-        } else if (e.anchor) {
-          // The user just navigated to an anchor link. The router will
-          // scroll to the anchor element, but we want to delay this until
-          // after the data has finished loading.
-          // So, save the anchor and tell the router to scroll to the top.
-          this.scrollAnchor = e.anchor;
-          this.viewportScroller.scrollToPosition([0, 0]);
-        }
-      });
+    // this.handleRouterEvents();
     this.checkIfMobile();
     this.adjustLimit();
-    this.consumableService
-      .getConsumables()
-      .subscribe((consumables: Consumible[]) => {
-        this.consumables = consumables;
-        this.totalConsumables = consumables.length;
-        this.totalPages = Math.ceil(this.totalConsumables / this.limit);
-        this.route.queryParams.subscribe((params) => {
-          this.appliedFiltersCount = +params['filterCount'] || 0;
-          this.currentPage = +params['page'] || 1; // Use 1 as the default page number
-          this.applyFilters(params);
-          this.fetchPrintersForCurrentPage();
-          this.loading = false;
-          this.changeDetector.detectChanges();
-          if (this.scrollPosition) {
-            this.viewportScroller.scrollToPosition([0, this.scrollPosition]);
-            this.scrollPosition = 0;
-          } else if (this.scrollAnchor) {
-            this.viewportScroller.scrollToAnchor(this.scrollAnchor);
-            this.scrollAnchor = '';
-          }
-        });
-      });
+    this.fetchConsumables();
   }
 
-  // getPageNumbers() {
-  //   return Array(this.totalPages)
-  //     .fill(0)
-  //     .map((x, i) => i + 1);
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  // handleRouterEvents() {
+  //   this.router.events
+  //     .pipe(filter((e): e is Scroll => e instanceof Scroll))
+  //     .subscribe((e) => {
+  //       if (e.position) {
+  //         this.scrollPosition = e.position[1];
+  //         this.viewportScroller.scrollToPosition([0, 0]);
+  //       } else if (e.anchor) {
+  //         this.scrollAnchor = e.anchor;
+  //         this.viewportScroller.scrollToPosition([0, 0]);
+  //       }
+  //     });
   // }
+
+  fetchConsumables() {
+  this.consumableService
+    .getConsumables()
+    .subscribe((consumables: Consumible[]) => {
+      this.originalConsumables = consumables;
+      this.filteredConsumable = [...consumables];
+      console.log('Consumables:', this.consumables);
+      this.totalConsumables = consumables.length;
+      this.totalPages = Math.ceil(this.totalConsumables / this.limit);
+      this.handleQueryParams();
+    });
+  }
+
+  handleQueryParams() {
+    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: Params) => {
+      this.appliedFiltersCount = +params['filterCount'] || 0;
+      this.currentPage = +params['page'] || 1; // Use 1 as the default page number
+      this.applyFilters(params);
+      this.fetchConsumablesForCurrentPage();
+      this.loading = false;
+      this.changeDetector.detectChanges();
+      // this.handleScrollPosition();
+    });
+  }
+
+  handleScrollPosition() {
+    if (this.scrollPosition) {
+      this.viewportScroller.scrollToPosition([0, this.scrollPosition]);
+      this.scrollPosition = 0;
+    } else if (this.scrollAnchor) {
+      this.viewportScroller.scrollToAnchor(this.scrollAnchor);
+      this.scrollAnchor = '';
+    }
+  }
 
   getPageNumbers(): number[] {
     if (this.totalPages <= 5) {
@@ -144,35 +159,33 @@ export class ListPageComponent implements OnInit {
     this.isMobile = window.innerWidth <= 768;
   }
 
-  fetchPrinters(page: number = this.currentPage) {
-    this.route.queryParams.subscribe((params) => {
-      const updatedParams = { ...params, page: page };
-      this.router.navigate(['/consumables/list'], {
-        queryParams: updatedParams,
-      });
+  navigateToPage(page: number = this.currentPage) {
+    const updatedParams = { ...this.route.snapshot.queryParams, page: page };
+    this.router.navigate(['/consumables/list'], {
+      queryParams: updatedParams,
     });
-    window.scrollTo(0, 480);
+    // window.scrollTo(0, 480);
   }
 
-  fetchPrintersForCurrentPage() {
+  fetchConsumablesForCurrentPage() {
     const start = (this.currentPage - 1) * this.limit;
     const end = start + this.limit;
     this.filteredConsumable = this.filteredConsumable.slice(start, end);
-    console.log('Fetching printers After', this.filteredConsumable);
   }
 
-  async handleFilteredPrintersChange(queryFilters: any): Promise<void> {
+  async handleFilteredConsumableChange(queryFilters: any): Promise<void> {
     this.applyFilters(queryFilters);
     this.currentPage = 1;
-    this.fetchPrinters(this.currentPage);
-    this.fetchPrintersForCurrentPage();
+
     await this.router.navigate(['consumables/list'], {
       queryParams: { page: this.currentPage, ...queryFilters },
     });
+
+    this.fetchConsumablesForCurrentPage();
   }
 
   applyFilters(queryFilters: any): void {
-    this.filteredConsumable = this.consumables;
+    this.filteredConsumable = [...this.originalConsumables];
 
     // Apply filters...
     if (queryFilters.brand) {
@@ -228,12 +241,6 @@ export class ListPageComponent implements OnInit {
     this.totalPages = Math.ceil(this.totalConsumables / this.limit);
   }
 
-  scrollToContainer() {
-    if (this.productList) {
-      this.renderer.setProperty(this.productList.nativeElement, 'scrollTop', 0);
-    }
-  }
-
   onAppliedFiltersCountChange(count: number): void {
     this.appliedFiltersCount = count;
   }
@@ -244,5 +251,30 @@ export class ListPageComponent implements OnInit {
 
   closeFilterBar() {
     this.filterBarOpen = false;
+  }
+
+  onSearchQueryChange(searchQuery: string) {
+    this.searchQuery = searchQuery.toLowerCase();
+    this.searchQueryChange.emit(this.searchQuery);
+    // Apply the filters and the search filter
+    this.applyFiltersAndSearch();
+  }
+
+  applyFiltersAndSearch(): void {
+    // Apply the filters
+    let filteredConsumables = this.originalConsumables;
+  
+    // Apply the filters from the query parameters
+    if (this.appliedFiltersCount > 0) {
+      filteredConsumables = filteredConsumables.filter(consumable => this.applyFilters(consumable));
+    }
+  
+    // Apply the search filter
+    if (this.searchQuery) {
+      filteredConsumables = filteredConsumables.filter(consumable => consumable.name.toLowerCase().includes(this.searchQuery));
+    }
+  
+    // Update the displayed consumables
+    this.filteredConsumable = filteredConsumables;
   }
 }

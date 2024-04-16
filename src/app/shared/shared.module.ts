@@ -13,6 +13,7 @@ import { ProductTypePipe } from './pipes/product-type.pipe';
 import { ProductEmailFormComponent } from './components/product-email-form/product-email-form.component';
 import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchBarListComponent } from './components/search-bar-list/search-bar-list.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -25,6 +26,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ProductTypePipe,
     ProductEmailFormComponent,
     SearchBarComponent,
+    SearchBarListComponent,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -37,6 +39,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ProductTypePipe,
     ProductEmailFormComponent,
     SearchBarComponent,
+    SearchBarListComponent,
   ],
 })
 export class SharedModule {}

@@ -7,23 +7,27 @@ import {
   ElementRef,
   ViewChild,
   SimpleChanges,
+  OnDestroy,
+  OnChanges,
 } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
 import { ConsumableService } from '../../services/consumables.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-consumible-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, OnDestroy, OnChanges {
   @Output() filteredPrintersChange = new EventEmitter<any>(); // Output event
   @Output() appliedFiltersCountChange = new EventEmitter<number>();
   @Input() selectedCategory?: string;
   @Input() initialAppliedFiltersCount: number = 0;
+  @Input() searchQuery?: string;
 
   // FILTERS
   consumable: Consumible[] = [];
@@ -76,12 +80,12 @@ export class FilterComponent implements OnInit {
   constructor(
     private consumableService: ConsumableService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private viewportScroller: ViewportScroller,
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-
       this.selectedBrands =
         typeof params['brand'] === 'string' ? params['brand'].split(',') : [];
       this.selectedCategories =
@@ -113,14 +117,22 @@ export class FilterComponent implements OnInit {
 
     this.checkIfMobile();
     window.addEventListener('resize', this.onResize);
+    this.viewportScroller.setHistoryScrollRestoration('manual');
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.onResize);
+    this.viewportScroller.setHistoryScrollRestoration('auto');
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if ('searchQuery' in changes) {
+      this.emitFilters();
+    }
     if ('initialAppliedFiltersCount' in changes) {
       this.appliedFiltersCount =
         changes['initialAppliedFiltersCount'].currentValue;
     }
-    console.log('Filter count', this.initialAppliedFiltersCount);
   }
 
   toggleFilterSectionProduct() {
@@ -150,12 +162,8 @@ export class FilterComponent implements OnInit {
     this.filterSectionsState = window.innerWidth > 768 ? 'open' : 'closed';
   };
 
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.onResize);
-  }
-
   scrollToTop() {
-    window.scrollTo({ top: 480, behavior: 'smooth' });
+    this.viewportScroller.scrollToPosition([0, 480]);
   }
 
   checkIfMobile() {
@@ -175,6 +183,7 @@ export class FilterComponent implements OnInit {
       this.appliedFiltersCount++;
     }
     this.emitFilters();
+    
   }
 
   toggleColorFilter(color: string): void {
@@ -221,7 +230,6 @@ export class FilterComponent implements OnInit {
   }
 
   toggleYieldFilter(yieldValue: string): void {
-    console.log('Selected Yield Value:', yieldValue);
     const wasIncluded = this.selectedYields.includes(yieldValue);
     if (wasIncluded) {
       this.selectedYields.splice(this.selectedYields.indexOf(yieldValue), 1);
@@ -230,7 +238,6 @@ export class FilterComponent implements OnInit {
       this.selectedYields.push(yieldValue);
       this.appliedFiltersCount++;
     }
-    console.log('selectedYields after toggleYieldFilter:', this.selectedYields);
     
     this.emitFilters();
   }
@@ -260,37 +267,22 @@ export class FilterComponent implements OnInit {
       origen: this.selectedOrigens.join(','),
       yields: this.selectedYields.join(','),
       filterCount: this.appliedFiltersCount,
-      // Add other filters here...
+      page: 1,
+      search: this.searchQuery,
     };
-    console.log('selectedYields in emitFilters:', this.selectedYields);
-    console.log('Emitting filters:', filters);
 
     this.filteredPrintersChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
+    // this.scrollToTop();
 
-    this.router.navigate([], {
-      queryParams: filters,
-      queryParamsHandling: 'merge',
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+   this.router.navigate([], {
+    queryParams: filters,
+    queryParamsHandling: 'merge',
+      }).then(() => {
+        // Restore the scroll position after navigation
+        window.scrollTo(0, scrollPosition);
     });
   }
-
-  // toggleCheckbox(data: string, group: string) {
-  //   switch (group) {
-  //     case 'consumibleBrands':
-  //       this.toggleBrandFilter(data);
-  //       break;
-  //     case 'colorType':
-  //       this.toggleColorFilter(data);
-  //       break;
-  //     case 'categories':
-  //       this.toggleCategoryFilter(data);
-  //       break;
-  //     case 'origen':
-  //       this.toggleOrigenFilter(data);
-  //       break;
-  //     case 'yields':
-  //       this.toggleYieldFilter(data);
-  //       break;
-  //   }
-  // }
 }
