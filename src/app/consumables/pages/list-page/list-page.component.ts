@@ -81,6 +81,8 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     
       // Apply the new parameters
       this.applyFilters(newParams);
+
+      this.fetchConsumablesForCurrentPage();
     });
   }
 
