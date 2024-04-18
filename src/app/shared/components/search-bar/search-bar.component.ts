@@ -37,7 +37,6 @@ export class SearchBarComponent implements OnInit {
   onInputChange() {
     this.userIsTyping = true;
     const searchQueryUpper = this.searchQuery.toUpperCase();
-    console.log(searchQueryUpper);
     this.suggestions = this.consumables.filter(consumable => consumable.name.toUpperCase().includes(searchQueryUpper));
     if (this.suggestions.length === 0) {
       this.selectedSuggestionIndex = -1;

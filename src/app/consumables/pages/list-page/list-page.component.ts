@@ -72,17 +72,6 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
       debounceTime(10)
     ).subscribe(searchQuery => {
       this.searchQuery = searchQuery;
-    
-      // Get the current route parameters
-      let currentParams = this.route.snapshot.queryParams;
-    
-      // Merge the new search parameter with the existing parameters
-      let newParams = { ...currentParams, search: searchQuery };
-    
-      // Apply the new parameters
-      this.applyFilters(newParams);
-
-      this.fetchConsumablesForCurrentPage();
     });
   }
 
@@ -120,20 +109,24 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
       this.totalConsumables = consumables.length;
       this.totalPages = Math.ceil(this.totalConsumables / this.limit);
       this.fetchConsumablesForCurrentPage();
+      this.route.queryParams.pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((params: Params) => {
+        this.handleQueryParams(params);
+      });
       this.isLoading = false;
     });
   }
 
   handleQueryParams(params: Params) {
-    // this.isLoading = true;
     this.appliedFiltersCount = +params['filterCount'] || 0;
     this.currentPage = +params['page'] || 1;
     if (params['search']) {
       this.searchQuerySubject.next(params['search']);
     }
+    this.applyFilters(params);
     this.changeDetector.detectChanges();
     this.fetchConsumablesForCurrentPage();
-    // this.isLoading = false;
   }
 
   getPageNumbers(): number[] {
@@ -192,6 +185,12 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   applyFilters(queryFilters: Params): void {
+
+    // Update the search query
+    if (queryFilters['search']) {
+      this.searchQuery = queryFilters['search'];
+    }
+
     this.filteredConsumables = [...this.consumables];
     
     // Apply filters...
@@ -244,12 +243,12 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     // Apply the search filter
-    if (queryFilters['search']) {
-      this.searchQuery = queryFilters['search'];
+    if (this.searchQuery) {
       this.filteredConsumables = this.filteredConsumables.filter(consumable => 
         consumable.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
+
     console.log('Params:', queryFilters);
     console.log('Filtered Consumables:', this.filteredConsumables);
 
