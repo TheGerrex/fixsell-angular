@@ -10,6 +10,7 @@ import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
 })
 export class SearchBarComponent implements OnInit {
   isInputFocused = false;  
+  userIsTyping = false;
   searchQuery = '';
   selectedSuggestionIndex = -1;
   consumables: Consumible[] = []; // Replace this with your actual list of consumables
@@ -34,8 +35,16 @@ export class SearchBarComponent implements OnInit {
   }
 
   onInputChange() {
+    this.userIsTyping = true;
     const searchQueryUpper = this.searchQuery.toUpperCase();
+    console.log(searchQueryUpper);
     this.suggestions = this.consumables.filter(consumable => consumable.name.toUpperCase().includes(searchQueryUpper));
+    if (this.suggestions.length === 0) {
+      this.selectedSuggestionIndex = -1;
+    }
+    if (this.suggestions.length <= 1) {
+      this.selectedSuggestionIndex = -1;
+    }
   }
   
   clearSuggestions() {
@@ -51,26 +60,26 @@ export class SearchBarComponent implements OnInit {
     }
   
     // Navigate to the list page with the search parameter
-    this.router.navigate(['/consumables', 'list'], { queryParams: { search: this.searchQuery } });
+    this.router.navigate(['/consumables', 'list'], { queryParams: { search: this.searchQuery, page: 1 } });
   }
 
   onKeyDown(event: KeyboardEvent) {
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      if (this.selectedSuggestionIndex < this.suggestions.length - 1) {
-        this.selectedSuggestionIndex++;
-      }
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      if (this.selectedSuggestionIndex > 0) {
-        this.selectedSuggestionIndex--;
-      }
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    this.userIsTyping = false;
+    event.preventDefault();
+    if (event.key === 'ArrowDown' && this.selectedSuggestionIndex < this.suggestions.length - 1) {
+      this.selectedSuggestionIndex++;
+    } else if (event.key === 'ArrowUp' && this.selectedSuggestionIndex > 0) {
+      this.selectedSuggestionIndex--;
     }
-    if (this.selectedSuggestionIndex >= 0) {
-      this.searchQuery = this.suggestions[this.selectedSuggestionIndex].name;
-    }
-    if (this.selectedSuggestionIndex >= 0) {
-      this.suggestionItems.toArray()[this.selectedSuggestionIndex].nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    }
+  } else {
+    this.userIsTyping = true;
   }
+  if (this.suggestions.length > 0 && this.selectedSuggestionIndex >= 0 && event.key !== 'Backspace' && !this.userIsTyping) {
+    this.searchQuery = this.suggestions[this.selectedSuggestionIndex].name;
+  }
+  if (this.selectedSuggestionIndex >= 0) {
+    this.suggestionItems.toArray()[this.selectedSuggestionIndex].nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }
+}
 }
