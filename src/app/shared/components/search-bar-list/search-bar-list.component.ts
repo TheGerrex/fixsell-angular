@@ -18,7 +18,18 @@ export class SearchBarListComponent {
   ngOnInit() {
   }
 
+  updateSearchQuery(searchQuery: string): void {
+    this.searchQuery = searchQuery;
+    this.onInputChange();
+  }
+    
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.onInputChange();
+  }
+
   onInputChange() {
+    console.log('emiting search query...', this.searchQuery);
     this.searchQueryChange.emit(this.searchQuery);
   }
 }

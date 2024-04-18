@@ -240,6 +240,19 @@
     align-items: center;
     padding: 50px 0px;
     text-align: center;
+    // background-color: $gray-50;
+    border: 1px solid $red-300;
+    border-radius: $border-radius;
+    i {
+        font-size: 4rem;
+        color: $red-500;
+    }
+    p {
+        color: $red-600;
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0;
+    }
 }
 
 .product-view {

@@ -12,17 +12,14 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
-import { PrintersService } from 'src/app/printers/services/printers.service';
-import { Printer } from 'src/app/printers/interfaces/printer.interface';
 
-import { ActivatedRoute, Params, Router, RouterEvent, Scroll } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent, Scroll } from '@angular/router';
 import { FilterComponent } from '../../components/filter/filter.component';
-import { Observable, Subject, filter, map, takeUntil } from 'rxjs';
+import { Observable, Subject, debounceTime, distinctUntilChanged, filter, map, takeUntil } from 'rxjs';
 // consumables
 import { ConsumableService } from '../../services/consumables.service';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
-import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
+import { SearchBarListComponent } from 'src/app/shared/components/search-bar-list/search-bar-list.component';
 
 @Component({
   selector: 'app-list-page',
@@ -34,7 +31,7 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   filteredConsumables: Consumible[] = [];
   consumables: Consumible[] = [];
   isMobile?: boolean;
-  loading = true;
+  isLoading = false;
   filterBarOpen = false;
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;
@@ -46,12 +43,13 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   totalConsumables = 0;
   searchQuery: string = '';
   private destroy$ = new Subject<void>();
+  private searchQuerySubject = new Subject<string>();
 
   @ViewChild(FilterComponent)
   filterComponent!: FilterComponent;
 
-  @ViewChild(SearchBarComponent) 
-  searchBarComponent!: SearchBarComponent;
+  @ViewChild(SearchBarListComponent) 
+  searchBarListComponent!: SearchBarListComponent;
 
   @ViewChild('productList') productList?: ElementRef;
   
@@ -61,7 +59,20 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private changeDetector: ChangeDetectorRef,
-  ) {}
+  ) {
+  this.router.events.pipe(
+    filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+    takeUntil(this.destroy$)
+  ).subscribe(() => {
+    window.scrollTo(0, 480);
+  });
+    this.searchQuerySubject.pipe(
+    debounceTime(10)
+    ).subscribe(searchQuery => {
+      this.searchQuery = searchQuery;
+      this.applyFilters({ search: searchQuery });
+    });
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -72,12 +83,11 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     this.checkIfMobile();
     this.adjustLimit();
-    // this.handleQueryParams();
     this.fetchConsumables();
   }
 
   ngAfterViewInit() {
-    this.handleQueryParams();
+    // this.handleQueryParams();
   }
 
   ngOnDestroy() {
@@ -86,33 +96,33 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   fetchConsumables() {
-  this.consumableService
-    .getConsumables()
-    .subscribe((consumables: Consumible[]) => {
-      this.consumables = consumables;
-      this.filteredConsumables = [...consumables];
-      console.log('Consumables:', this.consumables);
-      console.log('Filtered Consumables:', this.filteredConsumables);
-      this.totalConsumables = consumables.length;
-      this.totalPages = Math.ceil(this.totalConsumables / this.limit);
+    this.route.queryParams.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((params: Params) => {
+      this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
+        this.consumables = consumables;
+        this.filteredConsumables = [...consumables];
+        this.totalConsumables = consumables.length;
+        this.totalPages = Math.ceil(this.totalConsumables / this.limit);
+        
+        // Apply filters based on query parameters
+        this.handleQueryParams(params);
+      });
     });
   }
 
-  handleQueryParams() {
-    this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: Params) => {
-      this.appliedFiltersCount = +params['filterCount'] || 0;
-      this.currentPage = +params['page'] || 1; // Use 1 as the default page number
-      if (params['search']) {
-        this.searchQuery = params['search'];
-        if (this.searchBarComponent) {
-          this.searchBarComponent.onInputChange();
-        }
-      }
-      this.applyFilters(params);
-      this.changeDetector.detectChanges();
-      this.fetchConsumablesForCurrentPage();
-      this.loading = false;
-    });
+  handleQueryParams(params: Params) {
+    this.isLoading = true;
+    this.appliedFiltersCount = +params['filterCount'] || 0;
+    this.currentPage = +params['page'] || 1;
+    if (params['search']) {
+      this.searchQuerySubject.next(params['search']);
+    } else {
+      this.applyFilters({});
+    }
+    this.changeDetector.detectChanges();
+    this.fetchConsumablesForCurrentPage();
+    this.isLoading = false;
   }
 
   getPageNumbers(): number[] {
@@ -150,7 +160,7 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.router.navigate(['/consumables/list'], {
       queryParams: updatedParams,
     });
-    // window.scrollTo(0, 480);
+    window.scrollTo(0, 480);
   }
 
   fetchConsumablesForCurrentPage() {
@@ -173,7 +183,6 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   applyFilters(queryFilters: any): void {
     this.filteredConsumables = [...this.consumables];
     
-
     // Apply filters...
     if (queryFilters.brand) {
       const brands = queryFilters.brand.split(',');
@@ -235,6 +244,9 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     // Recalculate total pages
     this.totalConsumables = this.filteredConsumables.length;
     this.totalPages = Math.ceil(this.totalConsumables / this.limit);
+
+    // Update the current page
+    this.fetchConsumablesForCurrentPage();
   }
 
   onAppliedFiltersCountChange(count: number): void {
