@@ -6,7 +6,7 @@
             </div>
             <div class="search-input">
                 <input id="search" type="text" [(ngModel)]="searchQuery" (input)="onInputChange()" autocapitalize="off" role="presentation" autocomplete="off" autocorrect="off" name="hidden" tabindex="0" spellcheck="false" placeholder="Buscar" aria-label="Buscar" aria-haspopup="false"
-                    autofocus="" role="combobox" aria-autocomplete="both" (focus)="isInputFocused = true;" (blur)="isInputFocused = false;">
+                    role="combobox" aria-autocomplete="both" (focus)="isInputFocused = true;" (blur)="isInputFocused = false;">
 
             </div>
             <div class="search-clear-button" *ngIf="searchQuery.length > 0" (click)="clearSearch()">

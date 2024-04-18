@@ -1,5 +1,5 @@
 <div class="search-box">
-    <form class="search-form">
+    <form class="search-form" (submit)="onSubmit($event); $event.preventDefault()">
         <div class="search-form-container" autocomplete="none">
             <div id="search-icon" *ngIf="isInputFocused">
                 <i class="pi pi-search"></i>
@@ -22,7 +22,7 @@
             </div>
         </div>
     </form>
-    <button>
+    <button type="submit" (click)="onSubmit($event)">
         <i class="pi pi-search"></i>
     </button>
 </div>

@@ -37,6 +37,8 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     Y: 'Amarillo',
     M: 'Magenta',
     C: 'Cyan',
+    MK: 'Negro Matte',
+    BK: 'Negro Gloss',
   };
   origens: string[] = ['OEM', 'Generico', 'Recarga'];
   colorParams: any;
@@ -106,6 +108,12 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
         );
         this.categories = Array.from(
           new Set(consumables.map((consumable) => consumable.category))
+        );
+        this.origens = Array.from(
+          new Set(consumables.map((consumable) => consumable.origen))
+        );
+        this.colorFilter = Array.from(
+          new Set(consumables.map((consumable) => consumable.color))
         );
         
       },

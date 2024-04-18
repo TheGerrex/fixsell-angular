@@ -28,6 +28,7 @@ import { SearchBarListComponent } from 'src/app/shared/components/search-bar-lis
 })
 export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() selectedCategory?: string;
+  currentPageFilteredConsumables: Consumible[] = [];
   filteredConsumables: Consumible[] = [];
   consumables: Consumible[] = [];
   isMobile?: boolean;
@@ -59,18 +60,27 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private changeDetector: ChangeDetectorRef,
-  ) {
-  this.router.events.pipe(
-    filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-    takeUntil(this.destroy$)
-  ).subscribe(() => {
-    window.scrollTo(0, 480);
-  });
+  ) 
+  {
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      window.scrollTo(0, 480);
+    });
     this.searchQuerySubject.pipe(
-    debounceTime(10)
+      debounceTime(10)
     ).subscribe(searchQuery => {
       this.searchQuery = searchQuery;
-      this.applyFilters({ search: searchQuery });
+    
+      // Get the current route parameters
+      let currentParams = this.route.snapshot.queryParams;
+    
+      // Merge the new search parameter with the existing parameters
+      let newParams = { ...currentParams, search: searchQuery };
+    
+      // Apply the new parameters
+      this.applyFilters(newParams);
     });
   }
 
@@ -81,13 +91,18 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+    this.fetchConsumables();
     this.checkIfMobile();
     this.adjustLimit();
-    this.fetchConsumables();
   }
 
   ngAfterViewInit() {
-    // this.handleQueryParams();
+    // Subscribe to query parameters and handle them
+    this.route.queryParams.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((params: Params) => {
+      this.handleQueryParams(params);
+    });
   }
 
   ngOnDestroy() {
@@ -96,33 +111,27 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   fetchConsumables() {
-    this.route.queryParams.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((params: Params) => {
-      this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
-        this.consumables = consumables;
-        this.filteredConsumables = [...consumables];
-        this.totalConsumables = consumables.length;
-        this.totalPages = Math.ceil(this.totalConsumables / this.limit);
-        
-        // Apply filters based on query parameters
-        this.handleQueryParams(params);
-      });
+    this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
+      this.isLoading = true;
+      this.consumables = consumables;
+      this.filteredConsumables = [...consumables];
+      this.totalConsumables = consumables.length;
+      this.totalPages = Math.ceil(this.totalConsumables / this.limit);
+      this.fetchConsumablesForCurrentPage();
+      this.isLoading = false;
     });
   }
 
   handleQueryParams(params: Params) {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.appliedFiltersCount = +params['filterCount'] || 0;
     this.currentPage = +params['page'] || 1;
     if (params['search']) {
       this.searchQuerySubject.next(params['search']);
-    } else {
-      this.applyFilters({});
     }
     this.changeDetector.detectChanges();
     this.fetchConsumablesForCurrentPage();
-    this.isLoading = false;
+    // this.isLoading = false;
   }
 
   getPageNumbers(): number[] {
@@ -166,10 +175,10 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   fetchConsumablesForCurrentPage() {
     const start = (this.currentPage - 1) * this.limit;
     const end = start + this.limit;
-    this.filteredConsumables = this.filteredConsumables.slice(start, end);
+    this.currentPageFilteredConsumables = this.filteredConsumables.slice(start, end);
   }
 
-  async handleFilteredConsumableChange(queryFilters: any): Promise<void> {
+  async handleFilteredConsumableChange(queryFilters: Params): Promise<void> {
     this.applyFilters(queryFilters);
     this.currentPage = 1;
 
@@ -180,44 +189,44 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fetchConsumablesForCurrentPage();
   }
 
-  applyFilters(queryFilters: any): void {
+  applyFilters(queryFilters: Params): void {
     this.filteredConsumables = [...this.consumables];
     
     // Apply filters...
-    if (queryFilters.brand) {
-      const brands = queryFilters.brand.split(',');
+    if (queryFilters['brand']) {
+      const brands = queryFilters['brand'].split(',');
       this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
         brands.includes(consumable.brand)
       );
     }
 
     // Apply color filter
-    if (queryFilters.color) {
-      const color = queryFilters.color.split(',');
+    if (queryFilters['color']) {
+      const color = queryFilters['color'].split(',');
       this.filteredConsumables = this.filteredConsumables.filter((consumible) =>
         color.includes(consumible.color)
       );
     }
 
     // Apply category filter
-    if (queryFilters.categories) {
-      const categories = queryFilters.categories.split(',');
+    if (queryFilters['categories']) {
+      const categories = queryFilters['categories'].split(',');
       this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
         categories.includes(consumable.category)
       );
     }
 
     //apply origen filter
-    if (queryFilters.origen) {
-      const origen = queryFilters.origen.split(',');
+    if (queryFilters['origen']) {
+      const origen = queryFilters['origen'].split(',');
       this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
         origen.includes(consumable.origen)
       );
     }
 
     // Apply yield filter
-    if (queryFilters.yields) {
-      const yields = queryFilters.yields.split(',');
+    if (queryFilters['yields']) {
+      const yields = queryFilters['yields'].split(',');
       this.filteredConsumables = this.filteredConsumables.filter((consumable) => {
         let isInRange = false;
         for (let i = 0; i < yields.length; i++) {
@@ -233,13 +242,14 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     // Apply the search filter
-    if (queryFilters.search) {
-      this.searchQuery = queryFilters.search;
+    if (queryFilters['search']) {
+      this.searchQuery = queryFilters['search'];
       this.filteredConsumables = this.filteredConsumables.filter(consumable => 
         consumable.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
-    // console.log('Filtered Consumables:', this.filteredConsumables);
+    console.log('Params:', queryFilters);
+    console.log('Filtered Consumables:', this.filteredConsumables);
 
     // Recalculate total pages
     this.totalConsumables = this.filteredConsumables.length;

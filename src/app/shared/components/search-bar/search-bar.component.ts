@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConsumableService } from 'src/app/consumables/services/consumables.service';
 import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
 
@@ -18,6 +19,7 @@ export class SearchBarComponent implements OnInit {
 
   constructor
   (
+    private router: Router,
     private consumableService: ConsumableService,
   ) {}
 
@@ -40,6 +42,16 @@ export class SearchBarComponent implements OnInit {
     setTimeout(() => {
       this.suggestions = [];
     }, 200);
+  }
+
+  onSubmit(event?: Event) {
+    // Prevent the form from being submitted normally
+    if (event) {
+      event.preventDefault();
+    }
+  
+    // Navigate to the list page with the search parameter
+    this.router.navigate(['/consumables', 'list'], { queryParams: { search: this.searchQuery } });
   }
 
   onKeyDown(event: KeyboardEvent) {
