@@ -92,6 +92,7 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.route.queryParams.pipe(
       takeUntil(this.destroy$)
     ).subscribe((params: Params) => {
+      console.log('Params ngAfterViewInit:', params);
       this.handleQueryParams(params);
     });
   }
@@ -108,10 +109,11 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
       this.filteredConsumables = [...consumables];
       this.totalConsumables = consumables.length;
       this.totalPages = Math.ceil(this.totalConsumables / this.limit);
-      this.fetchConsumablesForCurrentPage();
+      this.sliceConsumablesForCurrentPage();
       this.route.queryParams.pipe(
         takeUntil(this.destroy$)
       ).subscribe((params: Params) => {
+        console.log('Params fetchConsumables:', params);
         this.handleQueryParams(params);
       });
       this.isLoading = false;
@@ -120,15 +122,19 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   handleQueryParams(params: Params) {
     this.appliedFiltersCount = +params['filterCount'] || 0;
-    this.currentPage = +params['page'] || 1;
+    console.log('Params inside Handle Query:', params);
     if (params['search']) {
       this.searchQuerySubject.next(params['search']);
     }
     this.applyFilters(params);
     this.changeDetector.detectChanges();
-    this.fetchConsumablesForCurrentPage();
+    if (params['page']) {
+      console.log("HAHAHAHA")
+      this.currentPage = +params['page'];
+      this.sliceConsumablesForCurrentPage();
+    }
   }
-
+  
   getPageNumbers(): number[] {
     if (this.totalPages <= 5) {
       return Array.from({ length: this.totalPages }, (_, i) => i + 1);
@@ -160,14 +166,14 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   navigateToPage(page: number = this.currentPage) {
-    const updatedParams = { ...this.route.snapshot.queryParams, page: page };
+    // const updatedParams = { ...this.route.snapshot.queryParams, page: page };
     this.router.navigate(['/consumables/list'], {
-      queryParams: updatedParams,
+      queryParams: { page: page },
+      queryParamsHandling: 'merge'
     });
-    window.scrollTo(0, 480);
   }
 
-  fetchConsumablesForCurrentPage() {
+  sliceConsumablesForCurrentPage() {
     const start = (this.currentPage - 1) * this.limit;
     const end = start + this.limit;
     this.currentPageFilteredConsumables = this.filteredConsumables.slice(start, end);
@@ -175,13 +181,17 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   async handleFilteredConsumableChange(queryFilters: Params): Promise<void> {
     this.applyFilters(queryFilters);
-    this.currentPage = 1;
-
+    const queryParams: Params = { ...queryFilters };
+    if (!queryParams['page']) {
+      queryParams['page'] = this.currentPage;
+    }
+  
     await this.router.navigate(['consumables/list'], {
-      queryParams: { page: this.currentPage, ...queryFilters },
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
     });
-
-    this.fetchConsumablesForCurrentPage();
+    console.log('queryFilters inside Handle Filtered Consumables:', queryFilters);
+    this.sliceConsumablesForCurrentPage();
   }
 
   applyFilters(queryFilters: Params): void {
@@ -257,7 +267,7 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.totalPages = Math.ceil(this.totalConsumables / this.limit);
 
     // Update the current page
-    this.fetchConsumablesForCurrentPage();
+    this.sliceConsumablesForCurrentPage();
   }
 
   onAppliedFiltersCountChange(count: number): void {

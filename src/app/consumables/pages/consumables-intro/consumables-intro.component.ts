@@ -155,6 +155,7 @@ export class ConsumablesIntroComponent {
   navigateToProductList(category: string) {
     this.router.navigate(['/consumables/list'], {
       queryParams: { categories: category,  filterCount: 1 },
+      queryParamsHandling: 'merge'
     });
   }
 }
