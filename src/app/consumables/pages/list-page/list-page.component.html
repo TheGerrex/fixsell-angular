@@ -17,7 +17,7 @@
         </div>
         <div class="products-row px-3">
             <div class="filter-col d-none d-lg-flex">
-                <app-consumible-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredConsumableChange($event)" [selectedCategory]="selectedCategory" [searchQuery]="searchQuery"></app-consumible-filter>
+                <app-consumible-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredConsumableChange($event)" (filtersChanged)="onFiltersChanged($event)" [selectedCategory]="selectedCategory" [searchQuery]="searchQuery"></app-consumible-filter>
             </div>
             <div class="product-container">
                 <div class="product-list-col">

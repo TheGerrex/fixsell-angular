@@ -37,11 +37,11 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;
   scrollAnchor: string = '';
-  limit = 21;
-  offset = 0;
-  currentPage = 1;
-  totalPages = 4;
-  totalConsumables = 0;
+  limit: number = 21;
+  offset: number = 0;
+  currentPage: number = 1;
+  totalPages: number = 4;
+  totalConsumables: number = 0;
   searchQuery: string = '';
   private destroy$ = new Subject<void>();
   private searchQuerySubject = new Subject<string>();
@@ -85,16 +85,17 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fetchConsumables();
     this.checkIfMobile();
     this.adjustLimit();
+    this.handleQueryParamsOnChanges();
   }
 
   ngAfterViewInit() {
     // Subscribe to query parameters and handle them
-    this.route.queryParams.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((params: Params) => {
-      console.log('Params ngAfterViewInit:', params);
-      this.handleQueryParams(params);
-    });
+    // this.route.queryParams.pipe(
+    //   takeUntil(this.destroy$)
+    // ).subscribe((params: Params) => {
+    //   console.log('ngAfterViewInit - Params:', params);
+    //   this.handleQueryParams(params);
+    // });
   }
 
   ngOnDestroy() {
@@ -110,66 +111,12 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
       this.totalConsumables = consumables.length;
       this.totalPages = Math.ceil(this.totalConsumables / this.limit);
       this.sliceConsumablesForCurrentPage();
-      this.route.queryParams.pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((params: Params) => {
-        console.log('Params fetchConsumables:', params);
+      this.isLoading = false;
+  
+      // Subscribe to the query parameters after the consumables have been fetched
+      this.route.queryParams.subscribe(params => {
         this.handleQueryParams(params);
       });
-      this.isLoading = false;
-    });
-  }
-
-  handleQueryParams(params: Params) {
-    this.appliedFiltersCount = +params['filterCount'] || 0;
-    console.log('Params inside Handle Query:', params);
-    if (params['search']) {
-      this.searchQuerySubject.next(params['search']);
-    }
-    this.applyFilters(params);
-    this.changeDetector.detectChanges();
-    if (params['page']) {
-      console.log("HAHAHAHA")
-      this.currentPage = +params['page'];
-      this.sliceConsumablesForCurrentPage();
-    }
-  }
-  
-  getPageNumbers(): number[] {
-    if (this.totalPages <= 5) {
-      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    } else if (this.currentPage <= 4) {
-      return [2, 3, 4];
-    } else if (this.currentPage > this.totalPages - 3) {
-      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
-    } else {
-      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
-    }
-  }
-
-  getTotalConsumables(): Observable<number> {
-    return this.consumableService
-      .getConsumables()
-      .pipe(map((consumables: Consumible[]) => consumables.length));
-  }
-
-  adjustLimit() {
-    if (window.innerWidth <= 768) {
-      this.limit = 21;
-    } else {
-      this.limit = 12; // Or whatever your default limit is
-    }
-  }
-
-  checkIfMobile() {
-    this.isMobile = window.innerWidth <= 768;
-  }
-
-  navigateToPage(page: number = this.currentPage) {
-    // const updatedParams = { ...this.route.snapshot.queryParams, page: page };
-    this.router.navigate(['/consumables/list'], {
-      queryParams: { page: page },
-      queryParamsHandling: 'merge'
     });
   }
 
@@ -179,27 +126,57 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentPageFilteredConsumables = this.filteredConsumables.slice(start, end);
   }
 
-  async handleFilteredConsumableChange(queryFilters: Params): Promise<void> {
-    this.applyFilters(queryFilters);
-    const queryParams: Params = { ...queryFilters };
-    if (!queryParams['page']) {
-      queryParams['page'] = this.currentPage;
+  handleQueryParams(params: Params) {
+    this.appliedFiltersCount = +params['filterCount'] || 0;
+    console.log('handleQueryParams - Params:', params);
+    if (params['search']) {
+      this.searchQuerySubject.next(params['search']);
     }
-  
-    await this.router.navigate(['consumables/list'], {
-      queryParams: queryParams,
-      queryParamsHandling: 'merge',
-    });
-    console.log('queryFilters inside Handle Filtered Consumables:', queryFilters);
-    this.sliceConsumablesForCurrentPage();
+    if (params['page']) {
+      console.log("Enter If of params page")
+      this.currentPage = +params['page'];
+      this.sliceConsumablesForCurrentPage();
+    }
+    this.applyFilters(params);
+    this.changeDetector.detectChanges();
   }
 
-  applyFilters(queryFilters: Params): void {
-
-    // Update the search query
-    if (queryFilters['search']) {
-      this.searchQuery = queryFilters['search'];
+  handleQueryParamsOnChanges() {
+    this.route.queryParams.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((params: Params) => {
+      console.log('Params fetchConsumables:', params);
+      if (params['page']) {
+        this.currentPage = +params['page'];
+      }
+      this.handleQueryParams(params);
+    });
+  }
+  
+  async handleFilteredConsumableChange(queryFilters: Params): Promise<void> {
+    const currentFilters = this.route.snapshot.queryParams;
+    const filtersChanged = JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
+  
+    this.applyFilters(queryFilters);
+    const queryParams: Params = { ...queryFilters };
+  
+    // Only reset the page number to 1 if the filters have changed
+    if (filtersChanged) {
+      queryParams['page'] = 1;
     }
+  
+    await this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    }).then(() => {
+      console.log('queryFilters inside Handle Filtered Consumables:', queryFilters);
+      this.sliceConsumablesForCurrentPage();
+    });
+  }
+
+
+  applyFilters(queryFilters: Params): void {
 
     this.filteredConsumables = [...this.consumables];
     
@@ -259,8 +236,8 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
       );
     }
 
-    console.log('Params:', queryFilters);
-    console.log('Filtered Consumables:', this.filteredConsumables);
+    console.log('Apply Filters - Params:', queryFilters);
+    console.log('Apply Filters - Filtered Consumables:', this.filteredConsumables);
 
     // Recalculate total pages
     this.totalConsumables = this.filteredConsumables.length;
@@ -268,6 +245,51 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // Update the current page
     this.sliceConsumablesForCurrentPage();
+  }
+
+  getPageNumbers(): number[] {
+    if (this.totalPages <= 5) {
+      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    } else if (this.currentPage <= 4) {
+      return [2, 3, 4];
+    } else if (this.currentPage > this.totalPages - 3) {
+      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
+    } else {
+      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
+    }
+  }
+
+  adjustLimit() {
+    if (window.innerWidth <= 768) {
+      this.limit = 21;
+    } else {
+      this.limit = 12; // Or whatever your default limit is
+    }
+  }
+
+  checkIfMobile() {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
+  onFiltersChanged(filters: any) {
+    // Reset the page number to 1
+    filters.page = 1;
+  
+    // Navigate to the first page with the new filters
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: filters,
+    });
+  }
+
+  navigateToPage(page: number = this.currentPage) {
+    const currentFilters = this.route.snapshot.queryParams;
+    const newParams = { ...currentFilters, page: page };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: newParams,
+    });
   }
 
   onAppliedFiltersCountChange(count: number): void {

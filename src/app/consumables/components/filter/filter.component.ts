@@ -23,6 +23,7 @@ import { ViewportScroller } from '@angular/common';
 export class FilterComponent implements OnInit, OnDestroy, OnChanges {
   @Output() filteredPrintersChange = new EventEmitter<any>(); // Output event
   @Output() appliedFiltersCountChange = new EventEmitter<number>();
+  @Output() filtersChanged = new EventEmitter<any>();
   @Input() selectedCategory?: string;
   @Input() initialAppliedFiltersCount: number = 0;
   @Input() searchQuery?: string;
@@ -99,6 +100,9 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.selectedColors =
         typeof params['color'] === 'string' ? params['color'].split(',') : [];
       this.searchQuery = params['search'] || '';
+
+      // Emit the filteredPrintersChange event with the current filters
+      this.emitFilters(false);
     });
 
     this.consumableService.getConsumables().subscribe(
@@ -134,7 +138,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if ('searchQuery' in changes) {
-      this.emitFilters();
+      this.emitFilters(true);
     }
     if ('initialAppliedFiltersCount' in changes) {
       this.appliedFiltersCount =
@@ -189,7 +193,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.selectedBrands.push(filterBrand);
       this.appliedFiltersCount++;
     }
-    this.emitFilters();
+    this.emitFilters(true);
     
   }
 
@@ -204,7 +208,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.appliedFiltersCount++;
     }
 
-    this.emitFilters();
+    this.emitFilters(true);
   }
 
   toggleCategoryFilter(category: string): void {
@@ -219,7 +223,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.selectedCategories.push(category);
       this.appliedFiltersCount++;
     }
-    this.emitFilters();
+    this.emitFilters(true);
   }
 
   toggleOrigenFilter(filterOrigen: string): void {
@@ -233,7 +237,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.selectedOrigens.push(filterOrigen);
       this.appliedFiltersCount++;
     }
-    this.emitFilters();
+    this.emitFilters(true);
   }
 
   toggleYieldFilter(yieldValue: string): void {
@@ -246,7 +250,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.appliedFiltersCount++;
     }
     
-    this.emitFilters();
+    this.emitFilters(true);
   }
 
   resetFilters(): void {
@@ -259,36 +263,37 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     this.appliedFiltersCount = 0;
 
     // Emit the changes
-    this.emitFilters();
+    this.emitFilters(true);
     this.appliedFiltersCountChange.emit(0);
 
     // Update the URL to reflect the reset filters
     // this.router.navigate([], { queryParams: {} });
   }
 
-  emitFilters(): void {
-  const filters = {
-    brand: this.selectedBrands.length > 0 ? this.selectedBrands.join(',') : null,
-    color: this.selectedColors.length > 0 ? this.selectedColors.join(',') : null,
-    categories: this.selectedCategories.length > 0 ? this.selectedCategories.join(',') : null,
-    origen: this.selectedOrigens.length > 0 ? this.selectedOrigens.join(',') : null,
-    yields: this.selectedYields.length > 0 ? this.selectedYields.join(',') : null,
-    filterCount: this.appliedFiltersCount > 0 ? this.appliedFiltersCount : null,
-    page: 1,
-    search: this.searchQuery?.trim() !== '' ? this.searchQuery : null,
-  };
-
-  this.filteredPrintersChange.emit(filters);
-  this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-
-  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-  this.router.navigate([], {
-    queryParams: filters,
-    queryParamsHandling: 'merge',
-  }).then(() => {
-    // Restore the scroll position after navigation
-    window.scrollTo(0, scrollPosition);
-  });
-}
+  emitFilters(filterChanged: boolean): void {
+    const filters = {
+      brand: this.selectedBrands.length > 0 ? this.selectedBrands.join(',') : null,
+      color: this.selectedColors.length > 0 ? this.selectedColors.join(',') : null,
+      categories: this.selectedCategories.length > 0 ? this.selectedCategories.join(',') : null,
+      origen: this.selectedOrigens.length > 0 ? this.selectedOrigens.join(',') : null,
+      yields: this.selectedYields.length > 0 ? this.selectedYields.join(',') : null,
+      filterCount: this.appliedFiltersCount > 0 ? this.appliedFiltersCount : null,
+      page: filterChanged ? 1 : this.route.snapshot.queryParams['page'] || 1,
+      search: this.searchQuery?.trim() !== '' ? this.searchQuery : null,
+    };
+    console.log('filters:', filters);
+    this.filteredPrintersChange.emit(filters);
+    this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
+    this.filtersChanged.emit(filters);
+  
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  
+    this.router.navigate([], {
+      queryParams: filters,
+      queryParamsHandling: 'merge',
+    }).then(() => {
+      // Restore the scroll position after navigation
+      window.scrollTo(0, scrollPosition);
+    });
+  }
 }
