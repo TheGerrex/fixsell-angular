@@ -271,17 +271,6 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isMobile = window.innerWidth <= 768;
   }
 
-  onFiltersChanged(filters: any) {
-    // Reset the page number to 1
-    filters.page = 1;
-  
-    // Navigate to the first page with the new filters
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: filters,
-    });
-  }
-
   navigateToPage(page: number = this.currentPage) {
     const currentFilters = this.route.snapshot.queryParams;
     const newParams = { ...currentFilters, page: page };

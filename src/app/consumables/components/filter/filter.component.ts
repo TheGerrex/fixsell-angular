@@ -23,7 +23,6 @@ import { ViewportScroller } from '@angular/common';
 export class FilterComponent implements OnInit, OnDestroy, OnChanges {
   @Output() filteredPrintersChange = new EventEmitter<any>(); // Output event
   @Output() appliedFiltersCountChange = new EventEmitter<number>();
-  @Output() filtersChanged = new EventEmitter<any>();
   @Input() selectedCategory?: string;
   @Input() initialAppliedFiltersCount: number = 0;
   @Input() searchQuery?: string;
@@ -284,16 +283,10 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     console.log('filters:', filters);
     this.filteredPrintersChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-    this.filtersChanged.emit(filters);
-  
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
   
     this.router.navigate([], {
       queryParams: filters,
       queryParamsHandling: 'merge',
-    }).then(() => {
-      // Restore the scroll position after navigation
-      window.scrollTo(0, scrollPosition);
-    });
+    })
   }
 }
