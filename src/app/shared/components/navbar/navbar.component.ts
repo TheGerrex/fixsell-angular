@@ -19,27 +19,14 @@ export class NavbarComponent {
         routerLink: ['/printers/list'],
         items: [
           {
-            label: 'Renta',
+            label: 'Multifuncionales',
             icon: 'pi pi-print',
-            routerLink: ['/renta'],
+            routerLink: ['/printers/intro'],
             // items: [
             //     {label: 'Oficina'},
             //     {label: 'Producción'},
             //     {label: 'Artes Gráficas'},
             //     {label: 'Inyección de Tinta'},
-            // ]
-          },
-          {
-            label: 'Venta',
-            icon: 'pi pi-dollar',
-            routerLink: ['/venta'],
-            // items: [
-            //     {label: 'Oficina'},
-            //     {label: 'Producción'},
-            //     {label: 'Etiquetas'},
-            //     {label: 'Plotters'},
-            //     {label: 'Inyección de Tinta'},
-            //     {label: 'Artes Gráficas'},
             // ]
           },
           {

@@ -14,6 +14,8 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 import { SwiperModule } from 'swiper/angular';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { PrinterIntroComponent } from './pages/printer-intro/printer-intro.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     LayoutPageComponent,
     PrinterPageComponent,
     ListPageComponent,
+    PrinterIntroComponent,
+    SearchBarComponent,
   ],
   imports: [
     CommonModule,
