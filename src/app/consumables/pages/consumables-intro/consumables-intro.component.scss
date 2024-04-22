@@ -1,7 +1,7 @@
 @import "src/styles.scss";
 .banner {
     background-color: #781f41;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../../../assets/img/consumables-intro/consumables-banner-intro.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../../../assets/img/consumible-intro/consumible-banner.jpg");
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -25,7 +25,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-
     .banner-body {
         text-align: center;
         .banner-title {
@@ -83,6 +82,7 @@
         }
     }
 }
+
 .section-body {
     display: flex;
     flex-direction: column;
@@ -98,13 +98,10 @@
     width: 100%;
 }
 
-
-
 #categorias {
     // transform: translateY(-100px);
     // height: 380px;
 }
-
 
 .category-card {
     height: auto;
