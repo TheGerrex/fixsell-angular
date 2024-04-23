@@ -21,7 +21,7 @@ import { ViewportScroller } from '@angular/common';
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent implements OnInit, OnDestroy, OnChanges {
-  @Output() filteredPrintersChange = new EventEmitter<any>(); // Output event
+  @Output() filteredConsumableChange = new EventEmitter<any>(); // Output event
   @Output() appliedFiltersCountChange = new EventEmitter<number>();
   @Input() selectedCategory?: string;
   @Input() initialAppliedFiltersCount: number = 0;
@@ -281,7 +281,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       search: this.searchQuery?.trim() !== '' ? this.searchQuery : null,
     };
     console.log('filters:', filters);
-    this.filteredPrintersChange.emit(filters);
+    this.filteredConsumableChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
   
     this.router.navigate([], {

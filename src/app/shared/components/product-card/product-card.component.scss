@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    border-radius: 10px;
-    border: 1.5px $gray-200 solid;
+    border-radius: $border-radius;
+    border: 1.5px $gray-300 solid;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -17,6 +17,7 @@
         .product-image-wrap {
             position: relative;
             background-color: $gray-200;
+            border-radius: $border-radius $border-radius 0 0;
             .product-feature-image {
                 position: relative;
                 padding: 0 12px;

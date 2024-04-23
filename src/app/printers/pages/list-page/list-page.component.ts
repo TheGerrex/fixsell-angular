@@ -2,22 +2,23 @@ import { AfterViewInit, Component, Input, Renderer2, ViewChild, ElementRef, OnIn
 import { ViewportScroller } from '@angular/common';
 import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
-import { ActivatedRoute, Router, RouterEvent, Scroll } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent, Scroll } from '@angular/router';
 import { FilterComponent } from '../../components/filter/filter.component';
-import { Observable, filter, map } from 'rxjs';
+import { Observable, Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-list-page',
+  selector: 'printers-list-page',
   templateUrl: './list-page.component.html',
   styleUrls: ['./list-page.component.scss']
 })
 export class ListPageComponent implements OnInit {
   @Input() selectedCategory?: string;
   @Input() rentable?: boolean;
+  currentPageFilteredPrinters: Printer[] = [];
   filteredPrinters: Printer[] = [];
   printers: Printer[] = [];
   isMobile?: boolean;
-  loading = true;
+  isLoading = true;
   filterBarOpen = false;
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;
@@ -27,19 +28,28 @@ export class ListPageComponent implements OnInit {
   currentPage = 1;
   totalPages = 4;
   totalPrinters = 0;
-
-  @ViewChild(FilterComponent)
-  filterComponent!: FilterComponent;
-
-  @ViewChild('productList') productList?: ElementRef;
+  searchQuery: string = '';
+  private destroy$ = new Subject<void>();
+  private searchQuerySubject = new Subject<string>();
 
   constructor(
     private printersService: PrintersService,
     private route: ActivatedRoute,
     private router: Router, 
-    private renderer: Renderer2,
-    private changeDetector: ChangeDetectorRef,
-    private viewportScroller: ViewportScroller) { }
+    private changeDetector: ChangeDetectorRef
+  ) {
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      window.scrollTo(0, 480);
+    });
+    this.searchQuerySubject.pipe(
+      debounceTime(10)
+    ).subscribe(searchQuery => {
+      this.searchQuery = searchQuery;
+    });
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -48,155 +58,135 @@ export class ListPageComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.router.events.pipe(
-      filter((e): e is Scroll => e instanceof Scroll)
-    ).subscribe(e => {
-      if (e.position) {
-        // The user has just used the back/forward button. The router
-        // will restore the scroll position, but we want to delay this
-        // until after the data has finished loading.
-        // So, save the scroll position and tell the router to scroll to the top.
-        this.scrollPosition = e.position[1];
-        this.viewportScroller.scrollToPosition([0, 0]);
-      } else if (e.anchor) {
-        // The user just navigated to an anchor link. The router will
-        // scroll to the anchor element, but we want to delay this until
-        // after the data has finished loading.
-        // So, save the anchor and tell the router to scroll to the top.
-        this.scrollAnchor = e.anchor;
-        this.viewportScroller.scrollToPosition([0, 0]);
-      }
-    });
+    this.fetchPrinters();
     this.checkIfMobile();
     this.adjustLimit();
+    this.handleQueryParamsOnChanges();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  fetchPrinters() {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
+      this.isLoading = true;
       this.printers = printers;
+      this.filteredPrinters = [...printers];
       this.totalPrinters = printers.length;
       this.totalPages = Math.ceil(this.totalPrinters / this.limit);
+      this.sliceConsumablesForCurrentPage();
+      this.isLoading = false;
+  
+      // Subscribe to the query parameters after the consumables have been fetched
       this.route.queryParams.subscribe(params => {
-        this.appliedFiltersCount = +params['filterCount'] || 0;
-        console.log("Listpage Filter Count", this.appliedFiltersCount)
-        this.currentPage = +params['page'] || 1; // Use 1 as the default page number
-        this.applyFilters(params);
-        this.fetchPrintersForCurrentPage();
-        this.loading = false;
-        this.changeDetector.detectChanges();
-        if (this.scrollPosition) {
-          this.viewportScroller.scrollToPosition([0, this.scrollPosition]);
-          this.scrollPosition = 0;
-        } else if (this.scrollAnchor) {
-          this.viewportScroller.scrollToAnchor(this.scrollAnchor);
-          this.scrollAnchor = "";
-        }
+        this.handleQueryParams(params);
       });
     });
   }
 
-  getPageNumbers(): number[] {
-    if (this.totalPages <= 5) {
-      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    } else if (this.currentPage <= 4) {
-      return [2, 3, 4];
-    } else if (this.currentPage > this.totalPages - 3) {
-      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
-    } else {
-      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
-    }
-  }
-
-  getTotalPrinters(): Observable<number> {
-    return this.printersService.getPrinters().pipe(
-      map((printers: Printer[]) => printers.length)
-  );
-  }
-
-  adjustLimit() {
-    if (window.innerWidth <= 768) {
-        this.limit = 21;
-    } else {
-        this.limit = 12; // Or whatever your default limit is
-    }
-  }
-
-  checkIfMobile() {
-    this.isMobile = window.innerWidth <= 768;
-  }
-
-  fetchPrinters(page: number = this.currentPage) {
-    console.log("Click action", this.filteredPrinters)
-    this.route.queryParams.subscribe(params => {
-      const updatedParams = { ...params, page: page };
-      this.router.navigate(['/printers/list'], { queryParams: updatedParams });
-    });
-    window.scrollTo(0, 480);
-  }
-
-  fetchPrintersForCurrentPage() {
-    console.log('Fetching printers Before', this.filteredPrinters);
+  sliceConsumablesForCurrentPage() {
     const start = (this.currentPage - 1) * this.limit;
     const end = start + this.limit;
-    this.filteredPrinters = this.filteredPrinters.slice(start, end);
-    console.log('Fetching printers After', this.filteredPrinters);
+    this.currentPageFilteredPrinters = this.filteredPrinters.slice(start, end);
   }
 
-  async handleFilteredPrintersChange(queryFilters: any): Promise<void> {
-    console.log("Query", queryFilters);
+  handleQueryParams(params: Params) {
+    this.appliedFiltersCount = +params['filterCount'] || 0;
+    console.log('handleQueryParams - Params:', params);
+    if (params['search']) {
+      this.searchQuerySubject.next(params['search']);
+    }
+    if (params['page']) {
+      console.log("Enter If of params page")
+      this.currentPage = +params['page'];
+      this.sliceConsumablesForCurrentPage();
+    }
+    this.applyFilters(params);
+    this.changeDetector.detectChanges();
+  }
+
+  handleQueryParamsOnChanges() {
+    this.route.queryParams.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((params: Params) => {
+      console.log('Params fetchConsumables:', params);
+      if (params['page']) {
+        this.currentPage = +params['page'];
+      }
+      this.handleQueryParams(params);
+    });
+  }
+
+  async handleFilteredPrintersChange(queryFilters: Params): Promise<void> {
+    const currentFilters = this.route.snapshot.queryParams;
+    const filtersChanged = JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
+  
     this.applyFilters(queryFilters);
-    this.currentPage = 1;
-    this.fetchPrinters(this.currentPage);
-    this.fetchPrintersForCurrentPage();
-    await this.router.navigate(['/printers/list'], { queryParams: { page: this.currentPage, ...queryFilters } });
+    const queryParams: Params = { ...queryFilters };
+  
+    // Only reset the page number to 1 if the filters have changed
+    if (filtersChanged) {
+      queryParams['page'] = 1;
+    }
+  
+    await this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    }).then(() => {
+      console.log('queryFilters inside Handle Filtered Consumables:', queryFilters);
+      this.sliceConsumablesForCurrentPage();
+    });
   }
 
-  applyFilters(queryFilters: any): void {
-    this.filteredPrinters = this.printers;
+  applyFilters(queryFilters: Params): void {
+    this.filteredPrinters = [...this.printers];
 
     // Apply filters...
-    if (queryFilters.brand) {
-        const brands = queryFilters.brand.split(',');
-        console.log(brands);
+    if (queryFilters['brand']) {
+        const brands = queryFilters['brand'].split(',');
         this.filteredPrinters = this.filteredPrinters.filter(printer => brands.includes(printer.brand));
-        console.log("this.filteredPrinters", this.filteredPrinters);
     }
 
     // Apply rentable filter
-    if (queryFilters.rentable) {
-      const rentable = JSON.parse(queryFilters.rentable);
+    if (queryFilters['rentable']) {
+      const rentable = JSON.parse(queryFilters['rentable']);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printer.rentable === rentable);
       
     }
     
     // Apply sellable filter
-    if (queryFilters.sellable) {
-      const sellable = JSON.parse(queryFilters.sellable);
+    if (queryFilters['sellable']) {
+      const sellable = JSON.parse(queryFilters['sellable']);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printer.sellable === sellable);
     }
 
     // Apply color filter
-    if (queryFilters.color !== undefined) {
-      const color = JSON.parse(queryFilters.color);
-      console.log("color", color);
+    if (queryFilters['color'] !== undefined) {
+      const color = JSON.parse(queryFilters['color']);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printer.color === color);
       console.log("color - printers", this.filteredPrinters);
     }
 
     // Apply category filter
-    if (queryFilters.categories) {
-      const categories = queryFilters.categories.split(',');
+    if (queryFilters['categories']) {
+      const categories = queryFilters['categories'].split(',');
       console.log(categories);
       this.filteredPrinters = this.filteredPrinters.filter(printer => categories.includes(printer.category));
     }
 
     // Apply print size filter
-    if (queryFilters.printSizes) {
-      const printSizes = queryFilters.printSizes.split(',');
+    if (queryFilters['printSizes']) {
+      const printSizes = queryFilters['printSizes'].split(',');
       console.log("filteredPrinters: printSizes", this.filteredPrinters);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printSizes.includes(printer.printSize));
     }
 
     // Apply print velocity filter
-    if (queryFilters.printVelocities) {
-      const printVelocities = queryFilters.printVelocities.split(',');
+    if (queryFilters['printVelocities']) {
+      const printVelocities = queryFilters['printVelocities'].split(',');
       console.log("filteredPrinters: printVelocities", this.filteredPrinters);
       this.filteredPrinters = this.filteredPrinters.filter(printer => {
         console.log("Hello", printVelocities)
@@ -215,18 +205,55 @@ export class ListPageComponent implements OnInit {
       });
     }
 
+    // Apply the search filter
+    if (this.searchQuery) {
+      this.filteredPrinters = this.filteredPrinters.filter(printer => 
+        printer.model.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+
     // Add other filters here...
 
     // Recalculate total pages
     this.totalPrinters = this.filteredPrinters.length;
     this.totalPages = Math.ceil(this.totalPrinters / this.limit);
+
+    // Update the current page
+    this.sliceConsumablesForCurrentPage();
   }
-  
-  scrollToContainer() {
-    console.log('scrollToContainer', this.productList);
-    if (this.productList) {
-      this.renderer.setProperty(this.productList.nativeElement, 'scrollTop', 0);
+
+  getPageNumbers(): number[] {
+    if (this.totalPages <= 5) {
+      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    } else if (this.currentPage <= 4) {
+      return [2, 3, 4];
+    } else if (this.currentPage > this.totalPages - 3) {
+      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
+    } else {
+      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
     }
+  }
+
+  adjustLimit() {
+    if (window.innerWidth <= 768) {
+        this.limit = 21;
+    } else {
+        this.limit = 12; // Or whatever your default limit is
+    }
+  }
+
+  checkIfMobile() {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
+  navigateToPage(page: number = this.currentPage) {
+    const currentFilters = this.route.snapshot.queryParams;
+    const newParams = { ...currentFilters, page: page };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: newParams,
+    });
   }
 
   onAppliedFiltersCountChange(count: number): void {
@@ -239,5 +266,9 @@ export class ListPageComponent implements OnInit {
 
   closeFilterBar() {
     this.filterBarOpen = false;
+  }
+
+  onSearchQueryChange(searchQuery: string) {
+    this.searchQuery = searchQuery.toLowerCase();
   }
 }

@@ -15,18 +15,18 @@ import {
 
 import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent, Scroll } from '@angular/router';
 import { FilterComponent } from '../../components/filter/filter.component';
-import { Observable, Subject, debounceTime, distinctUntilChanged, filter, map, takeUntil } from 'rxjs';
+import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 // consumables
 import { ConsumableService } from '../../services/consumables.service';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
 import { SearchBarListComponent } from 'src/app/shared/components/search-bar-list/search-bar-list.component';
 
 @Component({
-  selector: 'app-list-page',
+  selector: 'consumibles-list-page',
   templateUrl: './list-page.component.html',
   styleUrls: ['./list-page.component.scss'],
 })
-export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ListPageComponent implements OnInit, OnDestroy {
   @Input() selectedCategory?: string;
   currentPageFilteredConsumables: Consumible[] = [];
   filteredConsumables: Consumible[] = [];
@@ -45,14 +45,6 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   searchQuery: string = '';
   private destroy$ = new Subject<void>();
   private searchQuerySubject = new Subject<string>();
-
-  @ViewChild(FilterComponent)
-  filterComponent!: FilterComponent;
-
-  @ViewChild(SearchBarListComponent) 
-  searchBarListComponent!: SearchBarListComponent;
-
-  @ViewChild('productList') productList?: ElementRef;
   
 
   constructor(
@@ -86,16 +78,6 @@ export class ListPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.checkIfMobile();
     this.adjustLimit();
     this.handleQueryParamsOnChanges();
-  }
-
-  ngAfterViewInit() {
-    // Subscribe to query parameters and handle them
-    // this.route.queryParams.pipe(
-    //   takeUntil(this.destroy$)
-    // ).subscribe((params: Params) => {
-    //   console.log('ngAfterViewInit - Params:', params);
-    //   this.handleQueryParams(params);
-    // });
   }
 
   ngOnDestroy() {

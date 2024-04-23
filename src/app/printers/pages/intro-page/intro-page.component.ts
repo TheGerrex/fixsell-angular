@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
-  selector: 'consumables-intro-page',
-  templateUrl: './consumables-intro.component.html',
-  styleUrls: ['./consumables-intro.component.scss'],
+  selector: 'printers-intro-page',
+  templateUrl: './intro-page.component.html',
+  styleUrls: ['./intro-page.component.scss']
 })
-export class ConsumablesIntroComponent {
-  isInputFocused = false;  
+export class IntroPageComponent {
+isInputFocused = false;  
   searchQuery = '';
   aspectos = [
     {
@@ -153,7 +154,7 @@ export class ConsumablesIntroComponent {
     ];
   }
   navigateToProductList(category: string) {
-    this.router.navigate(['/consumables/list'], {
+    this.router.navigate(['/printers/list'], {
       queryParams: { categories: category,  filterCount: 1 },
       queryParamsHandling: 'merge',
     });

@@ -17,19 +17,22 @@
         </div>
         <div class="products-row px-3">
             <div class="filter-col d-none d-lg-flex">
-                <app-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory"></app-filter>
+                <printer-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory"></printer-filter>
             </div>
             <div class="product-container">
                 <div class="product-list-col">
-                    <div class="spinner-container" *ngIf="loading;">
+                    <div class="search-bar-container">
+                        <app-search-bar-list [(searchQuery)]="searchQuery" (searchQueryChange)="onSearchQueryChange($event)"></app-search-bar-list>
+                    </div>
+                    <div class="spinner-container" *ngIf="isLoading;">
                         <i class="pi pi-spin pi-spinner" style="font-size: 4rem;"></i>
                     </div>
                     <div class="product-list-container" #productList>
                         <ng-container *ngIf="filteredPrinters.length > 0; else noProducts">
-                            <app-product-card [printer]="printer" *ngFor="let printer of filteredPrinters" class="printer-product-card"></app-product-card>
+                            <app-product-card [printer]="printer" *ngFor="let printer of currentPageFilteredPrinters" class="printer-product-card"></app-product-card>
                         </ng-container>
                         <ng-template #noProducts>
-                            <div class="not-found" *ngIf="!loading">
+                            <div class="not-found" *ngIf="!isLoading">
                                 <i class="pi pi-exclamation-circle" style="font-size: 4rem;"></i>
                                 <h2>No se encontraron productos</h2>
                             </div>
@@ -38,7 +41,7 @@
                 </div>
                 <div class="pagination-container" *ngIf="filteredPrinters.length > 0 && totalPages > 1;">
                     <!-- <div class="pagination-quantity" *ngIf="!isMobile">
-                        <select [(ngModel)]="limit" (change)="fetchPrinters()">
+                        <select [(ngModel)]="limit" (change)="navigateToPage()">
                             <option value="20">20</option>
                             <option value="40">40</option>
                             <option value="50">50</option>
@@ -46,25 +49,25 @@
                     </div> -->
                     <div class="pagination-buttons">
                         <!-- previous button -->
-                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage - 1)" *ngIf="currentPage !== 1">
+                        <button class="pagination-button-direction" (click)="navigateToPage(currentPage - 1)" *ngIf="currentPage !== 1">
                           <span>Atras</span>
                         </button>
                         <span *ngIf="isMobile" class="pagination-button-number active"><span>{{ currentPage }}</span></span>
                         <div *ngIf="!isMobile" class="pagination-wrap">
-                            <button class="pagination-button-number" [class.active]="currentPage === 1" (click)="fetchPrinters(1)">
+                            <button class="pagination-button-number" [class.active]="currentPage === 1" (click)="navigateToPage(1)">
                               <span>1</span>
                             </button>
                             <span *ngIf="currentPage > 4">...</span>
-                            <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="fetchPrinters(page)">
+                            <button class="pagination-button-number" *ngFor="let page of getPageNumbers()" [class.active]="currentPage === page" (click)="navigateToPage(page)">
                               <span>{{ page }}</span>
                             </button>
                             <span *ngIf="currentPage < totalPages - 1">...</span>
-                            <button class="pagination-button-number" [class.active]="currentPage === totalPages" (click)="fetchPrinters(totalPages)">
+                            <button class="pagination-button-number" [class.active]="currentPage === totalPages" (click)="navigateToPage(totalPages)">
                               <span>{{ totalPages }}</span>
                             </button>
                         </div>
                         <!-- next button -->
-                        <button class="pagination-button-direction" (click)="fetchPrinters(currentPage + 1)" *ngIf="currentPage !== totalPages">
+                        <button class="pagination-button-direction" (click)="navigateToPage(currentPage + 1)" *ngIf="currentPage !== totalPages">
                           <span>Siguiente</span>
                         </button>
                     </div>
@@ -85,6 +88,6 @@
         </div>
     </div>
     <div class="filter-content">
-        <app-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" (filtersApplied)="scrollToContainer()" [selectedCategory]="selectedCategory"></app-filter>
+        <printer-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory"></printer-filter>
     </div>
 </div>

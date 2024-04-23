@@ -16,31 +16,21 @@ export class NavbarComponent {
       {
         label: 'Productos',
         icon: 'pi pi-shopping-bag',
-        routerLink: ['/printers/list'],
         items: [
           {
             label: 'Renta',
             icon: 'pi pi-print',
             routerLink: ['/renta'],
-            // items: [
-            //     {label: 'Oficina'},
-            //     {label: 'Producción'},
-            //     {label: 'Artes Gráficas'},
-            //     {label: 'Inyección de Tinta'},
-            // ]
           },
           {
             label: 'Venta',
             icon: 'pi pi-dollar',
             routerLink: ['/venta'],
-            // items: [
-            //     {label: 'Oficina'},
-            //     {label: 'Producción'},
-            //     {label: 'Etiquetas'},
-            //     {label: 'Plotters'},
-            //     {label: 'Inyección de Tinta'},
-            //     {label: 'Artes Gráficas'},
-            // ]
+          },
+          {
+            label: 'Multifuncionales',
+            icon: 'pi pi-print',
+            routerLink: ['/printers/intro'],
           },
           {
             label: 'Consumibles',

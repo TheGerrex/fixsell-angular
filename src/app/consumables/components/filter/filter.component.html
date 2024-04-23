@@ -47,8 +47,8 @@
             <div class="filter-section-content" [ngClass]="{ hidden: !isSectionVisibleCategory }">
                 <div class="buttons-container">
                     <button *ngFor="let category of categories" class="button-filter" (click)="toggleCategoryFilter(category)" [ngClass]="{ highlight: selectedCategories.includes(category) }">
-            {{ category }}
-          </button>
+                        {{ category }}
+                    </button>
                 </div>
             </div>
         </div>

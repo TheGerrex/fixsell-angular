@@ -2,9 +2,10 @@ import { Component, EventEmitter, OnInit, Output, Input, ElementRef, ViewChild, 
 import { Printer } from '../../interfaces/printer.interface';
 import { PrintersService } from '../../services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
-  selector: 'app-filter',
+  selector: 'printer-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
@@ -13,6 +14,7 @@ export class FilterComponent implements OnInit {
   @Output() appliedFiltersCountChange = new EventEmitter<number>();
   @Input() selectedCategory?: string;
   @Input() initialAppliedFiltersCount: number = 0;
+  @Input() searchQuery?: string;
 
   // FILTERS
   printers: Printer[] = [];
@@ -35,8 +37,8 @@ export class FilterComponent implements OnInit {
   isSectionVisibleType: boolean = true;
   isSectionVisibleVelocity: boolean = true;
   isSectionVisibleCategory: boolean = true;
-  rentable?: boolean = false;
-  sellable?: boolean = false;
+  rentable: boolean = false;
+  sellable: boolean = false;
   rentableCount: number = 0;
   isVentaHighlighted: boolean = false;
   isRentaHighlighted: boolean = false;
@@ -49,7 +51,9 @@ export class FilterComponent implements OnInit {
   constructor(
     private printerService: PrintersService, 
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private viewportScroller: ViewportScroller,
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -64,6 +68,7 @@ export class FilterComponent implements OnInit {
       if (this.colorParams !== undefined) {
         this.selectedColors.push(this.colorParams ? 'Color' : 'B&N');
       }
+      this.emitFilters(false);
     });
     this.printerService.getPrinters().subscribe((printers) => {
       this.brands = Array.from(new Set(printers.map(printer => printer.brand)));
@@ -73,6 +78,7 @@ export class FilterComponent implements OnInit {
     });
     this.checkIfMobile();
     window.addEventListener('resize', this.onResize);
+    this.viewportScroller.setHistoryScrollRestoration('manual');
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -118,33 +124,18 @@ export class FilterComponent implements OnInit {
   }
 
   toggleSellableOptionFilter(): void {
-    const wasSellable = this.sellable;
-    this.sellable = !this.sellable;
-    this.rentable = !this.sellable;
+    this.sellable = !this.sellable
+    this.appliedFiltersCount = this.sellable ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
   
-    if (wasSellable !== this.sellable) {
-      this.appliedFiltersCount = this.sellable ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
-    }
-  
-    this.route.queryParams.subscribe(params => {
-      const updatedParams = { ...params, sellable: this.sellable ? 'true' : 'false', rentable: this.rentable ? 'true' : 'false', filterCount: this.appliedFiltersCount, page: '1' };
-      this.router.navigate([], { queryParams: updatedParams, queryParamsHandling: 'merge' });
-    });
+    this.emitFilters(true);
   }
   
   toggleRentableOptionFilter(): void {
-    const wasRentable = this.rentable;
-    this.rentable = !this.rentable;
-    this.sellable = !this.rentable;
+    this.rentable = !this.rentable
+    this.appliedFiltersCount = this.rentable ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
   
-    if (wasRentable !== this.rentable) {
-      this.appliedFiltersCount = this.rentable ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
-    }
   
-    this.route.queryParams.subscribe(params => {
-      const updatedParams = { ...params, rentable: this.rentable ? 'true' : 'false', sellable: this.sellable ? 'true' : 'false', filterCount: this.appliedFiltersCount, page: '1' };
-      this.router.navigate([], { queryParams: updatedParams, queryParamsHandling: 'merge' });
-    });
+    this.emitFilters(true);
   }
 
   toggleBrandFilter(filterBrand: string): void {
@@ -156,20 +147,22 @@ export class FilterComponent implements OnInit {
         this.selectedBrands.push(filterBrand);
         this.appliedFiltersCount++;
     }
-    this.emitFilters();
+    this.emitFilters(true);
   }
   
   toggleColorFilter(color: string): void {
-      const wasIncluded = this.selectedColors.includes(color);
-      if (wasIncluded) {
-          this.selectedColors.splice(this.selectedColors.indexOf(color), 1);
-          this.appliedFiltersCount--;
-      } else {
-          this.selectedColors.push(color);
-          this.appliedFiltersCount++;
-      }
-      // Rest of your code...
-      this.emitFilters();
+  if (color === "Color") {
+    this.colorParams = true;
+  } else {
+    this.colorParams = false;
+  }
+
+  if (this.colorParams) {
+    this.appliedFiltersCount++;
+  } else {
+    this.appliedFiltersCount--;
+  }
+    this.emitFilters(true);
   }
   
   toggleCategoryFilter(category: string): void {
@@ -181,7 +174,7 @@ export class FilterComponent implements OnInit {
           this.selectedCategories.push(category);
           this.appliedFiltersCount++;
       }
-      this.emitFilters();
+      this.emitFilters(true);
   }
   
   togglePrintSizeFilter(printSize: string): void {
@@ -193,7 +186,7 @@ export class FilterComponent implements OnInit {
           this.selectedPrintSizes.push(printSize);
           this.appliedFiltersCount++;
       }
-      this.emitFilters();
+      this.emitFilters(true);
   }
   
   togglePrintVelocityFilter(velocity: string): void {
@@ -205,7 +198,7 @@ export class FilterComponent implements OnInit {
           this.selectedPrintVelocities.push(velocity);
           this.appliedFiltersCount++;
       }
-      this.emitFilters();
+      this.emitFilters(true);
   }
 
 
@@ -215,28 +208,30 @@ export class FilterComponent implements OnInit {
     this.selectedBrands = [];
     this.selectedPrintVelocities = [];
     this.selectedCategories = [];
-    this.rentable = undefined;
-    this.sellable = undefined;
+    this.rentable = false;
+    this.sellable = false;
     this.appliedFiltersCount = 0;
 
     // Emit the changes
-    this.emitFilters();
+    this.emitFilters(true);
     this.appliedFiltersCountChange.emit(0);
 
     // Update the URL to reflect the reset filters
     this.router.navigate([], { queryParams: {} });
   }
 
-  emitFilters(): void {
+  emitFilters(filterChanged: boolean): void {
     const filters = {
-        brand: this.selectedBrands.join(','),
-        color: this.selectedColors.includes('Color') ? 'true' : this.selectedColors.includes('B&N') ? 'false' : undefined,
-        categories: this.selectedCategories.join(','),
-        printSizes: this.selectedPrintSizes.join(','),
-        printVelocities: this.selectedPrintVelocities.join(','),
-        sellable: this.sellable,
-        rentable: this.rentable,
-        filterCount: this.appliedFiltersCount,
+        brand: this.selectedBrands.length > 0 ? this.selectedBrands.join(',') : null,
+        color: this.selectedColors.length > 0 ? this.selectedColors.join(',') : null,
+        categories: this.selectedCategories.length > 0 ? this.selectedCategories.join(',') : null,
+        printSizes: this.selectedPrintSizes.length > 0 ? this.selectedPrintSizes.join(',') : null,
+        printVelocities: this.selectedPrintVelocities.length > 0 ? this.selectedPrintVelocities.join(',') : null,
+        sellable: this.sellable ? this.sellable : null,
+        rentable: this.rentable ? this.rentable : null,
+        filterCount: this.appliedFiltersCount > 0 ? this.appliedFiltersCount : null,
+        page: filterChanged ? 1 : this.route.snapshot.queryParams['page'] || 1,
+        search: this.searchQuery?.trim() !== '' ? this.searchQuery : null,
         // Add other filters here...
     };
 
@@ -244,23 +239,6 @@ export class FilterComponent implements OnInit {
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
 
     this.router.navigate([], { queryParams: filters, queryParamsHandling: 'merge' });
-  }
-  
-  toggleCheckbox(data: string, group: string) {
-    switch (group) {
-      case 'printBrands':
-        this.toggleBrandFilter(data);
-        break;
-      case 'printSizes':
-        this.togglePrintSizeFilter(data);
-        break;
-      case 'printType':
-        this.toggleColorFilter(data);
-        break;
-      case 'printVelocities':
-        this.togglePrintVelocityFilter(data);
-        break;
-    }
   }
 
 }
