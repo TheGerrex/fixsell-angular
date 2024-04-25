@@ -21,7 +21,8 @@ export class FilterComponent implements OnInit {
   filteredPrinters: Printer[] = [];
   printSizesFilter: string[] = ['Carta', 'Doble Carta', 'Tabloide', 'Tabloide Plus', 'Rollo 4', 'Rollo 4.25','Rollo 8','Rollo 8.34', 'Rollo 13'];
   colorFilter: string[] = ['Color', 'B&N'];
-  colorParams: any;
+  colorParam: any;
+  colorFilterApplied = false;
   selectedBrands: string[] = [];
   selectedPrintVelocities: string[] = [];
   selectedCategories: string[] = []; 
@@ -63,10 +64,10 @@ export class FilterComponent implements OnInit {
       this.selectedCategories = params['categories'] ? params['categories'].split(',') : [];
       this.selectedPrintSizes = params['printSizes'] ? params['printSizes'].split(',') : [];
       this.selectedPrintVelocities = params['printVelocities'] ? params['printVelocities'].split(',') : [];
-      this.colorParams = params['color'] !== undefined ? params['color'] === 'true' : undefined;
-      this.selectedColors = [];
-      if (this.colorParams !== undefined) {
-        this.selectedColors.push(this.colorParams ? 'Color' : 'B&N');
+      if ('color' in params) {
+        this.colorParam = params['color'] === "true" ? true : false;
+      } else {
+        this.colorParam = null;
       }
       this.emitFilters(false);
     });
@@ -150,20 +151,39 @@ export class FilterComponent implements OnInit {
     this.emitFilters(true);
   }
   
-  toggleColorFilter(color: string): void {
-  if (color === "Color") {
-    this.colorParams = true;
+toggleColorFilter(): void {
+  if (this.colorParam !== true) {
+    this.colorParam = true;
+    if (!this.colorFilterApplied) {
+      this.appliedFiltersCount++;
+      this.colorFilterApplied = true;
+    }
   } else {
-    this.colorParams = false;
+    this.colorParam = null;
+    if (this.colorFilterApplied) {
+      this.appliedFiltersCount--;
+      this.colorFilterApplied = false;
+    }
   }
+  this.emitFilters(true);
+}
 
-  if (this.colorParams) {
-    this.appliedFiltersCount++;
+toggleBWFilter(): void {
+  if (this.colorParam !== false) {
+    this.colorParam = false;
+    if (!this.colorFilterApplied) {
+      this.appliedFiltersCount++;
+      this.colorFilterApplied = true;
+    }
   } else {
-    this.appliedFiltersCount--;
+    this.colorParam = null;
+    if (this.colorFilterApplied) {
+      this.appliedFiltersCount--;
+      this.colorFilterApplied = false;
+    }
   }
-    this.emitFilters(true);
-  }
+  this.emitFilters(true);
+}
   
   toggleCategoryFilter(category: string): void {
       const wasIncluded = this.selectedCategories.includes(category);
@@ -204,7 +224,7 @@ export class FilterComponent implements OnInit {
 
   resetFilters(): void {
     this.selectedPrintSizes = [];
-    this.selectedColors = [];
+    this.colorParam = null;
     this.selectedBrands = [];
     this.selectedPrintVelocities = [];
     this.selectedCategories = [];
@@ -223,7 +243,7 @@ export class FilterComponent implements OnInit {
   emitFilters(filterChanged: boolean): void {
     const filters = {
         brand: this.selectedBrands.length > 0 ? this.selectedBrands.join(',') : null,
-        color: this.selectedColors.length > 0 ? this.selectedColors.join(',') : null,
+        color: this.colorParam !== null ? this.colorParam.toString() : null,
         categories: this.selectedCategories.length > 0 ? this.selectedCategories.join(',') : null,
         printSizes: this.selectedPrintSizes.length > 0 ? this.selectedPrintSizes.join(',') : null,
         printVelocities: this.selectedPrintVelocities.length > 0 ? this.selectedPrintVelocities.join(',') : null,

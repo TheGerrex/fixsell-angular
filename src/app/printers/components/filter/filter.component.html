@@ -43,10 +43,16 @@
                 </div>
             </div>
             <div class="filter-section-content" [ngClass]="{'hidden': !isSectionVisibleType}">
-                <div class="checkbox" *ngFor="let color of colorFilter">
+                <!-- <div class="checkbox" *ngFor="let color of colorFilter">
                     <div class="checkbox-container">
                         <input type="checkbox" class="checkbox-input" [id]="color" [value]="color" [checked]="selectedColors.includes(color)" (change)="toggleColorFilter(color)" />
                         <label for="{{ color }}">{{color}}</label>
+                    </div>
+                </div> -->
+                <div class="buttons-container">
+                    <div class="wrapper">
+                        <button class="button-filter" (click)="toggleColorFilter()" [ngClass]="{ 'highlight': colorParam === true }">Color</button>
+                        <button class="button-filter" (click)="toggleBWFilter()" [ngClass]="{ 'highlight': colorParam === false }">B&W</button>
                     </div>
                 </div>
             </div>

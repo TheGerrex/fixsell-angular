@@ -164,7 +164,7 @@ export class ListPageComponent implements OnInit {
     }
 
     // Apply color filter
-    if (queryFilters['color'] !== undefined) {
+    if (queryFilters['color']) {
       const color = JSON.parse(queryFilters['color']);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printer.color === color);
       console.log("color - printers", this.filteredPrinters);
