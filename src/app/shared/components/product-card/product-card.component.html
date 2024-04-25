@@ -17,7 +17,8 @@
                         <div class="tag deal" *ngIf="printer.deals.length > 0">
                             <div class="tag-title">Promoción</div>
                         </div>
-                        <div [innerHTML]="printer.rentable | productType"></div>
+                        <div [innerHTML]="printer | productType"></div>
+                        <!-- <div [innerHTML]="printer.rentable | productType"></div> -->
                         <div class="tag">
                             <div class="tag-title">{{printer.category}}</div>
                         </div>

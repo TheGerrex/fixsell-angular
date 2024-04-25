@@ -19,7 +19,7 @@ export class FilterComponent implements OnInit {
   // FILTERS
   printers: Printer[] = [];
   filteredPrinters: Printer[] = [];
-  printSizesFilter: string[] = ['Carta', 'Doble Carta', 'Tabloide', 'Tabloide Plus', 'Rollo 4', 'Rollo 4.25','Rollo 8','Rollo 8.34', 'Rollo 13'  ];
+  printSizesFilter: string[] = ['Carta', 'Doble Carta', 'Tabloide', 'Tabloide Plus', 'Rollo 4', 'Rollo 4.25','Rollo 8','Rollo 8.34', 'Rollo 13'];
   colorFilter: string[] = ['Color', 'B&N'];
   colorParams: any;
   selectedBrands: string[] = [];
