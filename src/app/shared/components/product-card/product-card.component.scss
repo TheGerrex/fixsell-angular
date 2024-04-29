@@ -10,14 +10,13 @@
     overflow: hidden;
     box-sizing: border-box;
     .product-card-container {
-        cursor: pointer;
         display: flex;
         flex-direction: column;
         height: 100%;
         .product-image-wrap {
+            cursor: pointer;
             position: relative;
             background-color: $gray-200;
-            border-radius: $border-radius $border-radius 0 0;
             .product-feature-image {
                 position: relative;
                 padding: 0 12px;
@@ -62,7 +61,7 @@
             justify-content: space-between;
             flex-grow: 1;
             background-color: $gray-50;
-            border-radius: 10px;
+            border-radius: $border-radius;
             .product-info {
                 display: flex;
                 flex-direction: column;

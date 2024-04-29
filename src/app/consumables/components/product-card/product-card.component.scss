@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    border-radius: 10px;
-    border: 1.5px $gray-200 solid;
+    border-radius: $border-radius;
+    border: 1.5px $gray-300 solid;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -61,7 +61,7 @@
             justify-content: space-between;
             flex-grow: 1;
             background-color: $gray-50;
-            border-radius: 10px;
+            border-radius: $border-radius;
             .product-info {
                 display: flex;
                 flex-wrap: wrap;

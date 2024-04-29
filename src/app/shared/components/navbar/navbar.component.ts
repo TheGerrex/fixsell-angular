@@ -17,16 +17,16 @@ export class NavbarComponent {
         label: 'Productos',
         icon: 'pi pi-shopping-bag',
         items: [
-          {
-            label: 'Renta',
-            icon: 'pi pi-print',
-            routerLink: ['/renta'],
-          },
-          {
-            label: 'Venta',
-            icon: 'pi pi-dollar',
-            routerLink: ['/venta'],
-          },
+          // {
+          //   label: 'Renta',
+          //   icon: 'pi pi-print',
+          //   routerLink: ['/renta'],
+          // },
+          // {
+          //   label: 'Venta',
+          //   icon: 'pi pi-dollar',
+          //   routerLink: ['/venta'],
+          // },
           {
             label: 'Multifuncionales',
             icon: 'pi pi-print',
