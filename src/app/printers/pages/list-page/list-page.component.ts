@@ -93,15 +93,15 @@ export class ListPageComponent implements OnInit {
   }
 
   handleQueryParams(params: Params) {
-    this.appliedFiltersCount = +params['filterCount'] || 0;
-    console.log('handleQueryParams - Params:', params);
     if (params['search']) {
       this.searchQuerySubject.next(params['search']);
     }
     if (params['page']) {
-      console.log("Enter If of params page")
       this.currentPage = +params['page'];
       this.sliceConsumablesForCurrentPage();
+    }
+    if (params['filterCount']) {
+      this.appliedFiltersCount = +params['filterCount'];
     }
     this.applyFilters(params);
     this.changeDetector.detectChanges();
@@ -111,7 +111,6 @@ export class ListPageComponent implements OnInit {
     this.route.queryParams.pipe(
       takeUntil(this.destroy$)
     ).subscribe((params: Params) => {
-      console.log('Params fetchConsumables:', params);
       if (params['page']) {
         this.currentPage = +params['page'];
       }
@@ -125,7 +124,7 @@ export class ListPageComponent implements OnInit {
   
     this.applyFilters(queryFilters);
     const queryParams: Params = { ...queryFilters };
-  
+
     // Only reset the page number to 1 if the filters have changed
     if (filtersChanged) {
       queryParams['page'] = 1;
@@ -136,7 +135,6 @@ export class ListPageComponent implements OnInit {
       queryParams: queryParams,
       queryParamsHandling: 'merge',
     }).then(() => {
-      console.log('queryFilters inside Handle Filtered Consumables:', queryFilters);
       this.sliceConsumablesForCurrentPage();
     });
   }
@@ -167,34 +165,27 @@ export class ListPageComponent implements OnInit {
     if (queryFilters['color']) {
       const color = JSON.parse(queryFilters['color']);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printer.color === color);
-      console.log("color - printers", this.filteredPrinters);
     }
 
     // Apply category filter
     if (queryFilters['categories']) {
       const categories = queryFilters['categories'].split(',');
-      console.log(categories);
       this.filteredPrinters = this.filteredPrinters.filter(printer => categories.includes(printer.category));
     }
 
     // Apply print size filter
     if (queryFilters['printSizes']) {
       const printSizes = queryFilters['printSizes'].split(',');
-      console.log("filteredPrinters: printSizes", this.filteredPrinters);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printSizes.includes(printer.printSize));
     }
 
     // Apply print velocity filter
     if (queryFilters['printVelocities']) {
       const printVelocities = queryFilters['printVelocities'].split(',');
-      console.log("filteredPrinters: printVelocities", this.filteredPrinters);
       this.filteredPrinters = this.filteredPrinters.filter(printer => {
-        console.log("Hello", printVelocities)
         let isInRange = false;
         for (let i = 0; i < printVelocities.length; i++) {
             const [min, max] = printVelocities[i].split('-').map(Number);
-            console.log("min", min);
-            console.log("max", max);
             const printerVelocity = Number(printer.printVelocity);
             if (printerVelocity >= min && printerVelocity <= max) {
                 isInRange = true;

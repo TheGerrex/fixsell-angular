@@ -29,7 +29,6 @@ export class SearchBarListComponent {
   }
 
   onInputChange() {
-    console.log('emiting search query...', this.searchQuery);
     this.searchQueryChange.emit(this.searchQuery);
   }
 }

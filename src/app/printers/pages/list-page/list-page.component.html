@@ -17,7 +17,7 @@
         </div>
         <div class="products-row px-3">
             <div class="filter-col d-none d-lg-flex">
-                <printer-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory"></printer-filter>
+                <printer-filter [initialAppliedFiltersCount]="appliedFiltersCount" (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)" (filteredPrintersChange)="handleFilteredPrintersChange($event)" [selectedCategory]="selectedCategory" [searchQuery]="searchQuery"></printer-filter>
             </div>
             <div class="product-container">
                 <div class="product-list-col">

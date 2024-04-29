@@ -69,13 +69,13 @@ export class FilterComponent implements OnInit {
       } else {
         this.colorParam = null;
       }
+      this.searchQuery = params['search'] || '';
       this.emitFilters(false);
     });
     this.printerService.getPrinters().subscribe((printers) => {
       this.brands = Array.from(new Set(printers.map(printer => printer.brand)));
       this.categories = Array.from(new Set(printers.map(printer => printer.category)));
       this.printSizesFilter = Array.from(new Set(printers.map(printer => printer.printSize)));
-      console.log(this.categories);
     });
     this.checkIfMobile();
     window.addEventListener('resize', this.onResize);
@@ -83,10 +83,12 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if ('searchQuery' in changes) {
+      this.emitFilters(true);
+    }
     if ('initialAppliedFiltersCount' in changes) {
       this.appliedFiltersCount = changes['initialAppliedFiltersCount'].currentValue;
     }
-    console.log("Filter count", this.initialAppliedFiltersCount)
   }
   
   toggleFilterSectionProduct() {
@@ -243,7 +245,7 @@ toggleBWFilter(): void {
   emitFilters(filterChanged: boolean): void {
     const filters = {
         brand: this.selectedBrands.length > 0 ? this.selectedBrands.join(',') : null,
-        color: this.colorParam !== null ? this.colorParam.toString() : null,
+        color: this.colorParam !== null ? this.colorParam : null,
         categories: this.selectedCategories.length > 0 ? this.selectedCategories.join(',') : null,
         printSizes: this.selectedPrintSizes.length > 0 ? this.selectedPrintSizes.join(',') : null,
         printVelocities: this.selectedPrintVelocities.length > 0 ? this.selectedPrintVelocities.join(',') : null,
@@ -254,7 +256,6 @@ toggleBWFilter(): void {
         search: this.searchQuery?.trim() !== '' ? this.searchQuery : null,
         // Add other filters here...
     };
-
     this.filteredPrintersChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
 
