@@ -57,6 +57,12 @@ export class SearchBarComponent implements OnInit {
     if (event) {
       event.preventDefault();
     }
+
+    // Trim the search query and check if it's empty
+    const trimmedSearchQuery = this.searchQuery.trim();
+    if (!trimmedSearchQuery) {
+      return;
+    }
   
     // Navigate to the list page with the search parameter
     this.router.navigate(['/consumables', 'list'], { queryParams: { search: this.searchQuery, page: 1 } });
