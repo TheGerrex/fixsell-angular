@@ -49,28 +49,24 @@ isInputFocused = false;
 
   categories = [
     {
-      name: 'Cartucho de tóner',
-      img: '../../../assets/img/home/categories/consumables/CartuchodeTonerKonica.png',
+      name: 'Oficina',
+      category: 'Oficina',
     },
     {
-      name: 'Cartucho de tinta',
-      img: '../../../assets/img/home/categories/consumables/CartuchodeTintaEpson.png',
+      name: 'Producción',
+      category: 'Produccion',
     },
     {
-      name: 'Fusor',
-      img: '../../../assets/img/home/categories/consumables/fusor.jpg',
+      name: 'Etiquetas',
+      category: 'Etiquetas',
     },
     {
-      name: 'Tambor',
-      img: '../../../assets/img/home/categories/consumables/tambor.jpg',
+      name: 'Artes Gráficas',
+      category: 'Artes Graficas',
     },
     {
-      name: 'Cilindros y rodillos',
-      img: '../../../assets/img/home/categories/consumables/rodillo.png', // replace with the path to your image
-    },
-    {
-      name: 'Papel',
-      img: '../../../assets/img/home/categories/consumables/papel.png', // replace with the path to your image
+      name: 'Inyección de Tinta',
+      category: 'Inyeccion de Tinta',
     },
   ];
 
@@ -153,6 +149,7 @@ isInputFocused = false;
       },
     ];
   }
+
   navigateToProductList(category: string) {
     this.router.navigate(['/printers/list'], {
       queryParams: { categories: category,  filterCount: 1 },
