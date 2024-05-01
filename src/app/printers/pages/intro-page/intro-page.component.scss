@@ -7,15 +7,11 @@
     color: #fff;
     width: 100%;
     min-height: 400px;
-    padding: 64px 12px 100px 12px;
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {
-        padding: 64px 32px 100px 32px;
-    }
-    // Large devices (desktops, 992px and up)
-    @media (min-width: 992px) {
-        padding: 64px 64px 100px 64px;
-    }
+    padding: 64px 12px 64px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .wrapper {
@@ -129,6 +125,10 @@
     }
 }
 
+#printer-types {
+    background-color: $light-50;
+}
+
 :host ::ng-deep .p-carousel-item {
     max-height: 100%;
     padding: 10px;
@@ -221,8 +221,12 @@
 
 .printer-type-container {
     display: flex;
+    flex-direction: column;
     gap: 1em;
     align-items: stretch;
+    @media(min-width: 768px) {
+        flex-direction: row;
+    }
 }
 
 .venta,
@@ -231,7 +235,7 @@
     flex-direction: column;
     padding: 2em;
     flex: 1;
-    background-color: $gray-50;
+    background-color: $white;
     border-radius: $border-radius;
     border: 1px solid $gray-300;
 }
@@ -244,6 +248,10 @@
 }
 
 .section-title {
+    color: $text;
+}
+
+.section-icon {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -265,5 +273,12 @@
 }
 
 .actions {
+    margin-top: 1em;
     text-align: center;
+}
+
+.renta .section-icon {
+    img {
+        color: #781f41;
+    }
 }

@@ -156,4 +156,20 @@ isInputFocused = false;
       queryParamsHandling: 'merge',
     });
   }
+
+  navigateToProductListType(type: string) {
+
+    if(type === 'sellable') {
+      this.router.navigate(['/printers/list'], {
+        queryParams: { sellable: true,  filterCount: 1 },
+        queryParamsHandling: 'merge',
+      });
+    } else if(type === 'rentable') {
+      this.router.navigate(['/printers/list'], {
+        queryParams: { rentable: true,  filterCount: 1 },
+        queryParamsHandling: 'merge',
+      });
+    }
+    
+  }
 }
