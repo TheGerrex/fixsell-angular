@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import { PrinterRoutingModule } from './printer-routing.module';
 import { FilterComponent } from './components/filter/filter.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -15,9 +14,9 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 import { SwiperModule } from 'swiper/angular';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-
-
-
+import { IntroPageComponent } from './pages/intro-page/intro-page.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,10 @@ import { SharedModule } from '../shared/shared.module';
     ProductCardComponent,
     LayoutPageComponent,
     PrinterPageComponent,
-    ListPageComponent
+    ListPageComponent,
+    IntroPageComponent,
+    SearchBarComponent,
+    PromotionListComponent,
   ],
   imports: [
     CommonModule,
@@ -36,12 +38,8 @@ import { SharedModule } from '../shared/shared.module';
     PrimengModule,
     SwiperModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
-  exports: [
-    ProductTypePipe,
-    ProductColorIconPipe,
-    BrandTypePipe
-  ]
+  exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe],
 })
-export class PrinterModule { }
+export class PrinterModule {}

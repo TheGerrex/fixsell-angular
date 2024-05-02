@@ -1,6 +1,6 @@
 <div class="product-card">
-    <div class="product-card-container" [routerLink]="['/printers', printer.id]">
-        <div class="product-image-wrap">
+    <div class="product-card-container">
+        <div class="product-image-wrap" [routerLink]="['/printers', printer.id]">
             <div class="product-feature-image">
                 <img [src]="printer.img_url[0]" alt="" class="product-image">
                 <div class="product-deal-tag" *ngIf="printer.deals.length > 0">
@@ -17,14 +17,17 @@
                         <div class="tag deal" *ngIf="printer.deals.length > 0">
                             <div class="tag-title">Promoción</div>
                         </div>
-                        <div [innerHTML]="printer.rentable | productType"></div>
+                        <div [innerHTML]="printer | productType"></div>
+                        <!-- <div [innerHTML]="printer.rentable | productType"></div> -->
                         <div class="tag">
                             <div class="tag-title">{{printer.category}}</div>
                         </div>
                     </div>
                     <div class="product-features">
                         <div class="feature">
-                            <div [class]="printer.color | productColor: 'ColorCircle' : 'BlackCircle' "></div>
+                            <!-- <div [class]="printer.color | productColor: 'ColorCircle' : 'BlackCircle' "></div> -->
+                            <img *ngIf="!printer.color" class="color-icon" src="../../../../assets/svg/colors/B&W.svg" alt="B&W Icon" />
+                            <img *ngIf="printer.color" class="color-icon" src="../../../../assets/svg/colors/CMYK.svg" alt="CMYK Icon" />
                             <p>{{printer.color ? 'Color' : 'B/N'}}</p>
                         </div>
                         <div class="feature">
@@ -38,13 +41,13 @@
                     </div>
                 </div>
             </div>
-            <div class="product-action-deal" *ngIf="printer.deals.length > 0">
+            <div class="product-action-deal" *ngIf="printer.deals.length > 0" [routerLink]="['/printers', printer.id]">
                 <i class="pi pi-shopping-cart"></i>
                 <span class="product-price-deal">${{printer.deals[0].dealPrice}}USD</span>
                 <s class="product-price d-none d-md-block">${{printer.price}}</s>
             </div>
-            <div class="product-action" *ngIf="!(printer.deals.length > 0)">
-                <span class="product-action-title">Ver más</span>
+            <div class="product-action" *ngIf="!(printer.deals.length > 0)" [routerLink]="['/printers', printer.id]">
+                <span class="product-action-title">Conoce más</span>
             </div>
         </div>
     </div>

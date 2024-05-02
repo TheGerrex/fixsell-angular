@@ -10,28 +10,36 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductBrandPipe } from './pipes/product-brand.pipe';
 import { ProductColorPipe } from './pipes/product-color.pipe';
 import { ProductTypePipe } from './pipes/product-type.pipe';
-
+import { ProductEmailFormComponent } from './components/product-email-form/product-email-form.component';
+import { FormsModule } from '@angular/forms';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchBarListComponent } from './components/search-bar-list/search-bar-list.component';
 @NgModule({
-    declarations: [
-        NavbarComponent,
-        FooterComponent,
-        SocialHeaderComponent,
-        Error404PageComponent,
-        ProductCardComponent,
-        ProductBrandPipe,
-        ProductColorPipe,
-        ProductTypePipe
-    ],
-    imports: [
-        CommonModule,
-        PrimengModule,
-        ReactiveFormsModule,
-    ],
-    exports: [
-        NavbarComponent,
-        FooterComponent,
-        SocialHeaderComponent,
-        ProductCardComponent
-    ]
-  })
-  export class SharedModule { }
+  declarations: [
+    NavbarComponent,
+    FooterComponent,
+    SocialHeaderComponent,
+    Error404PageComponent,
+    ProductCardComponent,
+    ProductBrandPipe,
+    ProductColorPipe,
+    ProductTypePipe,
+    ProductEmailFormComponent,
+    SearchBarComponent,
+    SearchBarListComponent,
+  ],
+  imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
+  exports: [
+    NavbarComponent,
+    FooterComponent,
+    SocialHeaderComponent,
+    ProductCardComponent,
+    ProductBrandPipe,
+    ProductColorPipe,
+    ProductTypePipe,
+    ProductEmailFormComponent,
+    SearchBarComponent,
+    SearchBarListComponent,
+  ],
+})
+export class SharedModule {}

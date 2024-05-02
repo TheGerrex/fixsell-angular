@@ -1,0 +1,72 @@
+<!-- Cotiza por Email -->
+<button class="button button-primary button-rounded" (click)="openEmailForm()">
+  <i class="pi pi-envelope"></i>
+  <span class="button-label">Cotiza por Email</span>
+</button>
+
+<!-- Email Form -->
+<div *ngIf="showEmailForm" class="email-form">
+  <form
+    class="form-contact mt-3"
+    #emailForm="ngForm"
+    (ngSubmit)="submitEmailForm(emailForm)"
+  >
+    <div class="mb-3">
+      <label class="form-label" for="companyName">Nombre de la empresa:</label>
+      <input
+        type="text"
+        id="companyName"
+        [(ngModel)]="companyName"
+        name="companyName"
+        class="form-control w-100"
+        placeholder="Nombre o Empresa"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="phone">Teléfono:</label>
+      <input
+        type="tel"
+        id="phone"
+        [(ngModel)]="phone"
+        name="phone"
+        class="form-control w-100"
+        placeholder="XX-XX-XX-XX-XX"
+        required
+      />
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label" for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        name="email"
+        class="form-control w-100"
+        placeholder="ejemplo@mail.com"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="message">Mensaje:</label>
+      <textarea
+        id="message"
+        [(ngModel)]="message"
+        name="message"
+        class="form-control w-100"
+        required
+        >{{ message }}</textarea
+      >
+    </div>
+
+    <button
+      class="button button-rounded button-primary button-raised w-100 mt-3"
+      type="submit"
+    >
+      <span class="button-label">Enviar</span>
+    </button>
+  </form>
+</div>

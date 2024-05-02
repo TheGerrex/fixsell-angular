@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import SwiperCore, {
   Navigation,
@@ -19,8 +19,13 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
   thumbsSwiper: any;
+  imageSrc = '../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png';
+  activeItem = 1;
+  isSmallScreen = false;
+  isMediumScreen = false;
 
   categories = [
     {
@@ -84,32 +89,66 @@ export class HomeComponent {
     },
   ];
 
-  config: SwiperOptions = {
-    slidesPerView: 1,
-    spaceBetween: 8,
-    // navigation: true,
+  configCategories: SwiperOptions = {
+    slidesPerView: 2,
+    spaceBetween: 4,
+    navigation: true,
     autoplay: false,
     pagination: { clickable: true },
     scrollbar: { draggable: true },
     breakpoints: {
       1024: {
         slidesPerView: 4,
-        spaceBetween: 24,
-        // navigation: true,
+        spaceBetween: 16,
+        navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
       },
       768: {
         slidesPerView: 3,
         spaceBetween: 16,
+        navigation: true,
+        autoplay: false,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+      426: {
+        slidesPerView: 2,
+        spaceBetween: 16,
+        navigation: false,
+        autoplay: true,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+    },
+    // thumbs: {swiper: this.thumbsSwiper}
+  };
+  configFeatures: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 4,
+    navigation: false,
+    autoplay: false,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 16,
+        // navigation: true,
+        autoplay: false,
+        scrollbar: { draggable: true },
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 16,
         // navigation: true,
         autoplay: false,
         pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
-      360: {
+      426: {
         slidesPerView: 2,
-        spaceBetween: 8,
+        spaceBetween: 16,
         // navigation: false,
         autoplay: true,
         pagination: { clickable: true },
@@ -206,9 +245,33 @@ export class HomeComponent {
     ];
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = event.target.innerWidth <= 768;
+    this.isMediumScreen = event.target.innerWidth <= 1024;
+  }
+
+  ngOnInit() {
+    this.isSmallScreen = window.innerWidth <= 768;
+    this.isMediumScreen = window.innerWidth <= 1024;
+  }
+
   navigateToProductList(category: string) {
     this.router.navigate(['/printers/list'], {
       queryParams: { categories: category },
     });
+  }
+
+  changeImage(newImageSrc: string) {
+      this.imageSrc = newImageSrc;
+  }
+  
+  setActiveItem(item: number) {
+    this.activeItem = item;
+  }
+
+  scrollTo(id: string): void {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
   }
 }

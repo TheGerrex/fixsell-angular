@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-consumables-intro',
+  selector: 'consumables-intro-page',
   templateUrl: './consumables-intro.component.html',
   styleUrls: ['./consumables-intro.component.scss'],
 })
 export class ConsumablesIntroComponent {
+  isInputFocused = false;  
+  searchQuery = '';
   aspectos = [
     {
       title: 'Precios competitivos',
@@ -46,28 +48,16 @@ export class ConsumablesIntroComponent {
 
   categories = [
     {
-      name: 'Cartucho de tóner',
-      img: '../../../assets/img/home/categories/consumables/CartuchodeTonerKonica.png',
+      name: 'Cartucho de Tóner',
+      category: 'Cartucho de tóner',
     },
     {
-      name: 'Cartucho de tinta',
-      img: '../../../assets/img/home/categories/consumables/CartuchodeTintaEpson.png',
+      name: 'Cartucho de Tinta',
+      category: 'Cartucho de tinta',
     },
     {
-      name: 'Fusor',
-      img: '../../../assets/img/home/categories/consumables/fusor.jpg',
-    },
-    {
-      name: 'Tambor',
-      img: '../../../assets/img/home/categories/consumables/tambor.jpg',
-    },
-    {
-      name: 'Cilindros y rodillos',
-      img: '../../../assets/img/home/categories/consumables/rodillo.png', // replace with the path to your image
-    },
-    {
-      name: 'Papel',
-      img: '../../../assets/img/home/categories/consumables/papel.png', // replace with the path to your image
+      name: 'Caja de Mantenimiento',
+      category: 'Caja de mantenimiento',
     },
   ];
 
@@ -150,9 +140,10 @@ export class ConsumablesIntroComponent {
       },
     ];
   }
-  navigateToProductList(category: string, sellable: boolean) {
-    this.router.navigate(['/printers/list'], {
-      queryParams: { categories: category, sellable: sellable, filterCount: 2 },
+  navigateToProductList(category: string) {
+    this.router.navigate(['/consumables/list'], {
+      queryParams: { categories: category,  filterCount: 1 },
+      queryParamsHandling: 'merge',
     });
   }
 }

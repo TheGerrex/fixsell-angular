@@ -1,0 +1,104 @@
+<div class="filter">
+    <div class="filter-header">
+        <div class="filter-header-inner">
+            <div class="filter-header-title">
+                <div class="filter-header-title-wrap">
+                    <i class="pi pi-filter-fill" style="font-size: 0.9em; color: #111827"></i>
+                    <h3>Filtros</h3>
+                    <div class="counter">
+                        {{ appliedFiltersCount }}
+                    </div>
+                </div>
+                <!-- <div class="filter-reset" (click)="resetFilters()">
+                    <p>Borrar Filtros</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="filter-content">
+        <div class="filter-section">
+            <div class="filter-reset" (click)="resetFilters()">
+                <p>Borrar Filtros</p>
+            </div>
+        </div>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionType()">
+                <div class="filter-section-title">Color</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3f4756" [class.flip]="!isSectionVisibleType"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{ hidden: !isSectionVisibleType }">
+                <div class="checkbox" *ngFor="let color of colorFilter">
+                    <div class="checkbox-container">
+                        <input type="checkbox" class="checkbox-input" [id]="color" [value]="color" [checked]="selectedColors.includes(color)" (change)="toggleColorFilter(color)" />
+                        <label for="{{ color }}">{{ colorDisplayNames[color] }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionCategory()">
+                <div class="filter-section-title">Categorias</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3f4756" [class.flip]="!isSectionVisibleCategory"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{ hidden: !isSectionVisibleCategory }">
+                <div class="buttons-container">
+                    <button *ngFor="let category of categories" class="button-filter" (click)="toggleCategoryFilter(category)" [ngClass]="{ highlight: selectedCategories.includes(category) }">
+                        {{ category }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionBrand()">
+                <div class="filter-section-title">Marca</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3f4756" [class.flip]="!isSectionVisibleBrand"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{ hidden: !isSectionVisibleBrand }">
+                <div class="checkbox" *ngFor="let brand of brands">
+                    <div class="checkbox-container">
+                        <input type="checkbox" class="checkbox-input" [id]="brand" [value]="brand" [checked]="selectedBrands.includes(brand)" (change)="toggleBrandFilter(brand)" />
+                        <label for="{{ brand }}">{{ brand }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionOrigen()">
+                <div class="filter-section-title">Origen del producto</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3f4756" [class.flip]="!isSectionVisibleOrigen"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{ hidden: !isSectionVisibleOrigen }">
+                <div class="checkbox" *ngFor="let origen of origens">
+                    <div class="checkbox-container">
+                        <input type="checkbox" class="checkbox-input" [id]="origen" [value]="origen" [checked]="selectedOrigens.includes(origen)" (change)="toggleOrigenFilter(origen)" />
+                        <label for="{{ origen }}">{{ origen }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-section">
+            <div class="filter-section-header" (click)="toggleFilterSectionYield()">
+                <div class="filter-section-title">Vida Util</div>
+                <div class="AngleButton">
+                    <i class="pi pi-angle-down" style="font-size: 1rem; color: #3f4756" [class.flip]="!isSectionVisibleYield"></i>
+                </div>
+            </div>
+            <div class="filter-section-content" [ngClass]="{ hidden: !isSectionVisibleYield }">
+                <div class="checkbox" *ngFor="let range of yields">
+                    <div class="checkbox-container">
+                        <input type="checkbox" class="checkbox-input" [id]="range" [value]="range" [checked]="selectedYields.includes(range)" (change)="toggleYieldFilter(range)" />
+                        <label for="{{ range }}">{{ range }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

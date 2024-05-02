@@ -1,0 +1,28 @@
+<div class="search-box">
+    <form class="search-form" (submit)="onSubmit($event); $event.preventDefault()">
+        <div class="search-form-container" autocomplete="none">
+            <div id="search-icon" *ngIf="isInputFocused">
+                <i class="pi pi-search"></i>
+            </div>
+            <div class="search-input">
+                <!-- <input type="email" name="hidden" id="hidden" style="width: 0; height: 0; border: 0; padding: 0" />
+                <input type="password" name="hidden" id="hidden" style="width: 0; height: 0; border: 0; padding: 0" /> -->
+                <input id="search" type="text" [(ngModel)]="searchQuery" (input)="onInputChange()" autocapitalize="off" role="presentation" autocomplete="off" autocorrect="off" name="hidden" tabindex="0" spellcheck="false" placeholder="Buscar" aria-label="Buscar" aria-haspopup="false"
+                    autofocus="" role="combobox" aria-autocomplete="both" (focus)="isInputFocused = true; onInputChange()" (blur)="isInputFocused = false; clearSuggestions()" (keydown)="onKeyDown($event)">
+                <div class="suggestions" *ngIf="suggestions.length > 0 && searchQuery.length > 0">
+                    <ul class="suggestions-list" role="listbox">
+                        <li role="presentation" dir="ltr" style="text-align: left;" *ngFor="let suggestion of suggestions; let i = index" [class.active]="i === selectedSuggestionIndex" #suggestionItem>
+                            <a [routerLink]="['/consumables', suggestion.id]">{{ suggestion.name }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="search-clear-button" *ngIf="searchQuery.length > 0" (click)="searchQuery = ''">
+                <i class="pi pi-times"></i>
+            </div>
+        </div>
+    </form>
+    <button type="submit" (click)="onSubmit($event)">
+        <i class="pi pi-search"></i>
+    </button>
+</div>

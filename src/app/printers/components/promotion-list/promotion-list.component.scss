@@ -1,0 +1,70 @@
+@import "../../../../variables";
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+@import 'swiper/scss/autoplay';
+.printer-product-card-container {
+    display: flex;
+    width: 100%;
+}
+
+.box-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .swiper-container {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow: hidden;
+        list-style: none;
+        padding: 0;
+        z-index: 1;
+        height: 100%;
+    }
+}
+
+.promotion-swiper {
+    // padding: 2em;
+}
+
+.swiper-wrapper {
+    align-items: stretch;
+    // padding: 0 3em;
+}
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch; // Add this line
+    // margin: 0px 16px;
+    // margin-right: 0 !important;
+}
+
+.section-title {
+    font-weight: 600;
+    font-size: 2em;
+    color: #64748b;
+    text-align: center;
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 576px) {
+        font-size: 2.5em;
+    }
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+        font-size: 3em;
+        text-align: left;
+    }
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) {
+        font-size: 3em;
+    }
+    // X-Large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) {
+        font-size: 3em;
+    }
+    // XX-Large devices (larger desktops, 1400px and up)
+    @media (min-width: 1400px) {
+        font-size: 3em;
+    }
+}

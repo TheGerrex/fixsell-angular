@@ -1,0 +1,230 @@
+@import "src/styles.scss";
+.banner {
+    background-color: #781f41;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../../../assets/img/printer-intro/main-banner.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    width: 100%;
+    min-height: 400px;
+    padding: 64px 12px 64px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .banner-body {
+        text-align: center;
+        .banner-title {
+            margin-bottom: 8px;
+        }
+        .banner-subtitle {
+            color: $gray-200;
+            margin-bottom: 1.5em;
+            font-weight: 500;
+        }
+        // .hr-divider {
+        //     background-color: $gray-50;
+        //     height: 1px;
+        //     margin: 8px 0px 8px 0px;
+        // }
+    }
+}
+
+.carousel-container {
+    width: 100%;
+}
+
+.category-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    .category-button {
+        padding: .5em 1.5em;
+        border: 1px solid $gray-200;
+        border-radius: 50px;
+        background-color: rgba($color: $gray-50, $alpha: 0.1);
+        p {
+            color: $white;
+            font-weight: 500;
+            margin: 0;
+        }
+        &:hover {
+            background-color: rgba($color: $gray-50, $alpha: 0.2);
+        }
+    }
+}
+
+#printer-types {
+    background-color: $light-50;
+}
+
+:host ::ng-deep .p-carousel-item {
+    max-height: 100%;
+    padding: 10px;
+}
+
+:host ::ng-deep .p-carousel-indicator {
+    .p-link {
+        border-radius: 50% !important;
+        height: 0.8rem !important;
+        width: 0.8rem !important;
+    }
+}
+
+:host ::ng-deep p-tabview.p-element {
+    padding: 0;
+    .p-tabview.p-component {
+        border-radius: 6px;
+        border: #dee2e6 1px solid;
+    }
+    .p-tabview-nav-container {
+        border-radius: 6px 6px 0 0;
+    }
+    .p-tabview-panels {
+        background-color: #fff;
+    }
+}
+
+.white-space {
+    width: 100%;
+    height: 400px;
+}
+
+.aspectos-destacados {
+    display: flex;
+    width: 100%;
+    padding: 64px 12px;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+    background: var(--light-50, #f8fafc);
+    .title {
+        color: var(--text, #434655);
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 42px;
+        /* 150% */
+    }
+    @media (min-width: 768px) {
+        padding: 64px 32px;
+    }
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) {
+        padding: 64px 64px;
+    }
+}
+
+.aspectos-card {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 32px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--input-border, #ced4da);
+    background: var(--light-200, #e2e8f0);
+    .title h1 {
+        color: var(--text-2, #3f4756);
+        /* h3-medium */
+        font-family: Cera Pro;
+        font-size: 24.5px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 36.75px;
+        /* 150% */
+    }
+    p {
+        align-self: stretch;
+        color: var(--text-2, #3f4756);
+        /* body-medium */
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        /* 150% */
+    }
+}
+
+.printer-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: stretch;
+    @media(min-width: 768px) {
+        flex-direction: row;
+    }
+}
+
+.venta,
+.renta {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    flex: 1;
+    background-color: $white;
+    border-radius: $border-radius;
+    border: 1px solid $gray-300;
+}
+
+.section-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex-grow: 1;
+}
+
+.section-title {
+    color: $text;
+}
+
+.section-icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5em;
+    img {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 1;
+    h4 {
+        margin-bottom: 1em;
+    }
+}
+
+.actions {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.renta .section-icon {
+    img {
+        color: #781f41;
+    }
+}
+
+.promotion-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

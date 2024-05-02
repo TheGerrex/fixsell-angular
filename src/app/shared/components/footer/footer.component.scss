@@ -9,6 +9,7 @@
         font-weight: 600;
         line-height: 31.5px;
         color: $header-text;
+        margin-bottom: .5em;
     }
     .footer-company-bio {
         color: $secondary-text;
@@ -55,7 +56,14 @@
             p {
                 margin-bottom: 0;
                 color: $text;
+                &:hover {
+                    color: $primary-color;
+                }
             }
+            a {
+                text-decoration: none;
+                
+            }	
         }
     }
 }
@@ -74,4 +82,18 @@
     width: 100%;
     background-color: #172A3A;
     padding: 10px 15px;
+}
+
+.map-site-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    a {
+        color: $secondary-text;
+        font-weight: 500;
+        text-decoration: none;
+        &:hover {
+            color: $primary-color;
+        }
+    }
 }

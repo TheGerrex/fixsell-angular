@@ -1,0 +1,69 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { Printer } from 'src/app/printers/interfaces/printer.interface';
+import { PrintersService } from 'src/app/printers/services/printers.service';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay } from 'swiper';
+
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+
+@Component({
+  selector: 'printer-promotion-list',
+  templateUrl: './promotion-list.component.html',
+  styleUrls: ['./promotion-list.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+})
+export class PromotionListComponent implements OnInit {
+  thumbsSwiper: any;
+  dealPrinters: Printer[] = [];
+
+  config: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 8,
+    // navigation: false,
+    autoplay: false,
+    pagination: { clickable: true },
+    scrollbar: { draggable: true },
+    
+    breakpoints: {
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 24,
+        navigation: true,
+        autoplay: false,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 16, 
+        navigation: true,
+        autoplay: false,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+      375: {
+        slidesPerView: 2,
+        spaceBetween: 8,
+        navigation: false,
+        autoplay: true,
+        pagination: { clickable: true },
+        scrollbar: { draggable: true },
+      },
+    },
+    // thumbs: {swiper: this.thumbsSwiper}
+
+    
+  };
+
+  constructor(private router: Router, private printersService: PrintersService) {}
+
+  ngOnInit(): void {
+    this.printersService.getPrinters().subscribe((printers: Printer[]) => {
+      this.dealPrinters = printers.filter(printer => printer.deals.length > 0);
+      console.log(this.dealPrinters);
+    });
+  }
+
+}
+
