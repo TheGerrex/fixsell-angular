@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { IntroPageComponent } from './pages/intro-page/intro-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ListPageComponent,
     IntroPageComponent,
     SearchBarComponent,
+    PromotionListComponent,
   ],
   imports: [
     CommonModule,
