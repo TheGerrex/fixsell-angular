@@ -29,7 +29,7 @@
                     </div>
                     <div class="product-list-container" #productList>
                         <ng-container *ngIf="filteredPrinters.length > 0; else noProducts">
-                            <app-product-card [printer]="printer" *ngFor="let printer of currentPageFilteredPrinters" class="printer-product-card"></app-product-card>
+                            <printer-product-card [printer]="printer" *ngFor="let printer of currentPageFilteredPrinters" class="printer-product-card-list"></printer-product-card>
                         </ng-container>
                         <ng-template #noProducts>
                             <div class="not-found" *ngIf="!isLoading">

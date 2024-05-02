@@ -43,7 +43,7 @@ export class ProductBrandPipe implements PipeTransform {
         break;
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
-        imgWidth = this.isMobile ? '80px' : '118px';
+        imgWidth = this.isMobile ? '80px' : '100px';
         imgHeight = 'auto';
         break;
       case 'prixato':

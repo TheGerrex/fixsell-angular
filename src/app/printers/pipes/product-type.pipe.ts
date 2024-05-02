@@ -1,16 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
-// false | productType = B/N
-// true | productType = Color
+import { Printer } from 'src/app/printers/interfaces/printer.interface';
 
 @Pipe({
-  name: 'productType'
+  name: 'productType',
 })
 export class ProductTypePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
-  transform(value: boolean): SafeHtml {
+  transform(value: Printer): SafeHtml {
     const rentaTag = `
       <div class="TypeBlob" style="width: 60px;
       height: fit-content;
@@ -28,7 +26,7 @@ export class ProductTypePipe implements PipeTransform {
       display: flex;">
         <div style="color: #AE003A;
         font-size: 12px;
-        font-weight: 700;">Renta</div>
+        font-weight: 600;">Renta</div>
       </div>
     `;
     const ventaTag = `
@@ -46,16 +44,21 @@ export class ProductTypePipe implements PipeTransform {
       align-items: center;
       gap: 10px;
       display: flex;">
-        <div style="color: #0F572A; font-size: 12px; font-weight: 700;">Venta</div>
+        <div style="color: #0F572A; font-size: 12px; font-weight: 600;">Venta</div>
       </div>
     `;
 
-    if (value) { 
-      return this.sanitizer.bypassSecurityTrustHtml(rentaTag);
-    } 
-    else { 
-      return this.sanitizer.bypassSecurityTrustHtml(ventaTag);
-    };
-  }
+    let result = '';
+    if (value.rentable) {
+      result += rentaTag;
+    }
+    if (value.sellable) {
+      result += ventaTag;
+    }
 
+    // Wrap the result in a parent div with display: flex
+    result = `<div style="display: flex; gap: 6px;">${result}</div>`;
+  
+    return this.sanitizer.bypassSecurityTrustHtml(result);
+  }
 }

@@ -14,6 +14,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ConsumablePageComponent } from './pages/consumable-page/consumable-page.component';
 import { ConsumibleColorsPipe } from './pipes/consumible-colors.pipe';
+import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ConsumibleColorsPipe } from './pipes/consumible-colors.pipe';
     ProductCardComponent,
     ConsumablePageComponent,
     ConsumibleColorsPipe,
+    PromotionListComponent,
   ],
   imports: [
     CommonModule,

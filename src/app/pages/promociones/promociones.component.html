@@ -18,7 +18,7 @@
                 <swiper #swiper class="pb-5  px-md-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
                     <ng-template swiperSlide *ngFor="let printer of dealPrinters">
                         <div class="printer-product-card-container">
-                            <app-product-card [printer]="printer" class="printer-product-card"></app-product-card>
+                            <app-product-card [printer]="printer"></app-product-card>
                         </div>
                     </ng-template>
                 </swiper>

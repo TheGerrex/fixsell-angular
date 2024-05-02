@@ -48,28 +48,16 @@ export class ConsumablesIntroComponent {
 
   categories = [
     {
-      name: 'Cartucho de tóner',
-      img: '../../../assets/img/home/categories/consumables/CartuchodeTonerKonica.png',
+      name: 'Cartucho de Tóner',
+      category: 'Cartucho de tóner',
     },
     {
-      name: 'Cartucho de tinta',
-      img: '../../../assets/img/home/categories/consumables/CartuchodeTintaEpson.png',
+      name: 'Cartucho de Tinta',
+      category: 'Cartucho de tinta',
     },
     {
-      name: 'Fusor',
-      img: '../../../assets/img/home/categories/consumables/fusor.jpg',
-    },
-    {
-      name: 'Tambor',
-      img: '../../../assets/img/home/categories/consumables/tambor.jpg',
-    },
-    {
-      name: 'Cilindros y rodillos',
-      img: '../../../assets/img/home/categories/consumables/rodillo.png', // replace with the path to your image
-    },
-    {
-      name: 'Papel',
-      img: '../../../assets/img/home/categories/consumables/papel.png', // replace with the path to your image
+      name: 'Caja de Mantenimiento',
+      category: 'Caja de mantenimiento',
     },
   ];
 
