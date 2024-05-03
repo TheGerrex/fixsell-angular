@@ -83,8 +83,8 @@
             *ngIf="consumable?.deals && consumable.deals.length > 0"
           >
             <h3>
-              ${{ consumable.deals[0].dealPrice }} USD
-              <span class="printer-price">${{ consumable.price }} USD</span>
+              {{consumable.deals[0].dealPrice | currency:'USD' : 'symbol' : '1.2-3'}} {{consumable.deals[0].dealCurrency}}
+              <span class="printer-price">${{ consumable.price }} {{consumable.currency}}</span>
             </h3>
           </div>
           <div class="actions-container">
