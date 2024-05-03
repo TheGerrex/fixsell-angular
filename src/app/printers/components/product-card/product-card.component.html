@@ -36,7 +36,7 @@
                         </div>
                         <div class="feature">
                             <i class="pi pi-clock"></i>
-                            <p class="PrintVelocity">{{printer.printVelocity}} {{printer.category === "Etiquetas" ? 'mm/s' : 'ppm'}}</p>
+                            <p class="PrintVelocity">{{printer.printVelocity}} {{ printer.category === "Etiquetas" ? 'mm/s' : (printer.category === "Plotter" ? 'm2/h' : 'ppm') }}</p>
                         </div>
                     </div>
                 </div>

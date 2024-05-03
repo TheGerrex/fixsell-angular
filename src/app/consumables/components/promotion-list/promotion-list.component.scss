@@ -42,29 +42,11 @@
 }
 
 .section-title {
-    font-weight: 600;
-    font-size: 2em;
-    color: #64748b;
-    text-align: center;
-    // Small devices (landscape phones, 576px and up)
-    @media (min-width: 576px) {
-        font-size: 2.5em;
-    }
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {
-        font-size: 3em;
-        text-align: left;
-    }
-    // Large devices (desktops, 992px and up)
-    @media (min-width: 992px) {
-        font-size: 3em;
-    }
-    // X-Large devices (large desktops, 1200px and up)
-    @media (min-width: 1200px) {
-        font-size: 3em;
-    }
-    // XX-Large devices (larger desktops, 1400px and up)
-    @media (min-width: 1400px) {
-        font-size: 3em;
-    }
+    color: $text;
+}
+
+.promotion-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

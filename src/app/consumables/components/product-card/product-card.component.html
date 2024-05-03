@@ -52,7 +52,7 @@
             </div>
             <div class="product-action-deal" *ngIf="consumible.deals.length > 0" [routerLink]="['/consumables', consumible.id]">
                 <i class="pi pi-shopping-cart"></i>
-                <span class="product-price-deal">${{consumible.deals[0].dealPrice}}{{consumible.deals[0].dealCurrency}}</span>
+                <span class="product-price-deal">{{consumible.deals[0].dealPrice | currency:'USD' : 'symbol' : '1.2-3'}} {{consumible.deals[0].dealCurrency}}</span>
                 <s class="product-price d-none d-md-block">${{consumible.price}}</s>
             </div>
             <div class="product-action" *ngIf="!(consumible.deals.length > 0)" [routerLink]="['/consumables', consumible.id]">
