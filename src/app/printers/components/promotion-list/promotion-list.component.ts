@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
@@ -61,7 +61,6 @@ export class PromotionListComponent implements OnInit {
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
       this.dealPrinters = printers.filter(printer => printer.deals.length > 0);
-      console.log(this.dealPrinters);
     });
   }
 

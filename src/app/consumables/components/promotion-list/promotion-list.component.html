@@ -1,11 +1,20 @@
-<div class="box-container">
-    <div class="swiper-container">
-        <swiper class="promotion-consumible-swiper" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config">
-            <ng-template swiperSlide *ngFor="let consumable of dealConsumables">
-                <div class="printer-product-card-container">
-                    <consumable-product-card [consumible]="consumable"></consumable-product-card>
+<section id="consumable-promotions" *ngIf="dealConsumables.length > 0">
+    <div class="container py-5">
+        <div class="promotion-title-container">
+            <h1 class="section-title mb-3">Consumibles en Oferta</h1>
+        </div>
+        <div class="promotion-container">
+            <div class="box-container">
+                <div class="swiper-container">
+                    <swiper class="promotion-consumible-swiper" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config">
+                        <ng-template swiperSlide *ngFor="let consumable of dealConsumables">
+                            <div class="printer-product-card-container">
+                                <consumable-product-card [consumible]="consumable"></consumable-product-card>
+                            </div>
+                        </ng-template>
+                    </swiper>
                 </div>
-            </ng-template>
-        </swiper>
+            </div>
+        </div>
     </div>
-</div>
+</section>

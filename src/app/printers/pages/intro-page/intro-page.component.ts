@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Printer } from '../../interfaces/printer.interface';
 
 @Component({
   selector: 'printers-intro-page',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./intro-page.component.scss']
 })
 export class IntroPageComponent {
-isInputFocused = false;  
+  isInputFocused = false;  
   searchQuery = '';
   aspectos = [
     {

@@ -11,7 +11,7 @@
         <div class="product-body">
             <div class="product-info">
                 <div class="product-info-col">
-                    <div class="product-brand" [innerHTML]="printer.brand | productBrand"></div>
+                    <div class="product-brand" [innerHTML]="printer.brand | printerBrandType"></div>
                     <p class="product-name">{{printer.model}}</p>
                     <div class="product-tags">
                         <div class="tag deal" *ngIf="printer.deals.length > 0">
@@ -36,14 +36,14 @@
                         </div>
                         <div class="feature">
                             <i class="pi pi-clock"></i>
-                            <p class="PrintVelocity">{{printer.printVelocity}} {{printer.category === "Etiquetas" ? 'mm/s' : 'ppm'}}</p>
+                            <p class="PrintVelocity">{{printer.printVelocity}} {{ printer.category === "Etiquetas" ? 'mm/s' : (printer.category === "Plotter" ? 'm2/h' : 'ppm') }}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="product-action-deal" *ngIf="printer.deals.length > 0" [routerLink]="['/printers', printer.id]">
                 <i class="pi pi-shopping-cart"></i>
-                <span class="product-price-deal">${{printer.deals[0].dealPrice}}USD</span>
+                <span class="product-price-deal">{{printer.deals[0].dealPrice | currency:'USD' : 'symbol' : '1.2-3'}} {{printer.deals[0].dealCurrency}}</span>
                 <s class="product-price d-none d-md-block">${{printer.price}}</s>
             </div>
             <div class="product-action" *ngIf="!(printer.deals.length > 0)" [routerLink]="['/printers', printer.id]">
