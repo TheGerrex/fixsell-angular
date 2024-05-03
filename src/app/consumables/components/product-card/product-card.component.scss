@@ -20,7 +20,8 @@
             .product-feature-image {
                 position: relative;
                 padding: 0 12px;
-                height: 300px; // Set a specific height of the image
+                max-width: 300px;
+                max-height: 300px;
                 overflow: hidden;
                 display: flex;
                 align-items: center;

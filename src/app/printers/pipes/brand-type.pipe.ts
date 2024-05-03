@@ -2,7 +2,7 @@ import { Pipe, PipeTransform, HostListener } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'brandType',
+  name: 'printerBrandType',
 })
 export class BrandTypePipe implements PipeTransform {
   private isMobile: boolean = false;
@@ -48,8 +48,8 @@ export class BrandTypePipe implements PipeTransform {
         break;
       case 'prixato':
         imagePath = '../../../assets/svg/home/proveedores/eurotrade.png';
-        imgWidth = this.isMobile ? '100px' : '125px';
-        imgHeight = 'auto';
+        imgWidth = 'auto';
+        imgHeight = '24px';
         break;
       case 'audley':
         imagePath = '../../../assets/svg/home/proveedores/audley.png';
