@@ -1,14 +1,13 @@
 import {
   AfterViewInit,
   Component,
+  OnDestroy,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { PrintersService } from 'src/app/printers/services/printers.service';
 import { ConsumableService } from '../../services/consumables.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
 // import Swiper core and required modules
 import SwiperCore, {
@@ -17,6 +16,7 @@ import SwiperCore, {
   Scrollbar,
   A11y,
   Thumbs,
+  Swiper,
 } from 'swiper';
 
 // install Swiper modules
@@ -28,12 +28,13 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
   styleUrls: ['./consumable-page.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ConsumablePageComponent implements OnInit, AfterViewInit {
-  public consumable?: Consumible;
-
-  public images: any[] = [];
-  thumbsSwiper: any;
+export class ConsumablePageComponent implements OnInit, AfterViewInit, OnDestroy {
   loading = true;
+  showMore = false;
+  public consumable?: Consumible;
+  public images: any[] = [];
+  public mainSwiperInstance?: Swiper;
+  public thumbsSwiperInstance?: Swiper;
 
   constructor(
     private consumableService: ConsumableService,
@@ -60,6 +61,11 @@ export class ConsumablePageComponent implements OnInit, AfterViewInit {
     window.scrollTo(0, 0);
   }
 
+  ngOnDestroy(): void {
+    this.mainSwiperInstance?.destroy(true, true);
+    this.thumbsSwiperInstance?.destroy(true, true);
+  }
+
   openWhatsApp() {
     if (this.consumable) {
       const phoneNumber = '+528115555784';
@@ -81,5 +87,8 @@ export class ConsumablePageComponent implements OnInit, AfterViewInit {
 
       window.open(url, '_blank');
     }
+  }
+  toggleShowMore(): void {
+    this.showMore = !this.showMore;
   }
 }

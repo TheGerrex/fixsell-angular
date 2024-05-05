@@ -16,14 +16,11 @@
                         </p>
                     </div>
                     <div class="swiper-container">
-                        <swiper style="
-                --swiper-navigation-color: #172a3a;
-                --swiper-pagination-color: #3c81f6;
-              " [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [centeredSlides]="true" [thumbs]="{ swiper: thumbsSwiper }">
-                            <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt="printer.model" class="swiper-image" /></ng-template>
+                        <swiper class="mainSwiper" (swiper)="mainSwiperInstance = $event" [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{dynamicBullets: true}" [centeredSlides]="true" [thumbs]="{ swiper: thumbsSwiperInstance }">
+                            <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" [alt]="printer.model" class="swiper-image" /></ng-template>
                         </swiper>
-                        <swiper (swiper)="thumbsSwiper = $event" [spaceBetween]="10" [slidesPerView]="4" [freeMode]="true" [watchSlidesProgress]="true" class="mySwiper">
-                            <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" alt="" /></ng-template>
+                        <swiper class="thumbsSwiper" (swiper)="thumbsSwiperInstance = $event" [spaceBetween]="10" [slidesPerView]="4" [freeMode]="true" [watchSlidesProgress]="true">
+                            <ng-template swiperSlide *ngFor="let images of printer?.img_url"><img [src]="images" [alt]="printer.model" /></ng-template>
                         </swiper>
                     </div>
                 </div>
@@ -74,9 +71,15 @@
                     </div>
                     <div class="product-info-block">
                         <div class="product-description">
-                            <p>
+                            <p *ngIf="showMore; else shortDescription">
                                 {{ printer.description }}
                             </p>
+                            <ng-template #shortDescription>
+                                <p>{{ printer.description | slice:0:500 }}<span *ngIf="printer.description.length > 500">...</span></p>
+                            </ng-template>
+                            <a style="font-weight: 600;" href="javascript:void(0)" (click)="toggleShowMore()" *ngIf="printer.description.length > 500">
+                                {{ showMore ? 'Ver menos' : 'Ver más' }}
+                            </a>
                         </div>
                     </div>
                     <div class="product-info-block">
@@ -84,14 +87,14 @@
                             <div class="Feature">
                                 <div class="feature-container">
                                     <i class="pi pi-th-large"></i>
-                                    <h4 class="titulo">Funciones</h4>
+                                    <h5 class="titulo">Funciones</h5>
                                 </div>
                                 <p class="dato">{{ printer.printerFunctions }}</p>
                             </div>
                             <div class="Feature">
                                 <div class="feature-container">
                                     <i class="pi pi-window-maximize"></i>
-                                    <h4 class="titulo">Tamaño</h4>
+                                    <h5 class="titulo">Tamaño</h5>
                                 </div>
                                 <p class="dato">
                                     {{ printer.printSize }} (Máximo: {{ printer.maxPrintSizeSimple }})
@@ -100,7 +103,7 @@
                             <div class="Feature">
                                 <div class="feature-container">
                                     <i class="pi pi-clock"></i>
-                                    <h4 class="titulo">Velocidad</h4>
+                                    <h5 class="titulo">Velocidad</h5>
                                 </div>
                                 <p class="dato">
                                     {{ printer.printVelocity }} {{ printer.category === "Etiquetas" ? "mm/s" : "ppm" }}
@@ -109,7 +112,7 @@
                             <div class="Feature">
                                 <div class="feature-container">
                                     <i class="pi pi-tag"></i>
-                                    <h4 class="titulo">Tipo</h4>
+                                    <h5 class="titulo">Tipo</h5>
                                 </div>
                                 <p class="dato">{{ printer.color ? "Color" : "B/N" }}</p>
                             </div>
@@ -122,35 +125,34 @@
                             </div>
                             <div class="body-specs">
                                 <div class="spec">
-                                    <h4 class="spec-title">Consumo de Energía</h4>
+                                    <h5 class="spec-title">Consumo de Energía</h5>
                                     <p class="spec-data">{{ printer.powerConsumption }}</p>
                                 </div>
                                 <div class="spec">
-                                    <h4 class="spec-title">Dimensiones</h4>
+                                    <h5 class="spec-title">Dimensiones</h5>
                                     <p class="spec-data">{{ printer.dimensions }}</p>
                                 </div>
                                 <div class="spec">
-                                    <h4 class="spec-title">Unidad Duplex</h4>
+                                    <h5 class="spec-title">Unidad Duplex</h5>
                                     <p class="spec-data">
                                         {{ printer.duplexUnit ? "Si" : "No" }}
                                     </p>
                                 </div>
                                 <div class="spec">
-                                    <h4 class="spec-title">Gramaje Máximo</h4>
+                                    <h5 class="spec-title">Gramaje Máximo</h5>
                                     <p class="spec-data">{{ printer.maxPaperWeight }} g/m2</p>
                                 </div>
                                 <div class="spec">
-                                    <h4 class="spec-title">Tamaños de Papel</h4>
+                                    <h5 class="spec-title">Tamaños de Papel</h5>
                                     <p class="spec-data">{{ printer.paperSizes }}</p>
                                 </div>
                                 <div class="spec">
-                                    <h4 class="spec-title">Sistemas Operativos</h4>
+                                    <h5 class="spec-title">Sistemas Operativos</h5>
                                     <p class="spec-data">{{ printer.applicableOS }}</p>
                                 </div>
                             </div>
                             <div class="action-container">
-                                <a [href]="printer.datasheet_url" target="_blank">Ficha Técnica</a
-                >
+                                <a [href]="printer.datasheet_url" target="_blank">Ficha Técnica</a>
               </div>
             </div>
           </div>
@@ -168,19 +170,19 @@
             </div>
             <div class="body-specs">
                 <div class="spec">
-                    <h4 class="spec-title">Consumo de Energía</h4>
+                    <h5 class="spec-title">Consumo de Energía</h5>
                     <p class="spec-data">{{printer?.powerConsumption}}</p>
                 </div>
                 <div class="spec">
-                    <h4 class="spec-title">Dimensiones</h4>
+                    <h5 class="spec-title">Dimensiones</h5>
                     <p class="spec-data">{{printer?.dimensions}}</p>
                 </div>
                 <div class="spec">
-                    <h4 class="spec-title">Unidad Duplex</h4>
+                    <h5 class="spec-title">Unidad Duplex</h5>
                     <p class="spec-data">{{printer?.duplexUnit ? 'Si' : 'No'}}</p>
                 </div>
                 <div class="spec">
-                    <h4 class="spec-title">Gramaje Máximo</h4>
+                    <h5 class="spec-title">Gramaje Máximo</h5>
                     <p class="spec-data">{{printer?.maxPaperWeight}} g/m2</p>
                 </div>
                 <div class="spec">

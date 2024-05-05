@@ -17,17 +17,14 @@
           </div>
           <div class="swiper-container">
             <swiper
-              style="
-                --swiper-navigation-color: #172a3a;
-                --swiper-pagination-color: #3c81f6;
-              "
+              class="mainSwiper" 
+              (swiper)="mainSwiperInstance = $event"
               [slidesPerView]="1"
               [spaceBetween]="10"
               [navigation]="true"
-              [pagination]="{ clickable: true }"
-              [scrollbar]="{ draggable: true }"
+              [pagination]="{ dynamicBullets: true }"
               [centeredSlides]="true"
-              [thumbs]="{ swiper: thumbsSwiper }"
+              [thumbs]="{ swiper: thumbsSwiperInstance }"
             >
               <ng-template
                 swiperSlide
@@ -36,7 +33,8 @@
               /></ng-template>
             </swiper>
             <swiper
-              (swiper)="thumbsSwiper = $event"
+              class="thumbsSwiper" 
+              (swiper)="thumbsSwiperInstance = $event"
               [spaceBetween]="10"
               [slidesPerView]="4"
               [freeMode]="true"
@@ -119,10 +117,16 @@
           </div>
           <div class="product-info-block">
             <div class="product-description">
-              <p>
-                {{ consumable.longDescription }}
-              </p>
-            </div>
+                        <p *ngIf="showMore; else shortDescription">
+                            {{ consumable.longDescription }}
+                        </p>
+                        <ng-template #shortDescription>
+                            <p>{{ consumable.longDescription | slice:0:500 }}<span *ngIf="consumable.longDescription.length > 500">...</span></p>
+                        </ng-template>
+                        <a style="font-weight: 600;" href="javascript:void(0)" (click)="toggleShowMore()" *ngIf="consumable.longDescription.length > 500">
+                            {{ showMore ? 'Ver menos' : 'Ver más' }}
+                        </a>
+                        </div>
           </div>
           <div class="product-info-block">
             <div class="product-specs">
@@ -131,54 +135,55 @@
               </div>
               <div class="body-specs">
                 <div class="spec">
-                  <h4 class="spec-title">Color</h4>
+                  <h5 class="spec-title">Color</h5>
                   <div [ngSwitch]="consumable.color">
-                  <p *ngSwitchCase="'K'" class="spec-data">
+                  <p *ngSwitchCase="'K'" class="spec-data-color">
                     <span
                       class="color-circle"
                       [ngStyle]="{ 'background-color': '#231f20' }"
                     ></span>
                     Negro
                   </p>
-                  <p *ngSwitchCase="'M'" class="spec-data">
+                  <p *ngSwitchCase="'M'" class="spec-data-color">
                     <span
                       class="color-circle"
                       [ngStyle]="{ 'background-color': '#ec008c' }"
                     ></span>
                     Magenta
                   </p>
-                  <p *ngSwitchCase="'C'" class="spec-data">
+                  <p *ngSwitchCase="'C'" class="spec-data-color">
                     <span
                       class="color-circle"
                       [ngStyle]="{ 'background-color': '#00aeef' }"
                     ></span>
                     Cyan
                   </p>
-                  <p *ngSwitchCase="'Y'" class="spec-data">
+                  <p *ngSwitchCase="'Y'" class="spec-data-color">
                     <span
                       class="color-circle"
                       [ngStyle]="{ 'background-color': '#fff200' }"
                     ></span>
                     Amarillo
                   </p>
-                  <p *ngSwitchDefault class="spec-data">B/N</p>
+                  <p *ngSwitchDefault class="spec-data-color">B/N</p>
                 </div>
                 </div>
                 <div class="spec">
-                  <h4 class="spec-title">SKU</h4>
+                  <h5 class="spec-title">SKU</h5>
                   <p class="spec-data">{{ consumable.sku }}</p>
                 </div>
                 <div class="spec">
-                  <h4 class="spec-title">Vida Útil @ 5%</h4>
+                  <h5 class="spec-title" >Vida Útil @ 5% <i class="pi pi-info-circle" pTooltip="El porcentaje de cobertura de tinta/tóner se refiere a la cantidad de área de una página que está cubierta por tinta/tóner. Un 5% de cobertura generalmente se asocia con documentos de texto estándar con poco o ningún gráfico, es decir, páginas que tienen texto impreso en la mayoría de su área, pero sin grandes imágenes o áreas sólidas de color." tooltipPosition="right"></i></h5>
+                  
                   <p class="spec-data">{{ consumable.yield }} páginas</p>
                 </div>
                 <div class="spec">
-                  <h4 class="spec-title">Volumen</h4>
+                  <h5 class="spec-title">Volumen</h5>
                   <p class="spec-data">{{ consumable.volume }} g</p>
                 </div>
                 <!-- array of compatible models -->
                 <div class="spec">
-                  <h4 class="spec-title">Modelos Compatibles</h4>
+                  <h5 class="spec-title">Modelos Compatibles</h5>
                   <ul class="spec-data">
                     <li
                       *ngFor="

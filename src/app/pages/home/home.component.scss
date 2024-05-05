@@ -1,9 +1,5 @@
 @import "src/styles.scss";
 @import "src/_variables.scss";
-@import 'swiper/scss';
-@import 'swiper/scss/navigation';
-@import 'swiper/scss/pagination';
-@import 'swiper/scss/autoplay';
 .hero-background {
     background: linear-gradient(-45deg, #FFF, #DFE9F3, #F8FAFC, #CFDEED);
     background-size: 400% 400%;
@@ -336,6 +332,12 @@
         transform: translateY(0%);
     }
 }
+
+swiper {
+  --swiper-navigation-color: #172a3a;
+  --swiper-pagination-color: #3c81f6;
+}
+
 
 .section-content {
     opacity: 1;

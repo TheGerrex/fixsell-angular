@@ -1,4 +1,10 @@
 @import './_variables.scss';
+@import '~swiper/swiper-bundle.css';
+
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+@import 'swiper/scss/autoplay';
 
 /* @font-face {
     font-family: 'Cera Pro';

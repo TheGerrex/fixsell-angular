@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay, Swiper } from 'swiper';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
@@ -11,20 +10,18 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   selector: 'printer-promotion-list',
   templateUrl: './promotion-list.component.html',
   styleUrls: ['./promotion-list.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
-export class PromotionListComponent implements OnInit {
-  thumbsSwiper: any;
+export class PromotionListComponent implements OnInit, OnDestroy {
   dealPrinters: Printer[] = [];
   isLoading = true;
   noDealsMessage = 'No hay ofertas al momento';
+  public promotionSwiper?: Swiper;
 
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 8,
     // navigation: false,
     autoplay: false,
-    pagination: { clickable: true },
     scrollbar: { draggable: true },
     
     breakpoints: {
@@ -33,7 +30,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 24,
         navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
       768: {
@@ -41,7 +37,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 16, 
         navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
       375: {
@@ -49,11 +44,9 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 8,
         navigation: false,
         autoplay: true,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
     },
-    // thumbs: {swiper: this.thumbsSwiper}
 
     
   };
@@ -67,5 +60,8 @@ export class PromotionListComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.promotionSwiper?.destroy(true, true);
+  }
 }
 

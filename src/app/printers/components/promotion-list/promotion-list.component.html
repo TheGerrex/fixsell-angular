@@ -1,7 +1,7 @@
 <div class="promotion-container">
         <div class="box-container">
             <div class="swiper-container">
-                <swiper class="promotion-swiper" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config">
+                <swiper class="promotion-swiper" (swiper)="promotionSwiper = $event" [config]="config">
                     <!-- Display skeleton card while loading -->
                     <ng-container *ngIf="isLoading">
                         <ng-template swiperSlide>
