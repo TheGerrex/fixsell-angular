@@ -1,22 +1,34 @@
+<div class="promotion-container">
+        <div class="box-container">
+            <div class="swiper-container">
+                <swiper class="promotion-swiper" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config">
+                    <!-- Display skeleton card while loading -->
+                    <ng-container *ngIf="isLoading">
+                        <ng-template swiperSlide>
+                            <shared-skeleton-product-card></shared-skeleton-product-card>
+                        </ng-template>
+                        <ng-template swiperSlide>
+                            <shared-skeleton-product-card></shared-skeleton-product-card>
+                        </ng-template>
+                        <ng-template swiperSlide>
+                            <shared-skeleton-product-card></shared-skeleton-product-card>
+                        </ng-template>
+                    </ng-container>
 
-
-<section id="printer-promotions" *ngIf="dealPrinters.length > 0">
-    <div class="container py-5">
-        <div class="promotion-title-container">
-            <h1 class="section-title mb-3">Multifuncionales en Oferta</h1>
-        </div>
-        <div class="promotion-container">
-            <div class="box-container">
-                <div class="swiper-container">
-                    <swiper class="promotion-swiper" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config">
+                    <!-- Display deals if available -->
+                    <ng-container *ngIf="!isLoading && dealPrinters.length > 0">
                         <ng-template swiperSlide *ngFor="let printer of dealPrinters">
                             <div class="printer-product-card-container">
                                 <printer-product-card [printer]="printer"></printer-product-card>
                             </div>
                         </ng-template>
-                    </swiper>
-                </div>
+                    </ng-container>
+                </swiper>
             </div>
         </div>
+        <!-- Display no deals message if no deals are available -->
+        <div class="not-found" *ngIf="!isLoading && dealPrinters.length === 0">
+            <i class="pi pi-exclamation-triangle" style="font-size: 4rem;"></i>
+            <p>{{noDealsMessage}}</p>
+        </div>
     </div>
-</section>

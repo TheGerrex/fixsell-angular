@@ -16,6 +16,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 export class PromotionListComponent implements OnInit {
   thumbsSwiper: any;
   dealPrinters: Printer[] = [];
+  isLoading = true;
+  noDealsMessage = 'No hay ofertas al momento';
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -56,11 +58,12 @@ export class PromotionListComponent implements OnInit {
     
   };
 
-  constructor(private router: Router, private printersService: PrintersService) {}
+  constructor(private printersService: PrintersService) {}
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
       this.dealPrinters = printers.filter(printer => printer.deals.length > 0);
+      this.isLoading = false;
     });
   }
 

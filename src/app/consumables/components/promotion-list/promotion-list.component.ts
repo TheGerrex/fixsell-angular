@@ -15,6 +15,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 export class PromotionListComponent implements OnInit {
   thumbsSwiper: any;
   dealConsumables: Consumible[] = [];
+  isLoading = true;
+  noDealsMessage = 'No hay ofertas al momento';
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -60,6 +62,7 @@ export class PromotionListComponent implements OnInit {
   ngOnInit(): void {
     this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
       this.dealConsumables = consumables.filter(consumable => consumable.deals.length > 0);
+      this.isLoading = false;
     });
   }
 
