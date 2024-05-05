@@ -1,0 +1,36 @@
+<div class="product-card">
+    <div class="product-card-container">
+        <div class="product-image-wrap" [routerLink]="['/printers', printer.id]">
+            <div class="product-feature-image">
+            </div>
+        </div>
+        <div class="product-body">
+            <div class="product-info">
+                <div class="product-info-col">
+                    <div class="product-brand"></div>
+                    <p class="product-name">{{printer.model}}</p>
+                    <div class="product-tags">
+                        <div class="tag"></div>
+                        <div class="tag"></div>
+                    </div>
+                    <div class="product-features">
+                        <div class="block-feature">
+                            <div class="circle"></div>
+                            <div class="feature"></div>
+                        </div>
+                        <div class="block-feature">
+                            <div class="circle"></div>
+                            <div class="feature"></div>
+                        </div>
+                        <div class="block-feature">
+                            <div class="circle"></div>
+                            <div class="feature"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-action">
+                <div class="skeleton-button"></div>
+            </div>
+        </div>
+    </div>

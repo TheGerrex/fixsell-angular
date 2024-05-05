@@ -14,6 +14,7 @@ import { ProductEmailFormComponent } from './components/product-email-form/produ
 import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchBarListComponent } from './components/search-bar-list/search-bar-list.component';
+import { SkeletonProductCardComponent } from './components/skeleton-product-card/skeleton-product-card.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -27,6 +28,7 @@ import { SearchBarListComponent } from './components/search-bar-list/search-bar-
     ProductEmailFormComponent,
     SearchBarComponent,
     SearchBarListComponent,
+    SkeletonProductCardComponent,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -40,6 +42,7 @@ import { SearchBarListComponent } from './components/search-bar-list/search-bar-
     ProductEmailFormComponent,
     SearchBarComponent,
     SearchBarListComponent,
+    SkeletonProductCardComponent
   ],
 })
 export class SharedModule {}
