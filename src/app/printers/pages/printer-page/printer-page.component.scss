@@ -1,6 +1,4 @@
 @import '../../../../variables';
-
-
 .section-card-product {
     display: flex;
     // padding: 2rem;
@@ -111,45 +109,39 @@
         justify-content: space-between;
         align-items: flex-start;
         gap: 16px;
-
         .Feature {
-            flex: 1 0 calc(50% - 16px); // This will make sure that there are only two features per row
+            flex: 0 0 calc(50% - 16px); // This will make sure that there are only two features per row
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
             gap: 8px;
-
             .feature-container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 5px;
-
-            i {
-                font-size: 1em;
-            }
-
-            .titulo {
-                color: $text;
-                margin: 0;
-                line-height: 1;
-            }
-
-            .dato {
-                // color: $secondary-text;
-                font-weight: 400;
-                margin-bottom: 0 !important;
-            }
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 5px;
+                i {
+                    font-size: 1em;
+                }
+                .titulo {
+                    color: $text;
+                    margin: 0;
+                    line-height: 1;
+                }
+                .dato {
+                    // color: $secondary-text;
+                    font-weight: 400;
+                    margin-bottom: 0 !important;
+                }
             }
         }
-
         @media screen and (max-width: 600px) {
             .Feature {
-            flex: 1 0 100%; // On small screens, make each feature take up the full width
+                flex: 1 0 100%; // On small screens, make each feature take up the full width
             }
         }
-        }
+    }
 }
 
 .product-info-block {
@@ -229,8 +221,8 @@
 }
 
 swiper {
-  --swiper-navigation-color: #172a3a;
-  --swiper-pagination-color: #3c81f6;
+    --swiper-navigation-color: #172a3a;
+    --swiper-pagination-color: #3c81f6;
 }
 
 .swiper-button-next,
@@ -330,9 +322,6 @@ swiper {
     align-items: center;
 }
 
-
-
-
 .thumbsSwiper {
     height: 20%;
     box-sizing: border-box;
@@ -424,7 +413,7 @@ swiper {
         width: 100%;
         h2 {
             font-weight: 600;
-            color: $section-title;
+            color: $text;
             margin: 0;
         }
     }
