@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { PrintersService } from '../../services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Printer } from '../../interfaces/printer.interface';
 // import Swiper core and required modules
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, Swiper } from 'swiper';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
@@ -13,14 +13,16 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
   selector: 'app-printer-page',
   templateUrl: './printer-page.component.html',
   styleUrls: ['./printer-page.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class PrinterPageComponent implements OnInit, AfterViewInit{
 
+  loading = true;
+  showMore = false;
   public printer?: Printer;
   public images: any[] = [];
-  thumbsSwiper: any;
-  loading = true;
+  public mainSwiperInstance?: Swiper;
+  public thumbsSwiperInstance?: Swiper;
 
   constructor(
     private printersService: PrintersService,
@@ -48,6 +50,11 @@ export class PrinterPageComponent implements OnInit, AfterViewInit{
     window.scrollTo(0, 0);
   }
 
+  ngOnDestroy(): void {
+    this.mainSwiperInstance?.destroy(true, true);
+    this.thumbsSwiperInstance?.destroy(true, true);
+  }
+
   openWhatsApp() {
     if (this.printer) {
       const phoneNumber = '+528115555784';
@@ -65,5 +72,8 @@ export class PrinterPageComponent implements OnInit, AfterViewInit{
       
       window.open(url, '_blank');
     }
+  }
+  toggleShowMore(): void {
+    this.showMore = !this.showMore;
   }
 }

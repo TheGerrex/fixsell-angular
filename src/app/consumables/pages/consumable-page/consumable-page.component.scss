@@ -218,6 +218,8 @@
 
 .swiper {
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     @media(min-width: 768px) {
         height: 600px;
     }
@@ -226,15 +228,16 @@
     }
 }
 
+swiper {
+    --swiper-navigation-color: #172a3a;
+    --swiper-pagination-color: #3c81f6;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
     @media(max-width: 1024px) {
         display: none;
     }
-}
-
-.swiper-image {
-    max-width: 600px;
 }
 
 .product-image {
@@ -302,11 +305,12 @@
     }
 }
 
-.swiper-slide {
+:host ::ng-deep .swiper-slide {
     text-align: center;
     font-size: 18px;
     background-color: #F8FAFC;
-    /* Center slide text vertically */
+    background-size: cover;
+    background-position: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -321,23 +325,7 @@
     align-items: center;
 }
 
-.swiper {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.swiper-slide {
-    background-size: cover;
-    background-position: center;
-}
-
-.mySwiper2 {
-    height: 100%;
-    width: 100%;
-}
-
-.mySwiper {
+:host ::ng-deep .thumbsSwiper {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
@@ -346,22 +334,26 @@
     }
 }
 
-.mySwiper .swiper-slide {
+:host ::ng-deep .thumbsSwiper .swiper-slide {
     width: 150px !important;
     // width: 25%;
     height: 100%;
     opacity: 0.4;
 }
 
-.mySwiper .swiper-slide-thumb-active {
+:host ::ng-deep .thumbsSwiper .swiper-slide-thumb-active {
     opacity: 1;
 }
 
-.swiper-slide img {
+:host ::ng-deep .swiper-slide img {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+
+.swiper-image {
+    max-width: 600px;
 }
 
 :host ::ng-deep .p-galleria .p-galleria-item-nav {
@@ -391,6 +383,7 @@
         justify-content: flex-start;
     }
 }
+
 
 /* If you want to style the thumbnails */
 
@@ -427,7 +420,7 @@
         width: 100%;
         h2 {
             font-weight: 600;
-            color: $header-text;
+            color: $text;
             margin: 0;
         }
     }
@@ -450,9 +443,16 @@
         }
         .spec-title {
             color: $header-text;
-            font-weight: 500;
+            // font-weight: 500;
         }
         .spec-data {
+            color: $text;
+            width: 100%;
+            margin: 0;
+        }
+        .spec-data-color {
+            display: inline-flex;
+            align-items: center;
             color: $text;
             width: 100%;
             margin: 0;
@@ -469,9 +469,9 @@
 }
 
 .color-circle {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 5px;
 }

@@ -17,6 +17,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 
@@ -39,6 +40,7 @@ import { MessageService } from 'primeng/api';
     GalleriaModule,
     CheckboxModule,
     ToastModule,
+    TooltipModule,
   ],
   providers: [MessageService]
 })

@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import SwiperCore, {
   Navigation,
@@ -8,6 +8,7 @@ import SwiperCore, {
   Thumbs,
   SwiperOptions,
   Autoplay,
+  Swiper,
 } from 'swiper';
 
 // install Swiper modules
@@ -20,8 +21,6 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-
-  thumbsSwiper: any;
   imageSrc = '../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png';
   activeItem = 1;
   isSmallScreen = false;
@@ -39,10 +38,6 @@ export class HomeComponent implements OnInit {
     {
       name: 'Inyeccion de Tinta',
       img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
-    },
-    {
-      name: 'Consumibles',
-      img: '../../../assets/img/home/categories/TN_319-removebg-preview.png',
     },
     {
       name: 'Etiquetas',
@@ -92,9 +87,8 @@ export class HomeComponent implements OnInit {
   configCategories: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 4,
-    navigation: true,
+    navigation: false,
     autoplay: false,
-    pagination: { clickable: true },
     scrollbar: { draggable: true },
     breakpoints: {
       1024: {
@@ -109,7 +103,7 @@ export class HomeComponent implements OnInit {
         spaceBetween: 16,
         navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
+  
         scrollbar: { draggable: true },
       },
       426: {
@@ -117,7 +111,7 @@ export class HomeComponent implements OnInit {
         spaceBetween: 16,
         navigation: false,
         autoplay: true,
-        pagination: { clickable: true },
+  
         scrollbar: { draggable: true },
       },
     },
@@ -128,7 +122,6 @@ export class HomeComponent implements OnInit {
     spaceBetween: 4,
     navigation: false,
     autoplay: false,
-    pagination: { clickable: true },
     scrollbar: { draggable: true },
     breakpoints: {
       1024: {
@@ -143,7 +136,7 @@ export class HomeComponent implements OnInit {
         spaceBetween: 16,
         // navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
+
         scrollbar: { draggable: true },
       },
       426: {
@@ -151,7 +144,7 @@ export class HomeComponent implements OnInit {
         spaceBetween: 16,
         // navigation: false,
         autoplay: true,
-        pagination: { clickable: true },
+
         scrollbar: { draggable: true },
       },
     },

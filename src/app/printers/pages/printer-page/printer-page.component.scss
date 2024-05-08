@@ -1,16 +1,4 @@
 @import '../../../../variables';
-@import 'swiper/scss';
-@import 'swiper/scss/navigation';
-@import 'swiper/scss/pagination';
-// section {
-//     display: flex;
-//     padding: 1rem 2rem;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     @media (max-width: 768px) {
-//         padding: 12px;
-//     }
-// }
 .section-card-product {
     display: flex;
     // padding: 2rem;
@@ -116,33 +104,41 @@
     .product-functions {
         width: 100%;
         height: auto;
-        justify-content: flex-start;
-        flex-direction: column;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         align-items: flex-start;
         gap: 16px;
-        display: inline-flex;
         .Feature {
+            flex: 0 0 calc(50% - 16px); // This will make sure that there are only two features per row
+            display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
             gap: 8px;
-            display: inline-flex;
             .feature-container {
+                display: flex;
                 justify-content: flex-start;
                 align-items: center;
                 gap: 5px;
-                display: inline-flex;
+                i {
+                    font-size: 1em;
+                }
                 .titulo {
                     color: $text;
                     margin: 0;
                     line-height: 1;
-                    font-weight: 500;
+                }
+                .dato {
+                    // color: $secondary-text;
+                    font-weight: 400;
+                    margin-bottom: 0 !important;
                 }
             }
-            .dato {
-                color: $secondary-text;
-                font-weight: 500;
-                margin: 0;
+        }
+        @media screen and (max-width: 600px) {
+            .Feature {
+                flex: 1 0 100%; // On small screens, make each feature take up the full width
             }
         }
     }
@@ -212,14 +208,21 @@
     margin: 0;
 }
 
-.swiper {
+.mainSwiper {
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     @media(min-width: 768px) {
         height: 600px;
     }
     @media(min-width: 1024px) {
         height: calc(100vh - 236px);
     }
+}
+
+swiper {
+    --swiper-navigation-color: #172a3a;
+    --swiper-pagination-color: #3c81f6;
 }
 
 .swiper-button-next,
@@ -298,10 +301,12 @@
     }
 }
 
-.swiper-slide {
+:host ::ng-deep .swiper-slide {
     text-align: center;
     font-size: 18px;
     background-color: #F8FAFC;
+    background-size: cover;
+    background-position: center;
     /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
@@ -317,23 +322,8 @@
     align-items: center;
 }
 
-.swiper {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-.swiper-slide {
-    background-size: cover;
-    background-position: center;
-}
-
-.mySwiper2 {
-    height: 100%;
-    width: 100%;
-}
-
-.mySwiper {
+:host ::ng-deep .thumbsSwiper {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
@@ -342,18 +332,18 @@
     }
 }
 
-.mySwiper .swiper-slide {
+:host ::ng-deep .thumbsSwiper .swiper-slide {
     width: 150px !important;
     // width: 25%;
     height: 100%;
     opacity: 0.4;
 }
 
-.mySwiper .swiper-slide-thumb-active {
+:host ::ng-deep .thumbsSwiper .swiper-slide-thumb-active {
     opacity: 1;
 }
 
-.swiper-slide img {
+:host ::ng-deep .swiper-slide img {
     display: block;
     width: 100%;
     height: auto;
@@ -424,7 +414,7 @@
         width: 100%;
         h2 {
             font-weight: 600;
-            color: $header-text;
+            color: $text;
             margin: 0;
         }
     }
@@ -446,8 +436,7 @@
             padding: 16px 0;
         }
         .spec-title {
-            color: $header-text;
-            font-weight: 500;
+            color: $text;
         }
         .spec-data {
             color: $text;
@@ -465,34 +454,34 @@
     align-items: center;
 }
 
-.skeleton {
-    height: 100%;
-    width: 100%;
-    display: flex;
-}
+// .skeleton {
+//     height: 100%;
+//     width: 100%;
+//     display: flex;
+// }
 
-.skeleton-info {
-    display: flex;
-    padding: 1em;
-    flex-direction: column;
-}
+// .skeleton-info {
+//     display: flex;
+//     padding: 1em;
+//     flex-direction: column;
+// }
 
-.skeleton-image {
-    height: 80vh;
-    width: 55.20833vw;
-}
+// .skeleton-image {
+//     height: 80vh;
+//     width: 55.20833vw;
+// }
 
-.skeleton-line {
-    height: 30px;
-    width: 500px;
-    span {
-        border-radius: 14px;
-    }
-}
+// .skeleton-line {
+//     height: 30px;
+//     width: 500px;
+//     span {
+//         border-radius: 14px;
+//     }
+// }
 
-.skeleton-image,
-.skeleton-title,
-.skeleton-description {
-    background-color: #ddd;
-    /* Add other styles as needed */
-}
+// .skeleton-image,
+// .skeleton-title,
+// .skeleton-description {
+//     background-color: #ddd;
+//     /* Add other styles as needed */
+// }
