@@ -240,10 +240,6 @@ swiper {
     }
 }
 
-.swiper-image {
-    max-width: 600px;
-}
-
 .product-image {
     display: block;
     @media(min-width: 1024px) {
@@ -309,11 +305,12 @@ swiper {
     }
 }
 
-.swiper-slide {
+:host ::ng-deep .swiper-slide {
     text-align: center;
     font-size: 18px;
     background-color: #F8FAFC;
-    /* Center slide text vertically */
+    background-size: cover;
+    background-position: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
@@ -328,17 +325,7 @@ swiper {
     align-items: center;
 }
 
-.swiper-slide {
-    background-size: cover;
-    background-position: center;
-}
-
-.mySwiper2 {
-    height: 100%;
-    width: 100%;
-}
-
-.mySwiper {
+:host ::ng-deep .thumbsSwiper {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
@@ -347,22 +334,26 @@ swiper {
     }
 }
 
-.mySwiper .swiper-slide {
+:host ::ng-deep .thumbsSwiper .swiper-slide {
     width: 150px !important;
     // width: 25%;
     height: 100%;
     opacity: 0.4;
 }
 
-.mySwiper .swiper-slide-thumb-active {
+:host ::ng-deep .thumbsSwiper .swiper-slide-thumb-active {
     opacity: 1;
 }
 
-.swiper-slide img {
+:host ::ng-deep .swiper-slide img {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+
+.swiper-image {
+    max-width: 600px;
 }
 
 :host ::ng-deep .p-galleria .p-galleria-item-nav {

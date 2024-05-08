@@ -26,7 +26,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
   selector: 'app-consumable-page',
   templateUrl: './consumable-page.component.html',
   styleUrls: ['./consumable-page.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class ConsumablePageComponent implements OnInit, AfterViewInit, OnDestroy {
   loading = true;

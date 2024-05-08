@@ -301,7 +301,7 @@ swiper {
     }
 }
 
-.swiper-slide {
+:host ::ng-deep .swiper-slide {
     text-align: center;
     font-size: 18px;
     background-color: #F8FAFC;
@@ -322,7 +322,8 @@ swiper {
     align-items: center;
 }
 
-.thumbsSwiper {
+
+:host ::ng-deep .thumbsSwiper {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
@@ -331,18 +332,18 @@ swiper {
     }
 }
 
-.thumbsSwiper .swiper-slide {
+:host ::ng-deep .thumbsSwiper .swiper-slide {
     width: 150px !important;
     // width: 25%;
     height: 100%;
     opacity: 0.4;
 }
 
-.thumbsSwiper .swiper-slide-thumb-active {
+:host ::ng-deep .thumbsSwiper .swiper-slide-thumb-active {
     opacity: 1;
 }
 
-.swiper-slide img {
+:host ::ng-deep .swiper-slide img {
     display: block;
     width: 100%;
     height: auto;
@@ -453,34 +454,34 @@ swiper {
     align-items: center;
 }
 
-.skeleton {
-    height: 100%;
-    width: 100%;
-    display: flex;
-}
+// .skeleton {
+//     height: 100%;
+//     width: 100%;
+//     display: flex;
+// }
 
-.skeleton-info {
-    display: flex;
-    padding: 1em;
-    flex-direction: column;
-}
+// .skeleton-info {
+//     display: flex;
+//     padding: 1em;
+//     flex-direction: column;
+// }
 
-.skeleton-image {
-    height: 80vh;
-    width: 55.20833vw;
-}
+// .skeleton-image {
+//     height: 80vh;
+//     width: 55.20833vw;
+// }
 
-.skeleton-line {
-    height: 30px;
-    width: 500px;
-    span {
-        border-radius: 14px;
-    }
-}
+// .skeleton-line {
+//     height: 30px;
+//     width: 500px;
+//     span {
+//         border-radius: 14px;
+//     }
+// }
 
-.skeleton-image,
-.skeleton-title,
-.skeleton-description {
-    background-color: #ddd;
-    /* Add other styles as needed */
-}
+// .skeleton-image,
+// .skeleton-title,
+// .skeleton-description {
+//     background-color: #ddd;
+//     /* Add other styles as needed */
+// }

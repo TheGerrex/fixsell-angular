@@ -13,7 +13,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
   selector: 'app-printer-page',
   templateUrl: './printer-page.component.html',
   styleUrls: ['./printer-page.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class PrinterPageComponent implements OnInit, AfterViewInit{
 
