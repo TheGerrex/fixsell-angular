@@ -69,23 +69,39 @@
                         printer.model" [product]="printer.model" [productType]="'printer'" class="w-100">
                         </product-email-form>
                     </div>
-                    <div class="product-info-block">
+                    <div class="product-info-block" *ngIf="printer.packages.length > 0 && printer.rentable">
                         <div class="product-packages">
-                            <div class="package">
+                            <div class="package-header">
+                                <h2>Paquetes de Renta</h2>
+                            </div>
+                            <div class="package" *ngFor="let package of printer.packages">
                                 <div class="package-container">
-                                    <i class="pi pi-box"></i>
-                                    <h5 class="titulo">Paquetes de Renta</h5>
+                                    <div class="package-body">
+                                        <div class="package-body-section">
+                                            <div class="package-price">
+                                                <h4 class="data-price">{{ package.packagePrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }} <p style="font-weight: 500; margin: 0;">Renta Mensual + IVA</p></h4>
+                                                <p class="data-price-discount" *ngIf="package.packageDiscountPercentage !== 0">{{ package.packageDiscountPercentage }}% descuento</p>
+                                            </div>
+                                            <!-- <p class="data">{{ package.packageDescription }}</p> -->
+                                            <p class="data">{{ package.packagePrints }} impresiones B/N incluidas al mes </p>
+                                        </div>
+                                        <div class="package-body-section">
+                                            <p class="data-title">Extras:</p>
+                                            <p class="data">Impresión extra en B/N: {{ package.packageExtraClickPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</p>
+                                        </div>
+                                        <div class="package-body-section">
+                                            <p class="data-title">Incluye:</p>
+                                            <ul>
+                                                <li *ngFor="let includes of package.packageIncludes">{{includes}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="package-body-section">
+                                            <p class="data-title">Condiciones:</p>
+                                            <p class="data">Contrato por {{ package.packageDuration }} meses</p>
+                                        </div>
+                                            <small class="data">Oferta Valida Hasta: {{ package.packageEndDate | date }}</small>
+                                    </div>
                                 </div>
-                                <p class="dato">Descripcion: {{ printer.packages[0].packageDescription }}</p>
-                                <p class="dato">Divisa: {{ printer.packages[0].packageCurrency }}</p>
-                                <p class="dato">Porcentaje de descuento: {{ printer.packages[0].packageDiscountPercentage }}%</p>
-                                <p class="dato">Duracion: {{ printer.packages[0].packageDuration }} meses</p>
-                                <p class="dato">Fecha de Inicio: {{ printer.packages[0].packageStartDate }}</p>
-                                <p class="dato">Fecha de Terminacion: {{ printer.packages[0].packageEndDate }}</p>
-                                <p class="dato">Costo por click: {{ printer.packages[0].packageExtraClickPrice }}</p>
-                                <p class="dato">Incluye: {{ printer.packages[0].packageIncludes }}</p>
-                                <p class="dato">Precio: {{ printer.packages[0].packagePrice }}</p>
-                                <p class="dato">Cantidad de impresiones al mes incluidas:{{ printer.packages[0].packagePrints }}</p>
                             </div>
                         </div>
                     </div>

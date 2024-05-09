@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
@@ -21,6 +21,10 @@ import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de
 import { SuccessComponent } from './pages/success/success.component';
 import { SwiperModule } from 'swiper/angular';
 import { PrinterModule } from './printers/printers.module';
+
+import localeEs from '@angular/common/locales/es-MX';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -45,7 +49,7 @@ import { PrinterModule } from './printers/printers.module';
     SwiperModule,
     PrinterModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'es-MX'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
