@@ -54,20 +54,40 @@
                     </div>
                     <div class="actions-container">
                         <button *ngIf="!(printer?.deals && printer.deals.length > 0)" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsApp()">
-              <span class="button-label">Cotiza por Whatsapp</span
-              ><i class="pi pi-whatsapp"></i>
-            </button>
+                            <span class="button-label">Cotiza por Whatsapp</span>
+                            <i class="pi pi-whatsapp"></i>
+                        </button>
                         <button *ngIf="printer?.deals && printer.deals.length > 0" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsAppDeal()">
-              <span class="button-label">Aplica la promoción por Whatsapp</span
-              ><i class="pi pi-whatsapp"></i>
-            </button>
+                            <span class="button-label">Aplica la promoción por Whatsapp</span>
+                            <i class="pi pi-whatsapp"></i>
+                        </button>
                     </div>
                     <div class="actions-container">
                         <product-email-form [message]="
-                'Hola, quiero saber mas sobre el multifuncional: ' +
-                printer.brand +
-                printer.model
-              " [product]="printer.model" [productType]="'printer'" class="w-100"></product-email-form>
+                        'Hola, quiero saber mas sobre el multifuncional: ' +
+                        printer.brand +
+                        printer.model" [product]="printer.model" [productType]="'printer'" class="w-100">
+                        </product-email-form>
+                    </div>
+                    <div class="product-info-block">
+                        <div class="product-packages">
+                            <div class="package">
+                                <div class="package-container">
+                                    <i class="pi pi-box"></i>
+                                    <h5 class="titulo">Paquetes de Renta</h5>
+                                </div>
+                                <p class="dato">Descripcion: {{ printer.packages[0].packageDescription }}</p>
+                                <p class="dato">Divisa: {{ printer.packages[0].packageCurrency }}</p>
+                                <p class="dato">Porcentaje de descuento: {{ printer.packages[0].packageDiscountPercentage }}%</p>
+                                <p class="dato">Duracion: {{ printer.packages[0].packageDuration }} meses</p>
+                                <p class="dato">Fecha de Inicio: {{ printer.packages[0].packageStartDate }}</p>
+                                <p class="dato">Fecha de Terminacion: {{ printer.packages[0].packageEndDate }}</p>
+                                <p class="dato">Costo por click: {{ printer.packages[0].packageExtraClickPrice }}</p>
+                                <p class="dato">Incluye: {{ printer.packages[0].packageIncludes }}</p>
+                                <p class="dato">Precio: {{ printer.packages[0].packagePrice }}</p>
+                                <p class="dato">Cantidad de impresiones al mes incluidas:{{ printer.packages[0].packagePrints }}</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="product-info-block">
                         <div class="product-description">
@@ -153,13 +173,13 @@
                             </div>
                             <div class="action-container">
                                 <a [href]="printer.datasheet_url" target="_blank">Ficha Técnica</a>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!-- <section class="section-product-specs">
