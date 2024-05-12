@@ -2,7 +2,7 @@
     <div class="package-container">
         <div class="package-body">
             <div class="package-main-content">
-                <div class="package-body-section">
+                <div class="package-main-body-section">
                     <div class="package-price">
                         <h4 class="data-price">{{ package.packageMonthlyPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }} <p style="font-weight: 500; margin: 0;">Renta Mensual + IVA</p></h4>
                         <p class="data-price-discount" *ngIf="package.packageDiscountPercentage !== 0">{{ package.packageDiscountPercentage }}% descuento</p>

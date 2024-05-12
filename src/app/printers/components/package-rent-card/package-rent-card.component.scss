@@ -11,6 +11,7 @@
 .package {
     display: flex;
     width: 100%;
+    max-width: 512px;
     flex-direction: column;
     border: 1px solid $gray-300;
     border-radius: $border-radius;
@@ -49,8 +50,21 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    padding: .5em;
+    padding: 1em;
     border-top: 1px solid $gray-300;
+    @media(max-width: 425px) {
+        button {
+            width: 100%;
+        }
+    }
+}
+
+.package-main-body-section {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1em;
+    align-items: flex-start;
 }
 
 .package-body-section {
@@ -66,7 +80,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1em;
-    align-items: flex-start;
+    width: 100%;
 }
 
 .package-print-card {
@@ -75,7 +89,7 @@
     align-items: center;
     gap: .5em;
     border-radius: $border-radius;
-    // border: 1px solid $light-200;
+    
     .package-print-card-icon {
         img {
             width: 24px;
@@ -122,7 +136,7 @@
     gap: 8px;
     width: 100%;
     justify-content: space-between;
-
+    // border-bottom: 1px solid $gray-200;
     .data-price {
         color: $text;
         font-weight: 600;
