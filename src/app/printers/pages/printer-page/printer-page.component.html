@@ -54,12 +54,12 @@
                     </div>
                     <div class="actions-container">
                         <button *ngIf="!(printer?.deals && printer.deals.length > 0)" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsApp()">
-                            <span class="button-label">Cotiza por Whatsapp</span>
                             <i class="pi pi-whatsapp"></i>
+                            <span class="button-label">Cotiza por Whatsapp</span>
                         </button>
                         <button *ngIf="printer?.deals && printer.deals.length > 0" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsAppDeal()">
-                            <span class="button-label">Aplica la promoción por Whatsapp</span>
                             <i class="pi pi-whatsapp"></i>
+                            <span class="button-label">Aplica la promoción por Whatsapp</span>
                         </button>
                     </div>
                     <div class="actions-container">
@@ -74,35 +74,7 @@
                             <div class="package-header">
                                 <h2>Paquetes de Renta</h2>
                             </div>
-                            <div class="package" *ngFor="let package of printer.packages">
-                                <div class="package-container">
-                                    <div class="package-body">
-                                        <div class="package-body-section">
-                                            <div class="package-price">
-                                                <h4 class="data-price">{{ package.packagePrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }} <p style="font-weight: 500; margin: 0;">Renta Mensual + IVA</p></h4>
-                                                <p class="data-price-discount" *ngIf="package.packageDiscountPercentage !== 0">{{ package.packageDiscountPercentage }}% descuento</p>
-                                            </div>
-                                            <!-- <p class="data">{{ package.packageDescription }}</p> -->
-                                            <p class="data">{{ package.packagePrints }} impresiones B/N incluidas al mes </p>
-                                        </div>
-                                        <div class="package-body-section">
-                                            <p class="data-title">Extras:</p>
-                                            <p class="data">Impresión extra en B/N: {{ package.packageExtraClickPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</p>
-                                        </div>
-                                        <div class="package-body-section">
-                                            <p class="data-title">Incluye:</p>
-                                            <ul>
-                                                <li *ngFor="let includes of package.packageIncludes">{{includes}}</li>
-                                            </ul>
-                                        </div>
-                                        <div class="package-body-section">
-                                            <p class="data-title">Condiciones:</p>
-                                            <p class="data">Contrato por {{ package.packageDuration }} meses</p>
-                                        </div>
-                                            <small class="data">Oferta Valida Hasta: {{ package.packageEndDate | date }}</small>
-                                    </div>
-                                </div>
-                            </div>
+                            <printer-package-rent-card [printer]="printer"></printer-package-rent-card>
                         </div>
                     </div>
                     <div class="product-info-block">

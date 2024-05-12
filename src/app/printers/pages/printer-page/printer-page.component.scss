@@ -486,12 +486,61 @@ swiper {
     align-items: flex-start;
 }
 
+.package-buttons {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .package-body-section {
     display: flex;
     width: 100%;
     flex-direction: column;
     gap: 8px;
     align-items: flex-start;
+}
+
+.package-print-cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: flex-start;
+}
+
+.package-print-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5em;
+    border-radius: $border-radius;
+    // border: 1px solid $light-200;
+    .package-print-card-icon {
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .package-print-card-body {
+        .prints {
+            font-size: 16px;
+            font-weight: 600;
+            color: $text;
+            span {
+                font-size: 14px;
+                font-weight: 500;
+                color: $text;
+            }
+        }
+    
+        .sub-header {
+            font-size: 14px;
+            font-weight: 500;
+            color: $secondary-text;
+        }
+    }
 }
 
 

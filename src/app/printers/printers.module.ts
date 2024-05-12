@@ -17,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { IntroPageComponent } from './pages/intro-page/intro-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
+import { PackageRentCardComponent } from './components/package-rent-card/package-rent-card.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PromotionListComponent } from './components/promotion-list/promotion-li
     IntroPageComponent,
     SearchBarComponent,
     PromotionListComponent,
+    PackageRentCardComponent,
   ],
   imports: [
     CommonModule,
