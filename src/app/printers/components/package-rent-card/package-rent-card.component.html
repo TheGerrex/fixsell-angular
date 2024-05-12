@@ -15,7 +15,7 @@
                                 <div class="sub-header">incluidas al mes</div>
                             </div>
                         </div>
-                        <div class="package-print-card">
+                        <div class="package-print-card" *ngIf="package.packagePrintsColor">
                             <div class="package-print-card-icon"><img src="../../../../assets/svg/colors/CMYK.svg" alt="color icon"></div>
                             <div class="package-print-card-body">
                                 <div class="prints">{{ package.packagePrintsColor }} <span>impresiones de Color</span></div>
@@ -29,7 +29,7 @@
                 <div class="package-body-section">
                     <p class="data-title">Extras:</p>
                     <p class="data">Impresión extra en B/N: <span style="font-weight: 500;">{{ package.packageExtraClickPriceBw | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</span></p>
-                    <p class="data">Impresión extra en Color: <span style="font-weight: 500;">{{ package.packageExtraClickPriceColor | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</span></p>
+                    <p class="data" *ngIf="package.packageExtraClickPriceColor">Impresión extra en Color: <span style="font-weight: 500;">{{ package.packageExtraClickPriceColor | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</span></p>
                 </div>
                 <div class="package-body-section">
                     <p class="data-title">Incluye:</p>
