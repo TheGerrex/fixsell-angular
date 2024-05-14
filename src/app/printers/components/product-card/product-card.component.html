@@ -43,8 +43,8 @@
             </div>
             <div class="product-action-deal" *ngIf="printer.deals.length > 0" [routerLink]="['/printers', printer.id]">
                 <i class="pi pi-shopping-cart"></i>
-                <span class="product-price-deal">{{printer.deals[0].dealPrice | currency:'USD' : 'symbol' : '1.2-3'}} {{printer.deals[0].dealCurrency}}</span>
-                <s class="product-price d-none d-md-block">${{printer.price}}</s>
+                <span class="product-price-deal">{{printer.deals[0].dealPrice | currency:'$' : 'symbol' : '2.0-0'}} {{printer.deals[0].dealCurrency}}</span>
+                <s class="product-price d-none d-md-block">{{printer.price | currency:'$' : 'symbol' : '2.1-1'}} {{printer.currency}}</s>
             </div>
             <div class="product-action" *ngIf="!(printer.deals.length > 0)" [routerLink]="['/printers', printer.id]">
                 <span class="product-action-title">Conoce más</span>

@@ -220,16 +220,17 @@
     justify-content: flex-start;
 }
 
-.printer-product-card {
+.consumable-product-card-list {
     width: calc(50% - 6px);
     display: flex;
     flex-direction: column;
-    @media (min-width: 768px) {
+    @media(min-width: 768px) {
         width: calc(33.3% - 6px);
         // min-height: 306px;
         // margin-bottom: 16px;
     }
 }
+
 
 .not-found {
     display: flex;

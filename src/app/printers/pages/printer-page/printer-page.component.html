@@ -44,8 +44,8 @@
                     </div>
                     <div class="printer-deal-price" *ngIf="printer?.deals && printer.deals.length > 0">
                         <h3>
-                            {{printer.deals[0].dealPrice | currency:'USD' : 'symbol' : '1.2-3'}} {{printer.deals[0].dealCurrency}}
-                            <span class="printer-price">${{ printer.price }} {{printer.currency}}</span>
+                            {{printer.deals[0].dealPrice | currency:'$' : 'symbol' : '2.0-0'}} {{printer.deals[0].dealCurrency}}
+                            <span class="printer-price">{{ printer.price | currency:'$' : 'symbol' : '2.1-1' }} {{printer.currency}}</span>
                         </h3>
                     </div>
                     <div class="actions-container">

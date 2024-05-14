@@ -375,6 +375,7 @@ swiper {
 
 .actions-container {
     display: inline-flex;
+    flex-wrap: wrap;
     gap: 1em;
     align-items: center;
     width: 100%;

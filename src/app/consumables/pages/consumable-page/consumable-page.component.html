@@ -80,8 +80,8 @@
             *ngIf="consumable?.deals && consumable.deals.length > 0"
           >
             <h3>
-              {{consumable.deals[0].dealPrice | currency:'USD' : 'symbol' : '1.2-3'}} {{consumable.deals[0].dealCurrency}}
-              <span class="printer-price">${{ consumable.price }} {{consumable.currency}}</span>
+              {{consumable.deals[0].dealPrice | currency:'$' : 'symbol' : '2.0-0'}} {{consumable.deals[0].dealCurrency}}
+              <span class="printer-price">{{ consumable.price | currency:'$' : 'symbol' : '2.1-1'}} {{consumable.currency}}</span>
             </h3>
           </div>
           <div class="actions-container">
@@ -104,8 +104,8 @@
               style="background-color: #23d366 !important; color: #1f2937"
               (click)="openWhatsAppDeal()"
             >
-              <span class="button-label">Aplica la promoción por Whatsapp</span
-              ><i class="pi pi-whatsapp"></i>
+              <i class="pi pi-whatsapp"></i>
+              <span class="button-label">Aplica la promoción por Whatsapp</span>
             </button>
           </div>
           <p-dialog header="Cotiza por Email" [modal]="true" [(visible)]="showDialogForm" [style]="{ width: '25rem' }">
