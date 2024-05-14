@@ -11,7 +11,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state('hidden', style({
         height: '0',
         opacity: '0',
-        overflow: 'hidden',
         padding: '0',
       })),
       state('visible', style({
@@ -26,6 +25,7 @@ export class PackageRentCardComponent {
   @Input() printer!: Printer;
   showDetails = false;
   showDialogForm = false;
+  openedIndex: number | null = null;
 
   showDialog() {
     this.showDialogForm = true;

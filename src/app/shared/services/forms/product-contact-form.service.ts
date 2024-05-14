@@ -14,7 +14,7 @@ interface formDataRentPackage {
 @Injectable({
   providedIn: 'root'
 })
-export class PackageRentContactFormService {
+export class ProductContactFormService {
 
   constructor(private http: HttpClient, private toastService: ToastService) { }
   private readonly baseUrl: string = environment.baseUrl;
@@ -35,7 +35,6 @@ export class PackageRentContactFormService {
     return new Observable((observer) => {
       this.http.post(`${this.baseUrl}/leads`, formData).subscribe({
         next: (response: any) => {
-        console.log('Lead created successfully:', response);
   
         // Store the id
         this.leadId = response.id;
@@ -81,3 +80,4 @@ export class PackageRentContactFormService {
     });
   }
 }
+

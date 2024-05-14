@@ -19,6 +19,7 @@ export class PrinterPageComponent implements OnInit, AfterViewInit{
 
   loading = true;
   showMore = false;
+  showDialogForm = false;
   public printer?: Printer;
   public images: any[] = [];
   public mainSwiperInstance?: Swiper;
@@ -73,7 +74,12 @@ export class PrinterPageComponent implements OnInit, AfterViewInit{
       window.open(url, '_blank');
     }
   }
+
   toggleShowMore(): void {
     this.showMore = !this.showMore;
+  }
+
+  showDialog() {
+    this.showDialogForm = true;
   }
 }

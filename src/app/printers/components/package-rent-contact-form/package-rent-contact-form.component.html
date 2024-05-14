@@ -1,4 +1,4 @@
-<span class="p-text-secondary block mb-5" *ngIf="!isSuccess && !isError && !isSubmitting">Mandanos tu información y pronto nos comunicaremos contigo.</span>
+<span class="p-text-secondary block mb-5" *ngIf="!isSuccess && !isError && !isSubmitting">Compártenos tu información y pronto nos comunicaremos contigo.</span>
 <form class="form-contact mt-3" method="POST" *ngIf="!isSuccess && !isError && !isSubmitting" [formGroup]="packageRentContactForm" (ngSubmit)="submitForm()">
     <div class="mb-3">
         <label class="form-label">Nombre o Empresa</label>

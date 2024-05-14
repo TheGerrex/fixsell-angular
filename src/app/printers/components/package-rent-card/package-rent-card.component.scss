@@ -1,4 +1,12 @@
 @import '../../../../variables';
+.package-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: flex-start;
+}
+
+
 .product-packages {
     display: flex;
     flex-direction: column;
@@ -18,7 +26,7 @@
     .package-container {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 1em;
         align-items: flex-start;
     }
 }
@@ -98,6 +106,10 @@
     }
     .package-print-card-body {
         .prints {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .2em;
+            align-items: baseline;
             font-size: 16px;
             font-weight: 600;
             color: $text;

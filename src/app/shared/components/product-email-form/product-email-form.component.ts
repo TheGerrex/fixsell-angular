@@ -1,108 +1,65 @@
 import { Component, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ValidatorsService } from '../../services/validators.service';
+import { ProductContactFormService } from '../../services/forms/product-contact-form.service';
 @Component({
   selector: 'product-email-form',
   templateUrl: './product-email-form.component.html',
   styleUrls: ['./product-email-form.component.scss'],
 })
 export class ProductEmailFormComponent {
-  showEmailForm = false;
-  companyName = '';
-  phone = '';
-  email = '';
-  leadId: number = 0; // Assign an initial value to leadId
-
   @Input() message: string = '';
   @Input() product: string = '';
   @Input() productType: string = '';
-  private readonly baseUrl: string = environment.baseUrl;
-  constructor(private http: HttpClient) {}
+  isSubmitting = false;
+  isSuccess = false;
+  isError = false;
+  leadId: number = 0; // Assign an initial value to leadId
 
-  openEmailForm() {
-    this.showEmailForm = !this.showEmailForm;
+  private readonly baseUrl: string = environment.baseUrl;
+
+  public packageRentContactForm: FormGroup = this.formBuilder.group({
+    companyName: ['', Validators.required],
+    phone: ['', [Validators.required, Validators.pattern(this.validatorsService.numberPattern)]],
+    email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
+    message: [this.message, [Validators.required, Validators.maxLength(300)]],
+  });
+
+  constructor(
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private validatorsService: ValidatorsService,
+    private productContactFormService: ProductContactFormService,
+  ) {}
+
+  isValidField(field: string): boolean|null {
+    return this.validatorsService.isValidField(this.packageRentContactForm, field)
   }
 
-  submitEmailForm(form: NgForm) {
-    if (form.valid) {
-      // Prepare the data
-      const data = {
-        client: this.companyName,
-        status: 'prospect',
-        product_interested: this.product,
-        type_of_product: this.productType,
-        email: this.email,
-        phone: this.phone,
-      };
+  getFieldError(field: string): string | null {
+    return this.validatorsService.getFieldError(this.packageRentContactForm, field)
+  }
 
-      // Make the POST request
-      this.http.post(`${this.baseUrl}/leads`, data).subscribe({
-        next: (response: any) => {
-          console.log('Lead created successfully:', response);
-
-          // Store the id
-          this.leadId = response.id;
-
-          // Prepare the sales communication data
-          const salesCommunicationData = {
-            message: this.message,
-            date: new Date().toISOString(),
-            type: 'email',
-            leadId: this.leadId,
-            notes: 'generado automáticamente por el sistema',
-          };
-
-          // Make the POST request for sales communication
-          this.http
-            .post(`${this.baseUrl}/sale-communication`, salesCommunicationData)
-            .subscribe({
-              next: (salesResponse: any) => {
-                console.log(
-                  'Sales communication created successfully:',
-                  salesResponse
-                );
-              },
-              error: (salesError) => {
-                console.error(
-                  'Error creating sales communication:',
-                  salesError
-                );
-              },
-            });
-
-          // Prepare the email data
-          const emailData = {
-            name: this.companyName,
-            number: this.phone,
-            email: this.email,
-            message: this.message,
-          };
-
-          // Send the email
-          this.http
-            .post(`${this.baseUrl}/email/send-email`, emailData)
-            .subscribe({
-              next: (emailResponse: any) => {
-                console.log('Email sent successfully:', emailResponse);
-              },
-              error: (emailError) => {
-                console.error('Error sending email:', emailError);
-              },
-            });
-
-          // Reset the form
-          this.companyName = '';
-          this.phone = '';
-          this.email = '';
-          this.message = '';
-          this.showEmailForm = false;
-        },
-        error: (error) => {
-          console.error('Error creating lead:', error);
-        },
-      });
+  submitForm() {
+    if (this.packageRentContactForm.invalid) {
+      this.packageRentContactForm.markAllAsTouched();
+      return;
     }
+    const formData = this.packageRentContactForm.value;
+    this.isSubmitting = true;
+    this.productContactFormService.submitForm(formData, this.product, this.productType).subscribe(
+      () => {
+        this.isSubmitting = false;
+        this.isSuccess = true;
+        this.packageRentContactForm.reset();
+      },
+      () => {
+        this.isSubmitting = false;
+        this.isError = true;
+      }
+    );
   }
 }
