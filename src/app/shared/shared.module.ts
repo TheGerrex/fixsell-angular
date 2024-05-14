@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchBarListComponent } from './components/search-bar-list/search-bar-list.component';
 import { SkeletonProductCardComponent } from './components/skeleton-product-card/skeleton-product-card.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -29,6 +30,7 @@ import { SkeletonProductCardComponent } from './components/skeleton-product-card
     SearchBarComponent,
     SearchBarListComponent,
     SkeletonProductCardComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -42,7 +44,8 @@ import { SkeletonProductCardComponent } from './components/skeleton-product-card
     ProductEmailFormComponent,
     SearchBarComponent,
     SearchBarListComponent,
-    SkeletonProductCardComponent
+    SkeletonProductCardComponent,
+    LoadingSpinnerComponent,
   ],
 })
 export class SharedModule {}

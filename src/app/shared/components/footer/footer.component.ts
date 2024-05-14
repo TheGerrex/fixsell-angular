@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ContactFormService } from '../../services/contact-form.service';
+import { ContactFormService } from '../../services/forms/contact-form.service';
 import { Router } from '@angular/router';
 import { ValidatorsService } from '../../services/validators.service';
 import { ToastService } from '../../services/toast.service';

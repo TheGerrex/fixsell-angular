@@ -4,7 +4,9 @@
             <div class="package-main-content">
                 <div class="package-main-body-section">
                     <div class="package-price">
-                        <h4 class="data-price">{{ package.packageMonthlyPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }} <p style="font-weight: 500; margin: 0;">Renta Mensual + IVA</p></h4>
+                        <h4 class="data-price">{{ package.packageMonthlyPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}
+                            <p style="font-weight: 500; margin: 0;">Renta Mensual + IVA</p>
+                        </h4>
                         <p class="data-price-discount" *ngIf="package.packageDiscountPercentage !== 0">{{ package.packageDiscountPercentage }}% descuento</p>
                     </div>
                     <div class="package-print-cards-container">
@@ -25,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="package-details"[@detailsAnimation]="showDetails ? 'visible' : 'hidden'">
+            <div class="package-details" [@detailsAnimation]="showDetails ? 'visible' : 'hidden'">
                 <div class="package-body-section">
                     <p class="data-title">Extras:</p>
                     <p class="data">Impresión extra en B/N: <span style="font-weight: 500;">{{ package.packageExtraClickPriceBw | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</span></p>
@@ -46,8 +48,14 @@
             </div>
             <div class="package-buttons">
                 <button class="button button-outline-secondary button-rounded" (click)="showDetails = !showDetails"><span class="button-label">{{showDetails ? "Menos Detalles" : "Más Detalles"}}</span></button>
-                <button class="button button-primary button-rounded"><span class="button-label">Aplica Paquete</span></button>
+                <button class="button button-primary button-rounded" (click)="showDialog()"><span class="button-label">Aplica Paquete</span></button>
             </div>
+            <p-dialog header="Aplica Paquete" [modal]="true" [(visible)]="showDialogForm" [style]="{ width: '25rem' }">
+                <package-rent-contact-form [message]="
+                        'Hola, estoy interesado en el paquete de renta en oferta ofrecido sobre la multifuncional ' +
+                        printer.brand + ' ' + printer.model" [product]="printer.model" [productType]="'rent_package'">
+                </package-rent-contact-form>
+            </p-dialog>
         </div>
     </div>
 </div>

@@ -25,4 +25,9 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class PackageRentCardComponent {
   @Input() printer!: Printer;
   showDetails = false;
+  showDialogForm = false;
+
+  showDialog() {
+    this.showDialogForm = true;
+  }
 }
