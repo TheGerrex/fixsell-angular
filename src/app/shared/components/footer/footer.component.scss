@@ -12,7 +12,7 @@
         margin-bottom: .5em;
     }
     .footer-company-bio {
-        color: $secondary-text;
+        color: $text;
     }
     .icons {
         i {
@@ -49,6 +49,7 @@
         .wrap-item {
             display: flex;
             flex-direction: row;
+            align-items: center;
             margin-bottom: 15px;
             i {
                 margin-right: 10px;
@@ -69,6 +70,8 @@
 }
 
 .form-contact {
+    width: 100%;
+    max-width: 768px;
     span {
         margin-top: 20px;
     }

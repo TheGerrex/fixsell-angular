@@ -31,6 +31,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
 export class ConsumablePageComponent implements OnInit, AfterViewInit, OnDestroy {
   loading = true;
   showMore = false;
+  showDialogForm = false;
   public consumable?: Consumible;
   public images: any[] = [];
   public mainSwiperInstance?: Swiper;
@@ -90,5 +91,9 @@ export class ConsumablePageComponent implements OnInit, AfterViewInit, OnDestroy
   }
   toggleShowMore(): void {
     this.showMore = !this.showMore;
+  }
+
+  showDialog() {
+    this.showDialogForm = true;
   }
 }

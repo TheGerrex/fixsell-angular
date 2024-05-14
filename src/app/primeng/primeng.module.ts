@@ -18,7 +18,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
-
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -41,6 +41,7 @@ import { TooltipModule } from 'primeng/tooltip';
     CheckboxModule,
     ToastModule,
     TooltipModule,
+    DialogModule,
   ],
   providers: [MessageService]
 })

@@ -1,9 +1,5 @@
 <section>
-    <div class="loading-screen" *ngIf="loading">
-        <div class="spinner-container">
-            <i class="pi pi-spin pi-spinner" style="font-size: 4rem"></i>
-        </div>
-    </div>
+    <loading-spinner *ngIf="loading"></loading-spinner>
 </section>
 <section>
     <div class="product-section" *ngIf="!loading">
@@ -53,22 +49,26 @@
                         </h3>
                     </div>
                     <div class="actions-container">
+                        <button class="button button-primary button-rounded" (click)="showDialog()">
+                            <i class="pi pi-envelope"></i>
+                            <span class="button-label">Cotiza por Email</span>
+                        </button>
                         <button *ngIf="!(printer?.deals && printer.deals.length > 0)" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsApp()">
-              <span class="button-label">Cotiza por Whatsapp</span
-              ><i class="pi pi-whatsapp"></i>
-            </button>
+                            <i class="pi pi-whatsapp"></i>
+                            <span class="button-label">Cotiza por Whatsapp</span>
+                        </button>
                         <button *ngIf="printer?.deals && printer.deals.length > 0" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsAppDeal()">
-              <span class="button-label">Aplica la promoción por Whatsapp</span
-              ><i class="pi pi-whatsapp"></i>
-            </button>
+                            <i class="pi pi-whatsapp"></i>
+                            <span class="button-label">Aplica la promoción por Whatsapp</span>
+                        </button>
                     </div>
-                    <div class="actions-container">
+                    <p-dialog header="Cotiza por Email" [modal]="true" [(visible)]="showDialogForm" [style]="{ width: '25rem' }">
                         <product-email-form [message]="
-                'Hola, quiero saber mas sobre el multifuncional: ' +
-                printer.brand +
-                printer.model
-              " [product]="printer.model" [productType]="'printer'" class="w-100"></product-email-form>
-                    </div>
+                        'Hola, quiero saber mas sobre el multifuncional: ' +
+                        printer.brand +
+                        printer.model" [product]="printer.model" [productType]="'printer'" class="w-100">
+                        </product-email-form>
+                    </p-dialog>
                     <div class="product-info-block">
                         <div class="product-description">
                             <p *ngIf="showMore; else shortDescription">
@@ -93,7 +93,7 @@
                             </div>
                             <div class="Feature">
                                 <div class="feature-container">
-                                    <i class="pi pi-window-maximize"></i>
+                                    <i class="pi pi-file"></i>
                                     <h5 class="titulo">Tamaño</h5>
                                 </div>
                                 <p class="dato">
@@ -115,6 +115,16 @@
                                     <h5 class="titulo">Tipo</h5>
                                 </div>
                                 <p class="dato">{{ printer.color ? "Color" : "B/N" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info-block" *ngIf="printer.packages.length > 0 && printer.rentable">
+                        <div class="product-packages">
+                            <div class="package-header">
+                                <h2>Paquetes de Renta</h2>
+                            </div>
+                            <div class="package-body">
+                                <printer-package-rent-card [printer]="printer" style="width: 100%;"></printer-package-rent-card>
                             </div>
                         </div>
                     </div>
@@ -153,13 +163,13 @@
                             </div>
                             <div class="action-container">
                                 <a [href]="printer.datasheet_url" target="_blank">Ficha Técnica</a>
-              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!-- <section class="section-product-specs">

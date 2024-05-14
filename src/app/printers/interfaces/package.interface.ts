@@ -5,14 +5,16 @@ export interface Package {
     id: number;
     printer: Printer;
     packageDuration: number;
-    packagePrice: number;
+    packageMonthlyPrice: number;
     packageCurrency: string;
     packageEndDate: Date;
     packageStartDate: Date;
     packageDiscountPercentage: number;
     packageDescription: string;
-    packagePrints: number;
-    packageExtraClickPrice: number;
+    packagePrintsBw: number;
+    packagePrintsColor: number;
+    packageExtraClickPriceBw: number;
+    packageExtraClickPriceColor: number;
     packageDepositPrice: number;
     packageIncludes: string[];
 }

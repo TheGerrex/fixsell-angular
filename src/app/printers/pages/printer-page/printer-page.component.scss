@@ -369,6 +369,7 @@ swiper {
 
 .actions-container {
     display: inline-flex;
+    flex-wrap: wrap;
     gap: 1em;
     align-items: center;
     width: 100%;
@@ -453,6 +454,63 @@ swiper {
     justify-content: center;
     align-items: center;
 }
+
+.product-packages {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: flex-start;
+    width: 100%;
+}
+
+
+.package-body {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1em;
+    align-items: flex-start;
+}
+
+
+
+.data {
+    color: $text;
+    font-weight: 400;
+    margin: 0 !important;
+}
+
+.data-title {
+    color: $text;
+    font-weight: 600;
+    margin: 0 !important;
+}
+
+.package-price {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    justify-content: space-between;
+
+    .data-price {
+        color: $text;
+        font-weight: 600;
+        padding: 4px 0px;
+        margin: 0 !important;
+    }
+    .data-price-discount {
+        font-weight: 600;
+        font-size: 12px;
+        height: 100%;
+        color: $promotion-text-color;
+        background-color: $promotion-background-color;
+        border-radius: $border-radius;
+        padding: 4px 12px;
+        margin: 0 !important;
+    }
+}
+
 
 // .skeleton {
 //     height: 100%;

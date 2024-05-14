@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { PrinterRoutingModule } from './printer-routing.module';
 import { FilterComponent } from './components/filter/filter.component';
@@ -17,6 +18,8 @@ import { SharedModule } from '../shared/shared.module';
 import { IntroPageComponent } from './pages/intro-page/intro-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
+import { PackageRentCardComponent } from './components/package-rent-card/package-rent-card.component';
+import { PackageRentContactFormComponent } from './components/package-rent-contact-form/package-rent-contact-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { PromotionListComponent } from './components/promotion-list/promotion-li
     IntroPageComponent,
     SearchBarComponent,
     PromotionListComponent,
+    PackageRentCardComponent,
+    PackageRentContactFormComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +44,7 @@ import { PromotionListComponent } from './components/promotion-list/promotion-li
     SwiperModule,
     FormsModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
   exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe],
 })
