@@ -46,6 +46,6 @@ import { PackageRentContactFormComponent } from './components/package-rent-conta
     SharedModule,
     ReactiveFormsModule,
   ],
-  exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe],
+  exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe, PromotionListComponent],
 })
 export class PrinterModule {}

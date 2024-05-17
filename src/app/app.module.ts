@@ -24,6 +24,7 @@ import { PrinterModule } from './printers/printers.module';
 
 import localeEs from '@angular/common/locales/es-MX';
 import { registerLocaleData } from '@angular/common';
+import { ConsumablesModule } from './consumables/consumables.module';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -47,7 +48,8 @@ registerLocaleData(localeEs);
     PrinterRoutingModule,
     HttpClientModule,
     SwiperModule,
-    PrinterModule
+    PrinterModule,
+    ConsumablesModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-MX'}],
   bootstrap: [AppComponent]

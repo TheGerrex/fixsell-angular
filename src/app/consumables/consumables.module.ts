@@ -35,5 +35,6 @@ import { PromotionListComponent } from './components/promotion-list/promotion-li
     FormsModule,
     SharedModule,
   ],
+  exports: [PromotionListComponent],
 })
 export class ConsumablesModule {}

@@ -10,7 +10,6 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   selector: 'consumables-promotion-list',
   templateUrl: './promotion-list.component.html',
   styleUrls: ['./promotion-list.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class PromotionListComponent implements OnInit {
   thumbsSwiper: any;

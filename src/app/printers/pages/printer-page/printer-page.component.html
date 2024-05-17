@@ -106,7 +106,7 @@
                                     <h5 class="titulo">Velocidad</h5>
                                 </div>
                                 <p class="dato">
-                                    {{ printer.printVelocity }} {{ printer.category === "Etiquetas" ? "mm/s" : "ppm" }}
+                                    {{ printer.printVelocity }} {{ printer.category === "Etiquetas" ? "mm/s" : (printer.category === "Plotter" ? "m2/h" : "ppm") }}
                                 </p>
                             </div>
                             <div class="Feature">
