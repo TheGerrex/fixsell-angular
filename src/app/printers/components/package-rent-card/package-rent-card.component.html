@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="package-buttons">
-                    <button class="button button-outline-secondary button-rounded" (click)="openedIndex = i === openedIndex ? null : i"><span class="button-label">{{i === openedIndex ? "Menos Detalles" : "Más Detalles"}}</span></button>
+                    <button class="button button-outlined-secondary button-rounded" (click)="openedIndex = i === openedIndex ? null : i"><span class="button-label">{{i === openedIndex ? "Menos Detalles" : "Más Detalles"}}</span></button>
                     <button class="button button-primary button-rounded" (click)="showDialog()"><span class="button-label">Aplica Paquete</span></button>
                 </div>
                 <p-dialog header="Aplica Paquete" [modal]="true" [(visible)]="showDialogForm" [style]="{ width: '25rem' }">

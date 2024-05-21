@@ -32,47 +32,47 @@ export class ProductBrandPipe implements PipeTransform {
       case 'konica minolta':
         imagePath =
           '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
-        imgWidth = this.isMobile ? '120px' : '226px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '120px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
 
         break;
       case 'kyocera':
         imagePath = '../../../assets/svg/home/proveedores/kyocera.svg';
-        imgWidth = this.isMobile ? '100px' : '125px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '100px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
-        imgWidth = this.isMobile ? '80px' : '100px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '80px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       case 'prixato':
         imagePath = '../../../assets/svg/home/proveedores/eurotrade.png';
-        imgWidth = this.isMobile ? '100px' : '125px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '100px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       case 'audley':
         imagePath = '../../../assets/svg/home/proveedores/audley.png';
-        imgWidth = this.isMobile ? '100px' : '125px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '100px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
 
       case 'okidata':
         imagePath = '../../../assets/svg/home/proveedores/okidata.svg';
-        imgWidth = this.isMobile ? '70px' : '90px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '70px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
 
       case 'samsung':
         imagePath = '../../../assets/svg/home/proveedores/samsung.svg';
-        imgWidth = this.isMobile ? '100px' : '125px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '100px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       default:
         // Return a default image path or handle unsupported brand names as needed
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
         imgWidth = this.isMobile ? '100%' : '100px';
-        imgHeight = 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
     }
 
     // Return the HTML img tag with the appropriate image path

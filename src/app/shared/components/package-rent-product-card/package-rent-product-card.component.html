@@ -1,0 +1,48 @@
+<div class="product-card">
+    <div class="product-card-container">
+        <div class="product-image-wrap" [routerLink]="['/printers', rentPackage.printer.id]">
+            <div class="product-feature-image">
+                <img [src]="rentPackage.printer.img_url[0]" alt="" class="product-image">
+                <div class="product-deal-tag">
+                    <p class="deal-tag-title">{{(rentPackage.packageDiscountPercentage)}}% Descuento</p>
+                </div>
+            </div>
+        </div>
+        <div class="product-body">
+            <div class="product-info">
+                <div class="product-info-col">
+                    <div class="product-brand" [innerHTML]="rentPackage.printer.brand | productBrand"></div>
+                    <p class="product-name">{{rentPackage.printer.model}}</p>
+                    <div class="product-tags">
+                        <div class="tag deal">
+                            <div class="tag-title">Promoción</div>
+                        </div>
+                        <div [innerHTML]="rentPackage.printer | productType"></div>
+                        <!-- <div [innerHTML]="rentPackage.printer.rentable | productType"></div> -->
+                        <div class="tag">
+                            <div class="tag-title">{{rentPackage.printer.category}}</div>
+                        </div>
+                    </div>
+                    <div class="product-features">
+                        <div class="feature">
+                            <!-- <div [class]="rentPackage.printer.color | productColor: 'ColorCircle' : 'BlackCircle' "></div> -->
+                            <img *ngIf="!rentPackage.printer.color" class="color-icon" src="../../../../assets/svg/colors/B&W.svg" alt="B&W Icon" />
+                            <img *ngIf="rentPackage.printer.color" class="color-icon" src="../../../../assets/svg/colors/CMYK.svg" alt="CMYK Icon" />
+                            <p>{{rentPackage.printer.color ? 'Color' : 'B/N'}}</p>
+                        </div>
+                        <div class="feature">
+                            <i class="pi pi-file"></i>
+                            <p class="PrintSize">{{rentPackage.printer.printSize}}</p>
+                        </div>
+                        <div class="feature">
+                            <i class="pi pi-clock"></i>
+                            <p class="PrintVelocity">{{rentPackage.printer.printVelocity}} {{ rentPackage.printer.category === "Etiquetas" ? 'mm/s' : (rentPackage.printer.category === "Plotter" ? 'm2/h' : 'ppm') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-action" [routerLink]="['/printers', rentPackage.printer.id]">
+                <span class="product-action-title">Conoce más</span>
+            </div>
+        </div>
+    </div>
