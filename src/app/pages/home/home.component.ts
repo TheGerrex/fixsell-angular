@@ -244,9 +244,37 @@ export class HomeComponent implements OnInit {
     this.isMediumScreen = event.target.innerWidth <= 1024;
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    this.scaleImageOnScroll();
+  }
+
   ngOnInit() {
     this.isSmallScreen = window.innerWidth <= 768;
     this.isMediumScreen = window.innerWidth <= 1024;
+    this.scaleImageOnScroll();
+  }
+
+  private scaleImageOnScroll() {
+    const heroBanner = document.querySelector('.hero-image-container');
+    const heroImageMobile = document.querySelector('.hero-image-mobile');
+    const heroImageMedium = document.querySelector('.hero-image-medium');
+
+    if (heroBanner && heroImageMobile && heroImageMedium) {
+      const scrollPosition = window.scrollY;
+      const bannerHeight = heroBanner.clientHeight;
+
+      let scaleFactor = 1 + (scrollPosition / bannerHeight) * 0.1;
+      scaleFactor = Math.min(scaleFactor, 1.2);
+
+      // Calculate rotation angle (example calculation, adjust as needed)
+      let rotationAngle = scrollPosition / bannerHeight * 360; // Full rotation at the height of the viewport
+      rotationAngle = Math.min(rotationAngle, 360); // Limiting the rotation angle
+
+      (heroImageMobile as HTMLElement).style.setProperty('--scale-factor', scaleFactor.toString());
+      (heroImageMobile as HTMLElement).style.setProperty('--rotation-angle', `${rotationAngle}deg`);
+      (heroImageMedium as HTMLElement).style.setProperty('--scale-factor', scaleFactor.toString());
+    }
   }
 
   navigateToProductList(category: string) {
