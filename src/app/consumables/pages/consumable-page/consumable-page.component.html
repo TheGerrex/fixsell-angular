@@ -24,9 +24,9 @@
             >
               <ng-template
                 swiperSlide
-                *ngFor="let images of consumable?.img_url"
-                ><img [src]="images" alt="printer.model" class="swiper-image"
-              /></ng-template>
+                *ngFor="let images of consumable?.img_url">
+                <div class="swiper-image-container"><img [src]="images" alt="printer.model" class="swiper-image"/></div>
+              </ng-template>
             </swiper>
             <swiper
               class="thumbsSwiper" 

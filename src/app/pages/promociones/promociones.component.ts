@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { Package } from 'src/app/printers/interfaces/package.interface';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay } from 'swiper';
@@ -15,7 +16,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 })
 export class PromocionesComponent implements OnInit {
   thumbsSwiper: any;
-  dealPrinters: Printer[] = [];
+  rentPackages: Package[] = [];
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -59,9 +60,9 @@ export class PromocionesComponent implements OnInit {
   constructor(private router: Router, private printersService: PrintersService) {}
 
   ngOnInit(): void {
-    this.printersService.getPrinters().subscribe((printers: Printer[]) => {
-      this.dealPrinters = printers.filter(printer => printer.deals.length > 0);
-      console.log(this.dealPrinters);
+    this.printersService.getRentPackages().subscribe((rentPackages: Package[]) => {
+      this.rentPackages = rentPackages;
+      console.log(this.rentPackages);
     });
   }
 

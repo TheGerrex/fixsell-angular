@@ -3,6 +3,7 @@ import { Injectable, inject} from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Printer } from '../interfaces/printer.interface';
 import { Observable, catchError, of } from 'rxjs';
+import { Package } from '../interfaces/package.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,15 @@ export class PrintersService {
       .pipe(
         catchError(error => {
           console.error('Error fetching deal printers:', error);
+          return [];
+        })
+      );
+  }
+  getRentPackages(): Observable<Package[]> {
+    return this.http.get<Package[]>(`${this.baseUrl}/packages`)
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching rent packages:', error);
           return [];
         })
       );

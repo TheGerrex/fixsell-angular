@@ -10,7 +10,6 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   selector: 'consumables-promotion-list',
   templateUrl: './promotion-list.component.html',
   styleUrls: ['./promotion-list.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class PromotionListComponent implements OnInit {
   thumbsSwiper: any;
@@ -23,7 +22,6 @@ export class PromotionListComponent implements OnInit {
     spaceBetween: 8,
     // navigation: false,
     autoplay: false,
-    pagination: { clickable: true },
     scrollbar: { draggable: true },
     
     breakpoints: {
@@ -32,7 +30,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 24,
         navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
       768: {
@@ -40,7 +37,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 16, 
         navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
       375: {
@@ -48,7 +44,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 8,
         navigation: false,
         autoplay: true,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
     },

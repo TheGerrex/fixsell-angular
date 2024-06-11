@@ -187,11 +187,6 @@
     flex-grow: 1;
 }
 
-.section-title {
-    color: $text;
-    margin-bottom: 1em;
-}
-
 .section-icon {
     display: flex;
     justify-content: flex-start;
@@ -238,8 +233,45 @@
     }
 }
 
+
+#printer-promotions {
+    width: 100%;
+}
+
+.promotion-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $gray-200;
+}
+
+.promotion-links {
+    display: flex;
+    gap: .5em;
+    @media (max-width: 768px) { 
+        width: 100%;
+        button {
+            width: 100%;
+        }
+    }
+}
 .promotion-title-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+
+.section-title {
+    color: $text;
+}
+
+.section-subtitle {
+    font-weight: 500;
+    color: $secondary-text;
+    margin: 0;
 }

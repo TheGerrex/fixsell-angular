@@ -1,28 +1,59 @@
-<div class="hero-banner"></div>
+<div class="hero-banner">
+    <div class="banner-content">
+        <h1>Promociones</h1>
+        <p>Encuentra las mejores ofertas en equipos y suministros de impresión</p>
+    </div>
+</div>
 
-<section class="section-content" id="promociones">
-    <div class="container py-5">
-        <div class="row pb-3 justify-content-center">
-            <h1 class="section-title">Promociones en venta de impresoras a color</h1>
+<div class="container py-5">
+    <div class="promotion-header">
+        <div class="promotion-title-container">
+            <h1 class="section-title">Evento del Mes</h1>
+            <p class="section-subtitle">Descubre promociones especiales y productos destacados</p>
         </div>
-        <div class="box-container">
-            <div class="swiper-container">
-                <!-- <swiper #swiper class="pb-5 px-md-5 pb-md-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [slidesPerView]="4" [spaceBetween]="10" [pagination]="{ clickable: true }" [scrollbar]="{ draggable: true }" [navigation]="true"
-                    [thumbs]="{swiper: thumbsSwiper}">
-                    <ng-template swiperSlide *ngFor="let printer of dealPrinters">
-                        <div class="printer-product-card-container">
-                            <app-product-card [printer]="printer" class="printer-product-card"></app-product-card>
-                        </div>
-                    </ng-template>
-                </swiper> -->
-                <swiper #swiper class="pb-5  px-md-5" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config" [navigation]="true" [thumbs]="{swiper: thumbsSwiper}">
-                    <ng-template swiperSlide *ngFor="let printer of dealPrinters">
-                        <div class="printer-product-card-container">
-                            <app-product-card [printer]="printer"></app-product-card>
-                        </div>
-                    </ng-template>
-                </swiper>
+    </div>
+    <div class="section-card">
+        <div class="section-card-background"></div>
+    </div>
+</div>
+
+<section id="printer-promotions">
+    <div class="container py-5">
+        <div class="promotion-header">
+            <div class="promotion-title-container">
+                <h1 class="section-title">Multifuncionales en Oferta</h1>
+                <p class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</p>
+            </div>
+            <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/printers/list"><span class="button-label">Ver Multifuncionales</span></button></div>
+        </div>
+        <printer-promotion-list></printer-promotion-list>
+    </div>
+</section>
+
+<section id="printer-promotions">
+    <div class="container py-5">
+        <div class="promotion-header">
+            <div class="promotion-title-container">
+                <h1 class="section-title">Paquetes de Renta en Oferta</h1>
+                <p class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</p>
+            </div>
+            <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/printers/list"><span class="button-label">Ver Multifuncionales</span></button></div>
+        </div>
+        <app-package-rent-promotion-list></app-package-rent-promotion-list>
+    </div>
+</section>
+
+<section id="consumable-promotions">
+    <div class="container py-5">
+        <div class="promotion-header">
+            <div class="promotion-title-container">
+                <h1 class="section-title">Consumibles en Oferta</h1>
+                <p class="section-subtitle">Encuentra los mejores precios en tintas, tóneres y más.</p>
+            </div>
+            <div class="promotion-links">
+                <button class="button button-outlined-primary button-rounded" routerLink="/consumables/list"><span class="button-label">Ver Consumibles</span></button>
             </div>
         </div>
+        <consumables-promotion-list></consumables-promotion-list>
     </div>
 </section>

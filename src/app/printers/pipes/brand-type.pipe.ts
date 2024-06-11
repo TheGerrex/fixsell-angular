@@ -32,19 +32,19 @@ export class BrandTypePipe implements PipeTransform {
       case 'konica minolta':
         imagePath =
           '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
-        imgWidth = this.isMobile ? '120px' : '165px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '120px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
 
         break;
       case 'kyocera':
         imagePath = '../../../assets/svg/home/proveedores/kyocera.svg';
-        imgWidth = this.isMobile ? '100px' : '125px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '100px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
-        imgWidth = this.isMobile ? '80px' : '100px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '80px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       case 'prixato':
         imagePath = '../../../assets/svg/home/proveedores/eurotrade.png';
@@ -53,8 +53,8 @@ export class BrandTypePipe implements PipeTransform {
         break;
       case 'audley':
         imagePath = '../../../assets/svg/home/proveedores/audley.png';
-        imgWidth = this.isMobile ? '100px' : '125px';
-        imgHeight = 'auto';
+        imgWidth = this.isMobile ? '100px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       default:
         // Return a default image path or handle unsupported brand names as needed

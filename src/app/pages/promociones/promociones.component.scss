@@ -1,93 +1,91 @@
 @import "../../../variables";
-@import 'swiper/scss';
-@import 'swiper/scss/navigation';
-@import 'swiper/scss/pagination';
-@import 'swiper/scss/autoplay';
 .hero-banner {
-    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../../assets/img/promociones/deal-banner-3.jpg');
+    background-color: $gray-50;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    height: 300px;
+    padding: 64px;
+    .banner-content {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        h1 {
+            color: $white;
+            font-size: 40px;
+            font-weight: 600;
+        }
+        p {
+            color: $gray-200;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+}
+
+.section-card {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $gray-300;
+    border-radius: 1em;
+}
+
+.section-card-background {
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
     background-image: url("../../../assets/img/promociones/Banner-Promotion.jpg");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-color: #EBEEF5;
 }
 
-.printer-product-card-container {
-    display: flex;
-    width: 100%;
-}
-
-.printer-product-card {
-    max-width: 300px;
-    min-height: 287px;
-    border-radius: 10px;
-    border: 0.50px #E2E8F0 solid;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    // width: calc(50% - 6px);
-    // min-height: 287px;
-    // padding-bottom: 58px;
-    @media(min-width: 768px) {
-        width: 100%;
-        min-height: 306px;
-        margin-bottom: 16px;
-    }
-}
-
-.box-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    .swiper-container {
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-        overflow: hidden;
-        list-style: none;
-        padding: 0;
-        z-index: 1;
-        height: 100%;
-    }
-}
-
-.swiper-wrapper {
-    align-items: stretch;
-}
-
-.swiper-slide {
-    display: flex;
-    flex-direction: column;
-    align-self: stretch; // Add this line
-    margin: 0px 16px;
-    margin-right: 0 !important;
-}
-
 .section-title {
-    font-weight: 600;
-    font-size: 2em;
-    color: #64748b;
-    text-align: center;
-    // Small devices (landscape phones, 576px and up)
-    @media (min-width: 576px) {
-        font-size: 2.5em;
+    color: $text;
+}
+
+.section-subtitle {
+    font-weight: 500;
+    color: $secondary-text;
+    margin: 0;
+}
+
+#printer-promotions {
+    background-color: $gray-50;
+    width: 100%;
+}
+
+.promotion-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $gray-200;
+}
+
+.promotion-links {
+    display: flex;
+    gap: .5em;
+    @media (max-width: 768px) { 
+        width: 100%;
+        button {
+            width: 100%;
+        }
     }
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {
-        font-size: 3em;
-        text-align: left;
-    }
-    // Large devices (desktops, 992px and up)
-    @media (min-width: 992px) {
-        font-size: 3em;
-    }
-    // X-Large devices (large desktops, 1200px and up)
-    @media (min-width: 1200px) {
-        font-size: 3em;
-    }
-    // XX-Large devices (larger desktops, 1400px and up)
-    @media (min-width: 1400px) {
-        font-size: 3em;
-    }
+}
+.promotion-title-container {
+    margin-bottom: 8px;
 }

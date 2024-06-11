@@ -16,10 +16,10 @@
                     </ng-container>
 
                     <!-- Display deals if available -->
-                    <ng-container *ngIf="!isLoading && dealPrinters.length > 0">
-                        <ng-template swiperSlide *ngFor="let printer of dealPrinters">
+                    <ng-container *ngIf="!isLoading && dealRentPackagePrinters.length > 0">
+                        <ng-template swiperSlide *ngFor="let rentPackage of dealRentPackagePrinters">
                             <div class="printer-product-card-container">
-                                <printer-product-card [printer]="printer" style="width: 100%;"></printer-product-card>
+                                <shared-package-rent-product-card [rentPackage]="rentPackage" style="width: 100%;"></shared-package-rent-product-card>
                             </div>
                         </ng-template>
                     </ng-container>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <!-- Display no deals message if no deals are available -->
-        <div class="not-found" *ngIf="!isLoading && dealPrinters.length === 0">
+        <div class="not-found" *ngIf="!isLoading && dealRentPackagePrinters.length === 0">
             <i class="pi pi-exclamation-triangle" style="font-size: 4rem;"></i>
             <p>{{noDealsMessage}}</p>
         </div>

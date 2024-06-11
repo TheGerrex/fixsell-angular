@@ -20,6 +20,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
 import { PackageRentCardComponent } from './components/package-rent-card/package-rent-card.component';
 import { PackageRentContactFormComponent } from './components/package-rent-contact-form/package-rent-contact-form.component';
+import { PackageRentPromotionListComponent } from './components/package-rent-promotion-list/package-rent-promotion-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PackageRentContactFormComponent } from './components/package-rent-conta
     PromotionListComponent,
     PackageRentCardComponent,
     PackageRentContactFormComponent,
+    PackageRentPromotionListComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,6 @@ import { PackageRentContactFormComponent } from './components/package-rent-conta
     SharedModule,
     ReactiveFormsModule,
   ],
-  exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe],
+  exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe, PromotionListComponent, PackageRentPromotionListComponent, PackageRentContactFormComponent],
 })
 export class PrinterModule {}
