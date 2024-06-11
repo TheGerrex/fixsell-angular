@@ -214,7 +214,7 @@
             display: block; // Shown by default
             position: absolute;
             right: 0;
-            bottom: -33%;
+            bottom: -100%;
             left: 90px;
             rotate: (135deg);
         }
@@ -277,8 +277,8 @@
                 display: block !important;
                 position: absolute;
                 left: 0%;
-                bottom: 10%;
-                rotate: (133deg);
+                bottom: -15%;
+                rotate: (145deg);
             }
             .hero-image-mobile {
                 display: none !important; // Shown by default
