@@ -32,9 +32,8 @@ export class BrandTypePipe implements PipeTransform {
       case 'konica minolta':
         imagePath =
           '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
-        imgWidth = this.isMobile ? '120px' : 'auto';
+        imgWidth = this.isMobile ? '150px' : 'auto';
         imgHeight = this.isMobile ? 'auto' : imgHeight;
-
         break;
       case 'kyocera':
         imagePath = '../../../assets/svg/home/proveedores/kyocera.svg';
@@ -44,6 +43,11 @@ export class BrandTypePipe implements PipeTransform {
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
         imgWidth = this.isMobile ? '80px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
+        break;
+      case 'fujifilm':
+        imagePath = '../../../assets/svg/home/proveedores/fujifilm_logo.svg';
+        imgWidth = this.isMobile ? '120px' : 'auto';
         imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       case 'prixato':

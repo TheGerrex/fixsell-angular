@@ -28,10 +28,10 @@
                             align-items: center;
                             gap: 10px;
                             display: flex;">
-                                <div style="color: #AE003A;
+                            <div style="color: #AE003A;
                                 font-size: 12px;
                                 font-weight: 600;">Paquete de Renta
-                                </div>
+                            </div>
                         </div>
                         <div [innerHTML]="rentPackage.printer.color | productColor"></div>
                         <div class="tag">
@@ -54,18 +54,18 @@
                         </div>
                     </div> -->
                     <div class="package-print-cards-container">
-                            <div class="package-print-card">
-                                <div class="package-print-card-body">
-                                    <div class="prints"><span class="package-print-card-icon"><img src="../../../../assets/svg/colors/B&W.svg" alt="b/n icon"></span>{{ rentPackage.packagePrintsBw | currency:' ' : 'symbol' : '1.0-0' }} <span>impresiones de B/N</span></div>
-                                    <div class="sub-header">incluidas al mes</div>
-                                </div>
+                        <div class="package-print-card">
+                            <div class="package-print-card-body">
+                                <div class="prints"><span class="package-print-card-icon"><img src="../../../../assets/svg/colors/B&W.svg" alt="b/n icon"></span>{{ rentPackage.packagePrintsBw | currency:' ' : 'symbol' : '1.0-0' }} <span>impresiones de B/N</span></div>
+                                <div class="sub-header">incluidas al mes</div>
                             </div>
-                            <div class="package-print-card" *ngIf="rentPackage.packagePrintsColor">
-                                <div class="package-print-card-body">
-                                    <div class="prints"><span class="package-print-card-icon"><img src="../../../../assets/svg/colors/CMYK.svg" alt="color icon"></span>{{ rentPackage.packagePrintsColor | currency:' ' : 'symbol' : '1.0-0'}} <span>impresiones de Color</span></div>
-                                    <div class="sub-header">incluidas al mes</div>
-                                </div>
+                        </div>
+                        <div class="package-print-card" *ngIf="rentPackage.packagePrintsColor">
+                            <div class="package-print-card-body">
+                                <div class="prints"><span class="package-print-card-icon"><img src="../../../../assets/svg/colors/CMYK.svg" alt="color icon"></span>{{ rentPackage.packagePrintsColor | currency:' ' : 'symbol' : '1.0-0'}} <span>impresiones de Color</span></div>
+                                <div class="sub-header">incluidas al mes</div>
                             </div>
+                        </div>
                     </div>
                     <div class="package-price">
                         <h5 class="data-price">{{ rentPackage.packageMonthlyPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ rentPackage.packageCurrency }}
