@@ -1,7 +1,6 @@
 @import 'src/_variables.scss';
 .product-card {
     width: 100%;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -76,6 +75,7 @@
                 align-content: space-between;
                 padding: 0px 12px 0;
                 background-color: $gray-50;
+                min-height: 300px;
                 .product-info-col {
                     display: flex;
                     flex-direction: column;
@@ -170,7 +170,6 @@
                         gap: 1em;
                         width: 100%;
                         height: 100%;
-                        min-height: 106px;
                        .package-print-card {
                             display: flex;
                             flex-direction: row;
@@ -213,6 +212,7 @@
                         flex-direction: row;
                         gap: 8px;
                         width: 100%;
+                        height: 100%;
                         justify-content: flex-start;
                         margin-top: 12px;
                         .data-price {
@@ -255,14 +255,8 @@
 }
 
 .more-info {
-    max-height: 287px;
+    height: 300px;
     overflow-y: auto;
-    @media(min-width: 768px) {
-        max-height: 289px;
-    }
-    @media(min-width: 1024px) {
-        max-height: 289px;
-    }
 }
 
 .package-details {

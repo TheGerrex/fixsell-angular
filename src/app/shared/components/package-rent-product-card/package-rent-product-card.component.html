@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="product-body">
-            <div class="product-info" *ngIf="!showMoreInfo">
+            <div class="product-info" *ngIf="!showMoreInfo" @fadeIn>
                 <div class="product-info-col">
                     <div class="product-brand" [innerHTML]="rentPackage.printer.brand | productBrand"></div>
                     <p class="product-name">{{rentPackage.printer.model}}</p>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="more-info" *ngIf="showMoreInfo">
+            <div class="more-info" *ngIf="showMoreInfo" @fadeIn>
                 <div class="package-details">
                     <div class="package-body-section">
                         <p class="data-title">Extras:</p>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="product-actions">
-                <button class="button button-secondary button-rounded" (click)="toggleMoreInfo()"><span class="button-label">{{buttonText}}</span></button>
+                <button class="button button-outlined-secondary button-rounded" (click)="toggleMoreInfo()"><span class="button-label">{{buttonText}}</span></button>
                 <button class="button button-primary button-rounded" [routerLink]="['/printers', rentPackage.printer.id]"><span class="button-label">Ver paquete</span></button>
             </div>
         </div>

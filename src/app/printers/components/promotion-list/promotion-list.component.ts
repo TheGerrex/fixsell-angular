@@ -39,8 +39,15 @@ export class PromotionListComponent implements OnInit, OnDestroy {
         autoplay: false,
         scrollbar: { draggable: true },
       },
-      375: {
+      500: {
         slidesPerView: 2,
+        spaceBetween: 16, 
+        navigation: true,
+        autoplay: false,
+        scrollbar: { draggable: true },
+      },
+      375: {
+        slidesPerView: 1,
         spaceBetween: 8,
         navigation: false,
         autoplay: true,

@@ -40,7 +40,7 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
         autoplay: false,
         scrollbar: { draggable: true },
       },
-      500: {
+      508: {
         slidesPerView: 2,
         spaceBetween: 16, 
         navigation: true,

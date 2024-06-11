@@ -19,7 +19,7 @@
                     <ng-container *ngIf="!isLoading && dealPrinters.length > 0">
                         <ng-template swiperSlide *ngFor="let printer of dealPrinters">
                             <div class="printer-product-card-container">
-                                <printer-product-card [printer]="printer"></printer-product-card>
+                                <printer-product-card [printer]="printer" style="width: 100%;"></printer-product-card>
                             </div>
                         </ng-template>
                     </ng-container>

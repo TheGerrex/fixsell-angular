@@ -1,11 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Package } from 'src/app/printers/interfaces/package.interface';
-import { Printer } from 'src/app/printers/interfaces/printer.interface';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'shared-package-rent-product-card',
   templateUrl: './package-rent-product-card.component.html',
-  styleUrls: ['./package-rent-product-card.component.scss']
+  styleUrls: ['./package-rent-product-card.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('200ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class PackageRentProductCardComponent {
 

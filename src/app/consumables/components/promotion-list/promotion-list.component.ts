@@ -22,7 +22,6 @@ export class PromotionListComponent implements OnInit {
     spaceBetween: 8,
     // navigation: false,
     autoplay: false,
-    pagination: { clickable: true },
     scrollbar: { draggable: true },
     
     breakpoints: {
@@ -31,7 +30,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 24,
         navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
       768: {
@@ -39,7 +37,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 16, 
         navigation: true,
         autoplay: false,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
       375: {
@@ -47,7 +44,6 @@ export class PromotionListComponent implements OnInit {
         spaceBetween: 8,
         navigation: false,
         autoplay: true,
-        pagination: { clickable: true },
         scrollbar: { draggable: true },
       },
     },
