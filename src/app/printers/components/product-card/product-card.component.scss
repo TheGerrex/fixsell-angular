@@ -287,6 +287,9 @@
     .pi-shopping-cart {
         display: block !important;
     }
+    .product-price {
+        display: none !important;
+    }
     @media(min-width: 768px) {
         background: $primary-color !important;
         padding-left: 0 !important;

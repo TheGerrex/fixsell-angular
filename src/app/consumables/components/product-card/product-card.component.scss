@@ -71,6 +71,13 @@
                 align-content: space-between;
                 padding: 12px 12px 0;
                 background-color: $gray-50;
+                min-height: 250px;
+                @media(min-width: 1024px) and (max-width: 1399px) {
+                    min-height: 250px;
+                }
+                @media(min-width: 1400px) {
+                    min-height: 150px;
+                }
                 .product-info-col {
                     display: flex;
                     flex-direction: column;
@@ -279,6 +286,9 @@
 .product-card:hover .product-action-deal {
     i {
         display: block !important;
+    }
+    .product-price {
+        display: none !important;
     }
     @media(min-width: 768px) {
         background: $primary-color !important;

@@ -215,8 +215,10 @@
             opacity: 0;
             display: none; // Hidden by default
             transition: transform 0.5s ease-out;
-            --scale-factor: 1; /* Default scale factor */
-            --rotation-angle: 0deg; /* Default rotation angle */
+            --scale-factor: 1;
+            /* Default scale factor */
+            --rotation-angle: 0deg;
+            /* Default rotation angle */
             transform: translateY(-20%) scale(var(--scale-factor)) rotate(var(--rotation-angle));
             animation: fadeInAndGoUpAndScale .5s ease-in-out forwards;
         }
@@ -228,8 +230,10 @@
             top: 0;
             left: 42px;
             transition: transform 0.5s ease-out;
-            --scale-factor: 1; /* Default scale factor */
-            --rotation-angle: 0deg; /* Default rotation angle */
+            --scale-factor: 1;
+            /* Default scale factor */
+            --rotation-angle: 0deg;
+            /* Default rotation angle */
             transform: translateY(-20%) scale(var(--scale-factor)) rotate(var(--rotation-angle));
             animation: fadeInAndGoUpAndScaleAndRotate 1.5s forwards;
         }
@@ -338,32 +342,31 @@
 }
 
 @keyframes fadeInAndGoUpAndScale {
-  0% {
-    opacity: 0;
-    transform: translateY(-20%) scale(var(--scale-factor));
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0%) scale(var(--scale-factor));
-  }
+    0% {
+        opacity: 0;
+        transform: translateY(-20%) scale(var(--scale-factor));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%) scale(var(--scale-factor));
+    }
 }
 
 @keyframes fadeInAndGoUpAndScaleAndRotate {
-  0% {
-    opacity: 0;
-    transform: translateY(-20%) scale(var(--scale-factor)) rotate(180deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0%) scale(var(--scale-factor)) rotate(140deg);
-  }
+    0% {
+        opacity: 0;
+        transform: translateY(-20%) scale(var(--scale-factor)) rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%) scale(var(--scale-factor)) rotate(140deg);
+    }
 }
 
 swiper {
-  --swiper-navigation-color: #172a3a;
-  --swiper-pagination-color: #3c81f6;
+    --swiper-navigation-color: #172a3a;
+    --swiper-pagination-color: #3c81f6;
 }
-
 
 .section-content {
     opacity: 1;
@@ -988,7 +991,7 @@ swiper {
                     background-color: $gray-50;
                     border-radius: $border-radius;
                     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-                    .product-info-card-header{
+                    .product-info-card-header {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
@@ -1010,7 +1013,7 @@ swiper {
                             margin: 0;
                         }
                     }
-                    .product-info-card-body{
+                    .product-info-card-body {
                         display: flex;
                         flex-direction: column;
                         gap: 1em;
@@ -1032,7 +1035,6 @@ swiper {
                                 margin: 0;
                             }
                         }
-                        
                     }
                 }
             }
@@ -1053,68 +1055,68 @@ swiper {
                 }
             }
             .product-info-card {
-                    position: absolute;
-                    bottom: 20%;
-                    right: 12%;
-                    border: 1px solid $gray-300;
-                    background-color: $gray-50;
-                    border-radius: $border-radius;
-                    // width: 180px;
-                    // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-                    .product-info-card-header{
+                position: absolute;
+                bottom: 20%;
+                right: 12%;
+                border: 1px solid $gray-300;
+                background-color: $gray-50;
+                border-radius: $border-radius;
+                // width: 180px;
+                // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                .product-info-card-header {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 1em;
+                    border-bottom: 1px solid $gray-300;
+                    position: relative;
+                    z-index: 1;
+                    .product-info-card-title {
+                        font-weight: 600;
+                        margin-top: 8px;
+                        margin-bottom: 0px;
+                    }
+                    .product-info-card-chip {
+                        position: absolute;
+                        left: 10px;
+                        top: -14px;
+                        padding: 4px 8px;
+                        border: 1px solid $orange-500;
+                        color: $orange-500;
+                        background-color: $orange-50;
+                        border-radius: 50px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        margin: 0;
+                    }
+                }
+                .product-info-card-body {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+                    padding: 1em;
+                    border-radius: 0px 0px $border-radius $border-radius;
+                    background-color: $white;
+                    .product-info-card-item {
                         display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        gap: 8px;
-                        padding: 1em;
-                        border-bottom: 1px solid $gray-300;
-                        position: relative;
-                        z-index: 1;
-                        .product-info-card-title {
-                            font-weight: 600;
-                            margin-top: 8px;
-                            margin-bottom: 0px;
+                        flex-direction: column;
+                        .product-info-card-item-title {
+                            color: $gray-700;
+                            font-size: 14px;
+                            font-weight: 500;
+                            margin: 0;
                         }
-                        .product-info-card-chip {
-                            position: absolute;
-                            left: 10px;
-                            top: -14px;
-                            padding: 4px 8px;
-                            border: 1px solid $orange-500;
-                            color: $orange-500;
-                            background-color: $orange-50;
-                            border-radius: 50px;
+                        .product-info-card-item-content {
                             font-size: 12px;
-                            font-weight: 600;
+                            font-weight: 500;
                             margin: 0;
                         }
                     }
-                    .product-info-card-body{
-                        display: flex;
-                        flex-direction: column;
-                        gap: 1em;
-                        padding: 1em;
-                        border-radius: 0px 0px $border-radius $border-radius;
-                        background-color: $white;
-                        .product-info-card-item {
-                            display: flex;
-                            flex-direction: column;
-                            .product-info-card-item-title {
-                                color: $gray-700;
-                                font-size: 14px;
-                                font-weight: 500;
-                                margin: 0;
-                            }
-                            .product-info-card-item-content {
-                                font-size: 12px;
-                                font-weight: 500;
-                                margin: 0;
-                            }
-                        }
-                    }
+                }
             }
             @media(min-width: 768px) {
-                    margin: 0em;
+                margin: 0em;
             }
         }
     }
@@ -1260,7 +1262,7 @@ swiper {
         z-index: 1;
         // height: 100%;
         .swiper-slide {
-            background-color: #FFF;
+            background-color: transparent;
         }
     }
 }

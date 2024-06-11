@@ -1,5 +1,4 @@
 @import "../../../../variables";
-
 .printer-product-card-container {
     display: flex;
     width: 100%;
@@ -21,12 +20,10 @@
     }
 }
 
-
 swiper {
-  --swiper-navigation-color: #172a3a;
-  --swiper-pagination-color: #3c81f6;
+    --swiper-navigation-color: #172a3a;
+    --swiper-pagination-color: #3c81f6;
 }
-
 
 .swiper-wrapper {
     align-items: stretch;
@@ -37,6 +34,7 @@ swiper {
     display: flex;
     flex-direction: column;
     align-self: stretch; // Add this line
+    background-color: transparent;
     // margin: 0px 16px;
     // margin-right: 0 !important;
 }

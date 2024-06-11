@@ -259,7 +259,7 @@ toggleBWFilter(): void {
     this.filteredPrintersChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
 
-    this.router.navigate([], { queryParams: filters, queryParamsHandling: 'merge' });
+    this.router.navigate([], { queryParams: filters, queryParamsHandling: 'preserve' });
   }
 
 }

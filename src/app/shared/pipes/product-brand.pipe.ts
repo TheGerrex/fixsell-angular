@@ -46,6 +46,11 @@ export class ProductBrandPipe implements PipeTransform {
         imgWidth = this.isMobile ? '80px' : 'auto';
         imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
+      case 'fujifilm':
+        imagePath = '../../../assets/svg/home/proveedores/fujifilm_logo.svg';
+        imgWidth = this.isMobile ? '120px' : 'auto';
+        imgHeight = this.isMobile ? 'auto' : imgHeight;
+        break;
       case 'prixato':
         imagePath = '../../../assets/svg/home/proveedores/eurotrade.png';
         imgWidth = this.isMobile ? '100px' : 'auto';
