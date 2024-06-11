@@ -9,6 +9,10 @@ import { Printer } from 'src/app/printers/interfaces/printer.interface';
 })
 export class PackageRentProductCardComponent {
 
+  showMoreInfo = false;
+  buttonText = 'Más Info';
+showDialogForm = false;
+
   @Input() rentPackage: Package = {
     id: 0,
     printer: {
@@ -56,6 +60,14 @@ export class PackageRentProductCardComponent {
     packageIncludes: [],
   };
 
+  toggleMoreInfo() {
+    this.showMoreInfo = !this.showMoreInfo;
+    this.buttonText = this.showMoreInfo ? 'Cerrar' : 'Más Info';
+  }
+
+  showDialog() {
+    this.showDialogForm = true;
+  }
 
   ngOnInit(): void {
     if(!this.rentPackage) throw new Error('RentPackage property is required');
