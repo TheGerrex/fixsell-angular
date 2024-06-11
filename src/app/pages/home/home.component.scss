@@ -188,7 +188,7 @@
             height: 100%;
             z-index: 1;
             opacity: 0;
-            animation: fadeInAndGoUp .5s ease-in-out forwards;
+            // animation: fadeInAndGoUp .5s ease-in-out forwards;
             .blob-mask {
                 position: absolute;
                 top: 0;
@@ -205,29 +205,33 @@
         }
         // Nested selectors
         .hero-image-large {
-            display: none; // Hidden by default
-        }
-        .hero-image-medium {
-            display: none; // Shown by default
-        }
-        .hero-image-mobile {
-            display: block; // Shown by default
-            position: absolute;
-            right: 0;
-            bottom: -100%;
-            left: 90px;
-            rotate: (135deg);
-        }
-        .hero-image {
-            // Positioning
-            // position: absolute;
-            // right: 0%;
-            // bottom: 0%;
-            // z-index: 1;
-            // Dimensions and animation
             width: 640px;
             opacity: 0;
+            display: none; // Hidden by default
             animation: fadeInAndGoUp .5s ease-in-out forwards;
+        }
+        .hero-image-medium {
+            width: 600px;
+            opacity: 0;
+            display: none; // Hidden by default
+            transition: transform 0.5s ease-out;
+            --scale-factor: 1; /* Default scale factor */
+            --rotation-angle: 0deg; /* Default rotation angle */
+            transform: translateY(-20%) scale(var(--scale-factor)) rotate(var(--rotation-angle));
+            animation: fadeInAndGoUpAndScale .5s ease-in-out forwards;
+        }
+        .hero-image-mobile {
+            width: 384px;
+            opacity: 0;
+            display: block; // Shown by default
+            position: absolute;
+            top: 0;
+            left: 42px;
+            transition: transform 0.5s ease-out;
+            --scale-factor: 1; /* Default scale factor */
+            --rotation-angle: 0deg; /* Default rotation angle */
+            transform: translateY(-20%) scale(var(--scale-factor)) rotate(var(--rotation-angle));
+            animation: fadeInAndGoUpAndScaleAndRotate 1.5s forwards;
         }
         // Media queries
         @media (min-width: 992px) and (max-width: 1024px) {
@@ -269,7 +273,7 @@
                 display: none !important; // Shown by default
             }
         }
-        @media (min-width: 426px) and (max-width: 768px) {
+        @media (min-width: 426px) and (max-width: 767px) {
             .hero-image-large {
                 display: none !important;
             }
@@ -331,6 +335,28 @@
         opacity: 1;
         transform: translateY(0%);
     }
+}
+
+@keyframes fadeInAndGoUpAndScale {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%) scale(var(--scale-factor));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%) scale(var(--scale-factor));
+  }
+}
+
+@keyframes fadeInAndGoUpAndScaleAndRotate {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%) scale(var(--scale-factor)) rotate(180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%) scale(var(--scale-factor)) rotate(140deg);
+  }
 }
 
 swiper {
