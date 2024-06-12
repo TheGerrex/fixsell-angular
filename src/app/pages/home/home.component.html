@@ -174,29 +174,36 @@
         <!-- <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/consumibles.jpg" alt="consumibles-impresoras"></div> -->
         <div class="container py-5 consumible-container">
             <div class="consumible-body">
-                <div class="section-title">
-                    <h1 class="white">Consumibles y Refacciones</h1>
-                </div>
-                <div class="consumible-item">
-                    <h4>
-                        En Fixsell del Norte, te ofrecemos los mejores productos de las marcas Konica Minolta, Kyocera, Fuji y Epson, las cuales vendemos al público. Estos son algunos de los aspectos que nos distinguen:
-                    </h4>
-                </div>
-                <div class="consumible-items-container">
-                    <div class="consumible-item-card" id="consumibleStock">
-                        <i class="pi pi-box"></i>
-                        <p>Contamos con un buen stock de refacciones y consumibles, para que siempre encuentres lo que necesitas.</p>
+                <div class="consumible-content">
+                    <div class="consumible-title">
+                        <h1>Consumibles y Refacciones</h1>
                     </div>
-                    <div class="consumible-item-card" id="consumiblePrecio">
-                        <i class="pi pi-dollar"></i>
-                        <p>Te ofrecemos precios competitivos y garantía de calidad, para que ahorres dinero y tiempo.</p>
+                    <div class="consumible-subtitle">
+                        <h4>Ofrecemos los mejores consumibles y refacciones de las marcas Konica Minolta, Kyocera, Fuji y Epson.</h4>
+                        <p>Productos OEM y Genéricos tales como: tóner, kit de mantenimiento, reveladores, fusores, rodillos de calor, rodillos de impresión, gomas, bandas y más.</p>
                     </div>
-                    <div class="consumible-item-card" id="consumibleEnvio">
-                        <i class="pi pi-shopping-cart"></i>
-                        <p>Te enviamos tus productos a todo México, con rapidez y seguridad, para que los recibas en tu domicilio u oficina.</p>
+                    <div class="consumible-action">
+                        <button class="button button-rounded button-primary button-raised" routerLink="/consumables/intro"><span class="button-label">Ver Consumibles</span></button>
+                    </div>
+                </div>
+                <div class="consumible-features">
+                    <div class="consumible-items-container">
+                        <div class="consumible-item-card" id="consumibleStock">
+                            <i class="pi pi-box"></i>
+                            <p>Contamos con un buen stock de refacciones y consumibles, para que siempre encuentres lo que necesitas.</p>
+                        </div>
+                        <div class="consumible-item-card" id="consumiblePrecio">
+                            <i class="pi pi-dollar"></i>
+                            <p>Te ofrecemos precios competitivos y garantía de calidad, para que ahorres dinero y tiempo.</p>
+                        </div>
+                        <div class="consumible-item-card" id="consumibleEnvio">
+                            <i class="pi pi-shopping-cart"></i>
+                            <p>Te enviamos tus productos a todo México, con rapidez y seguridad, para que los recibas en tu domicilio u oficina.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- <div class="w-100 pt-5"><consumables-promotion-list></consumables-promotion-list></div> -->
         </div>
     </div>
 </section>
@@ -235,7 +242,7 @@
                         <p>Reducir los costes de mantenimiento, gracias a nuestro sistema de consumibles continua y nuestro servicio técnico especializado.</p>
                     </div>
                     <div class="equipos-action">
-                        <button class="button button-rounded button-primary button-raised" routerLink="/printers/list"><span class="button-label">Ir a Productos</span></button>
+                        <button class="button button-rounded button-primary button-raised" routerLink="/printers/intro"><span class="button-label">Ver Multifuncionales</span></button>
                     </div>
                 </div>
             </div>
@@ -263,6 +270,7 @@
                 <div class="equipos-image"><img src="../../../assets/img/home/soluciones-servicios/impresora.png" alt="BH-C300i"></div>
             </div>
         </div>
+        <div class="container"><printer-promotion-list></printer-promotion-list></div>
     </div>
 </section>
 
