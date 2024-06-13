@@ -108,7 +108,7 @@
 
 <section class="section-content" id="servicio">
     <div class="servicio">
-        <div class="container servicio-container">
+        <div class="container py-5 servicio-container">
             <div class="servicio-body">
                 <div class="section-title">
                     <h1>Servicio Técnico</h1>
@@ -203,74 +203,70 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="w-100 pt-5"><consumables-promotion-list></consumables-promotion-list></div> -->
+        </div>
+    </div>
+    <div class="consumible-deals">
+        <div class="container py-5">
+            <div class="promotion-header">
+                <div class="promotion-title-container">
+                    <h1 class="section-title">Consumibles en Oferta</h1>
+                    <h5 class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</h5>
+                </div>
+                <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/promociones"><span class="button-label">Ver Promociones</span></button></div>
+            </div>
+            <consumables-promotion-list></consumables-promotion-list>
         </div>
     </div>
 </section>
 
 <section class="section-content" id="equipos">
     <div class="equipos">
-        <div class="container py-5 equipos-container">
-            <div class="equipos-body">
-                <div class="section-title">
-                    <h1>Equipos de Impresión</h1>
-                </div>
-                <div class="section-subtitle">
-                    <h4>¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus tareas de impresión?</h4>
-                    <br>
-                    <h5>Entonces, necesitas nuestros equipos de impresión de última generación. Nuestras impresoras te ofrecen una velocidad, una eficiencia y una nitidez incomparables, que facilitan los flujos de trabajo de tu negocio.</h5>
-                </div>
-                <div class="equipos-content-image-mobile" [class.displayNone]="!isMediumScreen">
-                    <div class="equipos-image"><img src="../../../assets/img/home/soluciones-servicios/impresora.png" alt="BH-C300i"></div>
-                </div>
-                <div class="equipos-content">
-                    <!-- <div class="equipos-item">
-                        <h4>¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus tareas de impresión?</h4>
-                        <br>
-                        <h5>Entonces, necesitas nuestros equipos de impresión de última generación. Nuestras impresoras te ofrecen una velocidad, una eficiencia y una nitidez incomparables, que facilitan los flujos de trabajo de tu negocio.</h5>
-                    </div> -->
-                    <div class="equipos-item" id="velocidad">
-                        <i class="pi pi-check" style="font-size: 24px;"></i>
-                        <p>Impresoras con velocidad, eficiencia y nitidez incomparables que facilitan los flujos de trabajo de tu negocio.</p>
+        <div class="container py-5">
+            <div class="equipos-container">
+                <div class="equipos-body">
+                    <div class="section-header">
+                        <h1 class="section-title">Equipos de Impresión</h1>
+                        <h5 class="section-subtitle">¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus trabajos de impresión?</h5>
                     </div>
-                    <div class="equipos-item" id="impresion">
-                        <i class="pi pi-check" style="font-size: 24px;"></i>
-                        <p>Posibilidad de imprimir documentos de alta calidad en segundos, reducir los costes de mantenimiento, administrar tus impresiones y mucho más.</p>
+                    <div class="equipos-content-image-mobile" [class.displayNone]="!isMediumScreen">
+                        <div class="equipos-image"><img src="../../../assets/img/home/printers/accurio-jet-6000.jpg" alt="AccurioJet 6000"></div>
                     </div>
-                    <div class="equipos-item" id="mantenimiento">
-                        <i class="pi pi-check" style="font-size: 24px;"></i>
-                        <p>Reducir los costes de mantenimiento, gracias a nuestro sistema de consumibles continua y nuestro servicio técnico especializado.</p>
+                    <div class="equipos-content">
+                        <div class="equipos-item" id="velocidad">
+                            <i class="pi pi-check-circle"></i>
+                            <p>Impresoras con velocidad, eficiencia y nitidez incomparables que facilitan los flujos de trabajo de tu negocio.</p>
+                        </div>
+                        <div class="equipos-item" id="impresion">
+                            <i class="pi pi-check-circle"></i>
+                            <p>Posibilidad de imprimir documentos de alta calidad en segundos, reducir los costes de mantenimiento, administrar tus impresiones y mucho más.</p>
+                        </div>
+                        <div class="equipos-item" id="mantenimiento">
+                            <i class="pi pi-check-circle"></i>
+                            <p>Reducir los costes de mantenimiento, gracias a nuestro sistema de consumibles continua y nuestro servicio técnico especializado.</p>
+                        </div>
                     </div>
                     <div class="equipos-action">
                         <button class="button button-rounded button-primary button-raised" routerLink="/printers/intro"><span class="button-label">Ver Multifuncionales</span></button>
                     </div>
                 </div>
-            </div>
-            <div class="equipos-content-image" [class.displayNone]="isMediumScreen">
-                <div class="product-info-card">
-                    <div class="product-info-card-header">
-                        <p class="product-info-card-title">Bizhub 300i</p>
-                        <p class="product-info-card-chip">Nuevo Modelo</p>
-                    </div>
-                    <div class="product-info-card-body">
-                        <div class="product-info-card-item">
-                            <p class="product-info-card-item-title">Tamaño</p>
-                            <p class="product-info-card-item-content">Doble Carta</p>
-                        </div>
-                        <div class="product-info-card-item">
-                            <p class="product-info-card-item-title">Velocidad</p>
-                            <p class="product-info-card-item-content">30ppm</p>
-                        </div>
-                        <div class="product-info-card-item">
-                            <p class="product-info-card-item-title">Tipo</p>
-                            <p class="product-info-card-item-content">Blanco & Negro</p>
-                        </div>
-                    </div>
+                <div class="equipos-content-image" [class.displayNone]="isMediumScreen">
+                    <div class="equipos-image"><img src="../../../assets/img/home/printers/accurio-jet-6000.jpg" alt="AccurioJet 6000"></div>
                 </div>
-                <div class="equipos-image"><img src="../../../assets/img/home/soluciones-servicios/impresora.png" alt="BH-C300i"></div>
             </div>
         </div>
-        <div class="container"><printer-promotion-list></printer-promotion-list></div>
+
+    </div>
+    <div class="equipos-deals">
+        <div class="container py-5">
+            <div class="promotion-header">
+                <div class="promotion-title-container">
+                    <h1 class="section-title">Multifuncionales en Oferta</h1>
+                    <h5 class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</h5>
+                </div>
+                <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/promociones"><span class="button-label">Ver Promociones</span></button></div>
+            </div>
+            <printer-promotion-list></printer-promotion-list>
+        </div>
     </div>
 </section>
 

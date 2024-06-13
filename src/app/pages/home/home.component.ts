@@ -251,7 +251,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isSmallScreen = window.innerWidth <= 768;
-    this.isMediumScreen = window.innerWidth <= 1024;
+    this.isMediumScreen = window.innerWidth <= 768;
     this.scaleImageOnScroll();
   }
 

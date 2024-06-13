@@ -380,6 +380,23 @@ swiper {
     /* When the 'animate' class is added, the section becomes visible */
 }
 
+.section-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    gap: .5em;
+    .section-title {
+        font-weight: 600;
+        margin: 0;
+    }
+    .section-subtitle {
+        color: $secondary-text;
+        font-weight: 500;
+        margin: 0;
+    }
+}
+
 .section-title {
     display: flex;
     justify-content: flex-start;
@@ -393,12 +410,18 @@ swiper {
 
 .section-subtitle {
     h4 {
-        color: $section-title;
+        color: $secondary-text;
         font-weight: 500;
         margin: 0;
     }
     h5 {
+        font-weight: 500;
+        color: $secondary-text;
+        margin: 0;
+    }
+    p {
         font-weight: 400;
+        color: $text;
         margin: 0;
     }
 }
@@ -687,16 +710,11 @@ swiper {
     width: 100%;
     height: 100%;
     background-color: $blue-800;
-    // background-image: linear-gradient(rgba($blue-800, 1), rgba($blue-700, 1));
+    // background-image: linear-gradient(to bottom, rgba($blue-800, 1), rgba($blue-700, 1));
     // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
     background-size: cover;
     background-position: center;
     .consumible-container {
-        padding: 3em 1em;
-        @media(min-width: 768px) {
-            padding: 8em 0em;
-        }
-
         .consumible-body {
             display: flex;
             flex-direction: row;
@@ -711,17 +729,17 @@ swiper {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 2em;
+                max-width: 600px;
                 .consumible-title {
                     display: flex;
                     align-items: flex-start;
                     width: 100%;
                     @media(min-width: 992px) {
                         flex-direction: column;
-                        // border: none;
                     }
                     h1 {
                         font-weight: 600;
-                        color: $blue-100;
+                        color: $white;
                         margin: 0;
                     }
                 }
@@ -743,7 +761,7 @@ swiper {
                     }
                     h4 {
                         margin: 0;
-                        color: $white;
+                        color: $blue-100;
                     }
                 }
                 .consumible-action {
@@ -765,12 +783,9 @@ swiper {
                     gap: 1em;
                     align-self: stretch;
                     margin-top: 1em;
-                    // @media(max-width: 768px) {
-                    //     flex-direction: column;
-                    // }
                     .consumible-item-card {
                         display: flex;
-                        padding: 1.5em;
+                        padding: 1em;
                         flex-direction: row;
                         align-items: center;
                         gap: 16px;
@@ -781,24 +796,13 @@ swiper {
                         width: 100%;
                         border: 1px solid $gray-200;
                         background-color: $white;
-                        // backdrop-filter: blur(50px);
-                        // @media(min-width: 770px) and (max-width: 1024px) {
-                        //     width: 100px;
-                        //     flex-direction: column;
-                        //     justify-content: flex-start;
-                        // }
-                        // @media(min-width: 769px) {
-                        //     width: 100px;
-                        //     flex-direction: row;
-                        //     align-items: center;
-                        // }
                         i {
-                            font-size: 34px;
+                            font-size: 24px;
                         }
                         p {
                             margin: 0;
                             color: $text;
-                            font-weight: 500;
+                            font-weight: 400;
                         }
                     }
                 }
@@ -818,9 +822,7 @@ swiper {
         display: flex;
         flex-direction: column;
         gap: 2em;
-        padding: 3em 1em;
         @media(min-width: 768px) {
-            padding: 4em 0em;
             flex-direction: row;
         }
         .servicio-body {
@@ -933,28 +935,23 @@ swiper {
 
 .equipos {
     background-color: $white;
-    // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    z-index: 1;
     .equipos-container {
         display: flex;
-        // justify-content: center;
-        flex-direction: column;
-        gap: 1em;
-        padding: 3em 1em;
-        @media(min-width: 1024px) {
-            padding: 4em 0em;
-            flex-direction: row;
-            gap: 0em;
-        }
+        width: 100%;
         .equipos-body {
             display: flex;
             flex-direction: column;
-            flex: 1 1 auto;
+            // flex: 0;
             gap: 1em;
             min-width: 0px;
             position: relative;
             z-index: 2;
+            width: 100%;
+            @media(min-width: 1024px) {
+                max-width: 600px;
+            }
             .equipos-title {
                 display: flex;
                 align-items: flex-start;
@@ -973,12 +970,20 @@ swiper {
                 display: flex;
                 flex-direction: column;
                 margin-top: 1em;
-                gap: 2em;
+                gap: 1em;
                 .equipos-item {
                     display: flex;
                     align-items: center;
                     gap: 16px;
                     flex-direction: row;
+                    background-color: $gray-50;
+                    border: 1px solid $gray-200;
+                    border-radius: 12px;
+                    padding: 1em;
+                    i {
+                        font-size: 24px;
+                        color: $success-color;
+                    }
                     p {
                         font-weight: 400;
                         color: $text;
@@ -988,11 +993,17 @@ swiper {
                         gap: 1em;
                     }
                 }
-                .equipos-action {
-                    margin-top: 1em;
-                }
                 @media(min-width: 768px) {
                     gap: 1em;
+                }
+            }
+            .equipos-action {
+                margin-top: 1em;
+                width: 100%;
+                @media(max-width: 768px) {
+                    button {
+                        width: 100%;
+                    }
                 }
             }
             .equipos-content-image-mobile {
@@ -1001,15 +1012,20 @@ swiper {
                 align-items: center;
                 position: relative;
                 margin: 2em 0em;
+                // width: 100%;
                 .equipos-image {
-                    max-width: 650px;
+                    width: 500px;
+                    height: 500px;
+                    @media(min-width: 768px) {
+                        width: 600px;
+                        height: 600px;
+                    }
                     img {
                         width: 100%;
                         height: 100%;
+                        object-fit: cover;
+                        object-position: 0% 15%;
                         border-radius: $border-radius;
-                        @media(min-width: 768px) {
-                            // max-width: 500px;
-                        }
                     }
                 }
                 .product-info-card {
@@ -1071,15 +1087,18 @@ swiper {
         .equipos-content-image {
             display: flex;
             justify-content: center;
-            align-items: center;
-            flex: 0 0 auto;
-            position: relative;
             margin: 1em 0em;
+            width: 100%;
             .equipos-image {
-                width: 600px;
+                width: 500px;
+                height: 500px;
+                overflow: hidden;
+                margin-left: 1em;
                 img {
                     width: 100%;
                     height: 100%;
+                    object-fit: cover;
+                    object-position: 0% 15%;
                     border-radius: $border-radius;
                 }
             }
@@ -1151,11 +1170,81 @@ swiper {
     }
 }
 
+.equipos-deals {
+    background-color: $gray-50;
+    .promotion-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid $gray-200;
+    }
+    .promotion-links {
+        display: flex;
+        gap: .5em;
+        @media (max-width: 768px) {
+            width: 100%;
+            button {
+                width: 100%;
+            }
+        }
+    }
+    .promotion-title-container {
+        margin-bottom: 8px;
+        .section-subtitle {
+            color: $secondary-text;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+}
+
+.consumible-deals {
+    background-color: $gray-50;
+    .promotion-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid $gray-200;
+        .promotion-title-container {
+            margin-bottom: 8px;
+            .section-title {
+                font-weight: 600;
+                color: $text;
+                margin: 0;
+            }
+            .section-subtitle {
+                font-weight: 500;
+                color: $secondary-text;
+                margin: 0;
+            }
+        }
+        .promotion-links {
+            display: flex;
+            gap: .5em;
+            @media (max-width: 768px) {
+                width: 100%;
+                button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
 .software {
     min-height: 750px;
     overflow: hidden;
     background-color: $light-50;
-    // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
     background-size: cover;
     background-position: center;
     .software-container {
