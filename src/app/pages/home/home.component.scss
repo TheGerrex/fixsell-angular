@@ -205,7 +205,8 @@
         }
         // Nested selectors
         .hero-image-large {
-            width: 640px;
+            max-width: 640px;
+            height: 100%;
             opacity: 0;
             display: none; // Hidden by default
             animation: fadeInAndGoUp .5s ease-in-out forwards;
@@ -409,21 +410,9 @@ swiper {
 }
 
 .section-subtitle {
-    h4 {
-        color: $secondary-text;
-        font-weight: 500;
-        margin: 0;
-    }
-    h5 {
-        font-weight: 500;
-        color: $secondary-text;
-        margin: 0;
-    }
-    p {
-        font-weight: 400;
+    font-weight: 500;
         color: $text;
         margin: 0;
-    }
 }
 
 .white {
@@ -811,8 +800,45 @@ swiper {
     }
 }
 
+.consumible-deals {
+    background-color: $white;
+    .promotion-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin-bottom: 1em;
+        border-bottom: 1px solid $gray-200;
+        .promotion-title-container {
+            margin-bottom: 8px;
+            .section-title {
+                font-weight: 600;
+                color: $text;
+                margin: 0;
+            }
+            .section-subtitle {
+                font-weight: 500;
+                color: $secondary-text;
+                margin: 0;
+            }
+        }
+        .promotion-links {
+            display: flex;
+            gap: .5em;
+            @media (max-width: 768px) {
+                width: 100%;
+                button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
 .servicio {
-    min-height: 750px;
+    min-height: 700px;
     overflow: hidden;
     background-color: $light-50;
     // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
@@ -821,9 +847,10 @@ swiper {
     .servicio-container {
         display: flex;
         flex-direction: column;
-        gap: 2em;
+        gap: 1em;
         @media(min-width: 768px) {
             flex-direction: row;
+            min-height: 810px;
         }
         .servicio-body {
             display: flex;
@@ -847,36 +874,51 @@ swiper {
                 display: flex;
                 flex-direction: column;
                 gap: 3em;
-                max-width: 700px;
+                max-width: 600px;
                 .servicio-item {
                     display: flex;
                     align-items: center;
                     gap: 16px;
                     flex-direction: row;
+                    transition: all 0.3s ease;
                     .icon-container {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        border: 1px solid $gray-300;
+                        border: 1px solid $gray-100;
+                        background-color: $gray-100;
                         border-radius: 50px;
                         padding: 1em;
+                        transition: background-color 0.3s ease; // Smooth transition for background and border changes
                         i {
                             font-size: 32px;
+                            transition: color 0.3s ease;
                         }
                     }
                     .servicio-item-body {
                         display: flex;
                         flex-direction: column;
                         gap: 1em;
-                        margin-top: 1em;
                         .servicio-item-title {
                             h2 {
-                                font-weight: 400;
+                                font-weight: 500;
+                                margin-top: .5em;
+                                @media(min-width: 768px) {
+                                    margin-top: 0;
+                                }
                             }
                         }
                         .servicio-item-content {
                             display: none;
+                            transition: display 0.9s ease, margin 0.3s ease; // Transition for display and margin changes, though display property cannot be animated
+
                         }
+                        .servicio-item-action {
+                            display: none;
+                            transition: display 0.9s ease, margin 0.3s ease; // Transition for display and margin changes, though display property cannot be animated
+
+                        }
+                        
                     }
                     &:hover,
                     &.active {
@@ -890,10 +932,14 @@ swiper {
                         }
                         .servicio-item-content {
                             display: block;
+                            margin: 0;
+                        }
+                        .servicio-item-action {
+                            display: block;
+                            margin: 0;
                         }
                         .servicio-item-title {
                             h2 {
-                                color: $icon-primary-color;
                                 font-weight: 600;
                             }
                         }
@@ -917,15 +963,18 @@ swiper {
                 width: 100%;
                 height: 100%;
                 @media(min-width: 768px) {
-                    max-width: 600px;
-                    max-height: 600px;
+                    max-width: 680px;
                 }
                 img {
                     width: 100%;
-                    // height: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: 45% 0%;
                     border-radius: $border-radius;
-                    @media(min-width: 768px) {
+                    @media(max-width: 768px) {
                         // max-width: 500px;
+                        // height: 500px;
+
                     }
                 }
             }
@@ -934,7 +983,7 @@ swiper {
 }
 
 .equipos {
-    background-color: $white;
+    background-color: $gray-50;
     position: relative;
     z-index: 1;
     .equipos-container {
@@ -976,8 +1025,8 @@ swiper {
                     align-items: center;
                     gap: 16px;
                     flex-direction: row;
-                    background-color: $gray-50;
-                    border: 1px solid $gray-200;
+                    background-color: $white;
+                    border: 1px solid $gray-300;
                     border-radius: 12px;
                     padding: 1em;
                     i {
@@ -991,6 +1040,12 @@ swiper {
                     }
                     @media(max-width: 768px) {
                         gap: 1em;
+                    }
+                    &:hover {
+                        border: 1px solid $success-color;
+                        // p {
+                        //     font-weight: 500;
+                        // }
                     }
                 }
                 @media(min-width: 768px) {
@@ -1171,7 +1226,7 @@ swiper {
 }
 
 .equipos-deals {
-    background-color: $gray-50;
+    background-color: $white;
     .promotion-header {
         display: flex;
         width: 100%;
@@ -1180,7 +1235,6 @@ swiper {
         flex-wrap: wrap;
         gap: 1em;
         margin-bottom: 1em;
-        padding-bottom: 1em;
         border-bottom: 1px solid $gray-200;
     }
     .promotion-links {
@@ -1203,43 +1257,7 @@ swiper {
     }
 }
 
-.consumible-deals {
-    background-color: $gray-50;
-    .promotion-header {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1em;
-        margin-bottom: 1em;
-        padding-bottom: 1em;
-        border-bottom: 1px solid $gray-200;
-        .promotion-title-container {
-            margin-bottom: 8px;
-            .section-title {
-                font-weight: 600;
-                color: $text;
-                margin: 0;
-            }
-            .section-subtitle {
-                font-weight: 500;
-                color: $secondary-text;
-                margin: 0;
-            }
-        }
-        .promotion-links {
-            display: flex;
-            gap: .5em;
-            @media (max-width: 768px) {
-                width: 100%;
-                button {
-                    width: 100%;
-                }
-            }
-        }
-    }
-}
+
 
 .software {
     min-height: 750px;

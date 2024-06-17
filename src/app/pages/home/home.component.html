@@ -108,62 +108,76 @@
 
 <section class="section-content" id="servicio">
     <div class="servicio">
-        <div class="container py-5 servicio-container">
-            <div class="servicio-body">
+        <div class="container servicio-container">
+            <div class="servicio-body py-5">
                 <div class="section-title">
                     <h1>Servicio Técnico</h1>
                 </div>
                 <div class="servicio-content">
-                    <div class="servicio-item" (mouseover)="changeImage('../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png'); setActiveItem(1)" [class.active]="activeItem === 1 || isSmallScreen">
-                        <div class="icon-container"><i class="pi pi-cog"></i></div>
+                    <div class="servicio-item" (mouseover)="changeImage('../../../assets/img/home/soluciones-servicios/arreglando-impresora.jpg'); setActiveItem(1)" [class.active]="activeItem === 1 || isSmallScreen">
+                        <div class="icon-container" [class.displayNone]="isSmallScreen"><i class="pi pi-cog"></i></div>
+                        <div class="servicio-content-image">
+                            <div class="servicio-image"><img src="../../../assets/img/home/soluciones-servicios/arreglando-impresora.jpg" alt="arreglando-impresora" [class.displayNone]="!isSmallScreen"></div>
+                        </div>
                         <div class="servicio-item-body">
                             <div class="servicio-item-title">
                                 <h2>Reparación de equipos de impresión</h2>
                             </div>
                             <div class="servicio-item-content">
-                                <p>Si tu impresora presenta alguna falla, error o desperfecto, nosotros la reparamos con rapidez y eficacia. Contamos con técnicos especializados y certificados por las principales marcas de impresoras, como Konica Minolta,
+                                <h5 class="section-subtitle">Si tu impresora presenta alguna falla, error o desperfecto, nosotros la reparamos con rapidez y eficacia.</h5>
+                                <br>
+                                <p>Contamos con técnicos especializados y certificados por las principales marcas de impresoras, como Konica Minolta,
                                     Kyocera y Epson. Además, tenemos un extenso inventario de refacciones, piezas y consumibles, para que tu impresora quede funcionando.</p>
                             </div>
-                        </div>
-                        <div class="servicio-content-image">
-                            <div class="servicio-image"><img src="../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png" alt="tecnico-impresoras" [class.displayNone]="!isSmallScreen"></div>
+                            <div class="servicio-item-action">
+                                <button class="button button-rounded button-primary"><span class="button-label">Agenda tu reparación</span></button>
+                            </div>
                         </div>
                     </div>
                     <div class="servicio-item" (mouseover)="changeImage('../../../assets/img/home/soluciones-servicios/mantenimiento-correctivo.jpg'); setActiveItem(2)" [class.active]="activeItem === 2 || isSmallScreen">
-                        <div class="icon-container"><i class="pi pi-exclamation-triangle"></i></div>
+                        <div class="icon-container" [class.displayNone]="isSmallScreen"><i class="pi pi-exclamation-triangle"></i></div>
+                        <div class="servicio-content-image">
+                            <div class="servicio-image"><img src="../../../assets/img/home/soluciones-servicios/mantenimiento-correctivo.jpg" alt="mantenimiento-correctivo" [class.displayNone]="!isSmallScreen"></div>
+                        </div>
                         <div class="servicio-item-body">
                             <div class="servicio-item-title">
                                 <h2>Mantenimiento preventivo y correctivo</h2>
                             </div>
                             <div class="servicio-item-content">
-                                <p>Para evitar que tu impresora se dañe o pierda calidad, te ofrecemos un servicio de mantenimiento preventivo y correctivo. Con este servicio, revisamos periódicamente el estado de tu impresora, limpiamos sus componentes,
+                                <h5 class="section-subtitle">Para evitar que tu impresora se dañe o pierda calidad, te ofrecemos un servicio de mantenimiento preventivo y correctivo.</h5>
+                                <br>
+                                <p>Con este servicio, revisamos periódicamente el estado de tu impresora, limpiamos sus componentes,
                                     ajustamos sus configuraciones, y reemplazamos las piezas que lo requieran. Así, podrás extender la vida útil y el buen funcionamiento de tu equipo de impresión.</p>
                             </div>
-                            <div class="servicio-content-image">
-                                <div class="servicio-image"><img src="../../../assets/img/home/soluciones-servicios/mantenimiento-correctivo.jpg" alt="tecnico-impresoras" [class.displayNone]="!isSmallScreen"></div>
+                            <div class="servicio-item-action">
+                                <button class="button button-rounded button-primary"><span class="button-label">Agenda tu mantenimiento</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="servicio-item" (mouseover)="changeImage('../../../assets/img/home/soluciones-servicios/poliza-de-servicio.jpg'); setActiveItem(3)" [class.active]="activeItem === 3 || isSmallScreen">
-                        <div class="icon-container"><i class="pi pi-file"></i></div>
+                        <div class="icon-container" [class.displayNone]="isSmallScreen"><i class="pi pi-file"></i></div>
+                        <div class="servicio-content-image">
+                            <div class="servicio-image"><img src="../../../assets/img/home/soluciones-servicios/poliza-de-servicio.jpg" alt="pieza-impresora" [class.displayNone]="!isSmallScreen"></div>
+                        </div>
                         <div class="servicio-item-body">
                             <div class="servicio-item-title">
                                 <h2>Pólizas de servicio técnico todo incluido</h2>
                             </div>
                             <div class="servicio-item-content">
-                                <p>Si quieres tener la tranquilidad de contar con un servicio técnico de impresoras siempre disponible y a un precio fijo, te recomendamos contratar una de nuestras pólizas de servicio técnico todo incluido. Con estas pólizas,
-                                    tendrás acceso ilimitado a nuestro servicio de reparación y mantenimiento, así como a todos los consumibles y refacciones que necesites. Además, tendrás prioridad en la atención, soporte técnico telefónico y en línea,
+                                <h5 class="section-subtitle">Si quieres tener la tranquilidad de contar con un servicio técnico de impresoras siempre disponible y a un precio fijo, te recomendamos contratar una de nuestras pólizas de servicio técnico todo incluido.</h5>
+                                <br>
+                                <p>Con estas pólizas, tendrás acceso ilimitado a nuestro servicio de reparación y mantenimiento, así como a todos los consumibles y refacciones que necesites. Además, tendrás prioridad en la atención, soporte técnico telefónico y en línea,
                                     y garantía de satisfacción.</p>
                             </div>
-                            <div class="servicio-content-image">
-                                <div class="servicio-image"><img src="../../../assets/img/home/soluciones-servicios/poliza-de-servicio.jpg" alt="tecnico-impresoras" [class.displayNone]="!isSmallScreen"></div>
+                            <div class="servicio-item-action">
+                                <button class="button button-rounded button-primary"><span class="button-label">Solicita tu póliza</span></button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="servicio-content-image">
-                <div class="servicio-image"><img [src]="imageSrc" alt="tecnico-impresoras" [class.displayNone]="isSmallScreen"></div>
+                <div class="servicio-image"><img [src]="imageSrc" alt="tecnico-impresoras" [class.displayNone]="isSmallScreen" style="border-radius: 0;"></div>
             </div>
         </div>
     </div>

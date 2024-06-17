@@ -21,7 +21,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  imageSrc = '../../../assets/img/home/soluciones-servicios/tecnico-impresoras.png';
+  imageSrc = '../../../assets/img/home/soluciones-servicios/arreglando-impresora.jpg';
   activeItem = 1;
   isSmallScreen = false;
   isMediumScreen = false;

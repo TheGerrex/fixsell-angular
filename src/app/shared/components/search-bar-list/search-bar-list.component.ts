@@ -6,7 +6,7 @@ import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/cor
   styleUrls: ['./search-bar-list.component.scss']
 })
 export class SearchBarListComponent {
-  isInputFocused = false;  
+  isInputFocused = true;  
   @Input() searchQuery: string = '';
   @Output() searchQueryChange = new EventEmitter<string>();
 
