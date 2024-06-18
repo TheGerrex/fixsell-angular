@@ -531,30 +531,79 @@ swiper {
 }
 
 .validation-container {
+    margin-top: 2em;
+    --gap: 1rem;
+    position: relative;
     display: flex;
-    justify-content: space-between;
-    padding: 2em 0;
-    gap: 1em;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+}
+
+.brand-list {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: slideBrands 25s linear infinite;
     .brand {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: .5em;
-        width: 100%;
-        // border: 1px solid $gray-300;
+        flex: 0 0 auto; // Flex items don't grow or shrink but remain at their auto size
+        i {
+            text-align: center;
+            font-size: 2.5em;
+            color: $green-500;
+        }
+
         span {
             color: $text;
             font-weight: 500;
-            border-top: 1px solid $gray-300;
             text-align: center;
-            padding-top: .5em;
+            padding: .5em;
+            min-height: 65px;
         }
-        img {
-            height: 50px;
-            width: auto;
-            object-fit: contain;
+
+        .brand-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 65px;
+            img {
+                max-width: 200px;
+                height: auto;
+                object-fit: contain;
+            }
         }
+
     }
+
+}
+
+/* Pause animation when reduced-motion is set */
+@media (prefers-reduced-motion: reduce) {
+  .brand-list {
+    animation-play-state: paused !important;
+  }
+}
+
+@keyframes slideBrands {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-50%); // Adjusted to -50% for the halfway point
+    }
+    100% {
+        transform: translateX(-100%); // Ends when the duplicated content starts
+    }
+}
+
+.epson {
+    height: 35px !important;
+}
+.fujifilm {
+    height: 30px !important;
 }
 
 .solucion-wrapper {
