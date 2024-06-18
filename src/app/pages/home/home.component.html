@@ -34,7 +34,7 @@
 
 <section class="section-content" id="features">
     <div class="container py-5">
-        <swiper [config]="configFeatures">
+        <!-- <swiper [config]="configFeatures">
             <ng-template swiperSlide>
                 <div class="feature-card" (click)="scrollTo('servicio')">
                     <div class="icon-container">
@@ -71,13 +71,98 @@
                         <img class="inactive" src="../../../assets/svg/home/features/software.svg" alt="software">
                         <img class="active" src="../../../assets/svg/home/features/software-active.svg" alt="software">
                     </div>
-                    <div class="title-container">Simplifica tu Gestión con Nuestros Servicios</div>
-                    <div class="content-container">Optimiza tu flujo de trabajo y protege tu información con nuestros servicios de gestión documental y de impresión. Desde la digitalización hasta el control de costos, te ofrecemos soluciones eficientes y ecológicas.</div>
+                    <div class="title-container">Softwares de Gestión</div>
+                    <div class="content-container">Optimiza tu flujo de trabajo y protege tu información con nuestros servicios de gestión documental y de impresión. Desde la digitalización hasta el control de costos.</div>
                 </div>
             </ng-template>
-        </swiper>
+        </swiper> -->
+        <div class="features-body">
+            <div class="section-title">
+                <h1>Nuestros Productos y Servicios</h1>
+            </div>
+            <div class="features-container">
+                <div class="feature-card" (click)="scrollTo('servicio')">
+                    <div class="feature-card-header">
+                        <div class="icon-container">
+                            <img class="inactive" src="../../../assets/svg/home/features/service.svg" alt="service">
+                            <img class="active" src="../../../assets/svg/home/features/service-active.svg" alt="service">
+                        </div>
+                        <h4 class="feature-card-title">Servicio Técnico Calificado</h4>
+                    </div>
+                    <div class="feature-card-body">
+                        <p class="feature-card-content">Reparaciones ágiles, mantenimiento preventivo y pólizas todo incluido para mantener tus equipos en óptimas condiciones.</p>
+                    </div>
+                </div>
+                <div class="feature-card" (click)="scrollTo('consumibles')">
+                    <div class="feature-card-header">
+                        <div class="icon-container">
+                            <img class="inactive" src="../../../assets/svg/home/features/consumable.svg" alt="consumable">
+                            <img class="active" src="../../../assets/svg/home/features/consumable-active.svg" alt="consumable">
+                        </div>
+                        <h4 class="feature-card-title">Consumibles y Refacciones</h4>
+                    </div>
+                    <div class="feature-card-body">
+                        <p class="feature-card-content">Descubre nuestra selección de productos de marcas líderes como Konica Minolta, Kyocera, Fuji y Epson, con envío rápido a todo México y garantía de calidad.</p>
+                    </div>
+                </div>
+                <div class="feature-card" (click)="scrollTo('equipos')">
+                    <div class="feature-card-header">
+                        <div class="icon-container">
+                            <img class="inactive" src="../../../assets/svg/home/features/printer.svg" alt="printer">
+                            <img class="active" src="../../../assets/svg/home/features/printer-active.svg" alt="printer">
+                        </div>
+                        <h4 class="feature-card-title">Equipos de Impresión</h4>
+                    </div>
+                    <div class="feature-card-body">
+                        <p class="feature-card-content">Equipos disponibles que pueden mejorar tus tiempos, calidad y presupuesto de impresión, con un servicio técnico especializado.</p>
+                    </div>
+                </div>
+                <div class="feature-card" (click)="scrollTo('softwares')">
+                    <div class="feature-card-header">
+                        <div class="icon-container">
+                            <img class="inactive" src="../../../assets/svg/home/features/software.svg" alt="software">
+                            <img class="active" src="../../../assets/svg/home/features/software-active.svg" alt="software">
+                        </div>
+                        <h4 class="feature-card-title">Softwares de Gestión</h4>
+                    </div>
+                    <div class="feature-card-body">
+                        <p class="feature-card-content">Optimiza tu flujo de trabajo y protege tu información con nuestros servicios de gestión documental y de impresión. Desde la digitalización hasta el control de costos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+<div class="section-content" id="validation">
+    <div class="container py-5">
+        <div class="validation-body">
+            <div class="validation-header">
+                <h1 class="validation-title">Distribuidores Oficiales</h1>
+                <h5 class="validation-subtitle">Nos enorgullece ser distribuidores oficiales de las marcas líderes en tecnología y soluciones de impresión. Nuestra alianza con estas marcas garantiza que ofrecemos productos de la más alta calidad y el mejor soporte técnico del mercado.</h5>
+            </div>
+            <div class="validation-container">
+                <div class="brand">
+                    <img src="../../../assets/svg/home/proveedores/konica_minolta_logo.svg" alt="Konica Minolta" class="brand-logo">
+                    <span>Innovación y excelencia en soluciones de impresión.</span>
+                </div>
+                <div class="brand">
+                    <img src="../../../assets/svg/home/proveedores/epson.svg" alt="Epson" class="brand-logo">
+                    <span>Líder mundial en tecnología de impresión y proyección.</span>
+                </div>
+                <div class="brand">
+                    <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="Kyocera" class="brand-logo">
+                    <span>Calidad y sostenibilidad en productos de impresión.</span>
+                </div>
+                <div class="brand">
+                    <img src="../../../assets/svg/home/proveedores/fujifilm_logo.svg" alt="Fujifilm" class="brand-logo">
+                    <span>Innovación y sostenibilidad en soluciones de imagen y impresión.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <section class="section-content" id="categorias">
     <div class="container py-5">
@@ -126,8 +211,8 @@
                             <div class="servicio-item-content">
                                 <h5 class="section-subtitle">Si tu impresora presenta alguna falla, error o desperfecto, nosotros la reparamos con rapidez y eficacia.</h5>
                                 <br>
-                                <p>Contamos con técnicos especializados y certificados por las principales marcas de impresoras, como Konica Minolta,
-                                    Kyocera y Epson. Además, tenemos un extenso inventario de refacciones, piezas y consumibles, para que tu impresora quede funcionando.</p>
+                                <p>Contamos con técnicos especializados y certificados por las principales marcas de impresoras, como Konica Minolta, Kyocera y Epson. Además, tenemos un extenso inventario de refacciones, piezas y consumibles, para que tu
+                                    impresora quede funcionando.</p>
                             </div>
                             <div class="servicio-item-action">
                                 <button class="button button-rounded button-primary"><span class="button-label">Agenda tu reparación</span></button>
@@ -146,8 +231,8 @@
                             <div class="servicio-item-content">
                                 <h5 class="section-subtitle">Para evitar que tu impresora se dañe o pierda calidad, te ofrecemos un servicio de mantenimiento preventivo y correctivo.</h5>
                                 <br>
-                                <p>Con este servicio, revisamos periódicamente el estado de tu impresora, limpiamos sus componentes,
-                                    ajustamos sus configuraciones, y reemplazamos las piezas que lo requieran. Así, podrás extender la vida útil y el buen funcionamiento de tu equipo de impresión.</p>
+                                <p>Con este servicio, revisamos periódicamente el estado de tu impresora, limpiamos sus componentes, ajustamos sus configuraciones, y reemplazamos las piezas que lo requieran. Así, podrás extender la vida útil y el buen funcionamiento
+                                    de tu equipo de impresión.</p>
                             </div>
                             <div class="servicio-item-action">
                                 <button class="button button-rounded button-primary"><span class="button-label">Agenda tu mantenimiento</span></button>
@@ -166,8 +251,8 @@
                             <div class="servicio-item-content">
                                 <h5 class="section-subtitle">Si quieres tener la tranquilidad de contar con un servicio técnico de impresoras siempre disponible y a un precio fijo, te recomendamos contratar una de nuestras pólizas de servicio técnico todo incluido.</h5>
                                 <br>
-                                <p>Con estas pólizas, tendrás acceso ilimitado a nuestro servicio de reparación y mantenimiento, así como a todos los consumibles y refacciones que necesites. Además, tendrás prioridad en la atención, soporte técnico telefónico y en línea,
-                                    y garantía de satisfacción.</p>
+                                <p>Con estas pólizas, tendrás acceso ilimitado a nuestro servicio de reparación y mantenimiento, así como a todos los consumibles y refacciones que necesites. Además, tendrás prioridad en la atención, soporte técnico telefónico
+                                    y en línea, y garantía de satisfacción.</p>
                             </div>
                             <div class="servicio-item-action">
                                 <button class="button button-rounded button-primary"><span class="button-label">Solicita tu póliza</span></button>

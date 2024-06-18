@@ -411,8 +411,8 @@ swiper {
 
 .section-subtitle {
     font-weight: 500;
-        color: $text;
-        margin: 0;
+    color: $text;
+    margin: 0;
 }
 
 .white {
@@ -430,17 +430,33 @@ swiper {
     background-color: $blue-800;
 }
 
-.feature-cards-container {
+.features-body {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 1em;
+    .section-title {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        h1 {
+            font-weight: 600;
+            color: $white;
+            margin: 0;
+        }
+    }
+}
+
+.features-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
 }
 
 .feature-card {
     width: 100%;
     height: 100%;
-    min-height: 400px;
-    padding: 2em;
+    padding: 1.5em;
     text-decoration: none;
     border-radius: $border-radius;
     border: 2px solid $white;
@@ -449,55 +465,35 @@ swiper {
     &:hover {
         border: 2px solid $primary-color;
     }
-    .icon-container {
+    .feature-card-header {
         display: flex;
-        justify-content: center;
         align-items: center;
-        width: 60px;
-        height: 60px;
-        padding: 10px;
-        border-radius: 50%;
-        border: 1px solid $gray-100;
-        background-color: $gray-100;
-        transition: all .3s ease-in-out;
-        img {
-            width: 34px;
-            height: 34px;
-            transition: all .3s ease-in-out; // Move this line here
+        width: 100%;
+        gap: 1em;
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+            border-radius: 50%;
+            // background-color: $gray-100;
+            transition: all .3s ease-in-out;
+            img {
+                width: 2em;
+                height: 2em;
+                transition: all .3s ease-in-out; // Move this line here
+            }
         }
     }
-    .title-container {
-        color: $text;
-        font-weight: 600;
-        font-size: 24px;
-        letter-spacing: 0;
-        line-height: 30px;
-        margin: 20px 0;
-        min-height: 60px;
-        width: 100%;
-        // width: 256px;
-    }
-    .content-container {
-        color: $text;
-        font-size: 16px;
-        height: auto;
-        letter-spacing: 0;
-        line-height: 22px;
-        min-height: 88px;
-        width: 100%;
-        // width: 256px;
-    }
-    @media(min-width: 426px) {
-        min-height: 530px;
-    }
-    @media(min-width: 768px) {
-        min-height: 420px;
-    }
-    @media(min-width: 1024px) {
-        min-height: 574px;
-    }
-    @media(min-width: 1440px) {
-        min-height: 434px;
+    .feature-card-body {
+        margin-top: 1em;
+        .feature-card-content {
+            color: $secondary-text;
+            font-weight: 500;
+            margin: 0;
+        }
     }
 }
 
@@ -515,6 +511,50 @@ swiper {
 
 .feature-card:hover .icon-container .inactive {
     display: none;
+}
+
+#validation {
+    background-color: $gray-50;
+}
+
+.validation-header {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    .validation-title {
+        margin: 0;
+    }
+    .validation-subtitle {
+        color: $secondary-text;
+        font-weight: 500;
+    }
+}
+
+.validation-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 0;
+    gap: 1em;
+    .brand {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .5em;
+        width: 100%;
+        // border: 1px solid $gray-300;
+        span {
+            color: $text;
+            font-weight: 500;
+            border-top: 1px solid $gray-300;
+            text-align: center;
+            padding-top: .5em;
+        }
+        img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+    }
 }
 
 .solucion-wrapper {
@@ -885,7 +925,6 @@ swiper {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        border: 1px solid $gray-100;
                         background-color: $gray-100;
                         border-radius: 50px;
                         padding: 1em;
@@ -911,23 +950,18 @@ swiper {
                         .servicio-item-content {
                             display: none;
                             transition: display 0.9s ease, margin 0.3s ease; // Transition for display and margin changes, though display property cannot be animated
-
                         }
                         .servicio-item-action {
                             display: none;
                             transition: display 0.9s ease, margin 0.3s ease; // Transition for display and margin changes, though display property cannot be animated
-
                         }
-                        
                     }
                     &:hover,
                     &.active {
                         align-items: flex-start;
                         .icon-container {
-                            background-color: $primary-color;
-                            border: 1px solid $primary-color;
                             i {
-                                color: $white;
+                                color: $primary-color;
                             }
                         }
                         .servicio-item-content {
@@ -974,7 +1008,6 @@ swiper {
                     @media(max-width: 768px) {
                         // max-width: 500px;
                         // height: 500px;
-
                     }
                 }
             }
@@ -1256,8 +1289,6 @@ swiper {
         }
     }
 }
-
-
 
 .software {
     min-height: 750px;
