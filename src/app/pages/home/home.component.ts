@@ -25,33 +25,178 @@ export class HomeComponent implements OnInit {
   activeItem = 1;
   isSmallScreen = false;
   isMediumScreen = false;
+isMultifuncionalesActive = false;
+isConsumiblesActive = false;
 
-  categories = [
-    {
-      name: 'Oficina',
-      img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
-    },
-    {
-      name: 'Produccion',
-      img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
-    },
-    {
-      name: 'Inyeccion de Tinta',
-      img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
-    },
-    {
-      name: 'Etiquetas',
-      img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
-    },
-    {
-      name: 'Plotter',
-      img: '../../../assets/img/home/categories/epson-plotter.jpg',
-    },
-    {
-      name: 'Artes Graficas',
-      img: '../../../assets/img/home/categories/bizhub-pro-1060.jpg',
-    },
-  ];
+  printerProducts = {
+
+    categories: [
+      {
+        name: 'Oficina',
+        img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
+      },
+      {
+        name: 'Produccion',
+        img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
+      },
+      {
+        name: 'Inyeccion de Tinta',
+        img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
+      },
+      {
+        name: 'Etiquetas',
+        img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
+      },
+      {
+        name: 'Plotter',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+      {
+        name: 'Artes Graficas',
+        img: '../../../assets/img/home/categories/bizhub-pro-1060.jpg',
+      },
+    ],
+  
+    brands: [
+      {
+        name: 'Konica Minolta',
+        img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
+      },
+      {
+        name: 'Kyocera',
+        img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
+      },
+      {
+        name: 'Fujifilm',
+        img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
+      },
+      {
+        name: 'Epson',
+        img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
+      },
+      {
+        name: 'Prixato',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+    ],
+  
+    printSizes: [
+      {
+        name: 'Carta',
+        img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
+      },
+      {
+        name: 'Doble Carta',
+        img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
+      },
+      {
+        name: 'Tabloide',
+        img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
+      },
+      {
+        name: 'Tabloide Plus',
+        img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
+      },
+      {
+        name: 'Rollo 4"',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+      {
+        name: 'Rollo 4.25"',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+      {
+        name: 'Rollo 8"',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+      {
+        name: 'Rollo 8.34"',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+      {
+        name: 'Rollo 13"',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+      {
+        name: 'Rollo 24"',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+      {
+        name: 'Rollo 4"',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+    ]
+
+  }
+  consumableProducts = {
+
+    categories: [
+      {
+        name: 'Cartucho de Tóner',
+        img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
+      },
+      {
+        name: 'Cartucho de Tinta',
+        img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
+      },
+      {
+        name: 'Tóner',
+        img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
+      },
+      {
+        name: 'Caja de Mantenimiento',
+        img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
+      },
+    ],
+  
+    brands: [
+      {
+        name: 'Konica Minolta',
+        img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
+      },
+      {
+        name: 'Kyocera',
+        img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
+      },
+      {
+        name: 'Samsung',
+        img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
+      },
+      {
+        name: 'Epson',
+        img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
+      },
+      {
+        name: 'Okidata',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+    ],
+  
+    colors: [
+      {
+        name: 'Negro',
+        img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
+      },
+      {
+        name: 'Cyan',
+        img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
+      },
+      {
+        name: 'Amarillo',
+        img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
+      },
+      {
+        name: 'Magenta',
+        img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
+      },
+      {
+        name: 'Negro Matte',
+        img: '../../../assets/img/home/categories/epson-plotter.jpg',
+      },
+    ]
+
+  }
+  
 
   clients = [
     {

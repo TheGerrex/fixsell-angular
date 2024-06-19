@@ -34,48 +34,6 @@
 
 <section class="section-content" id="features">
     <div class="container py-5">
-        <!-- <swiper [config]="configFeatures">
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('servicio')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/service.svg" alt="service">
-                        <img class="active" src="../../../assets/svg/home/features/service-active.svg" alt="service">
-                    </div>
-                    <div class="title-container">Soluciones Técnicas a tu Alcance</div>
-                    <div class="content-container">Descubre nuestro completo servicio técnico: reparaciones ágiles, mantenimiento preventivo y pólizas todo incluido para mantener tus equipos en óptimas condiciones.</div>
-                </div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('consumibles')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/consumable.svg" alt="consumable">
-                        <img class="active" src="../../../assets/svg/home/features/consumable-active.svg" alt="consumable">
-                    </div>
-                    <div class="title-container">Calidad y Confiabilidad para tus Consumibles</div>
-                    <div class="content-container">Descubre nuestra selección de productos de marcas líderes como Konica Minolta, Kyocera, Fuji y Epson, con envío rápido a todo México y garantía de calidad. Tu impresión, nuestra prioridad.</div>
-                </div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('equipos')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/printer.svg" alt="printer">
-                        <img class="active" src="../../../assets/svg/home/features/printer-active.svg" alt="printer">
-                    </div>
-                    <div class="title-container">Potencia tu Productividad con Nuestros Equipos</div>
-                    <div class="content-container">Descubre cómo nuestros equipos pueden mejorar tus tiempos, calidad y presupuesto de impresión, con un servicio técnico especializado y sistemas de consumo continuo que reducen tus costes de mantenimiento.</div>
-                </div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('softwares')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/software.svg" alt="software">
-                        <img class="active" src="../../../assets/svg/home/features/software-active.svg" alt="software">
-                    </div>
-                    <div class="title-container">Softwares de Gestión</div>
-                    <div class="content-container">Optimiza tu flujo de trabajo y protege tu información con nuestros servicios de gestión documental y de impresión. Desde la digitalización hasta el control de costos.</div>
-                </div>
-            </ng-template>
-        </swiper> -->
         <div class="features-body">
             <div class="section-title">
                 <h1>Nuestros Productos y Servicios</h1>
@@ -188,8 +146,75 @@
     </div>
 </section>
 
+<section class="section-content" id="products">
+    <div class="container py-5">
+        <div class="products-body">
+            <!-- <div class="section-title">
+                <h1>Productos</h1>
+            </div> -->
+            <div class="product-wrapper">
+                <div class="product-container" [class.active]="isMultifuncionalesActive">
+                    <div class="list-header" (click)="isMultifuncionalesActive = !isMultifuncionalesActive">
+                        <h3 class="product-title">Multifuncionales</h3>
+                        <div class="icon-dropdown"><i class="pi pi-chevron-up" [class.rotate]="isMultifuncionalesActive"></i></div>
+                    </div>
+                    <div class="list-wrapper">
+                        <div class="list-container">
+                            <div class="list">
+                                <h5 class="list-title">Marcas</h5>
+                                <ul>
+                                    <li *ngFor="let brand of printerProducts.brands">{{brand.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Categorias</h5>
+                                <ul>
+                                    <li *ngFor="let category of printerProducts.categories">{{category.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Tamaños de Papel</h5>
+                                <ul>
+                                    <li *ngFor="let printSize of printerProducts.printSizes">{{printSize.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-container" [class.active]="isConsumiblesActive">
+                    <div class="list-header" (click)="isConsumiblesActive = !isConsumiblesActive">
+                        <h3 class="product-title">Consumibles</h3>
+                        <div class="icon-dropdown"><i class="pi pi-chevron-up" [class.rotate]="isConsumiblesActive"></i></div>
+                    </div>
+                    <div class="list-wrapper">
+                        <div class="list-container">
+                            <div class="list">
+                                <h5 class="list-title">Marcas</h5>
+                                <ul>
+                                    <li *ngFor="let brand of consumableProducts.brands">{{brand.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Categorias</h5>
+                                <ul>
+                                    <li *ngFor="let category of consumableProducts.categories">{{category.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Tamaños de Papel</h5>
+                                <ul>
+                                    <li *ngFor="let printSize of consumableProducts.colors">{{printSize.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<section class="section-content" id="categorias">
+<!-- <section class="section-content" id="categorias">
     <div class="container py-5">
         <div class="categoria-body">
             <div class="section-title">
@@ -214,7 +239,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <section class="section-content" id="servicio">
     <div class="servicio">
@@ -350,7 +375,7 @@
                 <div class="equipos-body">
                     <div class="section-header">
                         <h1 class="section-title">Equipos de Impresión</h1>
-                        <h5 class="section-subtitle">¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus trabajos de impresión?</h5>
+                        <h4 class="section-subtitle">¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus trabajos de impresión?</h4>
                     </div>
                     <div class="equipos-content-image-mobile" [class.displayNone]="!isMediumScreen">
                         <div class="equipos-image"><img src="../../../assets/img/home/printers/accurio-jet-6000.jpg" alt="AccurioJet 6000"></div>
@@ -399,37 +424,120 @@
         <!-- <div class="software-image"><img src="../../../assets/img/home/soluciones-servicios/gestion-documental-impresion.jpg" alt="document-administration"></div> -->
         <div class="container py-5 software-container">
             <div class="software-body">
-                <div class="section-title">
-                    <h1>Gestión Documental y de Impresión</h1>
-                </div>
-                <div class="section-subtitle">
-                    <h4>
-                        Servicios esenciales para optimizar el flujo de trabajo y la seguridad de tu información.
-                    </h4>
-                    <br>
-                    <h5>Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos de impresión, mejorar la productividad y la colaboración, y acceder
-                        a tus documentos desde cualquier lugar, dispositivo y momento.</h5>
+                <div class="software-header">
+                    <h1 class="software-title">Gestión Documental y de Impresión</h1>
+                    <h4 class="software-subtitle">Servicios esenciales para optimizar el flujo de trabajo y la seguridad de tu información.</h4>
+                    <p>Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos de impresión, mejorar la productividad y la colaboración, y acceder
+                        a tus documentos desde cualquier lugar, dispositivo y momento.</p>
                 </div>
                 <div class="software-content">
-                    <div class="software-item-gestion-card">
-                        <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
-                        <p>PaperCut: Es un software que <b>te ayuda a gestionar y monitorizar la impresión en tu organización.</b> Con PaperCut, puedes establecer cuotas, políticas y restricciones de impresión, asignar costos por departamento o proyecto,
-                            generar informes detallados, y habilitar la impresión móvil y segura.</p>
+                    <div class="software-card">
+                        <div class="software-card-image">
+                            <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
+                        </div>
+                        <p class="software-card-text">PaperCut es un software que te ayuda a gestionar y monitorizar la impresión en tu organización.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
+                        <ul class="software-card-list">
+                            <div class="item">
+                                <i class="pi pi-chart-pie"></i>
+                                <li> Establecer cuotas, políticas y restricciones de impresión</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-sitemap"></i>
+                                <li> Asignar costos por departamento o proyecto</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-file"></i>
+                                <li>Generar informes detallados</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-mobile"></i>
+                                <li>Habilitar la impresión móvil y segura</li>
+                            </div>
+                        </ul>
                     </div>
-                    <div class="software-item-gestion-card">
-                        <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft" id="ysoft">
-                        <p>Ysoft: Es una plataforma que te <b>ofrece soluciones integradas de impresión, escaneo y administración de dispositivos.</b> Con Ysoft, puedes automatizar los procesos de escaneo y digitalización, mejorar la seguridad y el cumplimiento
-                            de los documentos, y reducir el desperdicio y el consumo de energía.</p>
+                    <div class="software-card">
+                        <div class="software-card-image">
+                            <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft" id="ysoft">
+                        </div>
+                        <p class="software-card-text">Ysoft es un software que te ofrece soluciones de impresión, escaneo y administración de dispositivos.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
+                        <ul class="software-card-list">
+                            <div class="item">
+                                <i class="pi pi-sync"></i>
+                                <li>Automatizar los procesos de escaneo y digitalización</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-shield"></i>
+                                <li>Mejorar la seguridad y el cumplimiento de los documentos</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-bolt"></i>
+                                <li> Reducir el desperdicio y el consumo de energía</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-cog"></i>
+                                <li>Incrementar la productividad con flujos de trabajo automatizados</li>
+                            </div>
+                        </ul>
                     </div>
-                    <div class="software-item-gestion-card">
-                        <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
-                        <p>KFS: Es un software que te <b>permite gestionar y mantener tus equipos de impresión de forma remota.</b> Con KFS, puedes monitorear el estado y el rendimiento de tus dispositivos, recibir alertas y notificaciones, realizar diagnósticos
-                            y actualizaciones, y optimizar el servicio técnico.</p>
+                    <div class="software-card">
+                        <div class="software-card-image">
+                            <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
+                        </div>
+                        <p class="software-card-text">KFS es un software que te permite gestionar y mantener tus equipos de impresión de forma remota.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
+                        <ul class="software-card-list">
+                            <div class="item">
+                                <i class="pi pi-list"></i>
+                                <li>Monitorear el estado y el rendimiento de tus dispositivos</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-bell"></i>
+                                <li>Recibir alertas y notificaciones</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-check-circle"></i>
+                                <li>Realizar diagnósticos y actualizaciones</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-wrench"></i>
+                                <li>Optimizar el servicio técnico</li>
+                            </div>
+                        </ul>
                     </div>
-                    <div class="software-item-gestion-card">
-                        <img src="../../../assets/svg/home/proveedores/docuware.svg" alt="docuware">
-                        <p>Docuware: Es un software que te <b>facilita la gestión documental en la nube.</b> Con Docuware, puedes almacenar, organizar, buscar y compartir tus documentos de forma segura y rápida. Además, puedes integrar Docuware con otras
-                            aplicaciones, crear flujos de trabajo automatizados, y cumplir con las normativas legales y fiscales.</p>
+                    <div class="software-card">
+                        <div class="software-card-image">
+                            <img src="../../../assets/svg/home/proveedores/docuware.svg" alt="docuware">
+                        </div>
+                        <p class="software-card-text">Docuware es un software que te facilita la gestión documental en la nube.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
+                        <ul class="software-card-list">
+                            <div class="item">
+                                <i class="pi pi-cloud-upload"></i>
+                                <li>Almacenar, organizar, buscar y compartir tus documentos de forma segura y rápida</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-cog"></i>
+                                <li>Crear flujos de trabajo automatizados</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-book"></i>
+                                <li>Cumplir con las normativas legales y fiscales</li>
+                            </div>
+                            <div class="item">
+                                <i class="pi pi-sync"></i>
+                                <li>Integrar Docuware con otras aplicaciones</li>
+                            </div>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -437,18 +545,113 @@
     </div>
 </section>
 
-<section class="section-content" id="clientes">
+<div class="section-content" id="clients">
     <div class="container py-5">
-        <div class="client-body">
-            <div class="section-title justify-content-center text-center">
-                <h1 class="white">Nuestros principales clientes</h1>
+        <div class="clients-body">
+            <div class="clients-header">
+                <h1 class="clients-title">Nuestros principales clientes</h1>
+                <h5 class="clients-subtitle">Nos enorgullece trabajar con una amplia gama de clientes que confían en nuestras soluciones de tecnología y de impresión. Gracias a nuestras alianzas con las marcas líderes del mercado, ofrecemos productos de la más alta calidad y un soporte
+                    técnico excepcional, asegurando el éxito y la satisfacción de nuestros clientes.</h5>
             </div>
-            <div class="client-img-container">
-                <img [src]=client.svg alt="client" *ngFor="let client of clients">
+            <div class="clients-container">
+                <div class="clients-list">
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/lg-electronics-white.svg" alt="LG" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/risoul-white.svg" alt="Risoul" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/ryasa-white.svg" alt="Ryasa" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/semex-white.svg" alt="Semex" class="brand-logo semex"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/universidad-tecmilenio-white.svg" alt="TecMilenio" class="brand-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/vitro-white.svg" alt="Grupo Vitro" class="brand-logo vitro"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/thomas-betts-white.svg" alt="Thomas & Betts" class="brand-logo"></div>
+                    </div>
+                </div>
+                <div class="clients-list">
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/lg-electronics-white.svg" alt="LG" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/risoul-white.svg" alt="Risoul" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/ryasa-white.svg" alt="Ryasa" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/semex-white.svg" alt="Semex" class="brand-logo semex"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/universidad-tecmilenio-white.svg" alt="TecMilenio" class="brand-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/vitro-white.svg" alt="Grupo Vitro" class="brand-logo vitro"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/thomas-betts-white.svg" alt="Thomas & Betts" class="brand-logo"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clients-container">
+                <div class="clients-list reverse">
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/thomas-betts-white.svg" alt="Thomas & Betts" class="brand-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/vitro-white.svg" alt="Grupo Vitro" class="brand-logo vitro"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/universidad-tecmilenio-white.svg" alt="TecMilenio" class="brand-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/semex-white.svg" alt="Semex" class="brand-logo semex"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/ryasa-white.svg" alt="Ryasa" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/risoul-white.svg" alt="Risoul" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/lg-electronics-white.svg" alt="LG" class="client-logo"></div>
+                    </div>
+                </div>
+                <div class="clients-list reverse">
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/thomas-betts-white.svg" alt="Thomas & Betts" class="brand-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/vitro-white.svg" alt="Grupo Vitro" class="brand-logo vitro"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/universidad-tecmilenio-white.svg" alt="TecMilenio" class="brand-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/semex-white.svg" alt="Semex" class="brand-logo semex"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/ryasa-white.svg" alt="Ryasa" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/risoul-white.svg" alt="Risoul" class="client-logo"></div>
+                    </div>
+                    <div class="client">
+                        <div class="client-logo-container"><img src="../../../assets/img/home/logo-clientes/Blanco/lg-electronics-white.svg" alt="LG" class="client-logo"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- <section class="section-content" id="beneficios">
     <div class="container py-5">

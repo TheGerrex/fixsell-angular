@@ -396,17 +396,6 @@ swiper {
     }
 }
 
-.section-title {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    h1 {
-        font-weight: 600;
-        color: $text;
-        margin: 0;
-    }
-}
-
 .section-subtitle {
     font-weight: 500;
     color: $text;
@@ -564,7 +553,7 @@ swiper {
     justify-content: space-around;
     gap: var(--gap);
     min-width: 100%;
-    animation: slideBrands 25s linear infinite;
+    animation: slideBrands 30s linear infinite;
     .brand {
         flex: 0 0 auto; // Flex items don't grow or shrink but remain at their auto size
         i {
@@ -572,7 +561,6 @@ swiper {
             font-size: 2.5em;
             color: $green-500;
         }
-
         span {
             color: $text;
             font-weight: 500;
@@ -580,7 +568,6 @@ swiper {
             padding: .5em;
             min-height: 65px;
         }
-
         .brand-logo-container {
             display: flex;
             justify-content: center;
@@ -593,16 +580,16 @@ swiper {
                 object-fit: contain;
             }
         }
-
     }
-
 }
 
+
 /* Pause animation when reduced-motion is set */
+
 @media (prefers-reduced-motion: reduce) {
-  .brand-list {
-    animation-play-state: paused !important;
-  }
+    .brand-list {
+        animation-play-state: paused !important;
+    }
 }
 
 @keyframes slideBrands {
@@ -620,6 +607,7 @@ swiper {
 .epson {
     height: 35px !important;
 }
+
 .fujifilm {
     height: 30px !important;
 }
@@ -861,7 +849,7 @@ swiper {
                 flex: 2;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 2em;
+                gap: 1em;
                 max-width: 600px;
                 .consumible-title {
                     display: flex;
@@ -880,7 +868,7 @@ swiper {
                     display: flex;
                     width: 100%;
                     flex-direction: column;
-                    gap: 16px;
+                    gap: 1em;
                     img {
                         width: 150px;
                         max-height: 50px;
@@ -892,7 +880,8 @@ swiper {
                         margin: 0;
                         color: $white;
                     }
-                    h4 {
+                    h4,
+                    h5 {
                         margin: 0;
                         color: $blue-100;
                     }
@@ -901,6 +890,7 @@ swiper {
                     width: 100%;
                     display: flex;
                     justify-content: flex-start;
+                    margin-top: 1em;
                 }
             }
             .consumible-features {
@@ -1395,7 +1385,6 @@ swiper {
 }
 
 .software {
-    min-height: 750px;
     overflow: hidden;
     background-color: $light-50;
     background-size: cover;
@@ -1411,43 +1400,29 @@ swiper {
             display: flex;
             flex-direction: column;
             gap: 1em;
-            .software-title {
+            .software-header {
                 display: flex;
-                align-items: flex-start;
-                align-self: stretch;
-                @media(min-width: 992px) {
-                    flex-direction: column;
-                }
-                h1 {
-                    font-weight: 600;
+                flex-direction: column;
+                gap: .5em;
+                .software-title {
+                    margin: 0;
                     color: $text;
-                    margin: 0;
                 }
-            }
-            .software-subtitle {
-                h4 {
-                    color: $section-title;
+                .software-subtitle {
+                    color: $secondary-text;
                     font-weight: 500;
-                    margin: 0;
-                }
-                h5 {
-                    font-weight: 400;
-                    margin: 0;
                 }
             }
             .software-content {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
                 gap: 2em;
                 margin-top: 1em;
-                .software-item-gestion-card {
+                .software-card {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
-                    padding: 2em;
-                    // gap: 1em;
-                    // border: 1px solid $gray-300;
+                    width: 100%;
                     background-color: $white;
                     border-radius: $border-radius;
                     flex: 1 0 auto;
@@ -1456,22 +1431,79 @@ swiper {
                     #ysoft {
                         height: 40px;
                     }
-                    img {
-                        width: 150px;
-                        max-height: 50px;
-                        margin-bottom: 1em;
+                    .software-card-image {
+                        padding: 0em 1em;
+                        margin: 1em 0em;
+                        width: 100%;
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img {
+                            width: 150px;
+                            max-height: 50px;
+                        }
                     }
-                    h4 {
-                        font-weight: 400;
+                    .software-card-text {
                         color: $text;
+                        font-weight: 500;
+                        text-align: center;
+                        padding: 0em 1em;
+                        margin-bottom: .5em;
+                        @media(min-width: 768px) {
+                            // min-height: 80px;
+                        }
                     }
-                    p {
+                    .software-card-list {
+                        list-style: none;
+                        padding: 0;
                         margin: 0;
-                        color: $text;
+                        border-radius: 0px 0px $border-radius $border-radius;
+                        min-height: calc(90px * 4);
+                        .item {
+                            display: flex;
+                            align-items: center;
+                            gap: 1em;
+                            padding: 0.5em 1em;
+                            min-height: 90px;
+                            border-top: 1px solid $gray-300;
+                            i {
+                                font-size: 1.5em;
+                                color: $gray-500;
+                            }
+                            &:first-child {
+                                // border-top: 0px;
+                            }
+                            &:last-child {
+                                border-radius: 0px 0px $border-radius $border-radius;
+                                // border-bottom: 1px solid $gray-300;
+                            }
+                            &:hover {
+                                background-color: $gray-50;
+                            }
+                        }
                     }
-                    @media(min-width: 1024px) {
-                        width: 25%;
+                    .software-card-actions {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        padding: 1em;
                     }
+                }
+            }
+            @media (max-width: 600px) {
+                .software-content {
+                    grid-template-columns: 1fr;
+                }
+            }
+            @media (min-width: 601px) and (max-width: 1024px) {
+                .software-content {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            @media (min-width: 1025px) {
+                .software-content {
+                    grid-template-columns: repeat(4, 1fr);
                 }
             }
         }
@@ -1479,36 +1511,21 @@ swiper {
 }
 
 #consumibleStock {
-    // border: 1px solid $info-color;
-    // background-color: $light-100;
     i {
         color: $info-color-hover;
     }
-    // p {
-    //     color: $info-color-active;
-    // }
 }
 
 #consumiblePrecio {
-    // border: 1px solid $success-color;
-    // background-color: $success-color-text;
     i {
         color: $success-color-hover;
     }
-    // p {
-    //     color: $success-color-active;
-    // }
 }
 
 #consumibleEnvio {
-    // border: 1px solid $danger-color;
-    // background-color: $danger-color-text;
     i {
         color: $danger-color-hover;
     }
-    // p {
-    //     color: $danger-color-active;
-    // }
 }
 
 .link-wrap {
@@ -1622,110 +1639,218 @@ swiper {
     }
 }
 
-.categoria-body {
+.products-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1em;
+    transition: max-height 0.3s ease-in-out,
 }
 
-#clientes {
-    background-color: $light-800;
+.product-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    gap: 2em;
 }
 
-.client-body {
+.product-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1em;
-}
-
-:host ::ng-deep p-tabview.p-element {
-    .p-tabview.p-component {
-        border-radius: 6px;
-        border: #dee2e6 1px solid;
-    }
-    .p-tabview-nav-container {
-        border-radius: 6px 6px 0 0;
-    }
-    .p-tabview-panels {
-        background-color: #fff;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    &.active {
+        .list-container {
+            max-height: 100%;
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 }
 
-.tab-container {
+.list-header {
+    padding: .5em 0em;
+    border-bottom: 1px solid $gray-300;
+    position: relative;
+    z-index: 2;
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    justify-content: space-between;
+    &:hover {
+        // background-color: $gray-50;
+        border-bottom: 1px solid $primary-color;
+    }
+    .icon-dropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0em 0.5em;
+        i {
+            transition: transform 0.3s ease-in-out;
+        }
+        .rotate {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+}
+
+.product-title {
+    font-weight: 600;
+    color: $text;
+}
+
+.list-wrapper {
+    width: 100%;
     height: 100%;
-    .tab-content {
-        flex-grow: 4;
-        p,
+    overflow: hidden;
+}
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    max-height: 0;
+    overflow: hidden;
+    transition: transform 1s ease-in-out, max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    // border-right: 1px solid $gray-300;
+    min-width: 150px;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         li {
-            font-size: 1em;
-            line-height: 1.25em;
-            // X-Large devices (large desktops, 1200px and up)
-            @media (min-width: 1200px) {
-                font-size: 1.2em;
-                line-height: 1.5em;
+            font-weight: 500;
+            color: $secondary-text;
+            padding: .2em 0em;
+            &:hover {
+                color: $text;
             }
         }
     }
-    .tab-action {}
 }
 
-.tab-image {
-    img {
-        border-radius: 10px;
-        width: 100%;
-    }
+#clients {
+    background-color: $blue-800;
 }
 
-.dark-blue-secondary {
-    background-color: #172A3A;
-}
-
-.client-img-container {
+.clients-header {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    column-gap: 2em;
-    row-gap: 2em;
-    justify-content: space-evenly;
-    transition: transform .5s ease-out;
-    img {
-        width: 100px;
-        height: 100px;
+    flex-direction: column;
+    gap: .5em;
+    .clients-title {
+        margin: 0;
+        color: $white;
     }
-     :hover {
-        transform: scale(1.05);
+    .clients-subtitle {
+        color: $blue-100;
+        font-weight: 500;
     }
 }
 
-.panel {
-    margin-bottom: 20px;
+.clients-container {
+    margin-top: 2em;
+    --gap: 1rem;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
 }
 
-.panel-header {
-    margin-bottom: 0;
-    font-weight: 600;
-    color: #1E293B;
-}
-
-:host ::ng-deep p-panel {
-    .p-panel-header {
-        p {
-            margin-bottom: 0;
-            font-weight: 600;
-            color: #1E293B;
+.clients-list {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: slideClients 60s linear infinite;
+    &.reverse {
+        animation: slideClientsReverse 60s linear infinite;
+    }
+    .client {
+        flex: 0 0 auto; // Flex items don't grow or shrink but remain at their auto size
+        border-radius: $border-radius;
+        border: 1px solid $blue-700;
+        height: 200px;
+        i {
+            text-align: center;
+            font-size: 2.5em;
+            color: $green-500;
+        }
+        span {
+            color: $text;
+            font-weight: 500;
+            text-align: center;
+            padding: .5em;
+            min-height: 65px;
+        }
+        .client-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 100%;
+            img {
+                max-width: 150px;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+        &:hover {
+            border: 1px solid $primary-color;
         }
     }
-    .p-panel-content {
-        min-height: 160px;
-        // Small devices (landscape phones, 576px and up)
-        @media (max-width: 768px) {
-            min-height: 100%;
-        }
+}
+
+.semex {
+    width: 100px !important;
+}
+
+.vitro {
+    width: 180px !important;
+}
+
+@keyframes slideClients {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-50%); // Adjusted to -50% for the halfway point
+    }
+    100% {
+        transform: translateX(-100%); // Ends when the duplicated content starts
+    }
+}
+
+@keyframes slideClientsReverse {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* Pause animation when reduced-motion is set */
+
+@media (prefers-reduced-motion: reduce) {
+    .clients-list {
+        animation-play-state: paused !important;
     }
 }
 
