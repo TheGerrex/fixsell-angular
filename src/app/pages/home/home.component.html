@@ -34,48 +34,6 @@
 
 <section class="section-content" id="features">
     <div class="container py-5">
-        <!-- <swiper [config]="configFeatures">
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('servicio')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/service.svg" alt="service">
-                        <img class="active" src="../../../assets/svg/home/features/service-active.svg" alt="service">
-                    </div>
-                    <div class="title-container">Soluciones Técnicas a tu Alcance</div>
-                    <div class="content-container">Descubre nuestro completo servicio técnico: reparaciones ágiles, mantenimiento preventivo y pólizas todo incluido para mantener tus equipos en óptimas condiciones.</div>
-                </div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('consumibles')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/consumable.svg" alt="consumable">
-                        <img class="active" src="../../../assets/svg/home/features/consumable-active.svg" alt="consumable">
-                    </div>
-                    <div class="title-container">Calidad y Confiabilidad para tus Consumibles</div>
-                    <div class="content-container">Descubre nuestra selección de productos de marcas líderes como Konica Minolta, Kyocera, Fuji y Epson, con envío rápido a todo México y garantía de calidad. Tu impresión, nuestra prioridad.</div>
-                </div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('equipos')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/printer.svg" alt="printer">
-                        <img class="active" src="../../../assets/svg/home/features/printer-active.svg" alt="printer">
-                    </div>
-                    <div class="title-container">Potencia tu Productividad con Nuestros Equipos</div>
-                    <div class="content-container">Descubre cómo nuestros equipos pueden mejorar tus tiempos, calidad y presupuesto de impresión, con un servicio técnico especializado y sistemas de consumo continuo que reducen tus costes de mantenimiento.</div>
-                </div>
-            </ng-template>
-            <ng-template swiperSlide>
-                <div class="feature-card" (click)="scrollTo('softwares')">
-                    <div class="icon-container">
-                        <img class="inactive" src="../../../assets/svg/home/features/software.svg" alt="software">
-                        <img class="active" src="../../../assets/svg/home/features/software-active.svg" alt="software">
-                    </div>
-                    <div class="title-container">Softwares de Gestión</div>
-                    <div class="content-container">Optimiza tu flujo de trabajo y protege tu información con nuestros servicios de gestión documental y de impresión. Desde la digitalización hasta el control de costos.</div>
-                </div>
-            </ng-template>
-        </swiper> -->
         <div class="features-body">
             <div class="section-title">
                 <h1>Nuestros Productos y Servicios</h1>
@@ -175,7 +133,75 @@
     </div>
 </div>
 
-<section class="section-content" id="categorias">
+<section class="section-content" id="products">
+    <div class="container py-5">
+        <div class="products-body">
+            <!-- <div class="section-title">
+                <h1>Productos</h1>
+            </div> -->
+            <div class="product-wrapper">
+                <div class="product-container" [class.active]="isMultifuncionalesActive">
+                    <div class="list-header" (click)="isMultifuncionalesActive = !isMultifuncionalesActive">
+                        <h3 class="product-title">Multifuncionales</h3>
+                        <div class="icon-dropdown"><i class="pi pi-chevron-up" [class.rotate]="isMultifuncionalesActive"></i></div>
+                    </div>
+                    <div class="list-wrapper">
+                        <div class="list-container">
+                            <div class="list">
+                                <h5 class="list-title">Marcas</h5>
+                                <ul>
+                                    <li *ngFor="let brand of printerProducts.brands">{{brand.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Categorias</h5>
+                                <ul>
+                                    <li *ngFor="let category of printerProducts.categories">{{category.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Tamaños de Papel</h5>
+                                <ul>
+                                    <li *ngFor="let printSize of printerProducts.printSizes">{{printSize.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-container" [class.active]="isConsumiblesActive">
+                    <div class="list-header" (click)="isConsumiblesActive = !isConsumiblesActive">
+                        <h3 class="product-title">Consumibles</h3>
+                        <div class="icon-dropdown"><i class="pi pi-chevron-up" [class.rotate]="isConsumiblesActive"></i></div>
+                    </div>
+                    <div class="list-wrapper">
+                        <div class="list-container">
+                            <div class="list">
+                                <h5 class="list-title">Marcas</h5>
+                                <ul>
+                                    <li *ngFor="let brand of consumableProducts.brands">{{brand.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Categorias</h5>
+                                <ul>
+                                    <li *ngFor="let category of consumableProducts.categories">{{category.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="list">
+                                <h5 class="list-title">Tamaños de Papel</h5>
+                                <ul>
+                                    <li *ngFor="let printSize of consumableProducts.colors">{{printSize.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="section-content" id="categorias">
     <div class="container py-5">
         <div class="categoria-body">
             <div class="section-title">
@@ -200,7 +226,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <section class="section-content" id="servicio">
     <div class="servicio">
@@ -397,6 +423,9 @@
                             <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
                         </div>
                         <p class="software-card-text">PaperCut es un software que te ayuda a gestionar y monitorizar la impresión en tu organización.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-chart-pie"></i>
@@ -420,7 +449,10 @@
                         <div class="software-card-image">
                             <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft" id="ysoft">
                         </div>
-                        <p class="software-card-text">Ysoft es una plataforma que te ofrece soluciones integradas de impresión, escaneo y administración de dispositivos.</p>
+                        <p class="software-card-text">Ysoft es un software que te ofrece soluciones de impresión, escaneo y administración de dispositivos.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-sync"></i>
@@ -445,6 +477,9 @@
                             <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
                         </div>
                         <p class="software-card-text">KFS es un software que te permite gestionar y mantener tus equipos de impresión de forma remota.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-list"></i>
@@ -469,6 +504,9 @@
                             <img src="../../../assets/svg/home/proveedores/docuware.svg" alt="docuware">
                         </div>
                         <p class="software-card-text">Docuware es un software que te facilita la gestión documental en la nube.</p>
+                        <div class="software-card-actions">
+                            <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
+                        </div>
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-cloud-upload"></i>

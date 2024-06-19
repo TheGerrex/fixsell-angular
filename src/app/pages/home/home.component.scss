@@ -398,17 +398,6 @@ swiper {
     }
 }
 
-.section-title {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    h1 {
-        font-weight: 600;
-        color: $text;
-        margin: 0;
-    }
-}
-
 .section-subtitle {
     font-weight: 500;
     color: $text;
@@ -1403,11 +1392,11 @@ swiper {
                     .software-card-text {
                         color: $text;
                         font-weight: 500;
-                        // min-height: 80px;
+                        text-align: center;
                         padding: 0em 1em;
                         margin-bottom: .5em;
                         @media(min-width: 768px) {
-                            min-height: 80px;
+                            // min-height: 80px;
                         }
                     }
                     .software-card-list {
@@ -1415,24 +1404,35 @@ swiper {
                         padding: 0;
                         margin: 0;
                         border-radius: 0px 0px $border-radius $border-radius;
+                        min-height: calc(90px * 4);
                         .item {
                             display: flex;
                             align-items: center;
                             gap: 1em;
                             padding: 0.5em 1em;
-                            min-height: 80px;
+                            min-height: 90px;
                             border-top: 1px solid $gray-300;
                             i {
                                 font-size: 1.5em;
                                 color: $gray-500;
                             }
+                            &:first-child {
+                                // border-top: 0px;
+                            }
                             &:last-child {
                                 border-radius: 0px 0px $border-radius $border-radius;
+                                // border-bottom: 1px solid $gray-300;
                             }
                             &:hover {
                                 background-color: $gray-50;
                             }
                         }
+                    }
+                    .software-card-actions {
+                        display: flex;
+                        justify-content: center;
+                        width: 100%;
+                        padding: 1em;
                     }
                 }
             }
@@ -1584,11 +1584,105 @@ swiper {
     }
 }
 
-.categoria-body {
+.products-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1em;
+    transition: max-height 0.3s ease-in-out,
+}
+
+.product-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    gap: 2em;
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    &.active {
+        .list-container {
+            max-height: 100%;
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+.list-header {
+    padding: .5em 0em;
+    border-bottom: 1px solid $gray-300;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+        // background-color: $gray-50;
+        border-bottom: 1px solid $primary-color;
+    }
+    .icon-dropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0em 0.5em;
+        i {
+            transition: transform 0.3s ease-in-out;
+        }
+        .rotate {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+}
+
+.product-title {
+    font-weight: 600;
+    color: $text;
+}
+
+.list-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    max-height: 0;
+    overflow: hidden;
+    transition: transform 1s ease-in-out, max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    // border-right: 1px solid $gray-300;
+    min-width: 150px;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            font-weight: 500;
+            color: $secondary-text;
+            padding: .2em 0em;
+            &:hover {
+                color: $text;
+            }
+        }
+    }
 }
 
 #clients {
