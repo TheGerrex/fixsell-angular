@@ -18,7 +18,7 @@
             cursor: pointer;
             position: relative;
             padding: 12px;
-            background-color: $gray-50;
+            background-color: $white;
             .product-feature-image {
                 position: relative;
                 padding: 0 12px;
@@ -66,7 +66,7 @@
             flex-direction: column;
             justify-content: space-between;
             flex-grow: 1;
-            background-color: $gray-50;
+            background-color: $white;
             border-radius: $border-radius;
             height: 100%;
             .product-info {
@@ -75,7 +75,7 @@
                 flex-wrap: wrap;
                 align-content: space-between;
                 padding: 0px 12px 0;
-                background-color: $gray-50;
+                background-color: $white;
                 min-height: 300px;
                 .product-info-col {
                     display: flex;
