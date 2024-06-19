@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
   activeItem = 1;
   isSmallScreen = false;
   isMediumScreen = false;
-isMultifuncionalesActive = false;
-isConsumiblesActive = false;
+  isMultifuncionalesActive = true;
+  isConsumiblesActive = true;
 
   printerProducts = {
 
@@ -133,18 +133,17 @@ isConsumiblesActive = false;
     categories: [
       {
         name: 'Cartucho de Tóner',
+        value: 'Cartucho de tóner',
         img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
       },
       {
         name: 'Cartucho de Tinta',
+        value: 'Cartucho de tinta',
         img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
       },
       {
-        name: 'Tóner',
-        img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
-      },
-      {
         name: 'Caja de Mantenimiento',
+        value: 'Caja de mantenimiento',
         img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
       },
     ],
@@ -175,22 +174,27 @@ isConsumiblesActive = false;
     colors: [
       {
         name: 'Negro',
+        value: 'K',
         img: '../../../assets/img/home/categories/bizhub-C3351-office.jpg',
       },
       {
         name: 'Cyan',
+        value: 'C',
         img: '../../../assets/img/home/categories/konica-c2060-production.jpg',
       },
       {
         name: 'Amarillo',
+        value: 'Y',
         img: '../../../assets/img/home/categories/epson-wf-m5799-ink.jpg',
       },
       {
         name: 'Magenta',
+        value: 'M',
         img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
       },
       {
         name: 'Negro Matte',
+        value: 'MK',
         img: '../../../assets/img/home/categories/epson-plotter.jpg',
       },
     ]
@@ -422,9 +426,15 @@ isConsumiblesActive = false;
     }
   }
 
-  navigateToProductList(category: string) {
+  navigateToPrinterList(filterKey: 'categories' | 'printSizes' | 'brand', filterValue: string) {
     this.router.navigate(['/printers/list'], {
-      queryParams: { categories: category },
+      queryParams: { [filterKey]: filterValue, filterCount: 1 },
+    });
+  }
+
+  navigateToConsumableList(filterKey: 'categories' | 'color' | 'brand', filterValue: string) {
+    this.router.navigate(['/consumables/list'], {
+      queryParams: { [filterKey]: filterValue, filterCount: 1 },
     });
   }
 
