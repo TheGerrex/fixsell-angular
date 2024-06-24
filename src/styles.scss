@@ -303,6 +303,22 @@ body .p-dialog {
                 box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus;
             }
         }
+        &-white {
+            color: $white;
+            border: 1px $white solid;
+            background-color: transparent;
+            &:hover {
+                background: rgba($color: $primary-color-hover, $alpha: 0.1);
+                border-color: $primary-color-hover;
+            }
+            &:active {
+                background: rgba($color: $primary-color-active, $alpha: 0.1);
+                border-color: $primary-color-active;
+            }
+            &:focus {
+                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
+            }
+        }
     }
     &-text {
         &-primary {

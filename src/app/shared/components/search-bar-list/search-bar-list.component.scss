@@ -2,7 +2,7 @@
 .search-box {
     display: flex;
     .search-form {
-        height: 40px;
+        height: 49px;
         position: relative;
         flex: 1;
         flex-basis: 0.000000001px;
@@ -45,6 +45,10 @@
                     outline: none;
                     border-radius: 8px;
                     background-color: transparent;
+                    &::placeholder {
+                        color: $text;
+                        font-weight: 500;
+                    }
                 }
             }
             .search-clear-button {

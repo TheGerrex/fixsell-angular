@@ -286,7 +286,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
   
     this.router.navigate([], {
       queryParams: filters,
-      queryParamsHandling: 'merge',
+      queryParamsHandling: 'preserve',
     })
   }
 }

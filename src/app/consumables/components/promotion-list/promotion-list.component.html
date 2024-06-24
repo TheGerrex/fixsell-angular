@@ -19,7 +19,7 @@
                     <ng-container *ngIf="!isLoading && dealConsumables.length > 0">
                         <ng-template swiperSlide *ngFor="let consumable of dealConsumables">
                             <div class="printer-product-card-container">
-                                <consumable-product-card [consumible]="consumable"></consumable-product-card>
+                                <consumable-product-card [consumible]="consumable" style="width: 100%;"></consumable-product-card>
                             </div>
                         </ng-template>
                     </ng-container>

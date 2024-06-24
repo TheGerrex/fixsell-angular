@@ -210,6 +210,7 @@
 
 .mainSwiper {
     width: 100%;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
     @media(min-width: 768px) {
@@ -295,7 +296,7 @@ swiper {
                 list-style: none;
                 padding: 0;
                 z-index: 1;
-                // height: 100%;
+                height: 100%;
             }
         }
     }
@@ -321,7 +322,6 @@ swiper {
     -webkit-align-items: center;
     align-items: center;
 }
-
 
 :host ::ng-deep .thumbsSwiper {
     height: 20%;
@@ -463,7 +463,6 @@ swiper {
     width: 100%;
 }
 
-
 .package-body {
     display: flex;
     width: 100%;
@@ -471,8 +470,6 @@ swiper {
     gap: 1em;
     align-items: flex-start;
 }
-
-
 
 .data {
     color: $text;
@@ -492,7 +489,6 @@ swiper {
     gap: 8px;
     width: 100%;
     justify-content: space-between;
-
     .data-price {
         color: $text;
         font-weight: 600;
@@ -511,24 +507,20 @@ swiper {
     }
 }
 
-
 // .skeleton {
 //     height: 100%;
 //     width: 100%;
 //     display: flex;
 // }
-
 // .skeleton-info {
 //     display: flex;
 //     padding: 1em;
 //     flex-direction: column;
 // }
-
 // .skeleton-image {
 //     height: 80vh;
 //     width: 55.20833vw;
 // }
-
 // .skeleton-line {
 //     height: 30px;
 //     width: 500px;
@@ -536,7 +528,6 @@ swiper {
 //         border-radius: 14px;
 //     }
 // }
-
 // .skeleton-image,
 // .skeleton-title,
 // .skeleton-description {
