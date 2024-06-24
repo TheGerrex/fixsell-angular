@@ -92,7 +92,7 @@
     </div>
 </section>
 
-<div class="section-content" id="validation">
+<section class="section-content" id="validation">
     <div class="container py-5">
         <div class="validation-body">
             <div class="validation-header">
@@ -131,14 +131,29 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<section class="section-content" id="products">
+<section>
+    <div class="equipos-deals">
+        <div class="container py-5">
+            <div class="promotion-header">
+                <div class="promotion-title-container">
+                    <h1 class="section-title">Paquetes de Renta en Oferta</h1>
+                    <h5 class="section-subtitle">Ofertas increíbles en alquiler de impresoras para cualquier proyecto.</h5>
+                </div>
+                <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/promociones"><span class="button-label">Ver Promociones</span></button></div>
+            </div>
+            <app-package-rent-promotion-list></app-package-rent-promotion-list>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="section-content" id="products">
     <div class="container py-5">
         <div class="products-body">
-            <!-- <div class="section-title">
+            <div class="section-title">
                 <h1>Productos</h1>
-            </div> -->
+            </div>
             <div class="product-wrapper">
                 <div class="product-container" [class.active]="isMultifuncionalesActive">
                     <div class="list-header" (click)="isMultifuncionalesActive = !isMultifuncionalesActive">
@@ -199,7 +214,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- <section class="section-content" id="categorias">
     <div class="container py-5">
@@ -251,9 +266,9 @@
                                 <p>Contamos con técnicos especializados y certificados por las principales marcas de impresoras, como Konica Minolta, Kyocera y Epson. Además, tenemos un extenso inventario de refacciones, piezas y consumibles, para que tu
                                     impresora quede funcionando.</p>
                             </div>
-                            <div class="servicio-item-action">
-                                <button class="button button-rounded button-primary"><span class="button-label">Agenda tu reparación</span></button>
-                            </div>
+                            <!-- <div class="servicio-item-action">
+                                <button class="button button-rounded button-primary button-raised"><span class="button-label">Agenda tu reparación</span></button>
+                            </div> -->
                         </div>
                     </div>
                     <div class="servicio-item" (mouseover)="changeImage('../../../assets/img/home/soluciones-servicios/mantenimiento-correctivo.jpg'); setActiveItem(2)" [class.active]="activeItem === 2 || isSmallScreen">
@@ -271,9 +286,9 @@
                                 <p>Con este servicio, revisamos periódicamente el estado de tu impresora, limpiamos sus componentes, ajustamos sus configuraciones, y reemplazamos las piezas que lo requieran. Así, podrás extender la vida útil y el buen funcionamiento
                                     de tu equipo de impresión.</p>
                             </div>
-                            <div class="servicio-item-action">
-                                <button class="button button-rounded button-primary"><span class="button-label">Agenda tu mantenimiento</span></button>
-                            </div>
+                            <!-- <div class="servicio-item-action">
+                                <button class="button button-rounded button-primary button-raised"><span class="button-label">Agenda tu mantenimiento</span></button>
+                            </div> -->
                         </div>
                     </div>
                     <div class="servicio-item" (mouseover)="changeImage('../../../assets/img/home/soluciones-servicios/poliza-de-servicio.jpg'); setActiveItem(3)" [class.active]="activeItem === 3 || isSmallScreen">
@@ -291,9 +306,9 @@
                                 <p>Con estas pólizas, tendrás acceso ilimitado a nuestro servicio de reparación y mantenimiento, así como a todos los consumibles y refacciones que necesites. Además, tendrás prioridad en la atención, soporte técnico telefónico
                                     y en línea, y garantía de satisfacción.</p>
                             </div>
-                            <div class="servicio-item-action">
-                                <button class="button button-rounded button-primary"><span class="button-label">Solicita tu póliza</span></button>
-                            </div>
+                            <!-- <div class="servicio-item-action">
+                                <button class="button button-rounded button-primary button-raised"><span class="button-label">Solicita tu póliza</span></button>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -316,7 +331,7 @@
                     </div>
                     <div class="consumible-subtitle">
                         <h4>Ofrecemos los mejores consumibles y refacciones de las marcas Konica Minolta, Kyocera, Fuji y Epson.</h4>
-                        <p>Productos OEM y Genéricos tales como: tóner, kit de mantenimiento, reveladores, fusores, rodillos de calor, rodillos de impresión, gomas, bandas y más.</p>
+                        <h5>Productos OEM y Genéricos tales como: tóner, kit de mantenimiento, reveladores, fusores, rodillos de calor, rodillos de impresión, gomas, bandas y más.</h5>
                     </div>
                     <div class="consumible-action">
                         <button class="button button-rounded button-primary button-raised" routerLink="/consumables/intro"><span class="button-label">Ver Consumibles</span></button>
@@ -414,8 +429,8 @@
                 <div class="software-header">
                     <h1 class="software-title">Gestión Documental y de Impresión</h1>
                     <h4 class="software-subtitle">Servicios esenciales para optimizar el flujo de trabajo y la seguridad de tu información.</h4>
-                    <p>Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos de impresión, mejorar la productividad y la colaboración, y acceder
-                        a tus documentos desde cualquier lugar, dispositivo y momento.</p>
+                    <h5>Con estos servicios, puedes digitalizar, almacenar, compartir y proteger tus documentos de forma eficiente y ecológica. Además, puedes controlar y reducir los costos de impresión, mejorar la productividad y la colaboración, y acceder
+                        a tus documentos desde cualquier lugar, dispositivo y momento.</h5>
                 </div>
                 <div class="software-content">
                     <div class="software-card">
@@ -423,9 +438,9 @@
                             <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
                         </div>
                         <p class="software-card-text">PaperCut es un software que te ayuda a gestionar y monitorizar la impresión en tu organización.</p>
-                        <div class="software-card-actions">
+                        <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
-                        </div>
+                        </div> -->
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-chart-pie"></i>
@@ -450,9 +465,9 @@
                             <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft" id="ysoft">
                         </div>
                         <p class="software-card-text">Ysoft es un software que te ofrece soluciones de impresión, escaneo y administración de dispositivos.</p>
-                        <div class="software-card-actions">
+                        <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
-                        </div>
+                        </div> -->
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-sync"></i>
@@ -477,9 +492,9 @@
                             <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
                         </div>
                         <p class="software-card-text">KFS es un software que te permite gestionar y mantener tus equipos de impresión de forma remota.</p>
-                        <div class="software-card-actions">
+                        <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
-                        </div>
+                        </div> -->
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-list"></i>
@@ -504,9 +519,9 @@
                             <img src="../../../assets/svg/home/proveedores/docuware.svg" alt="docuware">
                         </div>
                         <p class="software-card-text">Docuware es un software que te facilita la gestión documental en la nube.</p>
-                        <div class="software-card-actions">
+                        <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
-                        </div>
+                        </div> -->
                         <ul class="software-card-list">
                             <div class="item">
                                 <i class="pi pi-cloud-upload"></i>

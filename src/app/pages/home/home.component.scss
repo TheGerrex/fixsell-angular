@@ -825,10 +825,14 @@ swiper {
                         margin: 0;
                         color: $white;
                     }
-                    h4,
-                    h5 {
+                    h4 {
                         margin: 0;
                         color: $blue-100;
+                    }
+                    h5 {
+                        margin: 0;
+                        color: $white;
+                        font-weight: 400;
                     }
                 }
                 .consumible-action {
@@ -1356,6 +1360,9 @@ swiper {
                 .software-subtitle {
                     color: $secondary-text;
                     font-weight: 500;
+                }
+                h5 {
+                    font-weight: 400;
                 }
             }
             .software-content {
