@@ -66,7 +66,7 @@
             display: flex;
             flex-direction: column;
             gap: 1em;
-            padding: 1em 1em;
+            padding: 1em 0em;
             .hero-title {
                 font-size: 2.5em;
                 font-weight: 600;
@@ -101,8 +101,8 @@
                 font-size: 20px;
                 width: 100%;
                 font-weight: 500;
-                line-height: 30px;
-                color: #434655;
+                line-height: 28px;
+                color: $secondary-text;
                 opacity: 0;
                 animation: fadeIn 1s ease-out 1s forwards;
                 // Small devices (landscape phones, 576px and up)
@@ -124,7 +124,7 @@
                 }
             }
             @media(min-width: 768px) {
-                padding: 2em 2em;
+                padding: 0;
             }
         }
         .proveedores {
@@ -153,14 +153,12 @@
             height: 100% !important; // Add this line
             justify-content: center;
             align-items: flex-start;
-            padding: 1em 1em;
         }
         @media(min-width: 1024px) {
             height: 100%;
             width: 50%;
             justify-content: center;
             align-items: flex-start;
-            padding: 1em 1em;
         }
     }
     .hero-image-container {
@@ -170,7 +168,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 100%;
+        height: calc(85vh - 84px);
         // position: absolute;
         // top: 0;
         // right: 0;
@@ -503,7 +501,7 @@ swiper {
 }
 
 #validation {
-    background-color: $gray-50;
+    background-color: $white;
 }
 
 .validation-header {
@@ -527,6 +525,23 @@ swiper {
     overflow: hidden;
     user-select: none;
     gap: var(--gap);
+    // &::before,
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0;
+    //     bottom: 0;
+    //     width: 16px; /* Adjust the width of the gradient effect */
+    //     z-index: 2;
+    // }
+    // &::before {
+    //     left: 0;
+    //     background: linear-gradient(to right, #fff, transparent);
+    // }
+    // &::after {
+    //     right: 0;
+    //     background: linear-gradient(to left, #fff, transparent);
+    // }
 }
 
 .brand-list {
@@ -592,6 +607,43 @@ swiper {
 
 .fujifilm {
     height: 30px !important;
+}
+
+.package-rent-deals {
+    background-color: $white;
+    .promotion-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1em;
+        margin-bottom: 1em;
+        border-bottom: 1px solid $gray-200;
+        .promotion-title-container {
+            margin-bottom: 8px;
+            .section-title {
+                font-weight: 600;
+                color: $text;
+                margin: 0;
+            }
+            .section-subtitle {
+                font-weight: 500;
+                color: $secondary-text;
+                margin: 0;
+            }
+        }
+        .promotion-links {
+            display: flex;
+            gap: .5em;
+            @media (max-width: 768px) {
+                width: 100%;
+                button {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 
 .solucion-wrapper {
@@ -1059,7 +1111,7 @@ swiper {
 }
 
 .equipos {
-    background-color: $gray-50;
+    background-color: $light-50;
     position: relative;
     z-index: 1;
     .equipos-container {
@@ -1384,24 +1436,31 @@ swiper {
                         height: 40px;
                     }
                     .software-card-image {
-                        padding: 0em 1em;
-                        margin: 1em 0em;
                         width: 100%;
-                        height: 50px;
+                        height: 80px;
                         display: flex;
                         justify-content: center;
-                        align-items: center;
+                        align-items: flex-end;
+                        // background-color: $gray-50;
+                        border-radius: $border-radius $border-radius 0px 0px;
                         img {
                             width: 150px;
                             max-height: 50px;
                         }
                     }
                     .software-card-text {
-                        color: $text;
-                        font-weight: 500;
-                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
                         padding: 0em 1em;
-                        margin-bottom: .5em;
+                        min-height: 116px;
+                        // background-color: $gray-50;
+                        p {
+                            color: $text;
+                            font-weight: 500;
+                            text-align: center;
+                        }
                         @media(min-width: 768px) {
                             // min-height: 80px;
                         }
@@ -1581,31 +1640,25 @@ swiper {
             font-size: 16px;
             line-height: 20px;
         }
-        // &:hover {
-        //     #translate-icon {
-        //         transition: transform .2s ease-in-out;
-        //         transform: translate(5px);
-        //     }
-        //     background: #ebedf0;
-        // }
     }
 }
 
-.products-body {
+.catalog-body {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    transition: max-height 0.3s ease-in-out,
+    // transition: max-height 5s ease-in-out;
 }
 
-.product-wrapper {
+.catalog-wrapper {
     display: flex;
     flex-wrap: wrap;
     // justify-content: space-between;
     gap: 2em;
+    // transition: max-height 5s ease-in-out;
 }
 
-.product-container {
+.catalog-container {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -1614,7 +1667,7 @@ swiper {
     max-width: 600px;
     &.active {
         .list-container {
-            max-height: 100%;
+            max-height: 600px;
             transform: translateY(0);
             opacity: 1;
         }
@@ -1630,7 +1683,7 @@ swiper {
     justify-content: space-between;
     &:hover {
         // background-color: $gray-50;
-        border-bottom: 1px solid $primary-color;
+        border-bottom: 1px solid $gray-400;
     }
     .icon-dropdown {
         display: flex;
@@ -1647,7 +1700,7 @@ swiper {
     }
 }
 
-.product-title {
+.catalog-title {
     font-weight: 600;
     color: $text;
 }
@@ -1664,7 +1717,7 @@ swiper {
     gap: 2em;
     max-height: 0;
     overflow: hidden;
-    transition: transform 1s ease-in-out, max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: transform .5s ease-in, max-height .5s ease-in, opacity .5s ease-in;
     transform: translateY(-100%);
     opacity: 0;
     position: relative;
@@ -1681,6 +1734,10 @@ swiper {
         list-style: none;
         padding: 0;
         margin: 0;
+        a {
+            text-decoration: none;
+            cursor: pointer;
+        }
         li {
             font-weight: 500;
             color: $secondary-text;
