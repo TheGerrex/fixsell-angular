@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  Input,
   OnDestroy,
   OnInit,
   ViewEncapsulation,

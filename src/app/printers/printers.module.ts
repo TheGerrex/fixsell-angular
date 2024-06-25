@@ -21,6 +21,7 @@ import { PromotionListComponent } from './components/promotion-list/promotion-li
 import { PackageRentCardComponent } from './components/package-rent-card/package-rent-card.component';
 import { PackageRentContactFormComponent } from './components/package-rent-contact-form/package-rent-contact-form.component';
 import { PackageRentPromotionListComponent } from './components/package-rent-promotion-list/package-rent-promotion-list.component';
+import { RelatedPrintersListComponent } from './components/related-printers-list/related-printers-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PackageRentPromotionListComponent } from './components/package-rent-pro
     PackageRentCardComponent,
     PackageRentContactFormComponent,
     PackageRentPromotionListComponent,
+    RelatedPrintersListComponent,
   ],
   imports: [
     CommonModule,

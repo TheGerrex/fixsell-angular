@@ -1,238 +1,152 @@
 <section style="width: 100%; height: calc(100vh - 80px);" *ngIf="loading">
-  <loading-spinner></loading-spinner>
+    <loading-spinner></loading-spinner>
 </section>
 <section>
-  <div class="product-section" *ngIf="!loading">
-    <div class="product-image" *ngIf="consumable">
-      <div class="product-image-inner">
-        <div class="product-image-container">
-          <div class="product-deal-tag" *ngIf="consumable.deals.length > 0">
-            <p class="deal-tag-title">
-              {{ consumable.deals[0].dealDiscountPercentage }}% Descuento
-            </p>
-          </div>
-          <div class="swiper-container">
-            <swiper
-              class="mainSwiper" 
-              (swiper)="mainSwiperInstance = $event"
-              [slidesPerView]="1"
-              [spaceBetween]="10"
-              [navigation]="true"
-              [pagination]="{ dynamicBullets: true }"
-              [centeredSlides]="true"
-              [thumbs]="{ swiper: thumbsSwiperInstance }"
-            >
-              <ng-template
-                swiperSlide
-                *ngFor="let images of consumable?.img_url">
-                <div class="swiper-image-container"><img [src]="images" alt="printer.model" class="swiper-image"/></div>
-              </ng-template>
-            </swiper>
-            <swiper
-              class="thumbsSwiper" 
-              (swiper)="thumbsSwiperInstance = $event"
-              [spaceBetween]="10"
-              [slidesPerView]="4"
-              [freeMode]="true"
-              [watchSlidesProgress]="true"
-            >
-              <ng-template
-                swiperSlide
-                *ngFor="let images of consumable?.img_url"
-                ><img [src]="images" alt=""
-              /></ng-template>
-            </swiper>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="product-info" *ngIf="consumable">
-      <div class="product-info-column">
-        <div class="product-info-inner">
-          <div class="product-info-block heading-block">
-            <div class="product-header">
-              <div class="product-brand">
-                <div
-                  class="Brand"
-                  [innerHTML]="consumable.brand | productBrand"
-                ></div>
-              </div>
-              <h1 class="product-title">{{ consumable.name }}</h1>
-              <div class="product-tags">
-                <div
-                  class="tag-deal"
-                  *ngIf="consumable?.deals && consumable.deals.length > 0"
-                >
-                  <div class="tag-title">Promoción</div>
+    <div class="product-section" *ngIf="!loading">
+        <div class="product-image" *ngIf="consumable">
+            <div class="product-image-inner">
+                <div class="product-image-container">
+                    <div class="product-deal-tag" *ngIf="consumable.deals.length > 0">
+                        <p class="deal-tag-title">
+                            {{ consumable.deals[0].dealDiscountPercentage }}% Descuento
+                        </p>
+                    </div>
+                    <div class="swiper-container">
+                        <swiper class="mainSwiper" (swiper)="mainSwiperInstance = $event" [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ dynamicBullets: true }" [centeredSlides]="true" [thumbs]="{ swiper: thumbsSwiperInstance }">
+                            <ng-template swiperSlide *ngFor="let images of consumable?.img_url">
+                                <div class="swiper-image-container"><img [src]="images" alt="printer.model" class="swiper-image" /></div>
+                            </ng-template>
+                        </swiper>
+                        <swiper class="thumbsSwiper" (swiper)="thumbsSwiperInstance = $event" [spaceBetween]="10" [slidesPerView]="4" [freeMode]="true" [watchSlidesProgress]="true">
+                            <ng-template swiperSlide *ngFor="let images of consumable?.img_url"><img [src]="images" alt="" /></ng-template>
+                        </swiper>
+                    </div>
                 </div>
-                <div class="tag">
-                  <div class="tag-title">{{ consumable.category }}</div>
-                </div>
-              </div>
             </div>
-          </div>
-          <div
-            class="printer-deal-price"
-            *ngIf="consumable?.deals && consumable.deals.length > 0"
-          >
-            <h3>
-              {{consumable.deals[0].dealPrice | currency:'$' : 'symbol' : '2.0-0'}} {{consumable.deals[0].dealCurrency}}
-              <span class="printer-price">{{ consumable.price | currency:'$' : 'symbol' : '2.1-1'}} {{consumable.currency}}</span>
-            </h3>
-          </div>
-          <div class="actions-container">
-            <button class="button button-primary button-rounded" (click)="showDialog()">
+        </div>
+        <div class="product-info" *ngIf="consumable">
+            <div class="product-info-column">
+                <div class="product-info-inner">
+                    <div class="product-info-block heading-block">
+                        <div class="product-header">
+                            <div class="product-brand">
+                                <div class="Brand" [innerHTML]="consumable.brand | productBrand"></div>
+                            </div>
+                            <h1 class="product-title">{{ consumable.name }}</h1>
+                            <div class="product-tags">
+                                <div class="tag-deal" *ngIf="consumable?.deals && consumable.deals.length > 0">
+                                    <div class="tag-title">Promoción</div>
+                                </div>
+                                <div class="tag">
+                                    <div class="tag-title">{{ consumable.category }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="printer-deal-price" *ngIf="consumable?.deals && consumable.deals.length > 0">
+                        <h3>
+                            {{consumable.deals[0].dealPrice | currency:'$' : 'symbol' : '2.0-0'}} {{consumable.deals[0].dealCurrency}}
+                            <span class="printer-price">{{ consumable.price | currency:'$' : 'symbol' : '2.1-1'}} {{consumable.currency}}</span>
+                        </h3>
+                    </div>
+                    <div class="actions-container">
+                        <button class="button button-primary button-rounded" (click)="showDialog()">
                 <i class="pi pi-envelope"></i>
                 <span class="button-label">Cotiza por Email</span>
             </button>
-            <button
-              *ngIf="!(consumable?.deals && consumable.deals.length > 0)"
-              class="button button-success button-rounded"
-              style="background-color: #23d366 !important; color: #1f2937"
-              (click)="openWhatsApp()"
-            >
+                        <button *ngIf="!(consumable?.deals && consumable.deals.length > 0)" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsApp()">
               <i class="pi pi-whatsapp"></i>
               <span class="button-label">Cotiza por Whatsapp</span>
             </button>
-            <button
-              *ngIf="consumable?.deals && consumable.deals.length > 0"
-              class="button button-success button-rounded"
-              style="background-color: #23d366 !important; color: #1f2937"
-              (click)="openWhatsAppDeal()"
-            >
+                        <button *ngIf="consumable?.deals && consumable.deals.length > 0" class="button button-success button-rounded" style="background-color: #23d366 !important; color: #1f2937" (click)="openWhatsAppDeal()">
               <i class="pi pi-whatsapp"></i>
               <span class="button-label">Aplica la promoción por Whatsapp</span>
             </button>
-          </div>
-          <p-dialog header="Cotiza por Email" [modal]="true" [(visible)]="showDialogForm" [style]="{ width: '25rem' }">
-              <product-email-form [message]="'Hola, quiero saber mas sobre el consumible: ' + consumable.name" [product]="consumable.name" [productType]="'consumible'" class="w-100">
-              </product-email-form>
-          </p-dialog>
-          <div class="product-info-block">
-            <div class="product-description">
-                        <p *ngIf="showMore; else shortDescription">
-                            {{ consumable.longDescription }}
-                        </p>
-                        <ng-template #shortDescription>
-                            <p>{{ consumable.longDescription | slice:0:500 }}<span *ngIf="consumable.longDescription.length > 500">...</span></p>
-                        </ng-template>
-                        <a style="font-weight: 600;" href="javascript:void(0)" (click)="toggleShowMore()" *ngIf="consumable.longDescription.length > 500">
+                    </div>
+                    <p-dialog header="Cotiza por Email" [modal]="true" [(visible)]="showDialogForm" [style]="{ width: '25rem' }">
+                        <product-email-form [message]="'Hola, quiero saber mas sobre el consumible: ' + consumable.name" [product]="consumable.name" [productType]="'consumible'" class="w-100">
+                        </product-email-form>
+                    </p-dialog>
+                    <div class="product-info-block">
+                        <div class="product-description">
+                            <p *ngIf="showMore; else shortDescription">
+                                {{ consumable.longDescription }}
+                            </p>
+                            <ng-template #shortDescription>
+                                <p>{{ consumable.longDescription | slice:0:500 }}<span *ngIf="consumable.longDescription.length > 500">...</span></p>
+                            </ng-template>
+                            <a style="font-weight: 600;" href="javascript:void(0)" (click)="toggleShowMore()" *ngIf="consumable.longDescription.length > 500">
                             {{ showMore ? 'Ver menos' : 'Ver más' }}
                         </a>
                         </div>
-          </div>
-          <div class="product-info-block">
-            <div class="product-specs">
-              <div class="header-specs">
-                <h2>Especificaciones</h2>
-              </div>
-              <div class="body-specs">
-                <div class="spec">
-                  <h5 class="spec-title">Color</h5>
-                  <div [ngSwitch]="consumable.color">
-                  <p *ngSwitchCase="'K'" class="spec-data-color">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#231f20' }"
-                    ></span>
-                    Negro
-                  </p>
-                  <p *ngSwitchCase="'M'" class="spec-data-color">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#ec008c' }"
-                    ></span>
-                    Magenta
-                  </p>
-                  <p *ngSwitchCase="'C'" class="spec-data-color">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#00aeef' }"
-                    ></span>
-                    Cyan
-                  </p>
-                  <p *ngSwitchCase="'Y'" class="spec-data-color">
-                    <span
-                      class="color-circle"
-                      [ngStyle]="{ 'background-color': '#fff200' }"
-                    ></span>
-                    Amarillo
-                  </p>
-                  <p *ngSwitchDefault class="spec-data-color">B/N</p>
-                </div>
-                </div>
-                <div class="spec">
-                  <h5 class="spec-title">SKU</h5>
-                  <p class="spec-data">{{ consumable.sku }}</p>
-                </div>
-                <div class="spec">
-                  <h5 class="spec-title" >Vida Útil @ 5% <i class="pi pi-info-circle" pTooltip="El porcentaje de cobertura de tinta/tóner se refiere a la cantidad de área de una página que está cubierta por tinta/tóner. Un 5% de cobertura generalmente se asocia con documentos de texto estándar con poco o ningún gráfico, es decir, páginas que tienen texto impreso en la mayoría de su área, pero sin grandes imágenes o áreas sólidas de color." tooltipPosition="right"></i></h5>
-                  
-                  <p class="spec-data">{{ consumable.yield | currency:' ' : 'symbol' : '1.0-0' }} páginas</p>
-                </div>
-                <div class="spec">
-                  <h5 class="spec-title">Volumen</h5>
-                  <p class="spec-data">{{ consumable.volume }} g</p>
-                </div>
-                <!-- array of compatible models -->
-                <div class="spec">
-                  <h5 class="spec-title">Modelos Compatibles</h5>
-                  <ul class="spec-data">
-                    <li
-                      *ngFor="
+                    </div>
+                    <div class="product-info-block">
+                        <div class="product-specs">
+                            <div class="header-specs">
+                                <h2>Especificaciones</h2>
+                            </div>
+                            <div class="body-specs">
+                                <div class="spec">
+                                    <h5 class="spec-title">Color</h5>
+                                    <div [ngSwitch]="consumable.color">
+                                        <p *ngSwitchCase="'K'" class="spec-data-color">
+                                            <span class="color-circle" [ngStyle]="{ 'background-color': '#231f20' }"></span> Negro
+                                        </p>
+                                        <p *ngSwitchCase="'M'" class="spec-data-color">
+                                            <span class="color-circle" [ngStyle]="{ 'background-color': '#ec008c' }"></span> Magenta
+                                        </p>
+                                        <p *ngSwitchCase="'C'" class="spec-data-color">
+                                            <span class="color-circle" [ngStyle]="{ 'background-color': '#00aeef' }"></span> Cyan
+                                        </p>
+                                        <p *ngSwitchCase="'Y'" class="spec-data-color">
+                                            <span class="color-circle" [ngStyle]="{ 'background-color': '#fff200' }"></span> Amarillo
+                                        </p>
+                                        <p *ngSwitchDefault class="spec-data-color">B/N</p>
+                                    </div>
+                                </div>
+                                <div class="spec">
+                                    <h5 class="spec-title">SKU</h5>
+                                    <p class="spec-data">{{ consumable.sku }}</p>
+                                </div>
+                                <div class="spec">
+                                    <h5 class="spec-title">Vida Útil @ 5% <i class="pi pi-info-circle" pTooltip="El porcentaje de cobertura de tinta/tóner se refiere a la cantidad de área de una página que está cubierta por tinta/tóner. Un 5% de cobertura generalmente se asocia con documentos de texto estándar con poco o ningún gráfico, es decir, páginas que tienen texto impreso en la mayoría de su área, pero sin grandes imágenes o áreas sólidas de color."
+                                            tooltipPosition="right"></i></h5>
+
+                                    <p class="spec-data">{{ consumable.yield | currency:' ' : 'symbol' : '1.0-0' }} páginas</p>
+                                </div>
+                                <div class="spec">
+                                    <h5 class="spec-title">Volumen</h5>
+                                    <p class="spec-data">{{ consumable.volume }} g</p>
+                                </div>
+                                <!-- array of compatible models -->
+                                <div class="spec">
+                                    <h5 class="spec-title">Modelos Compatibles</h5>
+                                    <ul class="spec-data">
+                                        <li *ngFor="
                         let model of consumable.compatibleModels
                           .toString()
                           .split(',')
-                      "
-                    >
-                      {{ model }}
-                    </li>
-                  </ul>
+                      ">
+                                            {{ model }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- <section class="section-product-specs">
-    <div class="container">
-        <div class="section-card-product-specs">
+<section class="section-related-consumables" *ngIf="consumable">
+    <div class="container py-5">
+        <div class="related-consumables-container">
             <div class="header-specs">
-                <h2>Especificaciones</h2>
+                <h1>Productos que te pueden interesar</h1>
             </div>
-            <div class="body-specs">
-                <div class="spec">
-                    <h4 class="spec-title">Consumo de Energía</h4>
-                    <p class="spec-data">{{printer?.powerConsumption}}</p>
-                </div>
-                <div class="spec">
-                    <h4 class="spec-title">Dimensiones</h4>
-                    <p class="spec-data">{{printer?.dimensions}}</p>
-                </div>
-                <div class="spec">
-                    <h4 class="spec-title">Unidad Duplex</h4>
-                    <p class="spec-data">{{printer?.duplexUnit ? 'Si' : 'No'}}</p>
-                </div>
-                <div class="spec">
-                    <h4 class="spec-title">Gramaje Máximo</h4>
-                    <p class="spec-data">{{printer?.maxPaperWeight}} g/m2</p>
-                </div>
-                <div class="spec">
-                    <h4 class="spec-title">Tamaños de Papel</h4>
-                    <p class="spec-data">{{printer?.paperSizes}}</p>
-                </div>
-                <div class="spec">
-                    <h4 class="spec-title">Sistemas Operativos</h4>
-                    <p class="spec-data">{{printer?.applicableOS}}</p>
-                </div>
-            </div>
-            <div class="action-container">
-                <a [href]="printer?.datasheet_url" target="_blank">Ficha Técnica</a>
-            </div>
+            <related-consumables-list [consumableProduct]="consumable"></related-consumables-list>
         </div>
     </div>
-</section> -->
+</section>
