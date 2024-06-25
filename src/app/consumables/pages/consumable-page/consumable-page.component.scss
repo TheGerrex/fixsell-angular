@@ -497,3 +497,13 @@ swiper {
     border-radius: 50%;
     margin-right: 5px;
 }
+
+.section-related-consumables {
+    background-color: $light-50;
+}
+
+.related-consumables-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}

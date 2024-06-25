@@ -1,0 +1,34 @@
+<div class="promotion-container">
+    <div class="box-container">
+        <div class="swiper-container">
+            <swiper class="promotion-swiper" style="--swiper-navigation-color: #172A3A; --swiper-pagination-color: #3C81F6" [config]="config">
+                <!-- Display skeleton card while loading -->
+                <ng-container *ngIf="isLoading">
+                    <ng-template swiperSlide>
+                        <shared-skeleton-product-card></shared-skeleton-product-card>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <shared-skeleton-product-card></shared-skeleton-product-card>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                        <shared-skeleton-product-card></shared-skeleton-product-card>
+                    </ng-template>
+                </ng-container>
+
+                <!-- Display deals if available -->
+                <ng-container *ngIf="!isLoading && relatedConsumables.length > 0">
+                    <ng-template swiperSlide *ngFor="let consumable of relatedConsumables">
+                        <div class="printer-product-card-container">
+                            <consumable-product-card [consumible]="consumable" style="width: 100%;"></consumable-product-card>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </swiper>
+        </div>
+    </div>
+    <!-- Display no deals message if no deals are available -->
+    <div class="not-found" *ngIf="!isLoading && relatedConsumables.length === 0">
+        <i class="pi pi-exclamation-triangle" style="font-size: 4rem;"></i>
+        <p>{{noDealsMessage}}</p>
+    </div>
+</div>

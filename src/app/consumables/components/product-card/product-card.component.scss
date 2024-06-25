@@ -81,7 +81,7 @@
                 .product-info-col {
                     display: flex;
                     flex-direction: column;
-                    align-items: stretch;
+                    align-items: flex-start;
                     .product-brand {
                         margin: 0 0 8px;
                     }

@@ -172,41 +172,13 @@
     </div>
 </section>
 
-<!-- <section class="section-product-specs">
-    <div class="container">
-        <div class="section-card-product-specs">
+<section class="section-related-printers" *ngIf="printer">
+    <div class="container py-5">
+        <div class="related-printers-container">
             <div class="header-specs">
-                <h2>Especificaciones</h2>
+                <h1>Productos que te pueden interesar</h1>
             </div>
-            <div class="body-specs">
-                <div class="spec">
-                    <h5 class="spec-title">Consumo de Energía</h5>
-                    <p class="spec-data">{{printer?.powerConsumption}}</p>
-                </div>
-                <div class="spec">
-                    <h5 class="spec-title">Dimensiones</h5>
-                    <p class="spec-data">{{printer?.dimensions}}</p>
-                </div>
-                <div class="spec">
-                    <h5 class="spec-title">Unidad Duplex</h5>
-                    <p class="spec-data">{{printer?.duplexUnit ? 'Si' : 'No'}}</p>
-                </div>
-                <div class="spec">
-                    <h5 class="spec-title">Gramaje Máximo</h5>
-                    <p class="spec-data">{{printer?.maxPaperWeight}} g/m2</p>
-                </div>
-                <div class="spec">
-                    <h4 class="spec-title">Tamaños de Papel</h4>
-                    <p class="spec-data">{{printer?.paperSizes}}</p>
-                </div>
-                <div class="spec">
-                    <h4 class="spec-title">Sistemas Operativos</h4>
-                    <p class="spec-data">{{printer?.applicableOS}}</p>
-                </div>
-            </div>
-            <div class="action-container">
-                <a [href]="printer?.datasheet_url" target="_blank">Ficha Técnica</a>
-                            </div>
-                        </div>
-                    </div>
-</section> -->
+            <related-printers-list [printerProduct]="printer"></related-printers-list>
+        </div>
+    </div>
+</section>
