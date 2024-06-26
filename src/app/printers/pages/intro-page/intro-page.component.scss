@@ -233,7 +233,6 @@
     }
 }
 
-
 #printer-promotions {
     width: 100%;
 }
@@ -242,24 +241,24 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 1em;
     margin-bottom: 1em;
-    padding-bottom: 1em;
     border-bottom: 1px solid $gray-200;
 }
 
 .promotion-links {
     display: flex;
     gap: .5em;
-    @media (max-width: 768px) { 
+    @media (max-width: 768px) {
         width: 100%;
         button {
             width: 100%;
         }
     }
 }
+
 .promotion-title-container {
     display: flex;
     flex-direction: column;

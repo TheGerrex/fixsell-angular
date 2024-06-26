@@ -133,7 +133,7 @@
     </div>
 </section>
 
-<section class="section-content">
+<section class="section-content" id="rent-printer-packages">
     <div class="package-rent-deals">
         <div class="container py-5">
             <div class="promotion-header">
@@ -148,20 +148,7 @@
     </div>
 </section>
 
-<!-- <section class="package-rent-deals" id="package-rent-deals">
-    <div class="container py-5">
-        <div class="promotion-header">
-            <div class="promotion-title-container">
-                <h1 class="section-title">Paquetes de Renta en Oferta</h1>
-                <h5 class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</h5>
-            </div>
-            <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/printers/list"><span class="button-label">Ver Multifuncionales</span></button></div>
-        </div>
-        <app-package-rent-promotion-list></app-package-rent-promotion-list>
-    </div>
-</section>
-
-<section class="section-content" id="catalog">
+<!-- <section class="section-content" id="catalog">
     <div class="container py-5">
         <div class="products-body">
             <div class="section-title">
@@ -178,19 +165,25 @@
                             <div class="list">
                                 <h5 class="list-title">Marcas</h5>
                                 <ul>
-                                    <a *ngFor="let brand of printerProducts.brands"><li (click)="navigateToPrinterList('brand', brand.name)">{{brand.name}}</li></a>
+                                    <a *ngFor="let brand of printerProducts.brands">
+                                        <li (click)="navigateToPrinterList('brand', brand.name)">{{brand.name}}</li>
+                                    </a>
                                 </ul>
                             </div>
                             <div class="list">
                                 <h5 class="list-title">Categorias</h5>
                                 <ul>
-                                    <a *ngFor="let category of printerProducts.categories"><li (click)="navigateToPrinterList('categories', category.name)">{{category.name}}</li></a>
+                                    <a *ngFor="let category of printerProducts.categories">
+                                        <li (click)="navigateToPrinterList('categories', category.name)">{{category.name}}</li>
+                                    </a>
                                 </ul>
                             </div>
                             <div class="list">
                                 <h5 class="list-title">Tamaños de Papel</h5>
                                 <ul>
-                                    <a *ngFor="let printSize of printerProducts.printSizes"><li (click)="navigateToPrinterList('printSizes', printSize.name)">{{printSize.name}}</li></a>
+                                    <a *ngFor="let printSize of printerProducts.printSizes">
+                                        <li (click)="navigateToPrinterList('printSizes', printSize.name)">{{printSize.name}}</li>
+                                    </a>
                                 </ul>
                             </div>
                         </div>
@@ -206,19 +199,25 @@
                             <div class="list">
                                 <h5 class="list-title">Marcas</h5>
                                 <ul>
-                                    <a *ngFor="let brand of consumableProducts.brands"><li (click)="navigateToConsumableList('brand', brand.name)">{{brand.name}}</li></a>
+                                    <a *ngFor="let brand of consumableProducts.brands">
+                                        <li (click)="navigateToConsumableList('brand', brand.name)">{{brand.name}}</li>
+                                    </a>
                                 </ul>
                             </div>
                             <div class="list">
                                 <h5 class="list-title">Categorias</h5>
                                 <ul>
-                                    <a *ngFor="let category of consumableProducts.categories"><li (click)="navigateToConsumableList('categories', category.value)">{{category.name}}</li></a>
+                                    <a *ngFor="let category of consumableProducts.categories">
+                                        <li (click)="navigateToConsumableList('categories', category.value)">{{category.name}}</li>
+                                    </a>
                                 </ul>
                             </div>
                             <div class="list">
                                 <h5 class="list-title">Colores</h5>
                                 <ul>
-                                    <a *ngFor="let color of consumableProducts.colors"><li (click)="navigateToConsumableList('color', color.value)">{{color.name}}</li></a>
+                                    <a *ngFor="let color of consumableProducts.colors">
+                                        <li (click)="navigateToConsumableList('color', color.value)">{{color.name}}</li>
+                                    </a>
                                 </ul>
                             </div>
                         </div>
@@ -450,7 +449,9 @@
                         <div class="software-card-image">
                             <img src="../../../assets/svg/home/proveedores/papercut.svg" alt="papercut">
                         </div>
-                        <p class="software-card-text">PaperCut es un software que te ayuda a gestionar y monitorizar la impresión en tu organización.</p>
+                        <div class="software-card-text">
+                            <p>PaperCut es un software que te ayuda a gestionar y monitorizar la impresión en tu organización.</p>
+                        </div>
                         <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
                         </div> -->
@@ -477,7 +478,9 @@
                         <div class="software-card-image">
                             <img src="../../../assets/svg/home/proveedores/ysoft.svg" alt="ysoft" id="ysoft">
                         </div>
-                        <p class="software-card-text">Ysoft es un software que te ofrece soluciones de impresión, escaneo y administración de dispositivos.</p>
+                        <div class="software-card-text">
+                            <p>Ysoft es un software que te ofrece soluciones de impresión, escaneo y administración de dispositivos.</p>
+                        </div>
                         <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
                         </div> -->
@@ -504,7 +507,9 @@
                         <div class="software-card-image">
                             <img src="../../../assets/svg/home/proveedores/kyocera.svg" alt="kyocera">
                         </div>
-                        <p class="software-card-text">KFS es un software que te permite gestionar y mantener tus equipos de impresión de forma remota.</p>
+                        <div class="software-card-text">
+                            <p>KFS es un software que te permite gestionar y mantener tus equipos de impresión de forma remota.</p>
+                        </div>
                         <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
                         </div> -->
@@ -531,7 +536,9 @@
                         <div class="software-card-image">
                             <img src="../../../assets/svg/home/proveedores/docuware.svg" alt="docuware">
                         </div>
-                        <p class="software-card-text">Docuware es un software que te facilita la gestión documental en la nube.</p>
+                        <div class="software-card-text">
+                            <p>Docuware es un software que te facilita la gestión documental en la nube.</p>
+                        </div>
                         <!-- <div class="software-card-actions">
                             <button class="button button-rounded button-primary button-raised" routerLink="/software/intro"><span class="button-label">Solicitar Demostración</span></button>
                         </div> -->
