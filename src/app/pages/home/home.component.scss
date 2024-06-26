@@ -892,6 +892,11 @@ swiper {
                     display: flex;
                     justify-content: flex-start;
                     margin-top: 1em;
+                    @media(max-width: 768px) {
+                        button {
+                            width: 100%;
+                        }
+                    }
                 }
             }
             .consumible-features {
@@ -1060,11 +1065,11 @@ swiper {
                             }
                         }
                         .servicio-item-content {
-                            display: block;
+                            display: block !important;
                             margin: 0;
                         }
                         .servicio-item-action {
-                            display: block;
+                            display: block !important;
                             margin: 0;
                         }
                         .servicio-item-title {
@@ -1455,7 +1460,6 @@ swiper {
                         justify-content: center;
                         padding: 0em 1em;
                         min-height: 116px;
-                        // background-color: $gray-50;
                         p {
                             color: $text;
                             font-weight: 500;

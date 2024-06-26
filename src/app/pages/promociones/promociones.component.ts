@@ -11,8 +11,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 @Component({
   selector: 'app-promociones',
   templateUrl: './promociones.component.html',
-  styleUrls: ['./promociones.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./promociones.component.scss']
 })
 export class PromocionesComponent implements OnInit {
   thumbsSwiper: any;
