@@ -1,0 +1,28 @@
+<button class="chatbox-button" (click)="showChatbox = !showChatbox">
+  <i class="pi pi-comments"></i>
+</button>
+
+<div class="chatbox" [style.display]="showChatbox ? 'flex' : 'none'">
+    <div class="chatbox-header">
+        <div class="chatbox-header-avatar">
+            <div class="avatar-icon"></div>
+            <p class="avatar-name">Fixy</p>
+        </div>
+        <div class="chatbox-header-buttons">
+            <button class="chatbox-header-close-button" (click)="showChatbox = !showChatbox">
+                <i class="pi pi-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="chatbox-body"></div>
+    <div class="chatbox-footer">
+        <div class="input-container">
+            <input type="text">
+        </div>
+        <div class="buttons-container">
+            <button class="chatbox-send-button">
+                <i class="pi pi-send"></i>
+            </button>
+        </div>
+    </div>
+</div>
