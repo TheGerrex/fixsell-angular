@@ -5,7 +5,7 @@
 <div class="chatbox" [style.display]="showChatbox ? 'flex' : 'none'">
     <div class="chatbox-header">
         <div class="chatbox-header-avatar">
-            <div class="avatar-icon"></div>
+            <div class="avatar-icon"><img src="../../../../assets/logo/fixsell-logo-small.svg" alt=""></div>
             <p class="avatar-name">Fixy</p>
         </div>
         <div class="chatbox-header-buttons">
@@ -14,13 +14,17 @@
             </button>
         </div>
     </div>
-    <div class="chatbox-body"></div>
+    <div class="chatbox-body">
+        <ul>
+            <li *ngFor="let message of messages">{{message}}</li>
+        </ul>
+    </div>
     <div class="chatbox-footer">
         <div class="input-container">
-            <input type="text">
+            <textarea #chatInput (input)="adjustInputHeight()" placeholder="Escriba aqui y presione 'Intro'" [(ngModel)]="message" (keydown.enter)="sendMessage()" type="text"></textarea>
         </div>
         <div class="buttons-container">
-            <button class="chatbox-send-button">
+            <button class="chatbox-send-button" (click)="sendMessage()">
                 <i class="pi pi-send"></i>
             </button>
         </div>

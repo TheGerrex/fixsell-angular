@@ -26,6 +26,7 @@ import localeEs from '@angular/common/locales/es-MX';
 import { registerLocaleData } from '@angular/common';
 import { ConsumablesModule } from './consumables/consumables.module';
 import { ChatModule } from './chat/chat.module';
+import { FormsModule } from '@angular/forms';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -52,6 +53,7 @@ registerLocaleData(localeEs);
     PrinterModule,
     ConsumablesModule,
     ChatModule,
+    FormsModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-MX'}],
   bootstrap: [AppComponent]

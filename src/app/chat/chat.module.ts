@@ -6,6 +6,7 @@ import { LiveChatComponent } from './components/live-chat/live-chat.component';
 import { ChatService } from './services/chat.service';
 import { ChatbotService } from './services/chatbot.service';
 import { LiveChatService } from './services/live-chat.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +17,8 @@ import { LiveChatService } from './services/live-chat.service';
     LiveChatComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [ChatService, ChatbotService, LiveChatService],
   exports: [ChatboxComponent]
