@@ -1,32 +1,55 @@
-<button class="chatbox-button" (click)="showChatbox = !showChatbox">
+<button class="chatbox-button" (click)="toggleChatbox()">
   <i class="pi pi-comments"></i>
 </button>
 
 <div class="chatbox" [style.display]="showChatbox ? 'flex' : 'none'">
-    <div class="chatbox-header">
-        <div class="chatbox-header-avatar">
-            <div class="avatar-icon"><img src="../../../../assets/logo/fixsell-logo-small.svg" alt=""></div>
-            <p class="avatar-name">Fixy</p>
-        </div>
-        <div class="chatbox-header-buttons">
-            <button class="chatbox-header-close-button" (click)="showChatbox = !showChatbox">
-                <i class="pi pi-times"></i>
-            </button>
-        </div>
+  <div class="chatbox-header">
+    <div class="chatbox-header-avatar">
+      <div class="avatar-icon">
+        <img src="../../../../assets/logo/fixsell-logo-small.svg" alt="" />
+      </div>
+      <p class="avatar-name">Fixy</p>
     </div>
-    <div class="chatbox-body">
-        <ul>
-            <li *ngFor="let message of messages">{{message}}</li>
-        </ul>
+    <div class="chatbox-header-buttons">
+      <button
+        class="chatbox-header-close-button"
+        (click)="showChatbox = !showChatbox"
+      >
+        <i class="pi pi-times"></i>
+      </button>
     </div>
-    <div class="chatbox-footer">
-        <div class="input-container">
-            <textarea #chatInput (input)="adjustInputHeight()" placeholder="Escriba aqui y presione 'Intro'" [(ngModel)]="message" (keydown.enter)="sendMessage()" type="text"></textarea>
-        </div>
-        <div class="buttons-container">
-            <button class="chatbox-send-button" (click)="sendMessage()">
-                <i class="pi pi-send"></i>
-            </button>
-        </div>
+  </div>
+  <div class="chatbox-body">
+    <ul id="messages-ul" class="messages-list"></ul>
+  </div>
+  <div class="chatbox-footer">
+    <!-- <div class="input-container">
+      <textarea
+        #chatInput
+        (input)="adjustInputHeight()"
+        placeholder="Escriba aqui y presione 'Intro'"
+        [(ngModel)]="message"
+        (keydown.enter)="sendMessage()"
+        type="text"
+      ></textarea>
     </div>
+    <div class="buttons-container">
+      <button class="chatbox-send-button" (click)="sendMessage()">
+        <i class="pi pi-send"></i>
+      </button>
+    </div> -->
+
+    <!-- id message-form and message-input for functionality -->
+    <!-- has to be inside the form.  -->
+    <!-- Message Form -->
+    <form id="message-form" class="message-form">
+      <input type="text" id="message-input" placeholder="Type a message..." />
+      <button
+        id="send"
+        class="button button-primary button-raised button-icon-text"
+      >
+        Send
+      </button>
+    </form>
+  </div>
 </div>
