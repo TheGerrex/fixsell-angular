@@ -29,11 +29,8 @@ export class ChatboxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.chatService
-    //   .getMessages()
-    //   .subscribe((messageObj: { user: String; message: String }) => {
-    //     this.messages.push(`${messageObj.user}: ${messageObj.message}`);
-    //   });
+    this.currentRoomName = this.getRoomNameFromCookies() || '';
+    this.currentState = this.getCurrentStateFromCookies() || '';
   }
 
   sendMessage() {
@@ -56,6 +53,7 @@ export class ChatboxComponent implements OnInit {
   checkLiveChatAvailability() {}
 
   currentRoomName: string = ''; // Add this line
+  currentState: string = ''; // Add this line
   chatHistory: any[] = [];
   clients: { id: string; roomName: string }[] = [];
 
@@ -68,30 +66,69 @@ export class ChatboxComponent implements OnInit {
       : null;
   }
 
+  private getCurrentStateFromCookies(): string | null {
+    const cookies = document.cookie.split('; ');
+    const currentStateCookie = cookies.find((row) =>
+      row.startsWith('chatState=')
+    );
+    console.log('currentStateCookie', currentStateCookie);
+    return currentStateCookie
+      ? decodeURIComponent(currentStateCookie.split('=')[1])
+      : null;
+  }
+
   private handleChatHistory(chatHistory: any[]): void {
     this.chatHistory = chatHistory;
   }
 
   connectAsUser(): void {
-    console.log('user connecting');
-    const roomName = this.getRoomNameFromCookies();
     if (!this.socket) {
-      this.socket = connectToServerAsUser();
+      console.log('Connecting as user with room name:', this.currentRoomName);
+      console.log('Connecting as user with state:', this.currentState);
+      this.socket = connectToServerAsUser(
+        this.currentRoomName,
+        this.currentState
+      );
       if (this.socket) {
         addListeners(
           this.socket,
           this.updateRoomName.bind(this),
           this.handleChatHistory.bind(this)
         );
+
+        // Listen for messages from the server
+        this.socket.on('message-from-server', (message: any) => {
+          console.log('Received message from server:', message);
+          this.chatHistory.push(message);
+          // Update your UI here
+        });
+
+        // Request chat history if we have a room name
+        if (this.currentRoomName) {
+          this.socket.emit('getChatHistory', this.currentRoomName);
+        }
       }
     }
   }
 
   private updateRoomName(roomName: string): void {
-    this.currentRoomName = roomName;
-    document.cookie = `roomName=${roomName};path=/;max-age=${
-      30 * 24 * 60 * 60
-    }`;
+    // Parse cookies into an object
+    // Define the accumulator's type to allow string indexing
+    const cookies = document.cookie
+      .split('; ')
+      .reduce((acc: { [key: string]: string }, current) => {
+        const [key, value] = current.split('=');
+        acc[key] = value;
+        return acc;
+      }, {});
+
+    // Check if the roomName cookie exists and has the same value
+    if (cookies['roomName'] !== roomName) {
+      this.currentRoomName = roomName;
+      document.cookie = `roomName=${roomName};path=/;max-age=${
+        30 * 24 * 60 * 60
+      }`;
+    }
   }
   ngOnDestroy(): void {
     this.socket?.close();
