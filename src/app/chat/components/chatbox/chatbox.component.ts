@@ -69,7 +69,7 @@ export class ChatboxComponent implements OnInit {
   private getCurrentStateFromCookies(): string | null {
     const cookies = document.cookie.split('; ');
     const currentStateCookie = cookies.find((row) =>
-      row.startsWith('chatState=')
+      row.startsWith('chatState')
     );
     console.log('currentStateCookie', currentStateCookie);
     return currentStateCookie
