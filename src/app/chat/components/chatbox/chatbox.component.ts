@@ -38,10 +38,6 @@ export class ChatboxComponent implements OnInit {
     this.message = '';
   }
 
-  // ngOnDestroy(): void {
-  //   this.socket?.close();
-  // }
-
   @ViewChild('chatInput') chatInput!: ElementRef;
 
   adjustInputHeight() {
@@ -78,7 +74,10 @@ export class ChatboxComponent implements OnInit {
   }
 
   private handleChatHistory(chatHistory: any[]): void {
-    this.chatHistory = chatHistory;
+    this.chatHistory = chatHistory.map((message) => ({
+      ...message,
+      senderId: message.senderId === this.socket?.id ? 'You' : message.senderId,
+    }));
   }
 
   connectAsUser(): void {
@@ -99,8 +98,12 @@ export class ChatboxComponent implements OnInit {
         // Listen for messages from the server
         this.socket.on('message-from-server', (message: any) => {
           console.log('Received message from server:', message);
-          this.chatHistory.push(message);
-          // Update your UI here
+          const updatedMessage = {
+            ...message,
+            senderId:
+              message.senderId === this.socket?.id ? 'You' : message.senderId,
+          };
+          this.chatHistory.push(updatedMessage);
         });
 
         // Request chat history if we have a room name
@@ -130,6 +133,7 @@ export class ChatboxComponent implements OnInit {
       }`;
     }
   }
+
   ngOnDestroy(): void {
     this.socket?.close();
   }

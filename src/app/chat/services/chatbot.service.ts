@@ -1,5 +1,5 @@
 import { Manager, Socket } from 'socket.io-client';
-
+import { environment } from 'src/environments/environment';
 // For User Connection
 export const connectToServerAsUser = (
   roomName?: string,
@@ -8,7 +8,7 @@ export const connectToServerAsUser = (
   console.log('connecting as user...');
 
   const manager = new Manager(
-    'http://localhost:3000/socket.io/socket.io.js',
+    `${environment.baseUrl}/socket.io/socket.io.js`, // Use environment base URL
     {}
   );
 
@@ -57,7 +57,7 @@ export const connectToServerAsAdmin = (roomName: string) => {
     return;
   }
 
-  const manager = new Manager('http://localhost:3000/socket.io/socket.io.js', {
+  const manager = new Manager(`${environment.baseUrl}/socket.io/socket.io.js`, {
     extraHeaders: {
       authentication: token,
     },
@@ -103,7 +103,11 @@ export const addListeners = (
     chatHistory.forEach((chatHistoryItem: { senderId: any; message: any }) => {
       const messageLi = document.createElement('li');
       // Format the message as "senderId: Message"
-      messageLi.textContent = `${chatHistoryItem.senderId}: ${chatHistoryItem.message}`;
+      if (chatHistoryItem.senderId === 'Fixy') {
+        messageLi.textContent = `Fixy: ${chatHistoryItem.message}`;
+      } else {
+        messageLi.textContent = `Tú: ${chatHistoryItem.message}`;
+      }
       messagesUl.appendChild(messageLi);
     });
   });
@@ -118,16 +122,14 @@ function setupSocketListeners(
   socket.on(
     'message-from-server',
     (payload: { FullName: string; Message: string; RoomName: string }) => {
-      console.log('recievd message from server');
+      console.log('received message from server');
       console.log(`message from server: ${JSON.stringify(payload)}`);
-      // Only display messages from the current room
-      console.log('payload roomname:', payload.RoomName);
-      console.log('roomstate.currentroomname:', roomState.currentRoomName);
-      console.log('payload:', payload);
       if (payload.RoomName === roomState.currentRoomName) {
         console.log(`message from server: ${JSON.stringify(payload)}`);
         const li = document.createElement('li');
-        li.textContent = `${payload.FullName}: ${payload.Message}`;
+        const displayName =
+          payload.FullName === socket.id ? 'You' : payload.FullName;
+        li.textContent = `${displayName}: ${payload.Message}`;
         messagesUl.appendChild(li);
       }
     }

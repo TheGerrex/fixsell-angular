@@ -20,7 +20,11 @@
     </div>
   </div>
   <div class="chatbox-body">
-    <ul id="messages-ul" class="messages-list"></ul>
+    <ul id="messages-ul" class="messages-list">
+      <li *ngFor="let message of chatHistory">
+        <strong>{{ message.senderId }}:</strong> {{ message.message }}
+      </li>
+    </ul>
   </div>
   <div class="chatbox-footer">
     <!-- <div class="input-container">
