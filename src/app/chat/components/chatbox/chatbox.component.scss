@@ -1,162 +1,187 @@
-    @import "../../../../variables";
-    .chatbox-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 3;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 60px;
-        height: 60px;
-        padding: 1em;
-        border-radius: 50%;
-        border: none;
-        background-color: #FFFFFF;
-        background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-        i {
-            color: $white;
-            font-size: 1.8em;
-        }
+@import "../../../../variables";
+.chatbox-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 1em;
+  border-radius: 50%;
+  border: none;
+  background-color: #ffffff;
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  i {
+    color: $white;
+    font-size: 1.8em;
+  }
+}
+
+.chatbox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 350px;
+  background-color: $gray-50;
+  border-radius: 10px;
+  border: 1px solid $gray-200;
+}
+
+.chatbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid $gray-200;
+}
+
+.chatbox-header-avatar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .avatar-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .avatar-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $gray-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 24px;
+      height: 24px;
     }
-    
-    .chatbox {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        height: 500px;
-        width: 350px;
-        background-color: $gray-50;
-        border-radius: 10px;
-        border: 1px solid $gray-200;
+    &::after {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $green-600;
     }
-    
-    .chatbox-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid $gray-200;
+  }
+}
+
+.chatbox-header-close-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    i {
+      color: $red-500;
     }
-    
-    .chatbox-header-avatar {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        .avatar-name {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0;
-        }
-        .avatar-icon {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: $gray-100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            img {
-                width: 24px;
-                height: 24px;
-            }
-            &::after {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                content: "";
-                display: block;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: $green-600;
-            }
-        }
+  }
+  i {
+    font-size: 1.3em;
+    color: $gray-500;
+  }
+}
+
+.chatbox-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: $white;
+}
+
+.chatbox-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid $gray-200;
+}
+
+.message-form {
+  width: 100%;
+}
+
+.message-input-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: $white;
+  border: 1px solid $gray-200;
+  border-radius: 50px;
+  padding: 0.25rem;
+  min-height: 50px;
+  input {
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    outline: none;
+    margin-left: 0.5rem;
+  }
+  .chatbox-send-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 40px;
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-sizing: border-box; // Add this line
+
+    &:hover {
+      background-color: $primary-color-hover;
     }
-    
-    .chatbox-header-close-button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-            i {
-                color: $red-500;
-            }
-        }
-        i {
-            font-size: 1.3em;
-            color: $gray-500;
-        }
+    i {
+      font-size: 1em;
+      width: 16px;
+      height: 16px;
     }
-    
-    .chatbox-body {
-        flex: 1;
-        padding: 10px;
-        overflow-y: auto;
-        background-color: $white;
-    }
-    
-    .chatbox-footer {
-        display: flex;
-        justify-content: space-between;
-        gap: 8px;
-        align-items: center;
-        padding: 10px;
-        border-top: 1px solid $gray-200;
-    }
-    
-    .input-container {
-        display: flex;
-        flex: 1;
-        align-content: center;
-        border: 1px solid $gray-200;
-        border-radius: 20px;
-        background-color: $white;
-        textarea {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            resize: none; // disable manual resize
-            overflow: hidden; // hide scrollbar
-            min-height: 1em;
-            max-height: 5em;
-            padding: 8px;
-            height: 40px; // set a smaller minimum height
-            // box-sizing: border-box;
-        }
-    }
-    
-    .buttons-container {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        gap: 8px;
-        align-items: flex-start;
-        height: 100%;
-        .chatbox-send-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background-color: $primary-color;
-            color: $white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            &:hover {
-                background-color: $primary-color-hover;
-            }
-            i {
-                font-size: 1.2em;
-            }
-        }
-    }
+  }
+}
+
+.messages-list {
+  padding: 0 !important;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  display: inline-flex;
+  flex-shrink: 1;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background-color: $blue-100;
+}
+
+.admin-message {
+  margin-left: auto;
+  background-color: $gray-100;
+}
+
+.user-message {
+  margin-right: auto;
+  background-color: $primary-color;
+  color: $white;
+}

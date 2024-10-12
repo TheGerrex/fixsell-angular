@@ -1,0 +1,82 @@
+<form class="lead-form mt-3" [formGroup]="leadForm" (ngSubmit)="onSubmit()">
+  <div class="lead-container" *ngIf="!isLoading && !isSuccess">
+    <div *ngIf="currentStep === 1">
+      <label class="form-label">Cual es su nombre/empresa?</label>
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        placeholder="Nombre o Empresa"
+        autocomplete="off"
+        [class.is-invalid]="
+          leadForm.controls['name'].invalid && leadForm.controls['name'].touched
+        "
+      />
+      <span *ngIf="isValidField('name')" class="form-text text-danger">
+        {{ getFieldError("name") }}
+      </span>
+    </div>
+    <div class="mb-3" *ngIf="currentStep === 2">
+      <label class="form-label">Teléfono</label>
+      <input
+        type="tel"
+        formControlName="phone"
+        class="form-control"
+        mask="000-000-0000"
+        placeholder="000-000-0000"
+        [class.is-invalid]="
+          leadForm.controls['phone'].invalid &&
+          leadForm.controls['phone'].touched
+        "
+      />
+      <span *ngIf="isValidField('phone')" class="form-text text-danger">
+        {{ getFieldError("phone") }}
+      </span>
+    </div>
+    <div class="mb-3" *ngIf="currentStep === 3">
+      <label class="form-label">Email</label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        placeholder="ejemplo@mail.com"
+        [class.is-invalid]="
+          leadForm.controls['email'].invalid &&
+          leadForm.controls['email'].touched
+        "
+      />
+      <span *ngIf="isValidField('email')" class="form-text text-danger">
+        {{ getFieldError("email") }}
+      </span>
+    </div>
+    <div class="lead-form-footer">
+      <p class="lead-form-steps">{{ currentStep }}/3</p>
+      <button
+        class="button button-primary button-rounded button-raised mt-3"
+        *ngIf="currentStep < 3"
+        [disabled]="!leadForm.get(currentField)?.valid"
+        (click)="nextStep()"
+      >
+        Siguiente
+      </button>
+      <button
+        class="button button-primary button-rounded button-raised mt-3"
+        *ngIf="currentStep === 3"
+        [disabled]="!leadForm.valid"
+        type="submit"
+      >
+        Enviar
+      </button>
+    </div>
+  </div>
+  <div class="lead-loading" *ngIf="isLoading">Loading...</div>
+
+  <div class="lead-success" *ngIf="isSuccess">
+    <p>Success!</p>
+    <div>
+      <p>Name: {{ submittedData.name }}</p>
+      <p>Phone: {{ submittedData.phone }}</p>
+      <p>Email: {{ submittedData.email }}</p>
+    </div>
+  </div>
+</form>

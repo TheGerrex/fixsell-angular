@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactFormService } from '../../services/forms/contact-form.service';
-import { Router } from '@angular/router';
 import { ValidatorsService } from '../../services/validators.service';
-import { ToastService } from '../../services/toast.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -22,15 +18,13 @@ export class FooterComponent {
   });
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private contactFormService: ContactFormService, 
-    private router: Router,
-    private validatorsService: ValidatorsService,
-    private toastService: ToastService,
-    private http: HttpClient) {
+    private formBuilder: FormBuilder,
+    private contactFormService: ContactFormService,
+    private validatorsService: ValidatorsService
+  ) {
   }
 
-  isValidField(field: string): boolean|null {
+  isValidField(field: string): boolean | null {
     return this.validatorsService.isValidField(this.contactForm, field)
     // return this.myForm.controls[field].errors && this.myForm.controls[field].touched;
   }
@@ -41,13 +35,13 @@ export class FooterComponent {
     const errors = this.contactForm.controls[field].errors || {};
 
     for (const key of Object.keys(errors)) {
-      switch(key) {
-        case'required':
+      switch (key) {
+        case 'required':
           return 'Este campo es requerido';
-        case'pattern':
+        case 'pattern':
           return 'Este campo esta en formato incorrecto';
-        case'maxlength':
-          return `Máximo ${ errors['maxlength'].requiredLength } caracteres`;
+        case 'maxlength':
+          return `Máximo ${errors['maxlength'].requiredLength} caracteres`;
       }
     }
     return null;

@@ -1,0 +1,25 @@
+@import "../../../../variables";
+
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid $gray-200;
+  background-color: $gray-50;
+}
+
+.lead-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .lead-form-steps {
+    color: $gray-500;
+  }
+}
+
+.form-label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}

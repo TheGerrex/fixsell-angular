@@ -1,7 +1,7 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +27,8 @@ import { registerLocaleData } from '@angular/common';
 import { ConsumablesModule } from './consumables/consumables.module';
 import { ChatModule } from './chat/chat.module';
 import { FormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -54,8 +56,12 @@ registerLocaleData(localeEs);
     ConsumablesModule,
     ChatModule,
     FormsModule,
+    NgxMaskDirective, NgxMaskPipe
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es-MX'}],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-MX' },
+    provideNgxMask()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

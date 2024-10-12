@@ -21,39 +21,35 @@
   </div>
   <div class="chatbox-body">
     <ul id="messages-ul" class="messages-list">
-      <li *ngFor="let message of chatHistory">
+      <li
+        *ngFor="let message of chatHistory"
+        [ngClass]="{
+          'admin-message': message.senderId === 'admin',
+          'user-message': message.senderId === 'user'
+        }"
+        class="message"
+      >
         <strong>{{ message.senderId }}:</strong> {{ message.message }}
       </li>
     </ul>
+    <chat-lead-form (leadCreated)="onLeadCreated($event)"></chat-lead-form>
   </div>
   <div class="chatbox-footer">
-    <!-- <div class="input-container">
-      <textarea
-        #chatInput
-        (input)="adjustInputHeight()"
-        placeholder="Escriba aqui y presione 'Intro'"
-        [(ngModel)]="message"
-        (keydown.enter)="sendMessage()"
-        type="text"
-      ></textarea>
-    </div>
-    <div class="buttons-container">
-      <button class="chatbox-send-button" (click)="sendMessage()">
-        <i class="pi pi-send"></i>
-      </button>
-    </div> -->
-
     <!-- id message-form and message-input for functionality -->
     <!-- has to be inside the form.  -->
     <!-- Message Form -->
     <form id="message-form" class="message-form">
-      <input type="text" id="message-input" placeholder="Type a message..." />
-      <button
-        id="send"
-        class="button button-primary button-raised button-icon-text"
-      >
-        Send
-      </button>
+      <div class="message-input-container">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Escribe un mensaje..."
+          autocomplete="off"
+        />
+        <button id="message-send" type="submit" class="chatbox-send-button">
+          <i class="pi pi-send"></i>
+        </button>
+      </div>
     </form>
   </div>
 </div>

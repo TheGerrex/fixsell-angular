@@ -80,9 +80,9 @@ export const addListeners = (
 ) => {
   // Element selectors
   const messageForm = document.querySelector<HTMLFormElement>('#message-form')!;
-  const messageInput =
-    document.querySelector<HTMLInputElement>('#message-input')!;
+  const messageInput = document.querySelector<HTMLInputElement>('#message-input')!;
   const messagesUl = document.querySelector<HTMLUListElement>('#messages-ul')!;
+  const messageSendButton = document.querySelector<HTMLButtonElement>('#message-send')!;
 
   // Current room name storage, made mutable by wrapping in an object
   let roomState = { currentRoomName: '' };
@@ -91,7 +91,7 @@ export const addListeners = (
   setupSocketListeners(socket, messagesUl, onRoomJoined, roomState);
 
   // Form submission listener
-  setupFormListener(messageForm, messageInput, socket, roomState);
+  setupFormListener(messageForm, messageInput, messageSendButton, socket, roomState);
 
   // Handle chat history event
   socket.on('chatHistory', (chatHistory) => {
@@ -102,11 +102,14 @@ export const addListeners = (
     // Iterate over chat history and display each message
     chatHistory.forEach((chatHistoryItem: { senderId: any; message: any }) => {
       const messageLi = document.createElement('li');
+      messageLi.classList.add('message');
       // Format the message as "senderId: Message"
       if (chatHistoryItem.senderId === 'Fixy') {
         messageLi.textContent = `Fixy: ${chatHistoryItem.message}`;
+        messageLi.classList.add('admin-message');
       } else {
         messageLi.textContent = `Tú: ${chatHistoryItem.message}`;
+        messageLi.classList.add('user-message');
       }
       messagesUl.appendChild(messageLi);
     });
@@ -127,6 +130,7 @@ function setupSocketListeners(
       if (payload.RoomName === roomState.currentRoomName) {
         console.log(`message from server: ${JSON.stringify(payload)}`);
         const li = document.createElement('li');
+        li.classList.add('message');
         const displayName =
           payload.FullName === socket.id ? 'You' : payload.FullName;
         li.textContent = `${displayName}: ${payload.Message}`;
@@ -150,11 +154,11 @@ function setupSocketListeners(
 function setupFormListener(
   messageForm: HTMLFormElement,
   messageInput: HTMLInputElement,
+  messageSendButton: HTMLButtonElement,
   socket: Socket,
   roomState: { currentRoomName: string }
 ) {
-  messageForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+  const sendMessage = () => {
     if (messageInput.value.trim().length <= 0) return;
 
     // Include the current room name in the message payload
@@ -166,5 +170,20 @@ function setupFormListener(
     });
     console.log('Sending message:', messageInput.value);
     messageInput.value = '';
+  };
+
+  messageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    sendMessage();
   });
+
+  // Send Button listener
+  if (messageSendButton) {
+    messageSendButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      sendMessage();
+    });
+  } else {
+    console.error('Send button not found');
+  }
 }

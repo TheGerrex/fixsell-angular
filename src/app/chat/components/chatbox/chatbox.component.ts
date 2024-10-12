@@ -10,16 +10,18 @@ import {
   selector: 'app-chatbox',
   templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.scss'],
+
 })
 export class ChatboxComponent implements OnInit {
   isLiveChat: boolean = false;
   showChatbox = false;
   message!: string;
   messages: string[] = [];
+  isInputFocused = false;
 
   private socket: Socket | undefined;
 
-  constructor() {}
+  constructor() { }
 
   toggleChatbox(): void {
     this.showChatbox = !this.showChatbox;
@@ -31,6 +33,10 @@ export class ChatboxComponent implements OnInit {
   ngOnInit(): void {
     this.currentRoomName = this.getRoomNameFromCookies() || '';
     this.currentState = this.getCurrentStateFromCookies() || '';
+  }
+
+  ngOnDestroy(): void {
+    this.socket?.close();
   }
 
   sendMessage() {
@@ -46,7 +52,17 @@ export class ChatboxComponent implements OnInit {
       this.chatInput.nativeElement.scrollHeight + 'px';
   }
 
-  checkLiveChatAvailability() {}
+  onInputFocus() {
+    this.isInputFocused = true;
+  }
+
+  onInputBlur() {
+    setTimeout(() => {
+      this.isInputFocused = false;
+    }, 100);
+  }
+
+  checkLiveChatAvailability() { }
 
   currentRoomName: string = ''; // Add this line
   currentState: string = ''; // Add this line
@@ -78,6 +94,25 @@ export class ChatboxComponent implements OnInit {
       ...message,
       senderId: message.senderId === this.socket?.id ? 'You' : message.senderId,
     }));
+  }
+
+  private updateRoomName(roomName: string): void {
+    // Parse cookies into an object
+    // Define the accumulator's type to allow string indexing
+    const cookies = document.cookie
+      .split('; ')
+      .reduce((acc: { [key: string]: string }, current) => {
+        const [key, value] = current.split('=');
+        acc[key] = value;
+        return acc;
+      }, {});
+
+    // Check if the roomName cookie exists and has the same value
+    if (cookies['roomName'] !== roomName) {
+      this.currentRoomName = roomName;
+      document.cookie = `roomName=${roomName};path=/;max-age=${30 * 24 * 60 * 60
+        }`;
+    }
   }
 
   connectAsUser(): void {
@@ -114,27 +149,18 @@ export class ChatboxComponent implements OnInit {
     }
   }
 
-  private updateRoomName(roomName: string): void {
-    // Parse cookies into an object
-    // Define the accumulator's type to allow string indexing
-    const cookies = document.cookie
-      .split('; ')
-      .reduce((acc: { [key: string]: string }, current) => {
-        const [key, value] = current.split('=');
-        acc[key] = value;
-        return acc;
-      }, {});
+  onLeadCreated(lead: { name: string, phone: string, email: string }) {
+    // Use the lead data to create a new lead on the server.
+    // For example:
+    this.socket?.emit('newLead', lead);
 
-    // Check if the roomName cookie exists and has the same value
-    if (cookies['roomName'] !== roomName) {
-      this.currentRoomName = roomName;
-      document.cookie = `roomName=${roomName};path=/;max-age=${
-        30 * 24 * 60 * 60
-      }`;
-    }
+    // Show a confirmation message.
+    alert('New lead created successfully!');
+
+    // Allow the admin or employee to enter the chat.
+    this.isLiveChat = true;
   }
 
-  ngOnDestroy(): void {
-    this.socket?.close();
-  }
+
+
 }

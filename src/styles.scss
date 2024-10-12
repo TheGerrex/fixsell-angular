@@ -1,9 +1,9 @@
-@import './_variables.scss';
-@import '~swiper/swiper-bundle.css';
-@import 'swiper/scss';
-@import 'swiper/scss/navigation';
-@import 'swiper/scss/pagination';
-@import 'swiper/scss/autoplay';
+@import "./_variables.scss";
+@import "~swiper/swiper-bundle.css";
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+@import "swiper/scss/autoplay";
 
 /* @font-face {
     font-family: 'Cera Pro';
@@ -13,86 +13,90 @@
 } */
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-Black.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-Black.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-BlackItalic.woff') format('woff');
-    font-weight: 700;
-    font-style: italic;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-BlackItalic.woff")
+    format("woff");
+  font-weight: 700;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-Bold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-Bold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-BoldItalic.woff') format('woff');
-    font-weight: 600;
-    font-style: italic;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-BoldItalic.woff")
+    format("woff");
+  font-weight: 600;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-MediumItalic.woff') format('woff');
-    font-weight: 500;
-    font-style: italic;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-MediumItalic.woff")
+    format("woff");
+  font-weight: 500;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-Italic.woff') format('woff');
-    font-weight: 400;
-    font-style: italic;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Cera Pro';
-    src: url('./assets/fonts/Cera-Pro-Woff/CeraPro-LightItalic.woff') format('woff');
-    font-weight: 300;
-    font-style: italic;
+  font-family: "Cera Pro";
+  src: url("./assets/fonts/Cera-Pro-Woff/CeraPro-LightItalic.woff")
+    format("woff");
+  font-weight: 300;
+  font-style: italic;
 }
 
-$font-family: 'Cera Pro';
+$font-family: "Cera Pro";
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
-    font-family: $font-family;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: $font-family;
 }
 
 b {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 h1,
@@ -101,458 +105,489 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 600;
-    margin: 0
+  font-weight: 600;
+  margin: 0;
 }
 
 h1 {
-    font-size: 35px;
-    line-height: 43.75px;
+  font-size: 35px;
+  line-height: 43.75px;
 }
 
 h2 {
-    font-size: 28px;
-    line-height: 35px;
+  font-size: 28px;
+  line-height: 35px;
 }
 
 h3 {
-    font-size: 24.5px;
-    line-height: 30.6px;
+  font-size: 24.5px;
+  line-height: 30.6px;
 }
 
 h4 {
-    font-size: 21px;
-    line-height: 26.3px;
+  font-size: 21px;
+  line-height: 26.3px;
 }
 
 h5 {
-    font-size: 17.5px;
-    line-height: 21.9px;
+  font-size: 17.5px;
+  line-height: 21.9px;
 }
 
 h6 {
-    font-size: 16px;
-    line-height: 20px;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 p {
-    font-size: 16px;
-    line-height: 20px;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 small {
-    font-size: 10.5px;
-    line-height: 13.1px;
+  font-size: 10.5px;
+  line-height: 13.1px;
 }
 
 li {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 // PrimeNG Components Font Change
 body .p-dialog {
-    font-family: $font-family, fallback, sans-serif;
-    .p-dialog-header .p-dialog-title {
-        font-weight: 600;
-    }
+  font-family: $font-family, fallback, sans-serif;
+  .p-dialog-header .p-dialog-title {
+    font-weight: 600;
+  }
 }
 
 // Elements (Buttons, forms, etc)
 .button {
-    margin: 0;
-    display: inline-flex;
-    user-select: none;
+  margin: 0;
+  display: inline-flex;
+  user-select: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  gap: 8px;
+  color: $text;
+  font-size: 1rem;
+  padding: 0.7rem 1.25rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  &:not(:disabled) {
     cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    gap: 8px;
-    color: $text;
-    font-size: 1rem;
-    padding: .7rem 1.25rem;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    &:not(:disabled) {
-        cursor: pointer;
-    }
-    &:focus:not(:focus-visible) {
-        outline: 0;
-    }
-    &:focus {
-        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus, 0 1px 2px 0 black;
-    }
-    &:disabled {
-        opacity: 0.6;
-        cursor: default;
-    }
-    .button-label {
-        font-weight: 600;
-        flex: 1 1 auto;
-        transition-duration: 0.2s;
-    }
-    &-outlined {
-        &-primary {
-            color: $primary-color;
-            border: 1px $primary-color solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $primary-color-hover, $alpha: 0.1);
-                border-color: $primary-color-hover;
-            }
-            &:active {
-                background: rgba($color: $primary-color-active, $alpha: 0.1);
-                border-color: $primary-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
-            }
-        }
-        &-secondary {
-            color: $secondary-color;
-            border: 1px $secondary-color solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $secondary-color-hover, $alpha: 0.1);
-                border-color: $secondary-color-hover;
-            }
-            &:active {
-                background: rgba($color: $secondary-color-active, $alpha: 0.1);
-                border-color: $secondary-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $secondary-color-focus;
-            }
-        }
-        &-success {
-            color: $success-color;
-            border: 1px $success-color solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $success-color-hover, $alpha: 0.1);
-                border-color: $success-color-hover;
-            }
-            &:active {
-                background: rgba($color: $success-color-active, $alpha: 0.1);
-                border-color: $success-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $success-color-focus;
-            }
-        }
-        &-info {
-            color: $info-color;
-            border: 1px $info-color solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $info-color-hover, $alpha: 0.1);
-                border-color: $info-color-hover;
-            }
-            &:active {
-                background: rgba($color: $info-color-active, $alpha: 0.1);
-                border-color: $info-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $info-color-focus;
-            }
-        }
-        &-warning {
-            color: $warning-color;
-            border: 1px $warning-color solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $warning-color-hover, $alpha: 0.1);
-                border-color: $warning-color-hover;
-            }
-            &:active {
-                background: rgba($color: $warning-color-active, $alpha: 0.1);
-                border-color: $warning-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $warning-color-focus;
-            }
-        }
-        &-help {
-            color: $help-color;
-            border: 1px $help-color solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $help-color-hover, $alpha: 0.1);
-                border-color: $help-color-hover;
-            }
-            &:active {
-                background: rgba($color: $help-color-active, $alpha: 0.1);
-                border-color: $help-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $help-color-focus;
-            }
-        }
-        &-danger {
-            color: $danger-color;
-            border: 1px $danger-color solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $danger-color-hover, $alpha: 0.1);
-                border-color: $danger-color-hover;
-            }
-            &:active {
-                background: rgba($color: $danger-color-active, $alpha: 0.1);
-                border-color: $danger-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus;
-            }
-        }
-        &-white {
-            color: $white;
-            border: 1px $white solid;
-            background-color: transparent;
-            &:hover {
-                background: rgba($color: $primary-color-hover, $alpha: 0.1);
-                border-color: $primary-color-hover;
-            }
-            &:active {
-                background: rgba($color: $primary-color-active, $alpha: 0.1);
-                border-color: $primary-color-active;
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
-            }
-        }
-    }
-    &-text {
-        &-primary {
-            color: $primary-color;
-            background-color: transparent;
-            border: none;
-            &:hover {
-                background: rgba($color: $primary-color, $alpha: 0.1);
-            }
-            &:active {
-                background: rgba($color: $primary-color-active, $alpha: 0.1);
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
-            }
-        }
-        &-secondary {
-            color: $secondary-color;
-            background-color: transparent;
-            border: none;
-            &:hover {
-                background: rgba($color: $secondary-color, $alpha: 0.1);
-            }
-            &:active {
-                background: rgba($color: $secondary-color-active, $alpha: 0.1);
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $secondary-color-focus;
-            }
-        }
-        &-success {
-            color: $success-color;
-            background-color: transparent;
-            border: none;
-            &:hover {
-                background: rgba($color: $success-color, $alpha: 0.1);
-            }
-            &:active {
-                background: rgba($color: $success-color-active, $alpha: 0.1);
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $success-color-focus;
-            }
-        }
-        &-info {
-            color: $info-color;
-            background-color: transparent;
-            border: none;
-            &:hover {
-                background: rgba($color: $info-color, $alpha: 0.1);
-            }
-            &:active {
-                background: rgba($color: $info-color-active, $alpha: 0.1);
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $info-color-focus;
-            }
-        }
-        &-warning {
-            color: $warning-color;
-            background-color: transparent;
-            border: none;
-            &:hover {
-                background: rgba($color: $warning-color, $alpha: 0.1);
-            }
-            &:active {
-                background: rgba($color: $warning-color-active, $alpha: 0.1);
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $warning-color-focus;
-            }
-        }
-        &-help {
-            color: $help-color;
-            background-color: transparent;
-            border: none;
-            &:hover {
-                background: rgba($color: $help-color, $alpha: 0.1);
-            }
-            &:active {
-                background: rgba($color: $help-color-active, $alpha: 0.1);
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $help-color-focus;
-            }
-        }
-        &-danger {
-            color: $danger-color;
-            background-color: transparent;
-            border: none;
-            &:hover {
-                background: rgba($color: $danger-color, $alpha: 0.1);
-            }
-            &:active {
-                background: rgba($color: $danger-color-active, $alpha: 0.1);
-            }
-            &:focus {
-                box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus;
-            }
-        }
-    }
+  }
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus,
+      0 1px 2px 0 black;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .button-label {
+    font-weight: 600;
+    flex: 1 1 auto;
+    transition-duration: 0.2s;
+  }
+  &-outlined {
     &-primary {
-        color: $primary-color-text;
-        background: $primary-color;
-        border: 1px $primary-color solid;
-        &:hover {
-            background: $primary-color-hover;
-            color: $primary-color-text;
-            border-color: $primary-color-hover;
-        }
-        &:active {
-            background: $primary-color-active;
-            color: $primary-color-text;
-            border-color: $primary-color-active;
-        }
-        &:focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus, 0 1px 2px 0 black;
-        }
+      color: $primary-color;
+      border: 1px $primary-color solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $primary-color-hover, $alpha: 0.1);
+        border-color: $primary-color-hover;
+      }
+      &:active {
+        background: rgba($color: $primary-color-active, $alpha: 0.1);
+        border-color: $primary-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
+      }
     }
     &-secondary {
-        color: $secondary-color-text;
-        background: $secondary-color;
-        border: 1px $secondary-color solid;
-        &:hover {
-            background: $secondary-color-hover;
-            color: $secondary-color-text;
-            border-color: $secondary-color-hover;
-        }
-        &:active {
-            background: $secondary-color-active;
-            color: $secondary-color-text;
-            border-color: $secondary-color-active;
-        }
-        &:focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $secondary-color-focus, 0 1px 2px 0 black;
-        }
+      color: $secondary-color;
+      border: 1px $secondary-color solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $secondary-color-hover, $alpha: 0.1);
+        border-color: $secondary-color-hover;
+      }
+      &:active {
+        background: rgba($color: $secondary-color-active, $alpha: 0.1);
+        border-color: $secondary-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $secondary-color-focus;
+      }
     }
     &-success {
-        color: $success-color-text;
-        background: $success-color;
-        border: 1px $success-color solid;
-        &:hover {
-            background: $success-color-hover;
-            color: $success-color-text;
-            border-color: $success-color-hover;
-        }
-        &:active {
-            background: $success-color-active;
-            color: $success-color-text;
-            border-color: $success-color-active;
-        }
-        &:focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $success-color-focus, 0 1px 2px 0 black;
-        }
+      color: $success-color;
+      border: 1px $success-color solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $success-color-hover, $alpha: 0.1);
+        border-color: $success-color-hover;
+      }
+      &:active {
+        background: rgba($color: $success-color-active, $alpha: 0.1);
+        border-color: $success-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $success-color-focus;
+      }
     }
     &-info {
-        color: $info-color-text;
-        background: $info-color;
-        border: 1px $info-color solid;
-        &:hover {
-            background: $info-color-hover;
-            color: $info-color-text;
-            border-color: $info-color-hover;
-        }
-        &:active {
-            background: $info-color-active;
-            color: $info-color-text;
-            border-color: $info-color-active;
-        }
-        &:focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $info-color-focus, 0 1px 2px 0 black;
-        }
+      color: $info-color;
+      border: 1px $info-color solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $info-color-hover, $alpha: 0.1);
+        border-color: $info-color-hover;
+      }
+      &:active {
+        background: rgba($color: $info-color-active, $alpha: 0.1);
+        border-color: $info-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $info-color-focus;
+      }
     }
     &-warning {
-        color: $warning-color-text;
-        background: $warning-color;
-        border: 1px $warning-color solid;
-        &:hover {
-            background: $warning-color-hover;
-            color: $warning-color-text;
-            border-color: $warning-color-hover;
-        }
-        &:active {
-            background: $warning-color-active;
-            color: $warning-color-text;
-            border-color: $warning-color-active;
-        }
-        &:focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $warning-color-focus, 0 1px 2px 0 black;
-        }
+      color: $warning-color;
+      border: 1px $warning-color solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $warning-color-hover, $alpha: 0.1);
+        border-color: $warning-color-hover;
+      }
+      &:active {
+        background: rgba($color: $warning-color-active, $alpha: 0.1);
+        border-color: $warning-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $warning-color-focus;
+      }
     }
     &-help {
-        color: $help-color-text;
-        background: $help-color;
-        border: 1px $help-color solid;
-        &:hover {
-            background: $help-color-hover;
-            color: $help-color-text;
-            border-color: $help-color-hover;
-        }
-        &:active {
-            background: $help-color-active;
-            color: $help-color-text;
-            border-color: $help-color-active;
-        }
-        &:focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $help-color-focus, 0 1px 2px 0 black;
-        }
+      color: $help-color;
+      border: 1px $help-color solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $help-color-hover, $alpha: 0.1);
+        border-color: $help-color-hover;
+      }
+      &:active {
+        background: rgba($color: $help-color-active, $alpha: 0.1);
+        border-color: $help-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $help-color-focus;
+      }
     }
     &-danger {
-        color: $danger-color-text;
-        background: $danger-color;
-        border: 1px $danger-color solid;
-        &:hover {
-            background: $danger-color-hover;
-            color: $danger-color-text;
-            border-color: $danger-color-hover;
-        }
-        &:active {
-            background: $danger-color-active;
-            color: $danger-color-text;
-            border-color: $danger-color-active;
-        }
-        &:focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus, 0 1px 2px 0 black;
-        }
+      color: $danger-color;
+      border: 1px $danger-color solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $danger-color-hover, $alpha: 0.1);
+        border-color: $danger-color-hover;
+      }
+      &:active {
+        background: rgba($color: $danger-color-active, $alpha: 0.1);
+        border-color: $danger-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus;
+      }
     }
-    &-full {
-        width: 100%;
+    &-white {
+      color: $white;
+      border: 1px $white solid;
+      background-color: transparent;
+      &:hover {
+        background: rgba($color: $primary-color-hover, $alpha: 0.1);
+        border-color: $primary-color-hover;
+      }
+      &:active {
+        background: rgba($color: $primary-color-active, $alpha: 0.1);
+        border-color: $primary-color-active;
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
+      }
     }
-    &-rounded {
-        border-radius: 2rem;
+  }
+  &-text {
+    &-primary {
+      color: $primary-color;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background: rgba($color: $primary-color, $alpha: 0.1);
+      }
+      &:active {
+        background: rgba($color: $primary-color-active, $alpha: 0.1);
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
+      }
     }
-    &-raised {
-        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    &-secondary {
+      color: $secondary-color;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background: rgba($color: $secondary-color, $alpha: 0.1);
+      }
+      &:active {
+        background: rgba($color: $secondary-color-active, $alpha: 0.1);
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $secondary-color-focus;
+      }
     }
+    &-success {
+      color: $success-color;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background: rgba($color: $success-color, $alpha: 0.1);
+      }
+      &:active {
+        background: rgba($color: $success-color-active, $alpha: 0.1);
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $success-color-focus;
+      }
+    }
+    &-info {
+      color: $info-color;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background: rgba($color: $info-color, $alpha: 0.1);
+      }
+      &:active {
+        background: rgba($color: $info-color-active, $alpha: 0.1);
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $info-color-focus;
+      }
+    }
+    &-warning {
+      color: $warning-color;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background: rgba($color: $warning-color, $alpha: 0.1);
+      }
+      &:active {
+        background: rgba($color: $warning-color-active, $alpha: 0.1);
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $warning-color-focus;
+      }
+    }
+    &-help {
+      color: $help-color;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background: rgba($color: $help-color, $alpha: 0.1);
+      }
+      &:active {
+        background: rgba($color: $help-color-active, $alpha: 0.1);
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $help-color-focus;
+      }
+    }
+    &-danger {
+      color: $danger-color;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        background: rgba($color: $danger-color, $alpha: 0.1);
+      }
+      &:active {
+        background: rgba($color: $danger-color-active, $alpha: 0.1);
+      }
+      &:focus {
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus;
+      }
+    }
+  }
+  &-primary {
+    color: $primary-color-text;
+    background: $primary-color;
+    border: 1px $primary-color solid;
+    &:hover {
+      background: $primary-color-hover;
+      color: $primary-color-text;
+      border-color: $primary-color-hover;
+    }
+    &:active {
+      background: $primary-color-active;
+      color: $primary-color-text;
+      border-color: $primary-color-active;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus,
+        0 1px 2px 0 black;
+    }
+  }
+  &-secondary {
+    color: $secondary-color-text;
+    background: $secondary-color;
+    border: 1px $secondary-color solid;
+    &:hover {
+      background: $secondary-color-hover;
+      color: $secondary-color-text;
+      border-color: $secondary-color-hover;
+    }
+    &:active {
+      background: $secondary-color-active;
+      color: $secondary-color-text;
+      border-color: $secondary-color-active;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $secondary-color-focus,
+        0 1px 2px 0 black;
+    }
+  }
+  &-success {
+    color: $success-color-text;
+    background: $success-color;
+    border: 1px $success-color solid;
+    &:hover {
+      background: $success-color-hover;
+      color: $success-color-text;
+      border-color: $success-color-hover;
+    }
+    &:active {
+      background: $success-color-active;
+      color: $success-color-text;
+      border-color: $success-color-active;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $success-color-focus,
+        0 1px 2px 0 black;
+    }
+  }
+  &-info {
+    color: $info-color-text;
+    background: $info-color;
+    border: 1px $info-color solid;
+    &:hover {
+      background: $info-color-hover;
+      color: $info-color-text;
+      border-color: $info-color-hover;
+    }
+    &:active {
+      background: $info-color-active;
+      color: $info-color-text;
+      border-color: $info-color-active;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $info-color-focus,
+        0 1px 2px 0 black;
+    }
+  }
+  &-warning {
+    color: $warning-color-text;
+    background: $warning-color;
+    border: 1px $warning-color solid;
+    &:hover {
+      background: $warning-color-hover;
+      color: $warning-color-text;
+      border-color: $warning-color-hover;
+    }
+    &:active {
+      background: $warning-color-active;
+      color: $warning-color-text;
+      border-color: $warning-color-active;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $warning-color-focus,
+        0 1px 2px 0 black;
+    }
+  }
+  &-help {
+    color: $help-color-text;
+    background: $help-color;
+    border: 1px $help-color solid;
+    &:hover {
+      background: $help-color-hover;
+      color: $help-color-text;
+      border-color: $help-color-hover;
+    }
+    &:active {
+      background: $help-color-active;
+      color: $help-color-text;
+      border-color: $help-color-active;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $help-color-focus,
+        0 1px 2px 0 black;
+    }
+  }
+  &-danger {
+    color: $danger-color-text;
+    background: $danger-color;
+    border: 1px $danger-color solid;
+    &:hover {
+      background: $danger-color-hover;
+      color: $danger-color-text;
+      border-color: $danger-color-hover;
+    }
+    &:active {
+      background: $danger-color-active;
+      color: $danger-color-text;
+      border-color: $danger-color-active;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus,
+        0 1px 2px 0 black;
+    }
+  }
+  &-full {
+    width: 100%;
+  }
+  &-rounded {
+    border-radius: 2rem;
+  }
+  &-raised {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+.message {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background-color: $primary-color;
+}
+
+.admin-message {
+  align-self: flex-end;
+  background-color: $gray-100;
+}
+
+.user-message {
+  align-self: flex-start;
+  background-color: $primary-color;
+  color: $white;
 }
