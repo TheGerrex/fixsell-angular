@@ -1,7 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay, Swiper } from 'swiper';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Thumbs,
+  SwiperOptions,
+  Autoplay,
+  Swiper,
+} from 'swiper';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
@@ -23,7 +32,7 @@ export class PromotionListComponent implements OnInit, OnDestroy {
     // navigation: false,
     autoplay: false,
     scrollbar: { draggable: true },
-    
+
     breakpoints: {
       1024: {
         slidesPerView: 4,
@@ -34,14 +43,14 @@ export class PromotionListComponent implements OnInit, OnDestroy {
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
       },
       500: {
         slidesPerView: 2,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
@@ -54,15 +63,20 @@ export class PromotionListComponent implements OnInit, OnDestroy {
         scrollbar: { draggable: true },
       },
     },
-
-    
   };
 
   constructor(private printersService: PrintersService) {}
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
-      this.dealPrinters = printers.filter(printer => printer.deals.length > 0);
+      const currentDate = new Date();
+      this.dealPrinters = printers.filter((printer) =>
+        printer.deals.some((deal) => {
+          const startDate = new Date(deal.dealStartDate);
+          const endDate = new Date(deal.dealEndDate);
+          return startDate <= currentDate && endDate >= currentDate;
+        })
+      );
       this.isLoading = false;
     });
   }
@@ -71,4 +85,3 @@ export class PromotionListComponent implements OnInit, OnDestroy {
     this.promotionSwiper?.destroy(true, true);
   }
 }
-

@@ -1,6 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay } from 'swiper';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Thumbs,
+  SwiperOptions,
+  Autoplay,
+} from 'swiper';
 import { ConsumableService } from '../../services/consumables.service';
 
 // install Swiper modules
@@ -23,7 +31,7 @@ export class PromotionListComponent implements OnInit {
     // navigation: false,
     autoplay: false,
     scrollbar: { draggable: true },
-    
+
     breakpoints: {
       1024: {
         slidesPerView: 4,
@@ -34,7 +42,7 @@ export class PromotionListComponent implements OnInit {
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
@@ -48,18 +56,23 @@ export class PromotionListComponent implements OnInit {
       },
     },
     // thumbs: {swiper: this.thumbsSwiper}
-
-    
   };
 
   constructor(private consumableService: ConsumableService) {}
 
   ngOnInit(): void {
-    this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
-      this.dealConsumables = consumables.filter(consumable => consumable.deals.length > 0);
-      this.isLoading = false;
-    });
+    this.consumableService
+      .getConsumables()
+      .subscribe((consumables: Consumible[]) => {
+        const currentDate = new Date();
+        this.dealConsumables = consumables.filter((consumable) =>
+          consumable.deals.some((deal) => {
+            const startDate = new Date(deal.dealStartDate);
+            const endDate = new Date(deal.dealEndDate);
+            return startDate <= currentDate && endDate >= currentDate;
+          })
+        );
+        this.isLoading = false;
+      });
   }
-
 }
-
