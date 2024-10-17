@@ -158,30 +158,85 @@
 }
 
 .messages-list {
-  padding: 0 !important;
-  list-style: none;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .message {
-  display: inline-flex;
-  flex-shrink: 1;
-  gap: 0.5rem;
-  align-items: center;
-  margin: 0.25rem;
-  padding: 0.5rem;
-  border-radius: 12px;
-  background-color: $blue-100;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
 }
 
 .admin-message {
-  margin-left: auto;
-  background-color: $gray-100;
+  justify-content: flex-start;
 }
 
 .user-message {
-  margin-right: auto;
+  justify-content: flex-end;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.message-blob {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 12px;
+  background-color: $gray-100;
+  color: $text;
+  p {
+    margin: 0;
+  }
+}
+
+.message-time {
+  font-size: 13px;
+  color: $secondary-text;
+  align-self: flex-end;
+}
+
+.user-message-time {
+  color: $gray-100;
+}
+
+.admin-message-time {
+  color: $secondary-text;
+}
+
+.admin-blob {
+  align-self: flex-end;
+  background-color: $gray-100;
+  color: $text;
+}
+
+.user-blob {
+  align-self: flex-start;
   background-color: $primary-color;
   color: $white;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: $gray-100;
+  padding: 0.25rem;
+}
+
+.message-sender-name {
+  font-weight: 500;
+  color: $gray-600;
+  font-size: 15px;
+  margin-left: 0.25rem;
+}
+
+chat-lead-form {
+  width: 100%;
 }

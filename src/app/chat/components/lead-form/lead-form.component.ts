@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'chat-lead-form',
@@ -13,6 +15,7 @@ export class LeadFormComponent {
   isLoading = false;
   isSuccess = false;
   submittedData: any;
+  private readonly baseUrl: string = environment.baseUrl;
 
   leadForm = this.fb.group({
     name: ['', Validators.required],
@@ -22,7 +25,8 @@ export class LeadFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private validatorsService: ValidatorsService
+    private validatorsService: ValidatorsService,
+    private http: HttpClient,
   ) { }
 
   isValidField(field: string): boolean | null {
@@ -61,6 +65,19 @@ export class LeadFormComponent {
     if (this.currentStep < 3) {
       this.currentStep++;
     }
+
+    setTimeout(() => {
+      document.querySelector('.lead-form')!.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 0);
+  }
+
+  private getRoomNameFromCookies(): string | null {
+    const cookies = document.cookie.split('; ');
+    const roomNameCookie = cookies.find((row) => row.startsWith('roomName='));
+    console.log('roomNameCookie', roomNameCookie);
+    return roomNameCookie
+      ? decodeURIComponent(roomNameCookie.split('=')[1])
+      : null;
   }
 
   onSubmit() {
@@ -75,18 +92,22 @@ export class LeadFormComponent {
           this.leadForm.reset();
           this.isLoading = false;
           this.isSuccess = true;
+
+          // Make a POST request to the backend
+          this.http.post(`${this.baseUrl}/chat-history`, {
+            roomId: this.getRoomNameFromCookies() || '', // Set this to the current room ID
+            senderId: "Fixy", // Set this to the current user ID
+            senderName: name,
+            message: 'Form submitted',
+            timestamp: new Date(),
+            messageType: 'form',
+            isRead: false,
+            formData: { name, phone, email }
+          }).subscribe(response => {
+            console.log('Response from POST request:', response);
+          });
         }, 2000);
       }
     }
   }
-
-  // onSubmit() {
-  //   if (this.leadForm.valid) {
-  //     const { name, phone, email } = this.leadForm.value;
-  //     if (name && phone && email) {
-  //       this.leadCreated.emit({ name, phone, email });
-  //       this.leadForm.reset();
-  //     }
-  //   }
-  // }
 }

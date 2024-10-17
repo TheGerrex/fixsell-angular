@@ -7,11 +7,12 @@ import { LiveChatService } from './services/live-chat.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeadFormComponent } from './components/lead-form/lead-form.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
   declarations: [ChatboxComponent, ChatbotComponent, LiveChatComponent, LeadFormComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe, SharedModule],
   providers: [LiveChatService, provideNgxMask()],
   exports: [ChatboxComponent],
 })

@@ -20,19 +20,72 @@
     </div>
   </div>
   <div class="chatbox-body">
-    <ul id="messages-ul" class="messages-list">
-      <li
-        *ngFor="let message of chatHistory"
+    <div id="messages-list" class="messages-list">
+      <section
+        class="message"
         [ngClass]="{
-          'admin-message': message.senderId === 'admin',
+          'admin-message': message.senderId === 'Fixy',
           'user-message': message.senderId === 'user'
         }"
-        class="message"
+        *ngFor="let message of chatHistory"
       >
-        <strong>{{ message.senderId }}:</strong> {{ message.message }}
-      </li>
-    </ul>
-    <chat-lead-form (leadCreated)="onLeadCreated($event)"></chat-lead-form>
+        <img
+          *ngIf="message.senderId === 'Fixy'"
+          [src]="message.avatarUrl"
+          alt="{{ message.senderId }}'s avatar"
+          class="avatar"
+        />
+        <div class="message-content">
+          <h5 *ngIf="message.senderId === 'Fixy'">{{ message.senderId }}</h5>
+          <div
+            class="message-blob"
+            *ngIf="message.messageType !== 'form'"
+            [ngClass]="{
+              'admin-blob': message.senderId === 'Fixy',
+              'user-blob': message.senderId === 'user'
+            }"
+          >
+            <p>{{ message.message }}</p>
+            <time
+              class="message-time"
+              [ngClass]="{
+                'admin-message-time': message.senderId === 'Fixy',
+                'user-message-time': message.senderId === 'user'
+              }"
+              >{{ message.timestamp }}</time
+            >
+          </div>
+          <div class="lead-success" *ngIf="message.messageType === 'form'">
+            <div class="lead-form-item">
+              <p class="lead-form-item-label">Nombre o Empresa</p>
+              <p class="lead-form-item-data">{{ message.formData.name }}</p>
+            </div>
+            <div class="lead-form-item">
+              <p class="lead-form-item-label">Teléfono</p>
+              <p class="lead-form-item-data">{{ message.formData.phone }}</p>
+            </div>
+            <div class="lead-form-item">
+              <p class="lead-form-item-label">Email</p>
+              <p class="lead-form-item-data">{{ message.formData.email }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="message admin-message" style="margin-top: 0.5rem">
+      <img
+        src="https://fixsell-website-images.s3.amazonaws.com/fixsell-logos/fixsell-logo-small.svg"
+        alt="Fixy avatar"
+        class="avatar"
+      />
+      <div class="message-content">
+        <h5 class="message-sender-name">Fixy</h5>
+        <chat-lead-form
+          class="fade-in"
+          (leadCreated)="onLeadCreated($event)"
+        ></chat-lead-form>
+      </div>
+    </section>
   </div>
   <div class="chatbox-footer">
     <!-- id message-form and message-input for functionality -->

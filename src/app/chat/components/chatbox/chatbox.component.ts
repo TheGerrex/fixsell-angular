@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Manager, Socket } from 'socket.io-client';
+import { showForm } from '../../services/chatbot.service';
+
 // import { ChatService } from '../../services/chat.service';
 import {
   addListeners,
@@ -18,6 +20,8 @@ export class ChatboxComponent implements OnInit {
   message!: string;
   messages: string[] = [];
   isInputFocused = false;
+  isFormFilled = false;
+
 
   private socket: Socket | undefined;
 
@@ -33,6 +37,9 @@ export class ChatboxComponent implements OnInit {
   ngOnInit(): void {
     this.currentRoomName = this.getRoomNameFromCookies() || '';
     this.currentState = this.getCurrentStateFromCookies() || '';
+    showForm.subscribe(() => {
+      this.isFormFilled = false;
+    });
   }
 
   ngOnDestroy(): void {
@@ -92,6 +99,7 @@ export class ChatboxComponent implements OnInit {
   private handleChatHistory(chatHistory: any[]): void {
     this.chatHistory = chatHistory.map((message) => ({
       ...message,
+      timestamp: new Date(message.timestamp),
       senderId: message.senderId === this.socket?.id ? 'You' : message.senderId,
     }));
   }
@@ -159,6 +167,9 @@ export class ChatboxComponent implements OnInit {
 
     // Allow the admin or employee to enter the chat.
     this.isLiveChat = true;
+
+    // Set isFormFilled to true after the form is submitted
+    this.isFormFilled = true;
   }
 
 

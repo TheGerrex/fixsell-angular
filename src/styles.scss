@@ -572,22 +572,145 @@ body .p-dialog {
 }
 
 .message {
-  display: inline-flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin: 0.25rem;
-  padding: 0.5rem;
-  border-radius: 12px;
-  background-color: $primary-color;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
 }
 
 .admin-message {
-  align-self: flex-end;
-  background-color: $gray-100;
+  justify-content: flex-start;
 }
 
 .user-message {
+  justify-content: flex-end;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-blob {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 12px;
+  background-color: $gray-100;
+  color: $text;
+  p {
+    font-size: 15px;
+    margin: 0;
+  }
+}
+
+.message-time {
+  font-size: 13px;
+  color: $secondary-text;
+  align-self: flex-end;
+}
+
+.user-message-time {
+  color: $gray-100;
+}
+
+.admin-message-time {
+  color: $secondary-text;
+}
+
+.admin-blob {
+  align-self: flex-end;
+  background-color: $gray-100;
+  color: $text;
+  margin-right: 32px;
+}
+
+.user-blob {
   align-self: flex-start;
   background-color: $primary-color;
   color: $white;
+  margin-left: 32px;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: $gray-100;
+  padding: 0.25rem;
+}
+
+// Lead Form on Chat
+
+.lead-success {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid $gray-200;
+  width: 100%;
+}
+
+.lead-form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.lead-form-item-label {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+.lead-form-item-data {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Transition Classes */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn ease 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.slide-in-from-right {
+  transform: translateX(100%);
+  animation: slideInFromRight ease 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slide-in-from-left {
+  transform: translateX(-100%);
+  animation: slideInFromLeft ease 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

@@ -1,50 +1,57 @@
-<form class="lead-form mt-3" [formGroup]="leadForm" (ngSubmit)="onSubmit()">
+<form class="lead-form" [formGroup]="leadForm" (ngSubmit)="onSubmit()">
   <div class="lead-container" *ngIf="!isLoading && !isSuccess">
-    <div *ngIf="currentStep === 1">
-      <label class="form-label">Cual es su nombre/empresa?</label>
-      <input
-        type="text"
-        formControlName="name"
-        class="form-control"
-        placeholder="Nombre o Empresa"
-        autocomplete="off"
-        [class.is-invalid]="
-          leadForm.controls['name'].invalid && leadForm.controls['name'].touched
-        "
-      />
+    <div *ngIf="currentStep >= 1">
+      <div class="lead-form-item">
+        <label class="lead-form-item-label">Cual es su nombre/empresa?</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Nombre o Empresa"
+          autocomplete="off"
+          [class.is-invalid]="
+            leadForm.controls['name'].invalid &&
+            leadForm.controls['name'].touched
+          "
+        />
+      </div>
       <span *ngIf="isValidField('name')" class="form-text text-danger">
         {{ getFieldError("name") }}
       </span>
     </div>
-    <div class="mb-3" *ngIf="currentStep === 2">
-      <label class="form-label">Teléfono</label>
-      <input
-        type="tel"
-        formControlName="phone"
-        class="form-control"
-        mask="000-000-0000"
-        placeholder="000-000-0000"
-        [class.is-invalid]="
-          leadForm.controls['phone'].invalid &&
-          leadForm.controls['phone'].touched
-        "
-      />
+    <div style="margin-top: 0.5rem" *ngIf="currentStep >= 2">
+      <div class="lead-form-item">
+        <label class="lead-form-item-label">Teléfono</label>
+        <input
+          type="tel"
+          formControlName="phone"
+          class="form-control"
+          mask="000-000-0000"
+          placeholder="000-000-0000"
+          [class.is-invalid]="
+            leadForm.controls['phone'].invalid &&
+            leadForm.controls['phone'].touched
+          "
+        />
+      </div>
       <span *ngIf="isValidField('phone')" class="form-text text-danger">
         {{ getFieldError("phone") }}
       </span>
     </div>
-    <div class="mb-3" *ngIf="currentStep === 3">
-      <label class="form-label">Email</label>
-      <input
-        type="text"
-        formControlName="email"
-        class="form-control"
-        placeholder="ejemplo@mail.com"
-        [class.is-invalid]="
-          leadForm.controls['email'].invalid &&
-          leadForm.controls['email'].touched
-        "
-      />
+    <div style="margin-top: 0.5rem" *ngIf="currentStep >= 3">
+      <div class="lead-form-item">
+        <label class="lead-form-item-label">Email</label>
+        <input
+          type="text"
+          formControlName="email"
+          class="form-control"
+          placeholder="ejemplo@mail.com"
+          [class.is-invalid]="
+            leadForm.controls['email'].invalid &&
+            leadForm.controls['email'].touched
+          "
+        />
+      </div>
       <span *ngIf="isValidField('email')" class="form-text text-danger">
         {{ getFieldError("email") }}
       </span>
@@ -61,7 +68,7 @@
       </button>
       <button
         class="button button-primary button-rounded button-raised mt-3"
-        *ngIf="currentStep === 3"
+        *ngIf="currentStep >= 3"
         [disabled]="!leadForm.valid"
         type="submit"
       >
@@ -69,14 +76,23 @@
       </button>
     </div>
   </div>
-  <div class="lead-loading" *ngIf="isLoading">Loading...</div>
+
+  <div class="lead-loading" *ngIf="isLoading">
+    <loading-spinner></loading-spinner>
+  </div>
 
   <div class="lead-success" *ngIf="isSuccess">
-    <p>Success!</p>
-    <div>
-      <p>Name: {{ submittedData.name }}</p>
-      <p>Phone: {{ submittedData.phone }}</p>
-      <p>Email: {{ submittedData.email }}</p>
+    <div class="lead-form-item">
+      <p class="lead-form-item-label">Nombre o Empresa</p>
+      <p class="lead-form-item-data">{{ submittedData.name }}</p>
+    </div>
+    <div class="lead-form-item">
+      <p class="lead-form-item-label">Teléfono</p>
+      <p class="lead-form-item-data">{{ submittedData.phone }}</p>
+    </div>
+    <div class="lead-form-item">
+      <p class="lead-form-item-label">Email</p>
+      <p class="lead-form-item-data">{{ submittedData.email }}</p>
     </div>
   </div>
 </form>

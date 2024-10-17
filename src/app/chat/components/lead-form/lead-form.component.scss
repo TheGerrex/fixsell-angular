@@ -6,7 +6,8 @@
   padding: 1em;
   border-radius: 10px;
   border: 1px solid $gray-200;
-  background-color: $gray-50;
+  // background-color: $gray-50;
+  width: 100%;
 }
 
 .lead-form-footer {
@@ -18,8 +19,25 @@
   }
 }
 
-.form-label {
+.lead-success {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lead-form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.lead-form-item-label {
   font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 0.5em;
+  font-weight: 500;
+  margin: 0;
+}
+.lead-form-item-data {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
 }
