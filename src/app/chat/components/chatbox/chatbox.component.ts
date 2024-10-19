@@ -137,7 +137,6 @@ export class ChatboxComponent implements OnInit {
           this.updateRoomName.bind(this),
           this.handleChatHistory.bind(this)
         );
-
         // Listen for messages from the server
         this.socket.on('message-from-server', (message: any) => {
           console.log('Received message from server:', message);
@@ -152,7 +151,9 @@ export class ChatboxComponent implements OnInit {
         // Request chat history if we have a room name
         if (this.currentRoomName) {
           this.socket.emit('getChatHistory', this.currentRoomName);
+
         }
+        console.log('Chat History: ', this.chatHistory);
       }
     }
   }
