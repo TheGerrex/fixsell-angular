@@ -1,7 +1,7 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,10 @@ import { PrinterModule } from './printers/printers.module';
 import localeEs from '@angular/common/locales/es-MX';
 import { registerLocaleData } from '@angular/common';
 import { ConsumablesModule } from './consumables/consumables.module';
+import { OfficePrintersComponent } from './pages/marketing-landing-pages/office-printers-landing/office-printers/office-printers.component';
+import { PlotterLargeFormatPrintersComponent } from './pages/marketing-landing-pages/plotter-large-format-printers-landing/plotter-large-format-printers/plotter-large-format-printers.component';
+import { SoftwareDocumentScanningComponent } from './pages/marketing-landing-pages/software-document-scanning-landing/software-document-scanning/software-document-scanning.component';
+import { HighEndPrintersComponent } from './pages/marketing-landing-pages/high-end-printer-landing/high-end-printers/high-end-printers.component';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -38,6 +42,10 @@ registerLocaleData(localeEs);
     ServiciosComponent,
     AvisoDePrivacidadComponent,
     SuccessComponent,
+    HighEndPrintersComponent,
+    OfficePrintersComponent,
+    PlotterLargeFormatPrintersComponent,
+    SoftwareDocumentScanningComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +59,7 @@ registerLocaleData(localeEs);
     PrinterModule,
     ConsumablesModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es-MX'}],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
