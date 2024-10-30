@@ -1,34 +1,51 @@
 <div class="landing-container">
-  <div class="hero-container">
+  <section class="hero-container">
     <div class="hero-message">
       <h1 class="title">
         Venta y/o Renta de Impresoras de Alta Gama y Alto Volumen
       </h1>
-      <ul class="question-list">
-        <li>
-          Eres una empresa que por su actividad requiere manejar altos volúmenes
-          de impresión?
-        </li>
-        <li>
-          Estas buscando un equipo de impresión para la elaboración de libros,
-          manuales, revistas, postales con acabados de calidad, grapado y
-          doblado?
-        </li>
-        <li>
-          Necesitas un equipo de impresión con capacidad doble carta rebasado,
-          diferentes sustratos, gramaje de 350 gr, calidad de prensa digital y
-          de una a N cantidad de impresiones?
-        </li>
-        <li>
-          Tu negocio de imprenta está creciendo y requieres contar con equipos
-          de impresión más eficientes con los que puedas dar un mejor servicio,
-          con más calidad y ofrecer servicios adicionales?
-        </li>
-        <li>
-          Estas buscando una impresora de alto volumen y alta velocidad a bajo
-          costo de impresión en inyección de tinta?
-        </li>
-      </ul>
+      <div class="question-list">
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Eres una empresa que por su actividad requiere manejar altos
+            volúmenes de impresión?
+          </p>
+        </div>
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Estas buscando un equipo de impresión para la elaboración de libros,
+            manuales, revistas, postales con acabados de calidad, grapado y
+            doblado?
+          </p>
+        </div>
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Necesitas un equipo de impresión con capacidad doble carta rebasado,
+            diferentes sustratos, gramaje de 350 gr, calidad de prensa digital y
+            de una a N cantidad de impresiones?
+          </p>
+        </div>
+
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Tu negocio de imprenta está creciendo y requieres contar con equipos
+            de impresión más eficientes con los que puedas dar un mejor
+            servicio, con más calidad y ofrecer servicios adicionales?
+          </p>
+        </div>
+
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Estas buscando una impresora de alto volumen y alta velocidad a bajo
+            costo de impresión en inyección de tinta?
+          </p>
+        </div>
+      </div>
       <div class="call-to-action">
         <h5 class="subtitle">En Fixsell estamos para servirte:</h5>
         <div class="action-buttons">
@@ -36,7 +53,7 @@
             <i class="pi pi-phone"></i>
             <span class="button-label">Llámanos</span>
           </button>
-          <button class="button button-secondary button-rounded button-raised">
+          <button class="button button-outlined-primary button-rounded">
             <i class="pi pi-envelope"></i>
             <span class="button-label">Contáctanos</span>
           </button>
@@ -51,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="hero-image">
+    <div class="hero-image-container">
       <img
         class="image-mobile"
         src="../../../../../assets/img/marketing-landing-pages/TASKalfa-Pro-15000c-Front.jpg"
@@ -63,5 +80,34 @@
         alt="AccurioPress-C4080-Side"
       />
     </div>
-  </div>
+  </section>
+  <section class="promotion-container">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">
+          Impresoras de Alta Gama y Alto Volumen en Oferta
+        </h1>
+        <h5 class="section-subtitle">
+          Ahorra en equipos de alta calidad para todas tus necesidades de
+          impresión.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
+    </div>
+    <printer-promotion-list
+      [categories]="['Artes Graficas', 'Produccion']"
+      [requireDeals]="false"
+    ></printer-promotion-list>
+
+    <!-- <div class="hero-container py-5">
+      
+    </div> -->
+  </section>
 </div>
