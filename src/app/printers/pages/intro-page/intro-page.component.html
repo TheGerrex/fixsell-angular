@@ -1,96 +1,188 @@
 <div class="banner">
-    <div class="wrapper container">
-        <div class="banner-body">
-            <h1 class="banner-title">Multifuncionales</h1>
-            <h5 class="banner-subtitle">Servicio Incomparable a tu Alcance y Calidad en Cada Impresión</h5>
-            <printer-search-bar></printer-search-bar>
-            <div class="category-list mt-4">
-                <button class="category-button" *ngFor="let category of categories" (click)="navigateToProductList(category.category)">
-                    <p>{{category.name}}</p>
-                </button>
-            </div>
-        </div>
+  <div class="wrapper container">
+    <div class="banner-body">
+      <h1 class="banner-title">Multifuncionales</h1>
+      <h5 class="banner-subtitle">
+        Servicio Incomparable a tu Alcance y Calidad en Cada Impresión
+      </h5>
+      <printer-search-bar></printer-search-bar>
+      <div class="category-list mt-4">
+        <button
+          class="category-button"
+          *ngFor="let category of categories"
+          (click)="navigateToProductList(category.category)"
+        >
+          <p>{{ category.name }}</p>
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <section id="printer-promotions">
-    <div class="container py-5">
-        <div class="promotion-header">
-            <div class="promotion-title-container">
-                <h1 class="section-title">Multifuncionales en Oferta</h1>
-                <h5 class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</h5>
-            </div>
-            <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/printers/list"><span class="button-label">Ver Multifuncionales</span></button></div>
-        </div>
-        <printer-promotion-list></printer-promotion-list>
+  <div class="container py-5">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Multifuncionales en Oferta</h1>
+        <h5 class="section-subtitle">
+          Ahorra en equipos de alta calidad para todas tus necesidades de
+          impresión.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
     </div>
+    <printer-promotion-list [requireDeals]="true"></printer-promotion-list>
+  </div>
 </section>
 
 <section id="printer-types">
-    <div class="container py-5">
-        <div class="printer-type-container">
-            <div class="venta">
-                <div class="section-body">
-                    <div class="section-icon">
-                        <div class="icon-container venta-color"><img src="../../../../assets/svg/intro-printers/shopping-bag.svg" alt="subscription"></div>
-                        <h2 style="color: #0F572A;">Venta</h2>
-                    </div>
-                    <div class="section-content">
-                        <h4 class="section-title">Destino Definitivo para sus Necesidades de Impresión</h4>
-                        <p>
-                            Tanto si es una empresa que desea actualizar sus equipos de oficina como si es un particular que busca una solución de impresión fiable. Nuestro objetivo es hacer que su experiencia de compra de impresoras sea fluida y satisfactoria. Prepárese para explorar
-                            un mundo de tecnología de impresión de vanguardia y encontrar la impresora perfecta que se adapte a sus necesidades, todo en un solo lugar.
-                        </p>
-                        <ul>
-                            <li><span style="font-weight: 500;">Amplia Gama de Productos:</span> Desde impresoras para uso doméstico hasta soluciones de impresión de alta gama para empresas.</li>
-                            <li><span style="font-weight: 500;">Servicio Excepcional:</span> Nuestro equipo está aquí para brindarle atención personalizada y resolver cualquier pregunta o inquietud que pueda tener.</li>
-                            <li><span style="font-weight: 500;">Calidad Garantizada:</span> Nos comprometemos a ofrecer productos de calidad que cumplan con sus expectativas y requisitos de impresión.</li>
-                            <li><span style="font-weight: 500;">Asesoramiento Profesional:</span> Nuestros expertos en impresión están disponibles para ayudarlo a tomar la mejor decisión para sus necesidades de impresión.</li>
-                        </ul>
-                        <div class="actions">
-                            <button class="button button-rounded button-primary" (click)="navigateToProductListType('sellable')"><span class="button-label">Ver Multifuncionales en Venta</span></button>
-                        </div>
-                    </div>
-                </div>
+  <div class="container py-5">
+    <div class="printer-type-container">
+      <div class="venta">
+        <div class="section-body">
+          <div class="section-icon">
+            <div class="icon-container venta-color">
+              <img
+                src="../../../../assets/svg/intro-printers/shopping-bag.svg"
+                alt="subscription"
+              />
             </div>
-            <div class="renta">
-                <div class="section-body">
-                    <div class="section-icon">
-                        <div class="icon-container renta-color"><img src="../../../../assets/svg/intro-printers/subscription.svg" alt="subscription"></div>
-                        <h2 style="color: #AE003A;">Renta</h2>
-                    </div>
-                    <div class="section-content">
-                        <h4 class="section-title">Alquiler de Multifuncionales Adaptados a sus Necesidades</h4>
-                        <p>
-                            Entendemos que cada empresa, organización o individuo tiene necesidades de impresión únicas que a menudo requieren una solución flexible y rentable. Por eso ofrecemos una forma cómoda y sin complicaciones de acceder a impresoras de alta calidad sin la
-                            carga de la propiedad. Tanto si se trata de una pequeña empresa emergente como de una oficina con mucho trabajo o de un estudiante que necesita capacidad de impresión temporal, nuestro servicio de alquiler es la respuesta perfecta.
-                        </p>
-                        <ul>
-                            <li><span style="font-weight: 500;">Proceso Sencillo:</span> Nuestro proceso de alquiler es fácil y sin complicaciones, para que pueda obtener rápidamente la tecnología de impresión que necesita.</li>
-                            <li><span style="font-weight: 500;">Soporte Integral:</span> Ofrecemos soporte completo durante todo el período de alquiler para garantizar que su experiencia sea sin problemas y satisfactoria.</li>
-                            <li><span style="font-weight: 500;">Flexibilidad:</span> Adaptamos nuestros planes de alquiler para satisfacer sus necesidades cambiantes, brindándole la flexibilidad que necesita para gestionar su flujo de trabajo de manera efectiva.</li>
-                        </ul>
-                        <div class="actions">
-                            <button class="button button-rounded button-primary" (click)="navigateToProductListType('rentable')"><span class="button-label">Ver Multifuncionales en Renta</span></button>
-                        </div>
-                    </div>
-                </div>
+            <h2 style="color: #0f572a">Venta</h2>
+          </div>
+          <div class="section-content">
+            <h4 class="section-title">
+              Destino Definitivo para sus Necesidades de Impresión
+            </h4>
+            <p>
+              Tanto si es una empresa que desea actualizar sus equipos de
+              oficina como si es un particular que busca una solución de
+              impresión fiable. Nuestro objetivo es hacer que su experiencia de
+              compra de impresoras sea fluida y satisfactoria. Prepárese para
+              explorar un mundo de tecnología de impresión de vanguardia y
+              encontrar la impresora perfecta que se adapte a sus necesidades,
+              todo en un solo lugar.
+            </p>
+            <ul>
+              <li>
+                <span style="font-weight: 500">Amplia Gama de Productos:</span>
+                Desde impresoras para uso doméstico hasta soluciones de
+                impresión de alta gama para empresas.
+              </li>
+              <li>
+                <span style="font-weight: 500">Servicio Excepcional:</span>
+                Nuestro equipo está aquí para brindarle atención personalizada y
+                resolver cualquier pregunta o inquietud que pueda tener.
+              </li>
+              <li>
+                <span style="font-weight: 500">Calidad Garantizada:</span> Nos
+                comprometemos a ofrecer productos de calidad que cumplan con sus
+                expectativas y requisitos de impresión.
+              </li>
+              <li>
+                <span style="font-weight: 500">Asesoramiento Profesional:</span>
+                Nuestros expertos en impresión están disponibles para ayudarlo a
+                tomar la mejor decisión para sus necesidades de impresión.
+              </li>
+            </ul>
+            <div class="actions">
+              <button
+                class="button button-rounded button-primary"
+                (click)="navigateToProductListType('sellable')"
+              >
+                <span class="button-label">Ver Multifuncionales en Venta</span>
+              </button>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="renta">
+        <div class="section-body">
+          <div class="section-icon">
+            <div class="icon-container renta-color">
+              <img
+                src="../../../../assets/svg/intro-printers/subscription.svg"
+                alt="subscription"
+              />
+            </div>
+            <h2 style="color: #ae003a">Renta</h2>
+          </div>
+          <div class="section-content">
+            <h4 class="section-title">
+              Alquiler de Multifuncionales Adaptados a sus Necesidades
+            </h4>
+            <p>
+              Entendemos que cada empresa, organización o individuo tiene
+              necesidades de impresión únicas que a menudo requieren una
+              solución flexible y rentable. Por eso ofrecemos una forma cómoda y
+              sin complicaciones de acceder a impresoras de alta calidad sin la
+              carga de la propiedad. Tanto si se trata de una pequeña empresa
+              emergente como de una oficina con mucho trabajo o de un estudiante
+              que necesita capacidad de impresión temporal, nuestro servicio de
+              alquiler es la respuesta perfecta.
+            </p>
+            <ul>
+              <li>
+                <span style="font-weight: 500">Proceso Sencillo:</span> Nuestro
+                proceso de alquiler es fácil y sin complicaciones, para que
+                pueda obtener rápidamente la tecnología de impresión que
+                necesita.
+              </li>
+              <li>
+                <span style="font-weight: 500">Soporte Integral:</span>
+                Ofrecemos soporte completo durante todo el período de alquiler
+                para garantizar que su experiencia sea sin problemas y
+                satisfactoria.
+              </li>
+              <li>
+                <span style="font-weight: 500">Flexibilidad:</span> Adaptamos
+                nuestros planes de alquiler para satisfacer sus necesidades
+                cambiantes, brindándole la flexibilidad que necesita para
+                gestionar su flujo de trabajo de manera efectiva.
+              </li>
+            </ul>
+            <div class="actions">
+              <button
+                class="button button-rounded button-primary"
+                (click)="navigateToProductListType('rentable')"
+              >
+                <span class="button-label">Ver Multifuncionales en Renta</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <section id="printer-promotions">
-    <div class="container py-5">
-        <div class="promotion-header">
-            <div class="promotion-title-container">
-                <h1 class="section-title">Paquetes de Renta en Oferta</h1>
-                <p class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</p>
-            </div>
-            <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/printers/list"><span class="button-label">Ver Multifuncionales</span></button></div>
-        </div>
-        <app-package-rent-promotion-list></app-package-rent-promotion-list>
+  <div class="container py-5">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Paquetes de Renta en Oferta</h1>
+        <p class="section-subtitle">
+          Ahorra en equipos de alta calidad para todas tus necesidades de
+          impresión.
+        </p>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
     </div>
+    <app-package-rent-promotion-list></app-package-rent-promotion-list>
+  </div>
 </section>
 
 <!-- <section id="categorias">

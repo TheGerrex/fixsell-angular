@@ -82,7 +82,7 @@ export class PromotionListComponent implements OnInit, OnDestroy {
   private filterPrinters(printers: Printer[]): Printer[] {
     return printers.filter(printer =>
       (!this.requireDeals || printer.deals.length > 0) &&
-      this.categories.includes(printer.category)
+      (this.categories.length === 0 || this.categories.includes(printer.category))
     );
   }
 }

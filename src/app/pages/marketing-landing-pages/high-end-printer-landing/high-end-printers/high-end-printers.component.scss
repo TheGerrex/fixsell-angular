@@ -10,7 +10,7 @@
 .hero-container {
   display: flex;
   justify-content: space-evenly;
-  padding: 2rem 0rem 2rem 2rem;
+  padding: 3rem 2rem;
   gap: 1rem;
   max-width: 1440px;
   @media (max-width: 768px) {
@@ -22,7 +22,7 @@
 .hero-message {
   width: 100%;
   .title {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   .subtitle {
     margin-bottom: 1rem;
@@ -34,7 +34,7 @@
       gap: 0.5rem;
       align-items: center;
       i {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
       }
 
       p {
@@ -43,7 +43,7 @@
     }
   }
   .call-to-action {
-    margin-top: 1rem;
+    margin-top: 2rem;
     .action-buttons {
       display: flex;
       flex-wrap: wrap;

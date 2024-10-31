@@ -1,8 +1,8 @@
 <div class="promotion-banner">
-    <div class="banner-content">
-        <h1>Promociones</h1>
-        <p>Encuentra las mejores ofertas en equipos y suministros de impresión</p>
-    </div>
+  <div class="banner-content">
+    <h1>Promociones</h1>
+    <p>Encuentra las mejores ofertas en equipos y suministros de impresión</p>
+  </div>
 </div>
 
 <!-- <div class="container py-5">
@@ -18,42 +18,68 @@
 </div> -->
 
 <section id="printer-promotions">
-    <div class="container py-5">
-        <div class="promotion-header">
-            <div class="promotion-title-container">
-                <h1 class="section-title">Multifuncionales en Oferta</h1>
-                <h5 class="section-subtitle">Ahorra en equipos de alta calidad para todas tus necesidades de impresión.</h5>
-            </div>
-            <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/printers/list"><span class="button-label">Ver Multifuncionales</span></button></div>
-        </div>
-        <printer-promotion-list></printer-promotion-list>
+  <div class="container py-5">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Multifuncionales en Oferta</h1>
+        <h5 class="section-subtitle">
+          Ahorra en equipos de alta calidad para todas tus necesidades de
+          impresión.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
     </div>
+    <printer-promotion-list [requireDeals]="true"></printer-promotion-list>
+  </div>
 </section>
 
 <section id="printer-promotions">
-    <div class="container py-5">
-        <div class="promotion-header">
-            <div class="promotion-title-container">
-                <h1 class="section-title">Paquetes de Renta en Oferta</h1>
-                <h5 class="section-subtitle">Ofertas increíbles en alquiler de impresoras para cualquier proyecto.</h5>
-            </div>
-            <div class="promotion-links"><button class="button button-outlined-primary button-rounded" routerLink="/printers/list"><span class="button-label">Ver Multifuncionales</span></button></div>
-        </div>
-        <app-package-rent-promotion-list></app-package-rent-promotion-list>
+  <div class="container py-5">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Paquetes de Renta en Oferta</h1>
+        <h5 class="section-subtitle">
+          Ofertas increíbles en alquiler de impresoras para cualquier proyecto.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
     </div>
+    <app-package-rent-promotion-list></app-package-rent-promotion-list>
+  </div>
 </section>
 
 <section id="consumable-promotions">
-    <div class="container py-5">
-        <div class="promotion-header">
-            <div class="promotion-title-container">
-                <h1 class="section-title">Consumibles en Oferta</h1>
-                <h5 class="section-subtitle">Encuentra los mejores precios en tintas, tóneres y más.</h5>
-            </div>
-            <div class="promotion-links">
-                <button class="button button-outlined-primary button-rounded" routerLink="/consumables/list"><span class="button-label">Ver Consumibles</span></button>
-            </div>
-        </div>
-        <consumables-promotion-list></consumables-promotion-list>
+  <div class="container py-5">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Consumibles en Oferta</h1>
+        <h5 class="section-subtitle">
+          Encuentra los mejores precios en tintas, tóneres y más.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/consumables/list"
+        >
+          <span class="button-label">Ver Consumibles</span>
+        </button>
+      </div>
     </div>
+    <consumables-promotion-list></consumables-promotion-list>
+  </div>
 </section>
