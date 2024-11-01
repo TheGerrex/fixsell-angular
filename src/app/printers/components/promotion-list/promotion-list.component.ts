@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
 import SwiperCore, {
@@ -21,6 +21,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   styleUrls: ['./promotion-list.component.scss'],
 })
 export class PromotionListComponent implements OnInit, OnDestroy {
+  @Input() categories: string[] = []; // Accept categories as input
+  @Input() requireDeals: boolean = true;
   dealPrinters: Printer[] = [];
   isLoading = true;
   noDealsMessage = 'No hay ofertas al momento';
@@ -29,14 +31,24 @@ export class PromotionListComponent implements OnInit, OnDestroy {
   config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 8,
-    // navigation: false,
     autoplay: false,
     scrollbar: { draggable: true },
+<<<<<<< HEAD
 
+=======
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-next-button',
+      prevEl: '.swiper-prev-button',
+    },
+>>>>>>> dev
     breakpoints: {
       1024: {
         slidesPerView: 4,
-        spaceBetween: 24,
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
@@ -63,12 +75,18 @@ export class PromotionListComponent implements OnInit, OnDestroy {
         scrollbar: { draggable: true },
       },
     },
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> dev
   };
 
-  constructor(private printersService: PrintersService) {}
+  constructor(private printersService: PrintersService) { }
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
+<<<<<<< HEAD
       const currentDate = new Date();
       this.dealPrinters = printers.filter((printer) =>
         printer.deals.some((deal) => {
@@ -77,11 +95,21 @@ export class PromotionListComponent implements OnInit, OnDestroy {
           return startDate <= currentDate && endDate >= currentDate;
         })
       );
+=======
+      this.dealPrinters = this.filterPrinters(printers);
+>>>>>>> dev
       this.isLoading = false;
     });
   }
 
   ngOnDestroy(): void {
     this.promotionSwiper?.destroy(true, true);
+  }
+
+  private filterPrinters(printers: Printer[]): Printer[] {
+    return printers.filter(printer =>
+      (!this.requireDeals || printer.deals.length > 0) &&
+      (this.categories.length === 0 || this.categories.includes(printer.category))
+    );
   }
 }
