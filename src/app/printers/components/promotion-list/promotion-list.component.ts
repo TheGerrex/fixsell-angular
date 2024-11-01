@@ -33,9 +33,6 @@ export class PromotionListComponent implements OnInit, OnDestroy {
     spaceBetween: 8,
     autoplay: false,
     scrollbar: { draggable: true },
-<<<<<<< HEAD
-
-=======
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
@@ -44,7 +41,6 @@ export class PromotionListComponent implements OnInit, OnDestroy {
       nextEl: '.swiper-next-button',
       prevEl: '.swiper-prev-button',
     },
->>>>>>> dev
     breakpoints: {
       1024: {
         slidesPerView: 4,
@@ -75,29 +71,15 @@ export class PromotionListComponent implements OnInit, OnDestroy {
         scrollbar: { draggable: true },
       },
     },
-<<<<<<< HEAD
-=======
 
 
->>>>>>> dev
   };
 
   constructor(private printersService: PrintersService) { }
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
-<<<<<<< HEAD
-      const currentDate = new Date();
-      this.dealPrinters = printers.filter((printer) =>
-        printer.deals.some((deal) => {
-          const startDate = new Date(deal.dealStartDate);
-          const endDate = new Date(deal.dealEndDate);
-          return startDate <= currentDate && endDate >= currentDate;
-        })
-      );
-=======
       this.dealPrinters = this.filterPrinters(printers);
->>>>>>> dev
       this.isLoading = false;
     });
   }
