@@ -84,6 +84,11 @@
 }
 
 $font-family: "Cera Pro";
+
+html {
+  font-size: 100%; /* 16px */
+}
+
 body {
   width: 100%;
   height: 100%;
@@ -107,47 +112,43 @@ h6 {
 }
 
 h1 {
-  font-size: 35px;
-  line-height: 43.75px;
+  font-size: 2.1875rem; /* 35px */
+  line-height: 2.7344rem; /* 43.75px */
 }
 
 h2 {
-  font-size: 28px;
-  line-height: 35px;
+  font-size: 1.75rem; /* 28px */
+  line-height: 2.1875rem; /* 35px */
 }
 
 h3 {
-  font-size: 24.5px;
-  line-height: 30.6px;
+  font-size: 1.53125rem; /* 24.5px */
+  line-height: 1.9125rem; /* 30.6px */
 }
 
 h4 {
-  font-size: 21px;
-  line-height: 26.3px;
+  font-size: 1.3125rem; /* 21px */
+  line-height: 1.64375rem; /* 26.3px */
 }
 
 h5 {
-  font-size: 17.5px;
-  line-height: 21.9px;
+  font-size: 1.09375rem; /* 17.5px */
+  line-height: 1.36875rem; /* 21.9px */
 }
 
-h6 {
-  font-size: 16px;
-  line-height: 20px;
-}
-
+h6,
 p {
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1rem; /* 16px */
+  line-height: 1.25rem; /* 20px */
 }
 
 small {
-  font-size: 10.5px;
-  line-height: 13.1px;
+  font-size: 0.65625rem; /* 10.5px */
+  line-height: 0.81875rem; /* 13.1px */
 }
 
 li {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 // PrimeNG Components Font Change

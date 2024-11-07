@@ -1,128 +1,191 @@
 <section class="footer">
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-12">
-                <img src="../../../assets/logo/logo-fixsell-grande.svg" alt="logo-fixsell" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="col-12 col-md">
-                    <h4 class="footer-title">Acerca de Nosotros</h4>
-                    <p class="footer-company-bio">Empresa dedicada a la venta, renta, servicio de equipos de impresión y gestión documental. Utilizando tecnologías de innovación para añadir valor a las empresas. </p>
-                    <div class="icons">
-
-                        <a href="https://www.facebook.com/fixsell1" target="_blank">
-                            <i class="pi pi-facebook" style="font-size: 2rem"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/fixsell-del-norte/" target="_blank">
-                            <i class="pi pi-linkedin ms-2" style="font-size: 2rem"></i>
-                        </a>
-                    </div>
-                </div>
-                <p-divider class="d-block d-lg-none"></p-divider>
-                <div class="col-12 col-md">
-                    <h4 class="footer-title mt-lg-3">Mapa del Sitio</h4>
-                    <div class="map-site-links">
-                        <a routerLink="printers/intro">Multifuncionales</a>
-                        <a href="#">Servicios</a>
-                        <a routerLink="consumables/intro">Consumibles</a>
-                        <a routerLink="promociones">Promociones</a>
-                        <a routerLink="nosotros">Nosotros</a>
-                    </div>
-                </div>
-                <p-divider class="d-block d-lg-none"></p-divider>
-                <div class="col-12 col-md">
-                    <h4 class="footer-title mt-lg-3">Contacto</h4>
-                    <div class="footer-contact-container flex-md-row gap-3">
-                        <div class="wrap">
-                            <h6 class="wrap-title">División Monterrey</h6>
-                            <div class="wrap-item">
-                                <i class="pi pi-phone"></i>
-                                <a href="tel:8181143827"><p>8181143827</p></a>
-                            </div>
-                            <div class="wrap-item">
-                                <i class="pi pi-whatsapp"></i>
-                                <a href="https://wa.me/528115555784"><p>8115555784</p></a>
-                            </div>
-                            <div class="wrap-item">
-                                <i class="pi pi-envelope"></i>
-                                <a href="mailto:contacto@fixsell.mx"><p>contacto@fixsell.mx</p></a>
-                            </div>
-                            <div class="wrap-item">
-                                <i class="pi pi-map-marker"></i>
-                                <a href="https://maps.app.goo.gl/pJpSri8ju7nf1Kyz6" target="_blank">
-                                    <p>Platón Sánchez 721 Col. Centro <br>Monterrey 64000</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="wrap">
-                            <h6 class="wrap-title">División CDMX</h6>
-                            <div class="wrap-item">
-                                <i class="pi pi-phone"></i>
-                                <a href="tel:5567946325"><p>5567946325</p></a>
-                            </div>
-                            <div class="wrap-item">
-                                <i class="pi pi-whatsapp"></i>
-                                <a href="https://wa.me/5218116360234"><p>8116360234</p></a>
-                            </div>
-                            <div class="wrap-item">
-                                <i class="pi pi-envelope"></i>
-                                <a href="mailto:contactocdmx@fixsell.mx"><p>contactocdmx@fixsell.mx</p></a>
-                            </div>
-                            <div class="wrap-item">
-                                <i class="pi pi-map-marker"></i>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Camino+Real+de+Calacoaya+52A,+Ciudad+López+Mateos+52990" target="_blank">
-                                    <p>Camino Real de Calacoaya 52A <br>Ciudad López Mateos 52990</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <p-divider class="d-block d-lg-none"></p-divider>
-                <div class="col-12">
-                    <h4 class="footer-title">Escríbenos</h4>
-
-                    <p>Mandanos un mensaje y uno de nuestros asesores se pondra en contacto contigo.</p>
-
-                    <form class="form-contact mt-3" method="POST" [formGroup]="contactForm" (ngSubmit)="submitForm()">
-                        <div class="mb-3">
-                            <label class="form-label">Nombre o Empresa</label>
-                            <input type="text" formControlName="name" class="form-control" placeholder="Nombre o Empresa">
-                            <span *ngIf="isValidField('name')" class="form-text text-danger">
-                                {{ getFieldError('name') }}
-                            </span>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Teléfono</label>
-                            <input type="text" formControlName="number" class="form-control" placeholder="XX-XX-XX-XX-XX">
-                            <span *ngIf="isValidField('number')" class="form-text text-danger">
-                                {{ getFieldError('number') }}
-                            </span>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="text" formControlName="email" class="form-control" placeholder="ejemplo@mail.com">
-                            <span *ngIf="isValidField('email')" class="form-text text-danger">
-                                {{ getFieldError('email') }}
-                            </span>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Mensaje</label>
-                            <textarea type="text" formControlName="message" class="form-control" placeholder="Escribe un mensaje e inicia una conversación con nosotros"></textarea>
-                            <span *ngIf="isValidField('message')" class="form-text text-danger">
-                                {{ getFieldError('message') }}
-                            </span>
-                        </div>
-                        <button pButton type="submit" label="Enviar" class=" p-button-raised p-button-rounded w-100 mt-3 "></button>
-                    </form>
-                </div>
-            </div>
-        </div>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-12">
+        <img
+          src="../../../assets/logo/logo-fixsell-grande.svg"
+          alt="logo-fixsell"
+        />
+      </div>
     </div>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="col-12 col-md">
+          <h4 class="footer-title">Acerca de Nosotros</h4>
+          <p class="footer-company-bio">
+            Empresa dedicada a la venta, renta, servicio de equipos de impresión
+            y gestión documental. Utilizando tecnologías de innovación para
+            añadir valor a las empresas.
+          </p>
+          <div class="icons">
+            <a href="https://www.facebook.com/fixsell1" target="_blank">
+              <i class="pi pi-facebook" style="font-size: 2rem"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/fixsell-del-norte/"
+              target="_blank"
+            >
+              <i class="pi pi-linkedin ms-2" style="font-size: 2rem"></i>
+            </a>
+          </div>
+        </div>
+        <p-divider class="d-block d-lg-none"></p-divider>
+        <div class="col-12 col-md">
+          <h4 class="footer-title mt-lg-3">Mapa del Sitio</h4>
+          <div class="map-site-links">
+            <a routerLink="printers/intro">Multifuncionales</a>
+            <a href="#">Servicios</a>
+            <a routerLink="consumables/intro">Consumibles</a>
+            <a routerLink="promociones">Promociones</a>
+            <a routerLink="nosotros">Nosotros</a>
+          </div>
+        </div>
+        <p-divider class="d-block d-lg-none"></p-divider>
+        <div class="col-12 col-md">
+          <h4 class="footer-title mt-lg-3">Contacto</h4>
+          <div class="footer-contact-container flex-md-row gap-3">
+            <div class="wrap">
+              <h6 class="wrap-title">División Monterrey</h6>
+              <div class="wrap-item">
+                <i class="pi pi-phone"></i>
+                <a href="tel:8181143827"><p>8181143827</p></a>
+              </div>
+              <div class="wrap-item">
+                <i class="pi pi-whatsapp"></i>
+                <a href="https://wa.me/521816360234"><p>8116360234</p></a>
+              </div>
+              <div class="wrap-item">
+                <i class="pi pi-envelope"></i>
+                <a href="mailto:contacto@fixsell.mx"
+                  ><p>contacto&#64;fixsell.mx</p></a
+                >
+              </div>
+              <div class="wrap-item">
+                <i class="pi pi-map-marker"></i>
+                <a
+                  href="https://maps.app.goo.gl/pJpSri8ju7nf1Kyz6"
+                  target="_blank"
+                >
+                  <p>Platón Sánchez 721 Col. Centro <br />Monterrey 64000</p>
+                </a>
+              </div>
+            </div>
+            <div class="wrap">
+              <h6 class="wrap-title">División CDMX</h6>
+              <div class="wrap-item">
+                <i class="pi pi-phone"></i>
+                <a href="tel:5567946325"><p>5567946325</p></a>
+              </div>
+              <div class="wrap-item">
+                <i class="pi pi-whatsapp"></i>
+                <a href="https://wa.me/5218116360234"><p>8116360234</p></a>
+              </div>
+              <div class="wrap-item">
+                <i class="pi pi-envelope"></i>
+                <a href="mailto:contactocdmx@fixsell.mx"
+                  ><p>contactocdmx&#64;fixsell.mx</p></a
+                >
+              </div>
+              <div class="wrap-item">
+                <i class="pi pi-map-marker"></i>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Camino+Real+de+Calacoaya+52A,+Ciudad+López+Mateos+52990"
+                  target="_blank"
+                >
+                  <p>
+                    Camino Real de Calacoaya 52A <br />Ciudad López Mateos 52990
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <p-divider class="d-block d-lg-none"></p-divider>
+        <div class="col-12">
+          <h4 class="footer-title">Escríbenos</h4>
+
+          <p>
+            Mandanos un mensaje y uno de nuestros asesores se pondra en contacto
+            contigo.
+          </p>
+
+          <form
+            class="form-contact mt-3"
+            method="POST"
+            [formGroup]="contactForm"
+            (ngSubmit)="submitForm()"
+          >
+            <div class="mb-3">
+              <label class="form-label">Nombre o Empresa</label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                placeholder="Nombre o Empresa"
+              />
+              <span *ngIf="isValidField('name')" class="form-text text-danger">
+                {{ getFieldError("name") }}
+              </span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Teléfono</label>
+              <input
+                type="text"
+                formControlName="phone"
+                class="form-control"
+                placeholder="XX-XX-XX-XX-XX"
+              />
+              <span *ngIf="isValidField('phone')" class="form-text text-danger">
+                {{ getFieldError("phone") }}
+              </span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                placeholder="ejemplo@mail.com"
+              />
+              <span *ngIf="isValidField('email')" class="form-text text-danger">
+                {{ getFieldError("email") }}
+              </span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Mensaje</label>
+              <textarea
+                type="text"
+                formControlName="message"
+                class="form-control"
+                placeholder="Escribe un mensaje e inicia una conversación con nosotros"
+              ></textarea>
+              <span
+                *ngIf="isValidField('message')"
+                class="form-text text-danger"
+              >
+                {{ getFieldError("message") }}
+              </span>
+            </div>
+            <button
+              pButton
+              type="submit"
+              label="Enviar"
+              class="p-button-raised p-button-rounded w-100 mt-3"
+            ></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<div class="footer-social text-center ">
-    <p class="text-white m-0">Copyright © 2024 Fixsell del Norte - <a routerLink="aviso-de-privacidad" style="color: #FFF;">Aviso de Privacidad</a> - Desarrollado por GCube</p>
+<div class="footer-social text-center">
+  <p class="text-white m-0">
+    Copyright © 2024 Fixsell del Norte -
+    <a routerLink="aviso-de-privacidad" style="color: #fff"
+      >Aviso de Privacidad</a
+    >
+    - Desarrollado por GCube
+  </p>
 </div>
