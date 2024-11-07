@@ -1,1 +1,158 @@
-<p>office-printers works!</p>
+<div class="landing-container">
+  <section class="hero-container">
+    <div class="hero-message">
+      <h1 class="title">Venta y/o Renta de Impresoras para Oficinas</h1>
+      <div class="question-list">
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Estas iniciando un negocio de imprenta y requieres una o más
+            impresoras para iniciar la operación del mismo?
+          </p>
+        </div>
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Estas buscando agilizar algunos procesos internos de la empresa, con
+            una impresora que aparte de mejorar los costos de impresión, te
+            permita mandar copias en PDF a cuentas de correos de otros
+            departamentos?
+          </p>
+        </div>
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            En tu empresa están buscando ahorrar en costos de impresión y al
+            mismo tiempo simplificar y controlar el consumo por departamento?
+          </p>
+        </div>
+
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Tus procesos de impresión en tu empresa son tan críticos que
+            requieres que las impresoras cuenten con alertas para el
+            mantenimiento y recargas de toner y papel, así como contar con un
+            equipo técnico especializado para el mantenimiento preventivo y
+            correctivo de los equipos?
+          </p>
+        </div>
+      </div>
+      <div class="call-to-action">
+        <h5 class="subtitle">En Fixsell estamos para servirte:</h5>
+        <div class="action-buttons">
+          <a
+            href="tel:8181143827"
+            class="button button-primary button-rounded button-raised"
+          >
+            <i class="pi pi-phone"></i>
+            <span class="button-label">Llámanos</span>
+          </a>
+          <a
+            (click)="this.showContactDialogForm = true"
+            class="button button-outlined-primary button-rounded"
+          >
+            <i class="pi pi-envelope"></i>
+            <span class="button-label">Contáctanos</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-container">
+      <img
+        class="image-mobile"
+        src="../../../../../assets/img/marketing-landing-pages/workforce-wf-6590.jpg"
+        alt="accuriopress-6136-top-full"
+      />
+      <img
+        class="image-desktop"
+        src="../../../../../assets/img/marketing-landing-pages/bizhub-450i-large.png"
+        alt="bizhub-450i"
+      />
+    </div>
+  </section>
+  <section class="promotion-container">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h2 class="section-title">Impresoras de Oficina en Oferta</h2>
+        <h5 class="section-subtitle">
+          Equipos confiables y de alto rendimiento a precios inigualables para
+          tu oficina.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/promociones"
+        >
+          <span class="button-label">Ver Promociones</span>
+        </button>
+      </div>
+    </div>
+    <printer-promotion-list
+      [categories]="['Oficina']"
+      [requireDeals]="true"
+    ></printer-promotion-list>
+  </section>
+  <section class="rent-or-sale-container">
+    <div class="promo-card">
+      <div class="promo-card-content">
+        <div class="promo-card-image">
+          <img
+            src="../../../../../assets/img/marketing-landing-pages/ECOSYS-M6630cidn-left.png"
+            alt="ECOSYS-M3645idn-side"
+          />
+        </div>
+        <div class="promo-card-info">
+          <h3 class="promo-card-title">
+            Requieres nuevos equipos en venta para tu empresa?
+          </h3>
+          <p class="promo-card-subtitle">
+            ¡Conoce más y explora la alta variedad de multifuncionales en
+            nuestro catalogo!
+          </p>
+          <button
+            class="button button-secondary button-rounded button-raised"
+            (click)="navigateToProductListType('sellable')"
+          >
+            <i class="pi pi-print"></i>
+            <span class="button-label">Equipos en Venta</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="promo-card">
+      <div class="promo-card-content">
+        <div class="promo-card-image">
+          <img
+            src="../../../../../assets/img/marketing-landing-pages/TASKalfa-308ci-front.png"
+            alt="ECOSYS-M3645idn-side"
+          />
+        </div>
+        <div class="promo-card-info">
+          <h3 class="promo-card-title">
+            Interesado en nuestros equipos en renta?
+          </h3>
+          <p class="promo-card-subtitle">
+            Impresoras remanufacturadas con garantía y servicio técnico
+          </p>
+          <button
+            class="button button-secondary button-rounded button-raised"
+            (click)="navigateToProductListType('rentable')"
+          >
+            <i class="pi pi-shopping-bag"></i>
+            <span class="button-label">Equipos en Renta</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p-dialog
+    header="Contáctanos"
+    [modal]="true"
+    [(visible)]="showContactDialogForm"
+    [style]="{ width: '25rem' }"
+  >
+    <contact-email-form></contact-email-form>
+  </p-dialog>
+</div>

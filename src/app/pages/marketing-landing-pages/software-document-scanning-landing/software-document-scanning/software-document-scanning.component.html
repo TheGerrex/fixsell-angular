@@ -1,1 +1,340 @@
-<p>software-document-scanning works!</p>
+<div class="landing-container">
+  <section class="hero-container">
+    <div class="hero-message">
+      <h1 class="title">
+        Venta de Software y Equipo para Digitalización de Documentos
+      </h1>
+      <div class="question-list">
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            El archivo muerto de tu empresa es tan grande que ocupa demasiado
+            espacio entre archiveros/bodega y requieren darle un mejor uso a ese
+            espacio?
+          </p>
+        </div>
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            En tu empresa tienen necesidad de buscar información de años
+            anteriores y se tardan demasiado en encontrarla en el archivo
+            muerto?
+          </p>
+        </div>
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            Tu empresa esta en un proceso de mejora de procesos y están
+            considerando la digitalización de documentos?
+          </p>
+        </div>
+
+        <div class="question">
+          <i class="pi pi-question-circle"></i>
+          <p>
+            La seguridad y el acceso inmediato a documentos confidenciales de la
+            empresa es tan importante que requieren contar con una herramienta
+            que les ayude con esto?
+          </p>
+        </div>
+      </div>
+      <div class="call-to-action">
+        <h5 class="subtitle">En Fixsell estamos para servirte:</h5>
+        <div class="action-buttons">
+          <a
+            href="tel:8181143827"
+            class="button button-primary button-rounded button-raised"
+          >
+            <i class="pi pi-phone"></i>
+            <span class="button-label">Llámanos</span>
+          </a>
+          <a
+            (click)="this.showContactDialogForm = true"
+            class="button button-outlined-primary button-rounded"
+          >
+            <i class="pi pi-envelope"></i>
+            <span class="button-label">Contáctanos</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-container">
+      <img
+        class="image-mobile"
+        src="../../../../../assets/img/marketing-landing-pages/digitalizacion-documentos.png"
+        alt="digitalizacion-documentos"
+      />
+      <img
+        class="image-desktop"
+        src="../../../../../assets/img/marketing-landing-pages/software-gestion.jpg"
+        alt="software-gestion"
+      />
+    </div>
+  </section>
+  <section class="promotion-container">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h2 class="section-title">
+          Soluciones Integrales para la Gestión y Digitalización de Documentos
+        </h2>
+        <h5 class="section-subtitle">
+          Herramientas avanzadas para monitorizar, administrar y optimizar tus
+          recursos de impresión y gestión documental en la nube.
+        </h5>
+      </div>
+      <!-- <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/promociones"
+        >
+          <span class="button-label">Ver Promociones</span>
+        </button>
+      </div> -->
+    </div>
+    <section class="software-container">
+      <div class="software-card">
+        <div class="software-card-image">
+          <img
+            src="../../../assets/svg/home/proveedores/papercut.svg"
+            alt="papercut"
+          />
+        </div>
+        <div class="software-card-text">
+          <p>
+            PaperCut es un software que te ayuda a gestionar y monitorizar la
+            impresión en tu organización.
+          </p>
+        </div>
+        <div class="software-card-actions">
+          <button
+            class="button button-rounded button-outlined-primary"
+            (click)="showDialog('PaperCut')"
+          >
+            <span class="button-label">Solicitar Demostración</span>
+          </button>
+        </div>
+        <ul class="software-card-list">
+          <div class="item">
+            <i class="pi pi-chart-pie"></i>
+            <li>Establecer cuotas, políticas y restricciones de impresión</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-sitemap"></i>
+            <li>Asignar costos por departamento o proyecto</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-file"></i>
+            <li>Generar informes detallados</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-mobile"></i>
+            <li>Habilitar la impresión móvil y segura</li>
+          </div>
+        </ul>
+      </div>
+      <div class="software-card">
+        <div class="software-card-image">
+          <img
+            src="../../../assets/svg/home/proveedores/ysoft.svg"
+            alt="ysoft"
+            id="ysoft"
+          />
+        </div>
+        <div class="software-card-text">
+          <p>
+            Ysoft es un software que te ofrece soluciones de impresión, escaneo
+            y administración de dispositivos.
+          </p>
+        </div>
+        <div class="software-card-actions">
+          <button
+            class="button button-rounded button-outlined-primary"
+            (click)="showDialog('YSoft')"
+          >
+            <span class="button-label">Solicitar Demostración</span>
+          </button>
+        </div>
+        <ul class="software-card-list">
+          <div class="item">
+            <i class="pi pi-sync"></i>
+            <li>Automatizar los procesos de escaneo y digitalización</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-shield"></i>
+            <li>Mejorar la seguridad y el cumplimiento de los documentos</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-bolt"></i>
+            <li>Reducir el desperdicio y el consumo de energía</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-cog"></i>
+            <li>
+              Incrementar la productividad con flujos de trabajo automatizados
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div class="software-card">
+        <div class="software-card-image">
+          <img
+            src="../../../assets/svg/home/proveedores/kyocera.svg"
+            alt="kyocera"
+          />
+        </div>
+        <div class="software-card-text">
+          <p>
+            KFS es un software que te permite gestionar y mantener tus equipos
+            de impresión de forma remota.
+          </p>
+        </div>
+        <div class="software-card-actions">
+          <button
+            class="button button-rounded button-outlined-primary"
+            (click)="showDialog('KFS')"
+          >
+            <span class="button-label">Solicitar Demostración</span>
+          </button>
+        </div>
+        <ul class="software-card-list">
+          <div class="item">
+            <i class="pi pi-list"></i>
+            <li>Monitorear el estado y el rendimiento de tus dispositivos</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-bell"></i>
+            <li>Recibir alertas y notificaciones</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-check-circle"></i>
+            <li>Realizar diagnósticos y actualizaciones</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-wrench"></i>
+            <li>Optimizar el servicio técnico</li>
+          </div>
+        </ul>
+      </div>
+      <div class="software-card">
+        <div class="software-card-image">
+          <img
+            src="../../../assets/svg/home/proveedores/docuware.svg"
+            alt="docuware"
+          />
+        </div>
+        <div class="software-card-text">
+          <p>
+            Docuware es un software que te facilita la gestión documental en la
+            nube.
+          </p>
+        </div>
+        <div class="software-card-actions">
+          <button
+            class="button button-rounded button-outlined-primary"
+            (click)="showDialog('Docuware')"
+          >
+            <span class="button-label">Solicitar Demostración</span>
+          </button>
+        </div>
+        <ul class="software-card-list">
+          <div class="item">
+            <i class="pi pi-cloud-upload"></i>
+            <li>
+              Almacenar, organizar, buscar y compartir tus documentos de forma
+              segura y rápida
+            </li>
+          </div>
+          <div class="item">
+            <i class="pi pi-cog"></i>
+            <li>Crear flujos de trabajo automatizados</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-book"></i>
+            <li>Cumplir con las normativas legales y fiscales</li>
+          </div>
+          <div class="item">
+            <i class="pi pi-sync"></i>
+            <li>Integrar Docuware con otras aplicaciones</li>
+          </div>
+        </ul>
+      </div>
+    </section>
+  </section>
+  <section class="rent-or-sale-container">
+    <div class="promo-card">
+      <div class="promo-card-content">
+        <div class="promo-card-image">
+          <img
+            src="../../../../../assets/img/marketing-landing-pages/ECOSYS-M6630cidn-left.png"
+            alt="ECOSYS-M3645idn-side"
+          />
+        </div>
+        <div class="promo-card-info">
+          <h3 class="promo-card-title">
+            Requieres nuevos equipos en venta para tu empresa?
+          </h3>
+          <p class="promo-card-subtitle">
+            ¡Conoce más y explora la alta variedad de multifuncionales en
+            nuestro catalogo!
+          </p>
+          <button
+            class="button button-secondary button-rounded button-raised"
+            (click)="navigateToProductListType('sellable')"
+          >
+            <i class="pi pi-print"></i>
+            <span class="button-label">Equipos en Venta</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="promo-card">
+      <div class="promo-card-content">
+        <div class="promo-card-image">
+          <img
+            src="../../../../../assets/img/marketing-landing-pages/TASKalfa-308ci-front.png"
+            alt="ECOSYS-M3645idn-side"
+          />
+        </div>
+        <div class="promo-card-info">
+          <h3 class="promo-card-title">
+            Interesado en nuestros equipos en renta?
+          </h3>
+          <p class="promo-card-subtitle">
+            Impresoras remanufacturadas con garantía y servicio técnico
+          </p>
+          <button
+            class="button button-secondary button-rounded button-raised"
+            (click)="navigateToProductListType('rentable')"
+          >
+            <i class="pi pi-shopping-bag"></i>
+            <span class="button-label">Equipos en Renta</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p-dialog
+    header="Solicita Demostración"
+    [modal]="true"
+    [(visible)]="showDialogForm"
+    [style]="{ width: '25rem' }"
+  >
+    <software-email-form
+      [message]="
+        'Hola me interesa saber mas información sobre el software ' +
+        this.selectedProduct +
+        'Podrias mandarme mas información?'
+      "
+      [product]="this.selectedProduct"
+      [productType]="'software'"
+    ></software-email-form>
+  </p-dialog>
+  <p-dialog
+    header="Contáctanos"
+    [modal]="true"
+    [(visible)]="showContactDialogForm"
+    [style]="{ width: '25rem' }"
+  >
+    <contact-email-form></contact-email-form>
+  </p-dialog>
+</div>

@@ -1,102 +1,103 @@
-@import 'src/_variables.scss';
+@import "src/_variables.scss";
 .footer {
-    background-color: $light-100;
-    img {
-        width: 250px;
+  background-color: $light-100;
+  img {
+    width: 250px;
+  }
+  .footer-title {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 31.5px;
+    color: $header-text;
+    margin-bottom: 0.5em;
+  }
+  .footer-company-bio {
+    color: $text;
+    font-weight: 400;
+  }
+  .icons {
+    i {
+      cursor: pointer;
     }
-    .footer-title {
-        font-size: 21px;
-        font-weight: 600;
-        line-height: 31.5px;
-        color: $header-text;
-        margin-bottom: .5em;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    color: $secondary-text;
+  }
+  ul {
+    padding: 0;
+    li {
+      list-style-type: none;
+      margin-top: 15px;
     }
-    .footer-company-bio {
-        color: $text;
-    }
-    .icons {
-        i {
-            cursor: pointer;
-        }
-    }
-    p {
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 21px;
-        color: $secondary-text;
-    }
-    ul {
-        padding: 0;
-        li {
-            list-style-type: none;
-            margin-top: 15px;
-        }
-    }
+  }
 }
 
 .footer-contact-container {
-    display: flex;
-    flex-direction: column;
-    .wrap {
-        margin-bottom: 10px;
-        .wrap-title {
-            font-size: 1em;
-            font-weight: 600;
-            line-height: 1.5em;
-            color: $secondary-text;
-            margin-bottom: 15px;
-        }
-        .wrap-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            margin-bottom: 15px;
-            i {
-                margin-right: 10px;
-            }
-            p {
-                margin-bottom: 0;
-                color: $text;
-                &:hover {
-                    color: $primary-color;
-                }
-            }
-            a {
-                text-decoration: none;
-                
-            }	
-        }
+  display: flex;
+  flex-direction: column;
+  .wrap {
+    margin-bottom: 10px;
+    .wrap-title {
+      font-size: 1em;
+      font-weight: 600;
+      line-height: 1.5em;
+      color: $secondary-text;
+      margin-bottom: 15px;
     }
+    .wrap-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 15px;
+      i {
+        margin-right: 10px;
+      }
+      p {
+        margin-bottom: 0;
+        color: $text;
+        font-weight: 400;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 .form-contact {
-    width: 100%;
-    max-width: 768px;
-    span {
-        margin-top: 20px;
-    }
+  width: 100%;
+  max-width: 768px;
+  span {
+    margin-top: 20px;
+  }
 }
 
 :host ::ng-deep .p-inputnumber {
-    width: 100%;
+  width: 100%;
 }
 
 .footer-social {
-    width: 100%;
-    background-color: #172A3A;
-    padding: 10px 15px;
+  width: 100%;
+  background-color: #172a3a;
+  padding: 10px 15px;
 }
 
 .map-site-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    a {
-        color: $secondary-text;
-        font-weight: 500;
-        text-decoration: none;
-        &:hover {
-            color: $primary-color;
-        }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  a {
+    color: $text;
+    font-weight: 500;
+    text-decoration: none;
+    &:hover {
+      color: $primary-color;
     }
+  }
 }

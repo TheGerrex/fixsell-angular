@@ -19,6 +19,8 @@ import { SearchBarListComponent } from './components/search-bar-list/search-bar-
 import { SkeletonProductCardComponent } from './components/skeleton-product-card/skeleton-product-card.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PackageRentProductCardComponent } from './components/package-rent-product-card/package-rent-product-card.component';
+import { SoftwareEmailFormComponent } from './components/software-email-form/software-email-form.component';
+import { ContactEmailFormComponent } from './components/contact-email-form/contact-email-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PackageRentProductCardComponent } from './components/package-rent-produ
     SkeletonProductCardComponent,
     LoadingSpinnerComponent,
     PackageRentProductCardComponent,
+    SoftwareEmailFormComponent,
+    ContactEmailFormComponent,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -52,6 +56,8 @@ import { PackageRentProductCardComponent } from './components/package-rent-produ
     SkeletonProductCardComponent,
     LoadingSpinnerComponent,
     PackageRentProductCardComponent,
+    SoftwareEmailFormComponent,
+    ContactEmailFormComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -48,7 +48,7 @@ const routes: Routes = [
     component: Error404PageComponent,
   },
   {
-    path: 'impresoras-alta-gamma',
+    path: 'impresoras-alta-gama',
     component: HighEndPrintersComponent,
   },
   {

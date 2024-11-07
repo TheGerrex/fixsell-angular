@@ -1,0 +1,101 @@
+<span
+  class="p-text-secondary block mb-5"
+  *ngIf="!isSuccess && !isError && !isSubmitting"
+  >Compártenos tu información y pronto nos comunicaremos contigo.</span
+>
+<form
+  class="form-contact mt-3"
+  method="POST"
+  *ngIf="!isSuccess && !isError && !isSubmitting"
+  [formGroup]="contactForm"
+  (ngSubmit)="submitForm()"
+>
+  <div class="mb-3">
+    <label class="form-label form-contact-label">Nombre o Empresa</label>
+    <input
+      type="text"
+      formControlName="name"
+      class="form-control"
+      placeholder="Nombre o Empresa"
+      [class.is-invalid]="
+        contactForm.controls['name'].invalid &&
+        contactForm.controls['name'].touched
+      "
+    />
+    <span *ngIf="isValidField('name')" class="form-text text-danger">
+      {{ getFieldError("name") }}
+    </span>
+  </div>
+  <div class="mb-3">
+    <label class="form-label form-contact-label">Teléfono</label>
+    <input
+      type="text"
+      formControlName="phone"
+      class="form-control"
+      placeholder="XX-XX-XX-XX-XX"
+      [class.is-invalid]="
+        contactForm.controls['phone'].invalid &&
+        contactForm.controls['phone'].touched
+      "
+    />
+    <span *ngIf="isValidField('phone')" class="form-text text-danger">
+      {{ getFieldError("phone") }}
+    </span>
+  </div>
+  <div class="mb-3">
+    <label class="form-label form-contact-label">Email</label>
+    <input
+      type="text"
+      formControlName="email"
+      class="form-control"
+      placeholder="ejemplo@mail.com"
+      [class.is-invalid]="
+        contactForm.controls['email'].invalid &&
+        contactForm.controls['email'].touched
+      "
+    />
+    <span *ngIf="isValidField('email')" class="form-text text-danger">
+      {{ getFieldError("email") }}
+    </span>
+  </div>
+  <div class="mb-3">
+    <label class="form-label form-contact-label">Mensaje</label>
+    <textarea
+      type="text"
+      formControlName="message"
+      class="form-control"
+      placeholder="Escribe un mensaje e inicia una conversación con nosotros"
+      rows="5"
+      [class.is-invalid]="
+        contactForm.controls['message'].invalid &&
+        contactForm.controls['message'].touched
+      "
+    ></textarea>
+    <span *ngIf="isValidField('message')" class="form-text text-danger">
+      {{ getFieldError("message") }}
+    </span>
+  </div>
+  <button
+    pButton
+    type="submit"
+    label="Enviar"
+    class="p-button-raised p-button-rounded w-100"
+  ></button>
+</form>
+
+<loading-spinner *ngIf="isSubmitting"></loading-spinner>
+
+<div class="message-success" *ngIf="isSuccess">
+  <i class="pi pi-check-circle" style="font-size: 2em"></i>
+  <h5>Mensaje Enviado con Éxito</h5>
+  <p>
+    Gracias por contactarnos, pronto un asesor se pondra en comunicación
+    contigo.
+  </p>
+</div>
+
+<div class="message-error" *ngIf="isError">
+  <i class="pi pi-times-circle" style="font-size: 2em"></i>
+  <h5>Hubo un Error</h5>
+  <p>Vuelve a intentarlo más tarde, gracias.</p>
+</div>
