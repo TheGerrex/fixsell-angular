@@ -10,6 +10,8 @@ export class HighEndPrintersComponent {
 
   constructor(private router: Router) { }
 
+  showContactDialogForm = false;
+
   navigateToProductListType(type: string) {
     if (type === 'sellable') {
       this.router.navigate(['/printers/list'], {

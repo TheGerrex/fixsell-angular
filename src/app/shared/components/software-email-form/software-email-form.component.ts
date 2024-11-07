@@ -1,15 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ValidatorsService } from '../../services/validators.service';
 import { ProductContactFormService } from '../../services/forms/product-contact-form.service';
+
 @Component({
-  selector: 'product-email-form',
-  templateUrl: './product-email-form.component.html',
-  styleUrls: ['./product-email-form.component.scss'],
+  selector: 'software-email-form',
+  templateUrl: './software-email-form.component.html',
+  styleUrls: ['./software-email-form.component.scss']
 })
-export class ProductEmailFormComponent {
+export class SoftwareEmailFormComponent {
   @Input() message: string = '';
   @Input() product: string = '';
   @Input() productType: string = '';
@@ -20,7 +21,7 @@ export class ProductEmailFormComponent {
 
   private readonly baseUrl: string = environment.baseUrl;
 
-  public packageRentContactForm: FormGroup = this.formBuilder.group({
+  public softwareContactForm: FormGroup = this.formBuilder.group({
     companyName: ['', Validators.required],
     phone: ['', [Validators.required, Validators.pattern(this.validatorsService.numberPattern)]],
     email: ['', [Validators.required, Validators.pattern(this.validatorsService.emailPattern)]],
@@ -34,25 +35,25 @@ export class ProductEmailFormComponent {
   ) { }
 
   isValidField(field: string): boolean | null {
-    return this.validatorsService.isValidField(this.packageRentContactForm, field)
+    return this.validatorsService.isValidField(this.softwareContactForm, field)
   }
 
   getFieldError(field: string): string | null {
-    return this.validatorsService.getFieldError(this.packageRentContactForm, field)
+    return this.validatorsService.getFieldError(this.softwareContactForm, field)
   }
 
   submitForm() {
-    if (this.packageRentContactForm.invalid) {
-      this.packageRentContactForm.markAllAsTouched();
+    if (this.softwareContactForm.invalid) {
+      this.softwareContactForm.markAllAsTouched();
       return;
     }
-    const formData = this.packageRentContactForm.value;
+    const formData = this.softwareContactForm.value;
     this.isSubmitting = true;
     this.productContactFormService.submitForm(formData, this.product, this.productType).subscribe(
       () => {
         this.isSubmitting = false;
         this.isSuccess = true;
-        this.packageRentContactForm.reset();
+        this.softwareContactForm.reset();
       },
       () => {
         this.isSubmitting = false;

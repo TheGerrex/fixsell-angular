@@ -57,7 +57,7 @@
             <span class="button-label">Llámanos</span>
           </a>
           <a
-            href="mailto:contacto@fixsell.mx"
+            (click)="this.showContactDialogForm = true"
             class="button button-outlined-primary button-rounded"
           >
             <i class="pi pi-envelope"></i>
@@ -103,10 +103,6 @@
       [categories]="['Artes Graficas', 'Produccion']"
       [requireDeals]="true"
     ></printer-promotion-list>
-
-    <!-- <div class="hero-container py-5">
-      
-    </div> -->
   </section>
   <section class="rent-or-sale-container">
     <div class="promo-card">
@@ -148,7 +144,7 @@
             Interesado en nuestros equipos en renta?
           </h3>
           <p class="promo-card-subtitle">
-            Maquinas remanufacturadas con garantía y servicio técnico
+            Impresoras remanufacturadas con garantía y servicio técnico
           </p>
           <button
             class="button button-secondary button-rounded button-raised"
@@ -161,4 +157,12 @@
       </div>
     </div>
   </section>
+  <p-dialog
+    header="Contáctanos"
+    [modal]="true"
+    [(visible)]="showContactDialogForm"
+    [style]="{ width: '25rem' }"
+  >
+    <contact-email-form></contact-email-form>
+  </p-dialog>
 </div>
