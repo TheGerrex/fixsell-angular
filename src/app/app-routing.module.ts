@@ -52,11 +52,11 @@ const routes: Routes = [
     component: HighEndPrintersComponent,
   },
   {
-    path: 'impresoras-para-oficina',
+    path: 'impresoras-para-oficinas',
     component: OfficePrintersComponent,
   },
   {
-    path: 'plotter-impresoras-gran-formato',
+    path: 'plotters-impresoras-gran-formato',
     component: PlotterLargeFormatPrintersComponent,
   },
   {
