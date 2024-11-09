@@ -204,10 +204,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $primary-color-hover, $alpha: 0.1);
         border-color: $primary-color-hover;
+        color: $primary-color;
       }
       &:active {
         background: rgba($color: $primary-color-active, $alpha: 0.1);
         border-color: $primary-color-active;
+        color: $primary-color;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;
@@ -220,10 +222,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $secondary-color-hover, $alpha: 0.1);
         border-color: $secondary-color-hover;
+        color: $secondary-color;
       }
       &:active {
         background: rgba($color: $secondary-color-active, $alpha: 0.1);
         border-color: $secondary-color-active;
+        color: $secondary-color;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $secondary-color-focus;
@@ -236,10 +240,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $success-color-hover, $alpha: 0.1);
         border-color: $success-color-hover;
+        color: $success-color;
       }
       &:active {
         background: rgba($color: $success-color-active, $alpha: 0.1);
         border-color: $success-color-active;
+        color: $success-color;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $success-color-focus;
@@ -252,10 +258,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $info-color-hover, $alpha: 0.1);
         border-color: $info-color-hover;
+        color: $info-color;
       }
       &:active {
         background: rgba($color: $info-color-active, $alpha: 0.1);
         border-color: $info-color-active;
+        color: $info-color;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $info-color-focus;
@@ -268,10 +276,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $warning-color-hover, $alpha: 0.1);
         border-color: $warning-color-hover;
+        color: $warning-color;
       }
       &:active {
         background: rgba($color: $warning-color-active, $alpha: 0.1);
         border-color: $warning-color-active;
+        color: $warning-color;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $warning-color-focus;
@@ -284,10 +294,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $help-color-hover, $alpha: 0.1);
         border-color: $help-color-hover;
+        color: $help-color;
       }
       &:active {
         background: rgba($color: $help-color-active, $alpha: 0.1);
         border-color: $help-color-active;
+        color: $help-color;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $help-color-focus;
@@ -300,10 +312,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $danger-color-hover, $alpha: 0.1);
         border-color: $danger-color-hover;
+        color: $danger-color;
       }
       &:active {
         background: rgba($color: $danger-color-active, $alpha: 0.1);
         border-color: $danger-color-active;
+        color: $danger-color;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $danger-color-focus;
@@ -316,10 +330,12 @@ body .p-dialog {
       &:hover {
         background: rgba($color: $primary-color-hover, $alpha: 0.1);
         border-color: $primary-color-hover;
+        color: $white;
       }
       &:active {
         background: rgba($color: $primary-color-active, $alpha: 0.1);
         border-color: $primary-color-active;
+        color: $white;
       }
       &:focus {
         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $primary-color-focus;

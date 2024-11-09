@@ -10,6 +10,18 @@ export class OfficePrintersComponent {
   constructor(private router: Router) { }
   showContactDialogForm = false;
 
+  callPhoneNumber() {
+    window.location.href = 'tel:8181143827';
+  }
+
+  navigateToProductListTypeCategory(types: string[]) {
+    const categories = types.join(',');
+    this.router.navigate(['/printers/list'], {
+      queryParams: { categories: categories, filterCount: 1 },
+      queryParamsHandling: 'merge',
+    });
+  }
+
   navigateToProductListType(type: string) {
     if (type === 'sellable') {
       this.router.navigate(['/printers/list'], {

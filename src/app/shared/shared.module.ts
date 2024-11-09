@@ -21,6 +21,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { PackageRentProductCardComponent } from './components/package-rent-product-card/package-rent-product-card.component';
 import { SoftwareEmailFormComponent } from './components/software-email-form/software-email-form.component';
 import { ContactEmailFormComponent } from './components/contact-email-form/contact-email-form.component';
+import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ContactEmailFormComponent } from './components/contact-email-form/conta
     PackageRentProductCardComponent,
     SoftwareEmailFormComponent,
     ContactEmailFormComponent,
+    WhatsappButtonComponent,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -58,6 +60,7 @@ import { ContactEmailFormComponent } from './components/contact-email-form/conta
     PackageRentProductCardComponent,
     SoftwareEmailFormComponent,
     ContactEmailFormComponent,
+    WhatsappButtonComponent,
   ],
 })
 export class SharedModule { }
