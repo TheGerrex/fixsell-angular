@@ -9,7 +9,7 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent {
   items!: MenuItem[];
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.items = [
@@ -17,20 +17,27 @@ export class NavbarComponent {
         label: 'Productos',
         icon: 'pi pi-shopping-bag',
         items: [
-          // {
-          //   label: 'Renta',
-          //   icon: 'pi pi-print',
-          //   routerLink: ['/renta'],
-          // },
-          // {
-          //   label: 'Venta',
-          //   icon: 'pi pi-dollar',
-          //   routerLink: ['/venta'],
-          // },
           {
             label: 'Multifuncionales',
             icon: 'pi pi-print',
             routerLink: ['/printers/intro'],
+            items: [
+              {
+                label: 'Alta Gama',
+                // icon: 'pi pi-print',
+                routerLink: ['/impresoras-alta-gama'],
+              },
+              {
+                label: 'Oficina',
+                // icon: 'pi pi-print',
+                routerLink: ['/impresoras-para-oficina'],
+              },
+              {
+                label: 'Gran Formato',
+                // icon: 'pi pi-print',
+                routerLink: ['/plotter-impresoras-gran-formato'],
+              },
+            ]
           },
           {
             label: 'Consumibles',
@@ -40,6 +47,11 @@ export class NavbarComponent {
             //     {label: 'Toner', icon:'pi pi-palette'},
             //     {label: 'Refacciones', icon: 'pi pi-cog'},
             // ]
+          },
+          {
+            label: 'Software',
+            icon: 'pi pi-cog',
+            routerLink: ['/software-digitalizacion-documentos'],
           },
         ],
       },
