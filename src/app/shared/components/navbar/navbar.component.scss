@@ -1,12 +1,15 @@
+@import "../../../../variables";
+
 ::ng-deep .p-menubar {
-    height: 50px;
-    p-menubarsub {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    a.p-menubar-button {
-        order: 2;
-        margin-right: 10px;
-    }
+  font-family: "Cera Pro", sans-serif;
+  height: 50px;
+  p-menubarsub {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  a.p-menubar-button {
+    order: 2;
+    margin-right: 10px;
+  }
 }
