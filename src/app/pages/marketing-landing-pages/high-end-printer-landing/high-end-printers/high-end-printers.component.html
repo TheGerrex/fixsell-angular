@@ -49,20 +49,32 @@
       <div class="call-to-action">
         <h5 class="subtitle">En Fixsell estamos para servirte:</h5>
         <div class="action-buttons">
-          <a
-            href="tel:8181143827"
+          <button
+            (click)="callPhoneNumber()"
             class="button button-primary button-rounded button-raised"
           >
             <i class="pi pi-phone"></i>
             <span class="button-label">Llámanos</span>
-          </a>
-          <a
+          </button>
+          <button
             (click)="this.showContactDialogForm = true"
             class="button button-outlined-primary button-rounded"
           >
             <i class="pi pi-envelope"></i>
             <span class="button-label">Contáctanos</span>
-          </a>
+          </button>
+          <button
+            (click)="
+              navigateToProductListTypeCategory([
+                'Artes Graficas',
+                'Produccion'
+              ])
+            "
+            class="button button-outlined-secondary button-rounded"
+          >
+            <i class="pi pi-book"></i>
+            <span class="button-label">Catálogo</span>
+          </button>
         </div>
       </div>
     </div>

@@ -12,6 +12,10 @@ export class SoftwareDocumentScanningComponent {
   showDialogForm = false;
   showContactDialogForm = false;
 
+  callPhoneNumber() {
+    window.location.href = 'tel:8181143827';
+  }
+
   showDialog(product: string) {
     this.selectedProduct = product;
     this.showDialogForm = true;
