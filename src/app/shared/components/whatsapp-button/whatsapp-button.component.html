@@ -1,3 +1,9 @@
-<a (click)="openWhatsApp()" target="_blank" class="whatsapp-button">
+<a
+  (click)="openWhatsApp()"
+  target="_blank"
+  class="whatsapp-button"
+  [class.animate]="showMessage"
+>
+  <span *ngIf="showMessage" class="whatsapp-message">¡Háblanos!</span>
   <i class="pi pi-whatsapp"></i>
 </a>

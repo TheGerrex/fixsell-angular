@@ -29,6 +29,8 @@ import { OfficePrintersComponent } from './pages/marketing-landing-pages/office-
 import { PlotterLargeFormatPrintersComponent } from './pages/marketing-landing-pages/plotter-large-format-printers-landing/plotter-large-format-printers/plotter-large-format-printers.component';
 import { SoftwareDocumentScanningComponent } from './pages/marketing-landing-pages/software-document-scanning-landing/software-document-scanning/software-document-scanning.component';
 import { HighEndPrintersComponent } from './pages/marketing-landing-pages/high-end-printer-landing/high-end-printers/high-end-printers.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
+import { ReactiveFormsModule } from '@angular/forms';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -46,6 +48,7 @@ registerLocaleData(localeEs);
     OfficePrintersComponent,
     PlotterLargeFormatPrintersComponent,
     SoftwareDocumentScanningComponent,
+    ContactoComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ registerLocaleData(localeEs);
     SwiperModule,
     PrinterModule,
     ConsumablesModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent]
