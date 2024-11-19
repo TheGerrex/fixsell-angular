@@ -10,8 +10,6 @@ export class HighEndPrintersComponent {
 
   constructor(private router: Router) { }
 
-  showContactDialogForm = false;
-
   callPhoneNumber() {
     window.location.href = 'tel:8181143827';
   }

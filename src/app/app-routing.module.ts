@@ -12,6 +12,7 @@ import { HighEndPrintersComponent } from './pages/marketing-landing-pages/high-e
 import { OfficePrintersComponent } from './pages/marketing-landing-pages/office-printers-landing/office-printers/office-printers.component';
 import { PlotterLargeFormatPrintersComponent } from './pages/marketing-landing-pages/plotter-large-format-printers-landing/plotter-large-format-printers/plotter-large-format-printers.component';
 import { SoftwareDocumentScanningComponent } from './pages/marketing-landing-pages/software-document-scanning-landing/software-document-scanning/software-document-scanning.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'software-digitalizacion-documentos',
     component: SoftwareDocumentScanningComponent,
+  },
+  {
+    path: 'contacto',
+    component: ContactoComponent,
   },
   {
     path: 'printers',

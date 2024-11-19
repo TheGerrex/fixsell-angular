@@ -55,7 +55,7 @@
             <span class="button-label">Llámanos</span>
           </button>
           <button
-            (click)="this.showContactDialogForm = true"
+            routerLink="/contacto"
             class="button button-outlined-primary button-rounded"
           >
             <i class="pi pi-envelope"></i>
@@ -164,12 +164,4 @@
       </div>
     </div>
   </section>
-  <p-dialog
-    header="Contáctanos"
-    [modal]="true"
-    [(visible)]="showContactDialogForm"
-    [style]="{ width: '25rem' }"
-  >
-    <contact-email-form></contact-email-form>
-  </p-dialog>
 </div>
