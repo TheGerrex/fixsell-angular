@@ -32,7 +32,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
   filteredConsumables: Consumible[] = [];
   consumables: Consumible[] = [];
   isMobile?: boolean;
-  isLoading = false;
+  isLoading = true;
   filterBarOpen = false;
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;

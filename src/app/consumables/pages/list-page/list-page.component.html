@@ -29,7 +29,7 @@
                     </div>
                     <div class="product-list-container" #productList>
                         <ng-container *ngIf="filteredConsumables.length > 0; else noProducts">
-                            <consumable-product-card [consumible]="consumable" *ngFor="let consumable of currentPageFilteredConsumables" class="printer-product-card"></consumable-product-card>
+                            <consumable-product-card [consumible]="consumable" *ngFor="let consumable of currentPageFilteredConsumables" class="consumable-product-card-list"></consumable-product-card>
                         </ng-container>
                         <ng-template #noProducts>
                             <div class="not-found" *ngIf="!isLoading">

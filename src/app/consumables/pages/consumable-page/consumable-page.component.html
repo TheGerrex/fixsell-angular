@@ -1,9 +1,5 @@
-<section>
-    <div class="loading-screen" *ngIf="loading">
-        <div class="spinner-container">
-            <i class="pi pi-spin pi-spinner" style="font-size: 4rem"></i>
-        </div>
-    </div>
+<section style="width: 100%; height: calc(100vh - 80px);" *ngIf="loading">
+    <loading-spinner></loading-spinner>
 </section>
 <section>
     <div class="product-section" *ngIf="!loading">
@@ -49,8 +45,8 @@
                     </div>
                     <div class="printer-deal-price" *ngIf="consumable?.deals && consumable.deals.length > 0">
                         <h3>
-                            ${{ consumable.deals[0].dealPrice }} USD
-                            <span class="printer-price">${{ consumable.price }} USD</span>
+                            {{consumable.deals[0].dealPrice | currency:'$' : 'symbol' : '2.0-0'}} {{consumable.deals[0].dealCurrency}}
+                            <span class="printer-price">{{ consumable.price | currency:'$' : 'symbol' : '2.1-1'}} {{consumable.currency}}</span>
                         </h3>
                     </div>
                     <div class="actions-container">

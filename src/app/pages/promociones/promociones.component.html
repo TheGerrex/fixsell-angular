@@ -5,17 +5,28 @@
   </div>
 </div>
 
-<!-- <div class="container py-5">
+<!-- Display when there is a current event -->
+<div *ngIf="currentEvent">
+  <div class="container py-5">
     <div class="promotion-header">
-        <div class="promotion-title-container">
-            <h1 class="section-title">Evento del Mes</h1>
-            <p class="section-subtitle">Descubre promociones especiales y productos destacados</p>
-        </div>
+      <div class="promotion-title-container">
+        <h1 class="section-title">Evento Del Mes: {{ currentEvent.title }}</h1>
+        <p class="section-subtitle">
+          {{ currentEvent.description }}
+        </p>
+      </div>
     </div>
-    <div class="section-card">
-        <div class="section-card-background"></div>
+    <div class="section-card" [style.background-color]="dominantColor">
+      <div
+        class="section-card-background"
+        [style.background-image]="'url(' + currentEvent.image + ')'"
+      ></div>
     </div>
-</div> -->
+  </div>
+</div>
+
+<!-- Display default content when there is no current event -->
+<div *ngIf="!currentEvent"></div>
 
 <section id="printer-promotions">
   <div class="container py-5">

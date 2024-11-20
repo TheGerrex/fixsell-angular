@@ -1,7 +1,16 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay, Swiper } from 'swiper';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Thumbs,
+  SwiperOptions,
+  Autoplay,
+  Swiper,
+} from 'swiper';
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
@@ -86,4 +95,3 @@ export class PromotionListComponent implements OnInit, OnDestroy {
     );
   }
 }
-
