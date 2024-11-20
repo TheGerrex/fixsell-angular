@@ -1,5 +1,5 @@
-import { Consumible } from "./consumible.interface";
-import { Printer } from "./printer.interface";
+import { Consumible } from './consumible.interface';
+import { Printer } from './printer.interface';
 
 export interface Deal {
   id: number;
@@ -11,4 +11,15 @@ export interface Deal {
   dealCurrency: string;
   dealDiscountPercentage: number;
   dealDescription: string;
+}
+
+// events
+export interface EventData {
+  id: string;
+  image: string;
+  title: string;
+  startDate: Date;
+  endDate: Date;
+  description: string;
+  deals: Deal; // Array of Deal IDs
 }
