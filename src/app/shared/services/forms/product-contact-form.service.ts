@@ -54,7 +54,7 @@ export class ProductContactFormService {
           // Prepare the email data
           const emailData = {
             name: data.companyName,
-            number: data.phone,
+            phone: data.phone,
             email: data.email,
             message: data.message,
           };
