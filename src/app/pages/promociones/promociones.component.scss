@@ -1,91 +1,94 @@
 @import "../../../variables";
 .promotion-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../../../assets/img/promociones/deal-banner-3.jpg");
+  background-color: $gray-50;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  height: 300px;
+  padding: 64px;
+  .banner-content {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../../assets/img/promociones/deal-banner-3.jpg');
-    background-color: $gray-50;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    height: 300px;
-    padding: 64px;
-    .banner-content {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        h1 {
-            color: $white;
-            font-size: 40px;
-            font-weight: 600;
-        }
-        p {
-            color: $gray-200;
-            font-weight: 500;
-            margin: 0;
-        }
+    flex-direction: column;
+    text-align: center;
+    h1 {
+      color: $white;
+      font-size: 40px;
+      font-weight: 600;
     }
+    p {
+      color: $gray-200;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
 }
 
 .section-card {
-    width: 100%;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid $gray-300;
-    border-radius: 1em;
+  width: 100%;
+  /* Maintain Aspect Ratio (e.g., 16:9) */
+  aspect-ratio: 26 / 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $gray-300;
+  border-radius: 1em;
+  background-color: #ebeef5; // Default background color
+  transition: background-color 0.5s ease;
+  overflow: hidden; // Ensure child elements do not overflow
 }
 
 .section-card-background {
-    width: 100%;
-    height: 100%;
-    border-radius: 1em;
-    background-image: url("../../../assets/img/promociones/Banner-Promotion.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #EBEEF5;
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .section-title {
-    color: $text;
+  color: $text;
 }
 
 .section-subtitle {
-    font-weight: 500;
-    color: $secondary-text;
-    margin: 0;
+  font-weight: 500;
+  color: $secondary-text;
+  margin: 0;
 }
 
 #printer-promotions {
-    background-color: $gray-50;
-    width: 100%;
+  background-color: $gray-50;
+  width: 100%;
 }
 
 .promotion-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1em;
-    margin-bottom: 1em;
-    border-bottom: 1px solid $gray-200;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid $gray-200;
 }
 
 .promotion-links {
-    display: flex;
-    gap: .5em;
-    @media (max-width: 768px) {
-        width: 100%;
-        button {
-            width: 100%;
-        }
+  display: flex;
+  gap: 0.5em;
+  @media (max-width: 768px) {
+    width: 100%;
+    button {
+      width: 100%;
     }
+  }
 }
 
 .promotion-title-container {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }

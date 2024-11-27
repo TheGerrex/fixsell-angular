@@ -1,7 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay, Swiper } from 'swiper';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Thumbs,
+  SwiperOptions,
+  Autoplay,
+  Swiper,
+} from 'swiper';
 import { Package } from '../../interfaces/package.interface';
 
 // install Swiper modules
@@ -10,7 +19,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 @Component({
   selector: 'app-package-rent-promotion-list',
   templateUrl: './package-rent-promotion-list.component.html',
-  styleUrls: ['./package-rent-promotion-list.component.scss']
+  styleUrls: ['./package-rent-promotion-list.component.scss'],
 })
 export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
   dealRentPackagePrinters: Package[] = [];
@@ -24,7 +33,7 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
     // navigation: false,
     autoplay: false,
     scrollbar: { draggable: true },
-    
+
     breakpoints: {
       1024: {
         slidesPerView: 3,
@@ -35,14 +44,14 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
       },
       768: {
         slidesPerView: 2,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
       },
       508: {
         slidesPerView: 2,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
@@ -55,15 +64,18 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
         scrollbar: { draggable: true },
       },
     },
-
-    
   };
 
   constructor(private printersService: PrintersService) {}
 
   ngOnInit(): void {
     this.printersService.getRentPackages().subscribe((packages: Package[]) => {
-      this.dealRentPackagePrinters = packages
+      const currentDate = new Date();
+      this.dealRentPackagePrinters = packages.filter((pkg) => {
+        const startDate = new Date(pkg.packageStartDate);
+        const endDate = new Date(pkg.packageEndDate);
+        return startDate <= currentDate && endDate >= currentDate;
+      });
       this.isLoading = false;
     });
   }
@@ -72,4 +84,3 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
     this.promotionSwiper?.destroy(true, true);
   }
 }
-
