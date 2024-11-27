@@ -32,6 +32,7 @@ export class ContactFormService {
 
   submit(data: any): Observable<any> {
     const formData = data;
+    console.log(formData);
     // Make an HTTP POST request to your NestJS server
     return this.http.post(`${this.baseUrl}/email/send-email`, formData);
   }

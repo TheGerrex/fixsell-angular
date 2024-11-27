@@ -1,10 +1,39 @@
 @import "../../../variables";
 
+.contact-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../../../assets/img/contacto/mobile-phone-woman-s-hand-indoor-image.jpg");
+  background-size: cover;
+  background-position: 50% 30%;
+  background-repeat: no-repeat;
+  height: 300px;
+  padding: 64px;
+  .banner-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    h1 {
+      color: $white;
+      font-size: 40px;
+      font-weight: 600;
+    }
+    p {
+      color: $gray-200;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+}
+
 .contact-container {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   justify-content: center;
 
   @media (max-width: 768px) {
