@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Package } from 'src/app/printers/interfaces/package.interface';
-import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay } from 'swiper';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'app-promociones',
@@ -17,14 +17,14 @@ export class PromocionesComponent implements OnInit {
   thumbsSwiper: any;
   rentPackages: Package[] = [];
 
-  config: SwiperOptions = {
+  config: any = {
     slidesPerView: 1,
     spaceBetween: 8,
     navigation: false,
     autoplay: false,
     pagination: { clickable: true },
     scrollbar: { draggable: true },
-    
+
     breakpoints: {
       1024: {
         slidesPerView: 4,
@@ -36,7 +36,7 @@ export class PromocionesComponent implements OnInit {
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         // navigation: true,
         autoplay: false,
         pagination: { clickable: true },
@@ -53,10 +53,10 @@ export class PromocionesComponent implements OnInit {
     },
     // thumbs: {swiper: this.thumbsSwiper}
 
-    
+
   };
 
-  constructor(private router: Router, private printersService: PrintersService) {}
+  constructor(private router: Router, private printersService: PrintersService) { }
 
   ngOnInit(): void {
     this.printersService.getRentPackages().subscribe((rentPackages: Package[]) => {

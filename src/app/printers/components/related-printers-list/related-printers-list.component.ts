@@ -1,21 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import { SwiperOptions, Swiper } from 'swiper';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
+
+// install Swiper modules
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'related-printers-list',
   templateUrl: './related-printers-list.component.html',
   styleUrls: ['./related-printers-list.component.scss'],
 })
-export class RelatedPrintersListComponent {
+export class RelatedPrintersListComponent implements OnInit {
   @Input() printerProduct: Printer | undefined = undefined;
   relatedPrinters: Printer[] = [];
   isLoading = true;
   noDealsMessage = 'No hay productos relacionados al momento';
-  public relatedProductsSwiper?: Swiper;
 
-  config: SwiperOptions = {
+  config: any = {
     slidesPerView: 1,
     spaceBetween: 8,
     // navigation: false,
@@ -70,9 +73,5 @@ export class RelatedPrintersListComponent {
         this.isLoading = false;
       });
     }
-  }
-
-  ngOnDestroy(): void {
-    this.relatedProductsSwiper?.destroy(true, true);
   }
 }

@@ -1,27 +1,18 @@
 import {
   AfterViewInit,
   Component,
-  Input,
   OnDestroy,
   OnInit,
-  ViewEncapsulation,
 } from '@angular/core';
 import { ConsumableService } from '../../services/consumables.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
-// import Swiper core and required modules
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Thumbs,
-  Swiper,
-} from 'swiper';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'app-consumable-page',
@@ -42,7 +33,7 @@ export class ConsumablePageComponent implements OnInit, AfterViewInit, OnDestroy
     private consumableService: ConsumableService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params

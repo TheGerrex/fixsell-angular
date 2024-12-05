@@ -9,39 +9,40 @@
           <i class="pi pi-arrow-right"></i>
         </button>
       </div> -->
-      <swiper
-        class="promotion-swiper"
-        (swiper)="promotionSwiper = $event"
-        [config]="config"
-      >
+      <swiper-container class="promotion-swiper" [config]="config">
         <!-- Display skeleton card while loading -->
         <ng-container *ngIf="isLoading">
-          <ng-template swiperSlide>
-            <shared-skeleton-product-card></shared-skeleton-product-card>
+          <ng-template>
+            <swiper-slide>
+              <shared-skeleton-product-card> </shared-skeleton-product-card>
+            </swiper-slide>
           </ng-template>
-          <ng-template swiperSlide>
-            <shared-skeleton-product-card></shared-skeleton-product-card>
+          <ng-template>
+            <swiper-slide>
+              <shared-skeleton-product-card> </shared-skeleton-product-card>
+            </swiper-slide>
           </ng-template>
-          <ng-template swiperSlide>
-            <shared-skeleton-product-card></shared-skeleton-product-card>
-          </ng-template>
-          <ng-template swiperSlide>
-            <shared-skeleton-product-card></shared-skeleton-product-card>
+          <ng-template>
+            <swiper-slide>
+              <shared-skeleton-product-card> </shared-skeleton-product-card>
+            </swiper-slide>
           </ng-template>
         </ng-container>
 
         <!-- Display deals if available -->
         <ng-container *ngIf="!isLoading && dealPrinters.length > 0">
-          <ng-template swiperSlide *ngFor="let printer of dealPrinters">
-            <div class="printer-product-card-container">
-              <printer-product-card
-                [printer]="printer"
-                style="width: 100%"
-              ></printer-product-card>
-            </div>
+          <ng-template *ngFor="let printer of dealPrinters">
+            <swiper-slide>
+              <div class="printer-product-card-container">
+                <printer-product-card
+                  [printer]="printer"
+                  style="width: 100%"
+                ></printer-product-card>
+              </div>
+            </swiper-slide>
           </ng-template>
         </ng-container>
-      </swiper>
+      </swiper-container>
     </div>
   </div>
   <!-- Display no deals message if no deals are available -->

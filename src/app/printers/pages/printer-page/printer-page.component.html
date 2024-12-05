@@ -12,32 +12,38 @@
             </p>
           </div>
           <div class="swiper-container">
-            <swiper
+            <swiper-container
               class="mainSwiper"
-              (swiper)="mainSwiperInstance = $event"
-              [slidesPerView]="1"
-              [spaceBetween]="10"
-              [navigation]="true"
-              [pagination]="{ dynamicBullets: true }"
-              [centeredSlides]="true"
-              [thumbs]="{ swiper: thumbsSwiperInstance }"
+              slidesPerView="1"
+              spaceBetween="10"
+              navigation="true"
+              pagination="{ dynamicBullets: true }"
+              centeredSlides="true"
+              thumbs="{ swiper: thumbsSwiperInstance }"
             >
-              <ng-template swiperSlide *ngFor="let images of printer?.img_url"
-                ><img [src]="images" [alt]="printer.model" class="swiper-image"
-              /></ng-template>
-            </swiper>
-            <swiper
+              <ng-template *ngFor="let images of printer?.img_url">
+                <swiper-slide>
+                  <img
+                    [src]="images"
+                    [alt]="printer.model"
+                    class="swiper-image"
+                  />
+                </swiper-slide>
+              </ng-template>
+            </swiper-container>
+            <swiper-container
               class="thumbsSwiper"
-              (swiper)="thumbsSwiperInstance = $event"
-              [slidesPerView]="4"
-              [spaceBetween]="10"
-              [freeMode]="true"
-              [watchSlidesProgress]="true"
+              slidesPerView="4"
+              spaceBetween="10"
+              freeMode="true"
+              watchSlidesProgress="true"
             >
-              <ng-template swiperSlide *ngFor="let images of printer?.img_url"
-                ><img [src]="images" [alt]="printer.model"
-              /></ng-template>
-            </swiper>
+              <ng-template *ngFor="let images of printer?.img_url">
+                <swiper-slide>
+                  <img [src]="images" [alt]="printer.model" />
+                </swiper-slide>
+              </ng-template>
+            </swiper-container>
           </div>
         </div>
       </div>

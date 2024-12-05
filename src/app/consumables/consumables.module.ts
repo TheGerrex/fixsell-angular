@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ConsumablesRoutingModule } from './consumables-routing.module';
 import { PrimengModule } from '../primeng/primeng.module';
 
-import { SwiperModule } from 'swiper/angular';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ConsumablesIntroComponent } from './pages/consumables-intro/consumables-intro.component';
@@ -33,10 +32,10 @@ import { RelatedConsumablesListComponent } from './components/related-consumable
     CommonModule,
     ConsumablesRoutingModule,
     PrimengModule,
-    SwiperModule,
     FormsModule,
     SharedModule,
   ],
   exports: [PromotionListComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ConsumablesModule {}
+export class ConsumablesModule { }

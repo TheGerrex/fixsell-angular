@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay, Swiper } from 'swiper';
 import { Package } from '../../interfaces/package.interface';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
-  selector: 'app-package-rent-promotion-list',
+  selector: 'package-rent-promotion-list',
   templateUrl: './package-rent-promotion-list.component.html',
   styleUrls: ['./package-rent-promotion-list.component.scss']
 })
@@ -18,13 +18,13 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
   noDealsMessage = 'No hay ofertas al momento';
   public promotionSwiper?: Swiper;
 
-  config: SwiperOptions = {
+  config: any = {
     slidesPerView: 1,
     spaceBetween: 8,
     // navigation: false,
     autoplay: false,
     scrollbar: { draggable: true },
-    
+
     breakpoints: {
       1024: {
         slidesPerView: 3,
@@ -35,14 +35,14 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
       },
       768: {
         slidesPerView: 2,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
       },
       508: {
         slidesPerView: 2,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
@@ -56,10 +56,10 @@ export class PackageRentPromotionListComponent implements OnInit, OnDestroy {
       },
     },
 
-    
+
   };
 
-  constructor(private printersService: PrintersService) {}
+  constructor(private printersService: PrintersService) { }
 
   ngOnInit(): void {
     this.printersService.getRentPackages().subscribe((packages: Package[]) => {

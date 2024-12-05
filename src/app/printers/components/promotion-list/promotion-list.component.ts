@@ -1,10 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay, Swiper } from 'swiper';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'printer-promotion-list',
@@ -19,7 +20,7 @@ export class PromotionListComponent implements OnInit, OnDestroy {
   noDealsMessage = 'No hay ofertas al momento';
   public promotionSwiper?: Swiper;
 
-  config: SwiperOptions = {
+  config: any = {
     slidesPerView: 1,
     spaceBetween: 8,
     autoplay: false,

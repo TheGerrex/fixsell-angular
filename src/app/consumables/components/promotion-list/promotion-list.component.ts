@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Thumbs, SwiperOptions, Autoplay } from 'swiper';
 import { ConsumableService } from '../../services/consumables.service';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'consumables-promotion-list',
@@ -12,18 +13,17 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   styleUrls: ['./promotion-list.component.scss'],
 })
 export class PromotionListComponent implements OnInit {
-  thumbsSwiper: any;
   dealConsumables: Consumible[] = [];
   isLoading = true;
   noDealsMessage = 'No hay ofertas al momento';
 
-  config: SwiperOptions = {
+  config: any = {
     slidesPerView: 1,
     spaceBetween: 8,
     // navigation: false,
     autoplay: false,
     scrollbar: { draggable: true },
-    
+
     breakpoints: {
       1024: {
         slidesPerView: 4,
@@ -34,7 +34,7 @@ export class PromotionListComponent implements OnInit {
       },
       768: {
         slidesPerView: 3,
-        spaceBetween: 16, 
+        spaceBetween: 16,
         navigation: true,
         autoplay: false,
         scrollbar: { draggable: true },
@@ -47,12 +47,10 @@ export class PromotionListComponent implements OnInit {
         scrollbar: { draggable: true },
       },
     },
-    // thumbs: {swiper: this.thumbsSwiper}
 
-    
   };
 
-  constructor(private consumableService: ConsumableService) {}
+  constructor(private consumableService: ConsumableService) { }
 
   ngOnInit(): void {
     this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
