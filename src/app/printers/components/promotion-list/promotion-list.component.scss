@@ -1,52 +1,8 @@
 @import "../../../../variables";
-.printer-product-card-container {
-  display: flex;
-  width: 100%;
-}
 
-.box-container {
+.promotion-container {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  .swiper-container {
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
-    z-index: 1;
-    height: 100%;
-  }
-}
-
-swiper {
-  --swiper-navigation-color: #172a3a;
-  --swiper-pagination-color: #3c81f6;
-}
-
-.swiper-wrapper {
-  align-items: stretch;
-  // padding: 0 3em;
-}
-
-.swiper-slide {
-  display: flex;
-  flex-direction: column;
-  align-self: stretch; // Add this line
-  background-color: transparent;
-  // margin: 0px 16px;
-  // margin-right: 0 !important;
-}
-
-.section-title {
-  color: $text;
-}
-
-.promotion-title-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .not-found {
@@ -77,21 +33,37 @@ swiper {
   gap: 0.5rem;
   align-items: center;
   justify-content: flex-end;
-  padding: 0.5rem;
 }
 
 .swiper-next-button,
 .swiper-prev-button {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 32px;
   height: 32px;
   border-radius: 32px;
-  background-color: $gray-100;
-  border: none;
+  background-color: $white;
+  border: 1px solid $gray-200;
 
   &:hover {
+    background-color: $gray-100;
+  }
+
+  &:active {
     background-color: $gray-200;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  i {
+    color: $gray-800;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
   }
 }

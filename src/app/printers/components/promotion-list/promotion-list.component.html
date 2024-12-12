@@ -1,53 +1,39 @@
 <div class="promotion-container">
-  <div class="box-container">
-    <div class="swiper-container">
-      <!-- <div class="page-buttons">
-        <button class="swiper-prev-button">
-          <i class="pi pi-arrow-left"></i>
-        </button>
-        <button class="swiper-next-button">
-          <i class="pi pi-arrow-right"></i>
-        </button>
-      </div> -->
-      <swiper-container class="promotion-swiper" [config]="config">
-        <!-- Display skeleton card while loading -->
-        <ng-container *ngIf="isLoading">
-          <ng-template>
-            <swiper-slide>
-              <shared-skeleton-product-card> </shared-skeleton-product-card>
-            </swiper-slide>
-          </ng-template>
-          <ng-template>
-            <swiper-slide>
-              <shared-skeleton-product-card> </shared-skeleton-product-card>
-            </swiper-slide>
-          </ng-template>
-          <ng-template>
-            <swiper-slide>
-              <shared-skeleton-product-card> </shared-skeleton-product-card>
-            </swiper-slide>
-          </ng-template>
-        </ng-container>
+  <swiper-container
+    appSwiper
+    #swiperContainer
+    [config]="swiperOptions"
+    *ngIf="!isLoading && dealPrinters.length > 0"
+  >
+    <ng-container *ngFor="let printer of dealPrinters">
+      <swiper-slide>
+        <printer-product-card
+          [printer]="printer"
+          style="width: 100%"
+        ></printer-product-card>
+      </swiper-slide>
+    </ng-container>
+    <div class="swiper-pagination"></div>
 
-        <!-- Display deals if available -->
-        <ng-container *ngIf="!isLoading && dealPrinters.length > 0">
-          <ng-template *ngFor="let printer of dealPrinters">
-            <swiper-slide>
-              <div class="printer-product-card-container">
-                <printer-product-card
-                  [printer]="printer"
-                  style="width: 100%"
-                ></printer-product-card>
-              </div>
-            </swiper-slide>
-          </ng-template>
-        </ng-container>
-      </swiper-container>
-    </div>
+    <ng-container *ngIf="isLoading">
+      <swiper-slide *ngFor="let i of [1, 2, 3]">
+        <shared-skeleton-product-card></shared-skeleton-product-card>
+      </swiper-slide>
+    </ng-container>
+  </swiper-container>
+  <div class="page-buttons">
+    <button
+      (click)="goToPrev()"
+      [disabled]="isBeginning"
+      class="swiper-prev-button"
+    >
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <button (click)="goToNext()" [disabled]="isEnd" class="swiper-next-button">
+      <i class="pi pi-arrow-right"></i>
+    </button>
   </div>
-  <!-- Display no deals message if no deals are available -->
-  <div class="not-found" *ngIf="!isLoading && dealPrinters.length === 0">
-    <i class="pi pi-exclamation-triangle" style="font-size: 4rem"></i>
+  <ng-container *ngIf="!isLoading && dealPrinters.length === 0">
     <p>{{ noDealsMessage }}</p>
-  </div>
+  </ng-container>
 </div>
