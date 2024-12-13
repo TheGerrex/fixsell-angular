@@ -33,8 +33,12 @@ export class PromotionListComponent implements OnInit {
         slidesPerView: 1,
         spaceBetween: 8,
       },
-      '@0.75': {
+      '@0.45': {
         slidesPerView: 2,
+        spaceBetween: 12,
+      },
+      '@0.75': {
+        slidesPerView: 3,
         spaceBetween: 12,
       },
       '@1.00': {

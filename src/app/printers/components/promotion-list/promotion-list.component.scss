@@ -14,16 +14,16 @@
 
 .page-buttons {
   position: absolute;
-  top: 39%;
+  top: 50%;
   width: 100%;
   display: flex;
   justify-content: space-between;
   opacity: 0;
-  padding: 0px 4px;
 }
 
 .swiper-next-button,
 .swiper-prev-button {
+  position: absolute;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -34,7 +34,7 @@
   background-color: $white;
   border: 1px solid transparent;
   z-index: 10;
-  box-shadow: $box-shadow-1;
+  box-shadow: $box-shadow-2;
 
   &:hover {
     background-color: $gray-100;
@@ -61,11 +61,11 @@
 }
 
 .swiper-prev-button {
-  left: 0;
+  left: 4px;
 }
 
 .swiper-next-button {
-  right: 0;
+  right: 4px;
 }
 
 .not-found {

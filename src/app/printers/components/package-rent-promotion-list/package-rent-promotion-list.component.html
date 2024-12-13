@@ -5,7 +5,7 @@
   >
     <button
       (click)="goToPrev()"
-      [hidden]="!showNavigation"
+      [hidden]="!showNavigation || isBeginning"
       [disabled]="isBeginning"
       class="swiper-prev-button"
     >
@@ -13,7 +13,7 @@
     </button>
     <button
       (click)="goToNext()"
-      [hidden]="!showNavigation"
+      [hidden]="!showNavigation || isEnd"
       [disabled]="isEnd"
       class="swiper-next-button"
     >
