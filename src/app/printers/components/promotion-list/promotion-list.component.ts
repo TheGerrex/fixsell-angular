@@ -30,7 +30,6 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     spaceBetween: 8,
     autoplay: false,
     scrollbar: { draggable: true },
-
     breakpoints: {
       '@0.00': {
         slidesPerView: 1,
@@ -48,28 +47,6 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
         slidesPerView: 4,
         spaceBetween: 24,
       },
-      // 1440: {
-      //   slidesPerView: 4,
-      //   spaceBetween: 16,
-      // },
-      // 1024: {
-      //   slidesPerView: 3,
-      //   spaceBetween: 16,
-      // },
-      // 768: {
-      //   slidesPerView: 3,
-      //   spaceBetween: 16,
-      // },
-      // 500: {
-      //   slidesPerView: 2,
-      //   spaceBetween: 16,
-      //   navigation: false,
-      // },
-      // 375: {
-      //   slidesPerView: 1,
-      //   spaceBetween: 8,
-      //   navigation: false,
-      // },
     },
     on: {
       init: () => this.updateNavigation(),
@@ -79,6 +56,15 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
 
   constructor(private printersService: PrintersService) { }
 
+  ngOnInit(): void {
+    this.printersService.getPrinters().subscribe((printers: Printer[]) => {
+      this.dealPrinters = this.filterPrinters(printers);
+      this.isLoading = false;
+      setTimeout(() => {
+        this.updateNavigation(); // Update navigation after loading data
+      });
+    });
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -86,15 +72,9 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
         const swiperInstance = this.swiperContainer.nativeElement.swiper;
         swiperInstance.on('slideChange', this.updateNavigation.bind(this));
         swiperInstance.on('init', this.updateNavigation.bind(this));
+        swiperInstance.update();
         this.updateNavigation(); // Initial update
       }
-    });
-  }
-
-  ngOnInit(): void {
-    this.printersService.getPrinters().subscribe((printers: Printer[]) => {
-      this.dealPrinters = this.filterPrinters(printers);
-      this.isLoading = false;
     });
   }
 
@@ -117,9 +97,9 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     const swiperInstance = this.swiperContainer.nativeElement.swiper;
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
-    console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd);
+    this.showNavigation = this.dealPrinters.length > (swiperInstance.params.slidesPerView as number);
+    // console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation);
   }
-
 
   private filterPrinters(printers: Printer[]): Printer[] {
     return printers.filter(printer =>

@@ -1,4 +1,22 @@
-<div class="promotion-container">
+<div class="swiper-container-wrapper">
+  <div class="page-buttons" *ngIf="!isLoading && dealPrinters.length > 0">
+    <button
+      (click)="goToPrev()"
+      [hidden]="!showNavigation"
+      [disabled]="isBeginning"
+      class="swiper-prev-button"
+    >
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <button
+      (click)="goToNext()"
+      [hidden]="!showNavigation"
+      [disabled]="isEnd"
+      class="swiper-next-button"
+    >
+      <i class="pi pi-arrow-right"></i>
+    </button>
+  </div>
   <swiper-container
     appSwiper
     #swiperContainer
@@ -16,24 +34,15 @@
     <div class="swiper-pagination"></div>
 
     <ng-container *ngIf="isLoading">
-      <swiper-slide *ngFor="let i of [1, 2, 3]">
+      <swiper-slide *ngFor="let i of [1, 2, 3, 4]">
         <shared-skeleton-product-card></shared-skeleton-product-card>
       </swiper-slide>
     </ng-container>
   </swiper-container>
-  <div class="page-buttons">
-    <button
-      (click)="goToPrev()"
-      [disabled]="isBeginning"
-      class="swiper-prev-button"
-    >
-      <i class="pi pi-arrow-left"></i>
-    </button>
-    <button (click)="goToNext()" [disabled]="isEnd" class="swiper-next-button">
-      <i class="pi pi-arrow-right"></i>
-    </button>
-  </div>
   <ng-container *ngIf="!isLoading && dealPrinters.length === 0">
-    <p>{{ noDealsMessage }}</p>
+    <div class="not-found">
+      <i class="pi pi-exclamation-triangle"></i>
+      <p>{{ noDealsMessage }}</p>
+    </div>
   </ng-container>
 </div>

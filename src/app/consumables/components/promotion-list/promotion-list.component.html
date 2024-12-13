@@ -1,52 +1,48 @@
-<div class="promotion-container">
-  <div class="box-container">
-    <div class="swiper-container">
-      <swiper-container
-        class="promotion-swiper"
-        style="
-          --swiper-navigation-color: #172a3a;
-          --swiper-pagination-color: #3c81f6;
-        "
-        [config]="config"
-      >
-        <!-- Display skeleton card while loading -->
-        <ng-container *ngIf="isLoading">
-          <ng-template>
-            <swiper-slide>
-              <shared-skeleton-product-card> </shared-skeleton-product-card>
-            </swiper-slide>
-          </ng-template>
-          <ng-template>
-            <swiper-slide>
-              <shared-skeleton-product-card> </shared-skeleton-product-card>
-            </swiper-slide>
-          </ng-template>
-          <ng-template>
-            <swiper-slide>
-              <shared-skeleton-product-card> </shared-skeleton-product-card>
-            </swiper-slide>
-          </ng-template>
-        </ng-container>
+<div class="swiper-container-wrapper">
+  <div class="page-buttons" *ngIf="!isLoading && dealConsumables.length > 0">
+    <button
+      (click)="goToPrev()"
+      [hidden]="!showNavigation"
+      [disabled]="isBeginning"
+      class="swiper-prev-button"
+    >
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <button
+      (click)="goToNext()"
+      [hidden]="!showNavigation"
+      [disabled]="isEnd"
+      class="swiper-next-button"
+    >
+      <i class="pi pi-arrow-right"></i>
+    </button>
+  </div>
+  <swiper-container
+    appSwiper
+    #swiperContainer
+    [config]="swiperOptions"
+    *ngIf="!isLoading && dealConsumables.length > 0"
+  >
+    <ng-container *ngFor="let consumable of dealConsumables">
+      <swiper-slide>
+        <consumable-product-card
+          [consumible]="consumable"
+          style="width: 100%"
+        ></consumable-product-card>
+      </swiper-slide>
+    </ng-container>
+    <div class="swiper-pagination"></div>
 
-        <!-- Display deals if available -->
-        <ng-container *ngIf="!isLoading && dealConsumables.length > 0">
-          <ng-template *ngFor="let consumable of dealConsumables">
-            <swiper-slide>
-              <div class="printer-product-card-container">
-                <consumable-product-card
-                  [consumible]="consumable"
-                  style="width: 100%"
-                ></consumable-product-card>
-              </div>
-            </swiper-slide>
-          </ng-template>
-        </ng-container>
-      </swiper-container>
+    <ng-container *ngIf="isLoading">
+      <swiper-slide *ngFor="let i of [1, 2, 3, 4]">
+        <shared-skeleton-product-card></shared-skeleton-product-card>
+      </swiper-slide>
+    </ng-container>
+  </swiper-container>
+  <ng-container *ngIf="!isLoading && dealConsumables.length === 0">
+    <div class="not-found">
+      <i class="pi pi-exclamation-triangle"></i>
+      <p>{{ noDealsMessage }}</p>
     </div>
-  </div>
-  <!-- Display no deals message if no deals are available -->
-  <div class="not-found" *ngIf="!isLoading && dealConsumables.length === 0">
-    <i class="pi pi-exclamation-triangle" style="font-size: 4rem"></i>
-    <p>{{ noDealsMessage }}</p>
-  </div>
+  </ng-container>
 </div>
