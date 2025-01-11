@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { PrintersService } from '../../services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
@@ -31,6 +31,8 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
   mainSwiperInstance?: Swiper;
   thumbSwiperInstance?: Swiper;
   paginationVisible: boolean = window.innerWidth < 768;
+  currentSlideIndex: number = 0;
+  totalSlides: number = 0;
 
   mainSwiperOptions: SwiperOptions = {
     slidesPerView: 1,
@@ -38,6 +40,7 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
     autoplay: false,
     pagination: this.paginationVisible ? { dynamicBullets: true } : false,
     centeredSlides: true,
+    allowTouchMove: this.paginationVisible ? true : false,
     thumbs: {
       swiper: null,
     },
@@ -77,27 +80,33 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
     private printersService: PrintersService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    this.loadPrinterData();
+    this.checkScreenWidth();
+    window.addEventListener('resize', () => this.checkScreenWidth());
+  }
+
+  private loadPrinterData(): void {
     this.activatedRoute.params
       .pipe(
-        switchMap(({ id }) => this.printersService.getPrinterById(id)),
-      ).subscribe(printer => {
-        if (!printer) return this.router.navigate(['printers/list']);
+        switchMap(({ id }) => this.printersService.getPrinterById(id))
+      )
+      .subscribe(printer => {
+        if (!printer) {
+          this.router.navigate(['printers/list']);
+          return;
+        }
         this.printer = printer;
         this.images = this.printer.img_url.map(url => ({
           itemImageSrc: url,
           thumbnailImageSrc: url
         }));
         this.loading = false;
-        setTimeout(() => {
-          this.updateNavigation(); // Update navigation after loading data
-        });
-        return;
-      })
-    this.checkScreenWidth();
-    window.addEventListener('resize', this.checkScreenWidth.bind(this));
+        setTimeout(() => this.updateNavigation(), 0); // Update navigation after loading data
+      });
   }
 
   ngAfterViewInit(): void {
@@ -107,39 +116,60 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
 
     window.scrollTo(0, 0);
     setTimeout(() => {
-      if (this.swiperContainer) {
-        this.mainSwiperInstance = this.swiperContainer.nativeElement.swiper;
-        this.thumbSwiperInstance = this.thumbSwiperContainer.nativeElement.swiper;
-        this.mainSwiperInstance.on('slideChange', this.updateNavigation.bind(this));
-        this.mainSwiperInstance.on('init', this.updateNavigation.bind(this));
-        this.mainSwiperInstance.update();
-        this.updateNavigation(); // Initial update
-      }
-    });
+      this.initializeMainSwiper();
+    }, 100); // Ensure the swiper instances are fully initialized
     this.initializeThumbsSwiper();
   }
 
-  initializeThumbsSwiper(): void {
+  private initializeMainSwiper(): void {
+    if (!this.swiperContainer) {
+      console.error("swiperContainer is not defined");
+      return;
+    }
+
+    this.mainSwiperInstance = this.swiperContainer.nativeElement.swiper;
+
+    if (!this.mainSwiperInstance) {
+      console.error("mainSwiperInstance is not defined");
+      return;
+    }
+
+    console.log("mainSwiperInstance initialized");
+    this.mainSwiperInstance.on('slideChangeTransitionEnd', () => {
+      console.log("slideChange event triggered");
+      this.updateNavigation();
+    });
+    this.mainSwiperInstance.on('init', () => {
+      console.log("init event triggered");
+      this.updateNavigation();
+    });
+    this.mainSwiperInstance.update();
+    this.updateNavigation(); // Initial update
+  }
+
+  private initializeThumbsSwiper(): void {
     setTimeout(() => {
       console.log("initializeThumbsSwiper called");
-      if (this.thumbSwiperContainer && this.swiperContainer) {
-        console.log("thumbSwiperContainer and swiperContainer are defined");
-        const thumbSwiperInstance = this.thumbSwiperContainer.nativeElement.swiper;
-        const mainSwiperInstance = this.swiperContainer.nativeElement.swiper;
-
-        if (thumbSwiperInstance && mainSwiperInstance) {
-          console.log("thumbSwiperInstance and mainSwiperInstance are defined");
-          this.thumbSwiperInstance = thumbSwiperInstance;
-          mainSwiperInstance.thumbs.swiper = this.thumbSwiperInstance;
-          this.updateMainSwiperThumbs();
-          this.addHoverEffectToThumbs();
-        } else {
-          console.error("thumbSwiperInstance or mainSwiperInstance is not defined");
-        }
-      } else {
-        console.error("thumbSwiperContainer or swiperContainer is not defined");
+      if (!this.thumbSwiperContainer) {
+        console.error("thumbSwiperContainer is not defined");
+        return;
       }
-    }, 1000);
+
+      console.log("thumbSwiperContainer and swiperContainer are defined");
+      const thumbSwiperInstance = this.thumbSwiperContainer.nativeElement.swiper;
+      const mainSwiperInstance = this.swiperContainer.nativeElement.swiper;
+
+      if (!thumbSwiperInstance || !mainSwiperInstance) {
+        console.error("thumbSwiperInstance or mainSwiperInstance is not defined");
+        return;
+      }
+
+      console.log("thumbSwiperInstance and mainSwiperInstance are defined");
+      this.thumbSwiperInstance = thumbSwiperInstance;
+      mainSwiperInstance.thumbs.swiper = this.thumbSwiperInstance;
+      this.updateMainSwiperThumbs();
+      this.addHoverEffectToThumbs();
+    }, 100);
   }
 
   updateMainSwiperThumbs(): void {
@@ -158,7 +188,7 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    const thumbSlides = this.thumbSwiperContainer.nativeElement.querySelectorAll('.swiper-slide');
+    const thumbSlides = this.thumbSwiperContainer.nativeElement.querySelectorAll('.thumbsSwiper-slide');
     if (thumbSlides.length === 0) {
       console.error("No thumb slides found");
       return;
@@ -168,7 +198,7 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
       const thumbSlide = slide as HTMLElement;
       thumbSlide.addEventListener('mouseenter', () => {
         console.log(`Hovering over thumb slide ${index}`);
-        this.mainSwiperInstance?.slideTo(index);
+        this.swiperContainer.nativeElement.swiper.slideTo(index);
       });
     });
   }
@@ -178,17 +208,23 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
     this.showNavigation = this.images.length > (swiperInstance.params.slidesPerView as number);
-    // console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation);
+    this.currentSlideIndex = swiperInstance.activeIndex + 1; // Swiper's activeIndex is 0-based
+    this.totalSlides = swiperInstance.slides.length;
+    console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation, "currentSlideIndex:", this.currentSlideIndex, "totalSlides:", this.totalSlides);
+    this.cdr.detectChanges(); // Manually trigger change detection
+
   }
 
   checkScreenWidth(): void {
     this.paginationVisible = window.innerWidth < 768;
-    this.updateSwiperOptions();
+    console.log("paginationVisible (lower than 768px):", this.paginationVisible);
+    this.updateMainSwiperOptions();
   }
 
-  updateSwiperOptions(): void {
+  updateMainSwiperOptions(): void {
     if (this.mainSwiperInstance) {
       this.mainSwiperInstance.params.pagination = this.paginationVisible ? { dynamicBullets: true } : false;
+      this.mainSwiperInstance.params.allowTouchMove = this.paginationVisible ? true : false;
       this.mainSwiperInstance.pagination.update();
     }
   }
