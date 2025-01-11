@@ -190,14 +190,14 @@
                 <div class="Feature">
                   <div class="feature-container">
                     <i class="pi pi-th-large"></i>
-                    <h5 class="titulo">Funciones</h5>
+                    <h4 class="titulo">Funciones</h4>
                   </div>
                   <p class="dato">{{ printer.printerFunctions }}</p>
                 </div>
                 <div class="Feature">
                   <div class="feature-container">
                     <i class="pi pi-file"></i>
-                    <h5 class="titulo">Tamaño</h5>
+                    <h4 class="titulo">Tamaño</h4>
                   </div>
                   <p class="dato">
                     {{ printer.printSize }} (Máximo:
@@ -207,7 +207,7 @@
                 <div class="Feature">
                   <div class="feature-container">
                     <i class="pi pi-clock"></i>
-                    <h5 class="titulo">Velocidad</h5>
+                    <h4 class="titulo">Velocidad</h4>
                   </div>
                   <p class="dato">
                     {{ printer.printVelocity }}
@@ -223,7 +223,7 @@
                 <div class="Feature">
                   <div class="feature-container">
                     <i class="pi pi-tag"></i>
-                    <h5 class="titulo">Tipo</h5>
+                    <h4 class="titulo">Tipo</h4>
                   </div>
                   <p class="dato">{{ printer.color ? "Color" : "B/N" }}</p>
                 </div>
@@ -293,10 +293,10 @@
 </section>
 
 <section class="section-related-printers" *ngIf="printer">
-  <div class="container py-5">
+  <div class="py-5">
     <div class="related-printers-container">
-      <div class="header-specs">
-        <h1>Productos que te pueden interesar</h1>
+      <div class="header">
+        <h2>Productos similares</h2>
       </div>
       <related-printers-list [printerProduct]="printer"></related-printers-list>
     </div>

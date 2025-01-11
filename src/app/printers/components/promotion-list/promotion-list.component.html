@@ -25,10 +25,7 @@
   >
     <ng-container *ngFor="let printer of dealPrinters">
       <swiper-slide>
-        <printer-product-card
-          [printer]="printer"
-          style="width: 100%"
-        ></printer-product-card>
+        <shared-product-card [printer]="printer"></shared-product-card>
       </swiper-slide>
     </ng-container>
     <div class="swiper-pagination"></div>

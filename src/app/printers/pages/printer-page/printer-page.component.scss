@@ -300,7 +300,7 @@
   .mainSwiper-slide {
     text-align: center;
     font-size: 18px;
-    background-color: $light-50;
+    background-color: $gray-100;
     background-size: cover;
     background-position: center;
     /* Center slide text vertically */
@@ -351,8 +351,8 @@
   justify-content: center;
   align-items: center;
   border-radius: $border-radius;
-  background-color: $light-50;
-  border: 1px solid $light-100;
+  background-color: $gray-100;
+  border: 1px solid $gray-200;
   cursor: pointer;
 
   &:hover {
@@ -363,6 +363,7 @@
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: $border-radius;
   }
 }
 
@@ -493,10 +494,6 @@
   margin-top: 16px;
   gap: 1rem;
   align-self: stretch;
-  // border-radius: 0.375rem;
-  // border: 1px solid $light-200;
-  // background: #FFF;
-  // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   .header-specs {
     width: 100%;
     h2 {
@@ -594,11 +591,24 @@
 }
 
 .section-related-printers {
-  background-color: $light-50;
+  position: relative;
+  width: 100%;
+  max-width: $grid-max-width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $p-2;
+  padding-right: $p-2;
 }
 
 .related-printers-container {
   display: flex;
   flex-direction: column;
   gap: 1em;
+
+  .header {
+    color: $text;
+    font-weight: 600;
+    margin: 0;
+  }
 }
