@@ -85,7 +85,7 @@
       padding-top: 2px;
       padding-bottom: 2px;
       background: $gray-200;
-      border-radius: 8px;
+      border-radius: 16px;
       // border: 0.50px $gray-50 solid;
       .tag-title {
         color: $gray-700;
@@ -103,10 +103,10 @@
       padding-right: 8px;
       padding-top: 2px;
       padding-bottom: 2px;
-      background: $promotion-background-color;
-      border-radius: 8px;
+      background: $promotion-text-color;
+      border-radius: 16px;
       .tag-title {
-        color: $promotion-text-color;
+        color: $white;
         font-size: 12px;
         font-weight: 600;
       }

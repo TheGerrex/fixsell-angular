@@ -105,7 +105,10 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
           thumbnailImageSrc: url
         }));
         this.loading = false;
-        setTimeout(() => this.updateNavigation(), 0); // Update navigation after loading data
+        setTimeout(() => {
+          this.updateNavigation();
+          this.initializeThumbsSwiper();
+        }, 0); // Update navigation after loading data
       });
   }
 

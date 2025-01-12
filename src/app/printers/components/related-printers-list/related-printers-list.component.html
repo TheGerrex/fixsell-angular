@@ -6,7 +6,7 @@
       [disabled]="isBeginning"
       class="swiper-prev-button"
     >
-      <i class="pi pi-arrow-left"></i>
+      <i class="pi pi-angle-left"></i>
     </button>
     <button
       (click)="goToNext()"
@@ -14,13 +14,14 @@
       [disabled]="isEnd"
       class="swiper-next-button"
     >
-      <i class="pi pi-arrow-right"></i>
+      <i class="pi pi-angle-right"></i>
     </button>
   </div>
   <swiper-container
     appSwiper
     #swiperContainer
     [config]="swiperOptions"
+    class="custom-swiper-container"
     *ngIf="!isLoading && relatedPrinters.length > 0"
   >
     <ng-container *ngFor="let printer of relatedPrinters">
@@ -28,7 +29,7 @@
         <shared-product-card [printer]="printer"></shared-product-card>
       </swiper-slide>
     </ng-container>
-    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
 
     <ng-container *ngIf="isLoading">
       <swiper-slide *ngFor="let i of [1, 2, 3, 4]">

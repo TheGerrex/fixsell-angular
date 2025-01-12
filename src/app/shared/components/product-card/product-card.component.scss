@@ -29,7 +29,7 @@
         .product-deal-tag {
           position: absolute;
           top: 12px;
-          left: 12px;
+          right: 12px;
           width: fit-content;
           height: fit-content;
           padding-left: 8px;
@@ -45,8 +45,8 @@
           display: flex;
           p {
             color: $white;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 600;
             margin: 0;
           }
         }

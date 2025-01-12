@@ -53,6 +53,7 @@
 
   i {
     color: $gray-800;
+    font-size: 1.25rem;
   }
 
   @media (max-width: 500px) {
@@ -89,4 +90,13 @@
     font-weight: 500;
     margin: 0;
   }
+}
+
+.custom-swiper-container .swiper-scrollbar {
+  opacity: 0 !important;
+  transition: opacity 0.3s;
+}
+
+.custom-swiper-container:hover .swiper-scrollbar {
+  opacity: 1 !important;
 }

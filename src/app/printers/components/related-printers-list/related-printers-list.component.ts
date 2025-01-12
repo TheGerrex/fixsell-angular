@@ -29,7 +29,11 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
     slidesPerView: 1.25,
     spaceBetween: 8,
     autoplay: false,
-    scrollbar: { draggable: true },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      draggable: true,
+      hide: true, // Ensure the scrollbar is not hidden by default
+    },
     breakpoints: {
       '@0.00': {
         slidesPerView: 2.25,
