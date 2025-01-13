@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrimengModule } from '../primeng/primeng.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,13 @@ import { PackageRentProductCardComponent } from './components/package-rent-produ
 import { SoftwareEmailFormComponent } from './components/software-email-form/software-email-form.component';
 import { ContactEmailFormComponent } from './components/contact-email-form/contact-email-form.component';
 import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button.component';
+import { SwiperDirective } from './directives/app-swiper.directive';
+
+// Step 1: Add the following line...
+import { register } from 'swiper/element/bundle';
+
+// Step 2: Add the following line...
+register();
 
 @NgModule({
   declarations: [
@@ -42,6 +49,7 @@ import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-b
     SoftwareEmailFormComponent,
     ContactEmailFormComponent,
     WhatsappButtonComponent,
+    SwiperDirective,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -61,6 +69,8 @@ import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-b
     SoftwareEmailFormComponent,
     ContactEmailFormComponent,
     WhatsappButtonComponent,
+    SwiperDirective
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule { }

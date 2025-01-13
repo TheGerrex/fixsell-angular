@@ -6,7 +6,7 @@ import { Printer } from 'src/app/printers/interfaces/printer.interface';
   name: 'productType',
 })
 export class ProductTypePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) { }
 
   transform(value: Printer): SafeHtml {
     const rentaTag = `
@@ -18,7 +18,7 @@ export class ProductTypePipe implements PipeTransform {
       padding-top: 2px;
       padding-bottom: 2px;
       background: #FFA7B8;
-      border-radius: 8px;
+      border-radius: 16px;
       border: 0.50px #FFA7B8 solid;
       justify-content: center;
       align-items: center;
@@ -38,7 +38,7 @@ export class ProductTypePipe implements PipeTransform {
       padding-top: 2px;
       padding-bottom: 2px;
       background: #BEF4D2;
-      border-radius: 8px;
+      border-radius: 16px;
       border: 0.50px #BEF4D2 solid;
       justify-content: center;
       align-items: center;
@@ -58,7 +58,7 @@ export class ProductTypePipe implements PipeTransform {
 
     // Wrap the result in a parent div with display: flex
     result = `<div style="display: flex; gap: 6px;">${result}</div>`;
-  
+
     return this.sanitizer.bypassSecurityTrustHtml(result);
 
     // if (value) {

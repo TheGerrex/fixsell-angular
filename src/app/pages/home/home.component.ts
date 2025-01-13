@@ -1,18 +1,10 @@
 import { Component, HostBinding, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Thumbs,
-  SwiperOptions,
-  Autoplay,
-  Swiper,
-} from 'swiper';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'app-home',
@@ -56,7 +48,7 @@ export class HomeComponent implements OnInit {
         img: '../../../assets/img/home/categories/bizhub-pro-1060.jpg',
       },
     ],
-  
+
     brands: [
       {
         name: 'Konica Minolta',
@@ -79,7 +71,7 @@ export class HomeComponent implements OnInit {
         img: '../../../assets/img/home/categories/epson-plotter.jpg',
       },
     ],
-  
+
     printSizes: [
       {
         name: 'Carta',
@@ -147,7 +139,7 @@ export class HomeComponent implements OnInit {
         img: '../../../assets/img/home/categories/c6000a-epson-labels.jpg',
       },
     ],
-  
+
     brands: [
       {
         name: 'Konica Minolta',
@@ -170,7 +162,7 @@ export class HomeComponent implements OnInit {
         img: '../../../assets/img/home/categories/epson-plotter.jpg',
       },
     ],
-  
+
     colors: [
       {
         name: 'Negro',
@@ -200,7 +192,7 @@ export class HomeComponent implements OnInit {
     ]
 
   }
-  
+
 
   clients = [
     {
@@ -233,7 +225,7 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  configCategories: SwiperOptions = {
+  configCategories: any = {
     slidesPerView: 2,
     spaceBetween: 4,
     navigation: false,
@@ -252,7 +244,7 @@ export class HomeComponent implements OnInit {
         spaceBetween: 16,
         navigation: true,
         autoplay: false,
-  
+
         scrollbar: { draggable: true },
       },
       426: {
@@ -260,13 +252,13 @@ export class HomeComponent implements OnInit {
         spaceBetween: 16,
         navigation: false,
         autoplay: true,
-  
+
         scrollbar: { draggable: true },
       },
     },
     // thumbs: {swiper: this.thumbsSwiper}
   };
-  configFeatures: SwiperOptions = {
+  configFeatures: any = {
     slidesPerView: 1,
     spaceBetween: 4,
     navigation: false,
@@ -439,9 +431,9 @@ export class HomeComponent implements OnInit {
   }
 
   changeImage(newImageSrc: string) {
-      this.imageSrc = newImageSrc;
+    this.imageSrc = newImageSrc;
   }
-  
+
   setActiveItem(item: number) {
     this.activeItem = item;
   }

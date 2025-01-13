@@ -11,7 +11,7 @@ import { EventData } from '../interfaces/deal.interface';
 export class PrintersService {
   private readonly baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getPrinters(
     limit?: number,
@@ -28,18 +28,20 @@ export class PrintersService {
         params = params.append(filter, filters[filter]);
       }
     }
-    return this.http.get<Printer[]>(url, { params }).pipe(
-      catchError((error) => {
-        console.error('Error al traer los productos:', error);
-        return of([]);
-      })
-    );
+    return this.http.get<Printer[]>(url, { params })
+      .pipe(
+        catchError(error => {
+          console.error('Error al traer los productos:', error);
+          return of([]);
+        })
+      );
   }
 
   getPrinterById(id: string): Observable<Printer | undefined> {
-    return this.http
-      .get<Printer>(`${this.baseUrl}/printers/${id}`)
-      .pipe(catchError((error) => of(undefined)));
+    return this.http.get<Printer>(`${this.baseUrl}/printers/${id}`)
+      .pipe(
+        catchError(error => of(undefined))
+      );
   }
 
   getDealPrinters(): Observable<Printer[]> {
@@ -50,6 +52,7 @@ export class PrintersService {
       })
     );
   }
+
   getRentPackages(): Observable<Package[]> {
     return this.http.get<Package[]>(`${this.baseUrl}/packages`).pipe(
       catchError((error) => {

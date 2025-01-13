@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,6 @@ import { PromocionesComponent } from './pages/promociones/promociones.component'
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { AvisoDePrivacidadComponent } from './pages/aviso-de-privacidad/aviso-de-privacidad.component';
 import { SuccessComponent } from './pages/success/success.component';
-import { SwiperModule } from 'swiper/angular';
 import { PrinterModule } from './printers/printers.module';
 
 import localeEs from '@angular/common/locales/es-MX';
@@ -58,12 +57,12 @@ registerLocaleData(localeEs);
     PrimengModule,
     PrinterRoutingModule,
     HttpClientModule,
-    SwiperModule,
     PrinterModule,
     ConsumablesModule,
     ReactiveFormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
