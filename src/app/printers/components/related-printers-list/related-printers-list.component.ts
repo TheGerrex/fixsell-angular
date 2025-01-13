@@ -18,9 +18,9 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
   @Input() categories: string[] = []; // Accept categories as input
   @Input() printerProduct: Printer | undefined = undefined;
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
+  noDealsMessage = 'No hay productos relacionados al momento';
   relatedPrinters: Printer[] = [];
   isLoading = true;
-  noDealsMessage = 'No hay productos relacionados al momento';
   isBeginning = true;
   isEnd = false;
   showNavigation = true;
@@ -114,6 +114,5 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
     this.showNavigation = this.relatedPrinters.length > (swiperInstance.params.slidesPerView as number);
-    // console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation);
   }
 }

@@ -91,12 +91,3 @@
     margin: 0;
   }
 }
-
-.custom-swiper-container .swiper-scrollbar {
-  opacity: 0 !important;
-  transition: opacity 0.3s;
-}
-
-.custom-swiper-container:hover .swiper-scrollbar {
-  opacity: 1 !important;
-}
