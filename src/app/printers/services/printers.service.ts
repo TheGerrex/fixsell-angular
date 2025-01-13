@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Printer } from '../interfaces/printer.interface';
 import { Observable, catchError, of } from 'rxjs';
@@ -18,27 +18,27 @@ export class PrintersService {
     let url = `${this.baseUrl}/printers`;
     let params = new HttpParams();
     if (limit != undefined && offset != undefined) {
-        url += `?limit=${limit}&offset=${offset}`;
+      url += `?limit=${limit}&offset=${offset}`;
     }
     if (filters) {
       for (let filter in filters) {
-          params = params.append(filter, filters[filter]);
+        params = params.append(filter, filters[filter]);
       }
     }
-    return this.http.get<Printer[]>(url, {params})
-        .pipe(
-            catchError(error => {
-                console.error('Error al traer los productos:', error);
-                return of([]);
-            })
-        );
+    return this.http.get<Printer[]>(url, { params })
+      .pipe(
+        catchError(error => {
+          console.error('Error al traer los productos:', error);
+          return of([]);
+        })
+      );
   }
 
   getPrinterById(id: string): Observable<Printer | undefined> {
     return this.http.get<Printer>(`${this.baseUrl}/printers/${id}`)
-    .pipe(
-      catchError(error => of(undefined) )
-    );
+      .pipe(
+        catchError(error => of(undefined))
+      );
   }
 
   getDealPrinters(): Observable<Printer[]> {
@@ -50,6 +50,7 @@ export class PrintersService {
         })
       );
   }
+
   getRentPackages(): Observable<Package[]> {
     return this.http.get<Package[]>(`${this.baseUrl}/packages`)
       .pipe(
@@ -59,6 +60,6 @@ export class PrintersService {
         })
       );
   }
-  
+
 }
 

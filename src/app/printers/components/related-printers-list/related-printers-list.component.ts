@@ -32,7 +32,7 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
     scrollbar: {
       el: '.swiper-scrollbar',
       draggable: true,
-      hide: true, // Ensure the scrollbar is not hidden by default
+      hide: false, // Ensure the scrollbar is not hidden by default
     },
     breakpoints: {
       '@0.00': {
@@ -92,6 +92,7 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {

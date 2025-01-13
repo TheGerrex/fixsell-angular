@@ -102,17 +102,24 @@
               *ngIf="printer?.deals && printer.deals.length > 0"
             >
               <h2 class="product-deal-price">
-                {{ printer.currency }} ${{ printer.deals[0].dealPrice }}
+                {{ printer.currency }}
+                {{
+                  printer.deals[0].dealPrice
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
               </h2>
               <div class="product-discount-container">
                 <p class="product-price">
                   Precio de venta
                   <span class="line-through"
-                    >{{ printer.currency }} ${{ printer.price }}</span
+                    >{{ printer.currency }}
+                    {{
+                      printer.price | currency : "$" : "symbol" : "1.2-3"
+                    }}</span
                   >
                 </p>
                 <p class="product-discount">
-                  (-{{ printer.deals[0].dealDiscountPercentage }}% de dto.)
+                  ({{ printer.deals[0].dealDiscountPercentage }}% dto.)
                 </p>
               </div>
             </div>
@@ -293,12 +300,10 @@
 </section>
 
 <section class="section-related-printers" *ngIf="printer">
-  <div class="py-5">
-    <div class="related-printers-container">
-      <div class="header">
-        <h2>Productos similares</h2>
-      </div>
-      <related-printers-list [printerProduct]="printer"></related-printers-list>
+  <div class="related-printers-container py-5">
+    <div class="header">
+      <h2>Productos similares</h2>
     </div>
+    <related-printers-list [printerProduct]="printer"></related-printers-list>
   </div>
 </section>

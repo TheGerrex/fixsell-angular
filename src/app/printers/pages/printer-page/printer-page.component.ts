@@ -108,6 +108,8 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.updateNavigation();
           this.initializeThumbsSwiper();
+          this.resetSwiperToInitialSlide();
+
         }, 0); // Update navigation after loading data
       });
   }
@@ -173,6 +175,12 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
       this.updateMainSwiperThumbs();
       this.addHoverEffectToThumbs();
     }, 100);
+  }
+
+  private resetSwiperToInitialSlide(): void {
+    if (this.swiperContainer && this.swiperContainer.nativeElement.swiper) {
+      this.swiperContainer.nativeElement.swiper.slideTo(0, 0); // Reset to the first slide without animation
+    }
   }
 
   updateMainSwiperThumbs(): void {

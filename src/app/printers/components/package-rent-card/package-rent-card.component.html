@@ -1,63 +1,170 @@
 <div class="package-wrapper">
-    <div class="package" *ngFor="let package of printer.packages; let i = index">
-        <div class="package-container">
-            <div class="package-body">
-                <div class="package-main-content">
-                    <div class="package-main-body-section">
-                        <div class="package-price">
-                            <h4 class="data-price">{{ package.packageMonthlyPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}
-                                <p style="font-weight: 500; margin: 0;">Renta Mensual + IVA</p>
-                            </h4>
-                            <p class="data-price-discount" *ngIf="package.packageDiscountPercentage !== 0">{{ package.packageDiscountPercentage }}% descuento</p>
-                        </div>
-                        <div class="package-print-cards-container">
-                            <div class="package-print-card">
-                                <div class="package-print-card-icon"><img src="../../../../assets/svg/colors/B&W.svg" alt="b/n icon"></div>
-                                <div class="package-print-card-body">
-                                    <div class="prints">{{ package.packagePrintsBw | currency:' ' : 'symbol' : '1.0-0' }} <span>impresiones de B/N</span></div>
-                                    <div class="sub-header">incluidas al mes</div>
-                                </div>
-                            </div>
-                            <div class="package-print-card" *ngIf="package.packagePrintsColor">
-                                <div class="package-print-card-icon"><img src="../../../../assets/svg/colors/CMYK.svg" alt="color icon"></div>
-                                <div class="package-print-card-body">
-                                    <div class="prints">{{ package.packagePrintsColor | currency:' ' : 'symbol' : '1.0-0'}} <span>impresiones de Color</span></div>
-                                    <div class="sub-header">incluidas al mes</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <div class="package" *ngFor="let package of printer.packages; let i = index">
+    <div class="package-container">
+      <div class="package-body">
+        <div class="package-main-content">
+          <div class="package-main-body-section">
+            <div class="package-header">
+              <div class="package-price">
+                <div class="data-price-container">
+                  <h2 class="data-price">
+                    {{ package.packageCurrency }}
+                    {{
+                      package.packageMonthlyPrice
+                        | currency : "$" : "symbol" : "1.2-3"
+                    }}
+                    <span
+                      class="data-price-discount"
+                      *ngIf="package.packageDiscountPercentage !== 0"
+                      >({{ package.packageDiscountPercentage }}% dto.)</span
+                    >
+                  </h2>
                 </div>
-                <div class="package-details" [@detailsAnimation]="i === openedIndex ? 'visible' : 'hidden'">
-                    <div class="package-body-section">
-                        <p class="data-title">Extras:</p>
-                        <p class="data">Impresión extra en B/N: <span style="font-weight: 500;">{{ package.packageExtraClickPriceBw | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</span></p>
-                        <p class="data" *ngIf="package.packageExtraClickPriceColor">Impresión extra en Color: <span style="font-weight: 500;">{{ package.packageExtraClickPriceColor | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</span></p>
-                    </div>
-                    <div class="package-body-section">
-                        <p class="data-title">Incluye:</p>
-                        <ul>
-                            <li *ngFor="let includes of package.packageIncludes">{{includes}}</li>
-                        </ul>
-                    </div>
-                    <div class="package-body-section">
-                        <p class="data-title">Condiciones:</p>
-                        <p class="data">Contrato por <span style="font-weight: 500;">{{ package.packageDuration }} meses</span></p>
-                        <p class="data">Deposito Inicial de: <span style="font-weight: 500;">{{ package.packageDepositPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ package.packageCurrency }}</span></p>
-                        <p class="data">Oferta Valida Hasta: {{ package.packageEndDate | date: 'longDate' }}</p>
-                    </div>
-                </div>
-                <div class="package-buttons">
-                    <button class="button button-outlined-secondary button-rounded" (click)="openedIndex = i === openedIndex ? null : i"><span class="button-label">{{i === openedIndex ? "Menos Detalles" : "Más Detalles"}}</span></button>
-                    <button class="button button-primary button-rounded" (click)="showDialog()"><span class="button-label">Aplica Paquete</span></button>
-                </div>
-                <p-dialog header="Aplica Paquete" [modal]="true" [(visible)]="showDialogForm" [style]="{ width: '25rem' }">
-                    <package-rent-contact-form [message]="
-                            'Hola, estoy interesado en el paquete de renta en oferta ofrecido sobre la multifuncional ' +
-                            printer.brand + ' ' + printer.model" [product]="printer.model" [productType]="'rent_package'">
-                    </package-rent-contact-form>
-                </p-dialog>
+                <p class="data-price-label">Renta Mensual + IVA</p>
+              </div>
+              <p class="data-expire-chip" *ngIf="isSoonExpiring">
+                Pronto Expira
+              </p>
             </div>
+            <div class="package-print-cards-container">
+              <div class="package-print-card">
+                <div class="package-print-card-icon">
+                  <img
+                    src="../../../../assets/svg/colors/B&W.svg"
+                    alt="b/n icon"
+                  />
+                </div>
+                <div class="package-print-card-body">
+                  <div class="prints">
+                    {{
+                      package.packagePrintsBw
+                        | currency : " " : "symbol" : "1.0-0"
+                    }}
+                    <span>impresiones de B/N</span>
+                  </div>
+                  <div class="sub-header">incluidas al mes</div>
+                </div>
+              </div>
+              <div
+                class="package-print-card"
+                *ngIf="package.packagePrintsColor"
+              >
+                <div class="package-print-card-icon">
+                  <img
+                    src="../../../../assets/svg/colors/CMYK.svg"
+                    alt="color icon"
+                  />
+                </div>
+                <div class="package-print-card-body">
+                  <div class="prints">
+                    {{
+                      package.packagePrintsColor
+                        | currency : " " : "symbol" : "1.0-0"
+                    }}
+                    <span>impresiones de Color</span>
+                  </div>
+                  <div class="sub-header">incluidas al mes</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div
+          class="package-details"
+          [@detailsAnimation]="i === openedIndex ? 'visible' : 'hidden'"
+        >
+          <div class="package-body-section">
+            <p class="data-title">Extras:</p>
+            <p class="data">
+              Impresión extra en B/N:
+              <span style="font-weight: 500"
+                >{{
+                  package.packageExtraClickPriceBw
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                {{ package.packageCurrency }}</span
+              >
+            </p>
+            <p class="data" *ngIf="package.packageExtraClickPriceColor">
+              Impresión extra en Color:
+              <span style="font-weight: 500"
+                >{{
+                  package.packageExtraClickPriceColor
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                {{ package.packageCurrency }}</span
+              >
+            </p>
+          </div>
+          <div class="package-body-section">
+            <p class="data-title">Incluye:</p>
+            <ul>
+              <li *ngFor="let includes of package.packageIncludes">
+                {{ includes }}
+              </li>
+            </ul>
+          </div>
+          <div class="package-body-section">
+            <p class="data-title">Condiciones:</p>
+            <p class="data">
+              Contrato por
+              <span style="font-weight: 500"
+                >{{ package.packageDuration }} meses</span
+              >
+            </p>
+            <p class="data">
+              Deposito Inicial de:
+              <span style="font-weight: 500"
+                >{{
+                  package.packageDepositPrice
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                {{ package.packageCurrency }}</span
+              >
+            </p>
+            <p class="data">
+              Oferta Valida Hasta:
+              <span style="font-weight: 500">{{
+                package.packageEndDate | date : "longDate"
+              }}</span>
+            </p>
+          </div>
+        </div>
+        <div class="package-buttons">
+          <button
+            class="button button-outlined-secondary button-rounded button-full"
+            (click)="openedIndex = i === openedIndex ? null : i"
+          >
+            <span class="button-label">{{
+              i === openedIndex ? "Menos Detalles" : "Más Detalles"
+            }}</span>
+          </button>
+          <button
+            class="button button-primary button-rounded button-full"
+            (click)="showDialog()"
+          >
+            <span class="button-label">Aplica Paquete</span>
+          </button>
+        </div>
+        <p-dialog
+          header="Aplica Paquete"
+          [modal]="true"
+          [(visible)]="showDialogForm"
+          [style]="{ width: '25rem' }"
+        >
+          <package-rent-contact-form
+            [message]="
+              'Hola, estoy interesado en el paquete de renta en oferta ofrecido sobre la multifuncional ' +
+              printer.brand +
+              ' ' +
+              printer.model
+            "
+            [product]="printer.model"
+            [productType]="'rent_package'"
+          >
+          </package-rent-contact-form>
+        </p-dialog>
+      </div>
     </div>
+  </div>
 </div>
