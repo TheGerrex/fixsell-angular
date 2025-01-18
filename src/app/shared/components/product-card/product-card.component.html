@@ -13,7 +13,6 @@
         <div class="product-info-col">
           <div class="product-tags">
             <div [innerHTML]="printer | productType"></div>
-            <!-- <div [innerHTML]="printer.rentable | productType"></div> -->
             <div class="tag">
               <div class="tag-title">{{ printer.category }}</div>
             </div>
@@ -72,7 +71,7 @@
                 >{{ printer.currency }} ${{ printer.price }}</s
               >
               <span class="product-price-deal-percentage"
-                >{{ printer.deals[0].dealDiscountPercentage }}% dto.
+                >({{ printer.deals[0].dealDiscountPercentage }}% dto.)
               </span>
             </div>
           </div>

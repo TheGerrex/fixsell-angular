@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventData } from 'src/app/printers/interfaces/deal.interface';
 import { Package } from 'src/app/printers/interfaces/package.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
+import { SwiperOptions } from 'swiper/types';
 
 // install Swiper modules
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
