@@ -30,7 +30,6 @@
       <swiper-slide>
         <shared-package-rent-product-card
           [rentPackage]="rentPackage"
-          style="width: 100%"
         ></shared-package-rent-product-card>
       </swiper-slide>
     </ng-container>
@@ -38,7 +37,7 @@
     <div class="swiper-pagination"></div>
 
     <ng-container *ngIf="isLoading">
-      <swiper-slide *ngFor="let i of [1, 2, 3, 4]">
+      <swiper-slide *ngFor="let i of [1, 2, 3, 4, 5]">
         <shared-skeleton-product-card></shared-skeleton-product-card>
       </swiper-slide>
     </ng-container>

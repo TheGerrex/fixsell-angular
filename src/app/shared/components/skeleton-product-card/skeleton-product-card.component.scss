@@ -1,163 +1,188 @@
-@import 'src/_variables.scss';
+@import "src/_variables.scss";
 
 .product-card {
-    width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-radius: $border-radius;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  .product-card-container {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    border-radius: $border-radius;
-    border: 1.5px $gray-300 solid;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-    .product-card-container {
+    height: 100%;
+    gap: 0.75rem;
+    .product-image-wrap {
+      position: relative;
+      border-radius: $border-radius;
+      background: rgba(243, 244, 246, 1);
+      background: linear-gradient(
+        to right,
+        rgba(243, 244, 246, 1) 8%,
+        rgba(243, 244, 246, 0.3) 18%,
+        rgba(243, 244, 246, 1) 33%
+      );
+      background-size: 800px 100px;
+      animation: wave-lines 3s infinite ease-in-out;
+      .product-feature-image {
+        position: relative;
+        padding: 0 12px;
+        aspect-ratio: 1/1;
+        max-height: 300px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        .product-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+    .product-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+      border-radius: $border-radius;
+      .product-info {
         display: flex;
         flex-direction: column;
-        height: 100%;
-        .product-image-wrap {
-            cursor: pointer;
-            position: relative;
-            background: rgba(130, 130, 130, 0.2);
-            background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-            background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
+        flex-wrap: wrap;
+        align-content: space-between;
+        .product-info-col {
+          width: 100%;
+          .product-brand {
+            max-width: 80px;
+            height: 25px;
+            border-radius: 4px;
+            margin: 0 0 4px;
+            background: rgba(229, 231, 235, 1);
+            background: linear-gradient(
+              to right,
+              rgba(229, 231, 235, 0.3) 8%,
+              rgba(229, 231, 235, 1) 18%,
+              rgba(229, 231, 235, 0.3) 33%
+            );
             background-size: 800px 100px;
-            animation: wave-lines 2s infinite ease-out;
-            .product-feature-image {
-                position: relative;
-                padding: 0 12px;
-                min-height: 300px;
-                overflow: hidden;
-                display: flex;
-                align-items: center;
-                .product-image {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                }
-            }
-        }
-        .product-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-            background-color: $gray-50;
+            animation: wave-lines 3s infinite ease-in-out;
+          }
+          .product-name {
+            margin-bottom: 0.75rem;
+            max-width: 200px;
+            height: 20px;
             border-radius: $border-radius;
-            .product-info {
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                align-content: space-between;
-                padding: 12px 12px 0;
-                background-color: $gray-50;
-                .product-info-col {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: stretch;
-                    .product-brand {
-                        width: 100px;
-                        height: 25px;
-                        border-radius: $border-radius;
-                        margin: 0 0 8px;
-                        background: rgba(130, 130, 130, 0.2);
-                        background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-                        background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
-                        background-size: 800px 100px;
-                        animation: wave-lines 2s infinite ease-out;
-                    }
-                    .product-name {
-                        margin: 0 0 8px;
-                        width: 200px;
-                        height: 25px;
-                        border-radius: $border-radius;
-                        background: rgba(130, 130, 130, 0.2);
-                        background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-                        background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
-                        background-size: 800px 100px;
-                        animation: wave-lines 2s infinite ease-out;
-                    }
-                    .product-tags {
-                        margin: 8px 0 16px 0;
-                        display: flex;
-                        flex-wrap: wrap;
-                        gap: 6px;
-                        .tag {
-                            width: 70px;
-                            height: 20px;
-                            border-radius: 8px;
-                            background: rgba(130, 130, 130, 0.2);
-                            background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-                            background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
-                            background-size: 800px 100px;
-                            animation: wave-lines 2s infinite ease-out;
-                        }
-                    }
-                    .product-features {
-                        display: flex;
-                        justify-content: flex-start;
-                        align-items: flex-start;
-                        flex-direction: column;
-                        gap: 12px;
-                        width: 100%;
-                        margin: 0 0 16px;
-                        flex: 1;
-                        @media(min-width: 768px) {
-                            flex-direction: row;
-                            flex-wrap: wrap;
-                            align-items: center;
-                        }
-                        .block-feature {
-                            display: flex;
-                            align-items: center;
-                            gap: 4px;
-                            .circle {
-                                width: 20px;
-                                height: 20px;
-                                border-radius: 50%;
-                                background: rgba(130, 130, 130, 0.2);
-                                background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-                                background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
-                                background-size: 800px 100px;
-                                animation: wave-lines 2s infinite ease-out;
-                            }
-                            .feature {
-                                width: 40px;
-                                height: 20px;
-                                border-radius: $border-radius;
-                                background: rgba(130, 130, 130, 0.2);
-                                background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-                                background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
-                                background-size: 800px 100px;
-                                animation: wave-lines 2s infinite ease-out;
-                            }
-                        }
-                    }
-                }
+            background: rgba(229, 231, 235, 1);
+            background: linear-gradient(
+              to right,
+              rgba(229, 231, 235, 0.3) 8%,
+              rgba(229, 231, 235, 1) 18%,
+              rgba(229, 231, 235, 0.3) 33%
+            );
+            background-size: 800px 100px;
+            animation: wave-lines 3s infinite ease-in-out;
+          }
+          .product-tags {
+            margin-bottom: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            .tag {
+              width: 80px;
+              height: 22px;
+              border-radius: 16px;
+              background: rgba(229, 231, 235, 1);
+              background: linear-gradient(
+                to right,
+                rgba(229, 231, 235, 0.3) 8%,
+                rgba(229, 231, 235, 1) 18%,
+                rgba(229, 231, 235, 0.3) 33%
+              );
+              background-size: 800px 100px;
+              animation: wave-lines 3s infinite ease-in-out;
             }
-            .skeleton-action {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                margin: 8px 8px 8px 8px;
-                height: 56px;
-                border-radius: 56px;
-                background: rgba(130, 130, 130, 0.2);
-                background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
-                background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
+          }
+          .product-features {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 0.75rem;
+            .block-feature {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              .circle {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: rgba(229, 231, 235, 1);
+                background: linear-gradient(
+                  to right,
+                  rgba(229, 231, 235, 0.3) 8%,
+                  rgba(229, 231, 235, 1) 18%,
+                  rgba(229, 231, 235, 0.3) 33%
+                );
                 background-size: 800px 100px;
-                animation: wave-lines 2s infinite ease-out;
+                animation: wave-lines 3s infinite ease-in-out;
+              }
+              .feature {
+                width: 50px;
+                height: 14px;
+                border-radius: 4px;
+                background: rgba(229, 231, 235, 1);
+                background: linear-gradient(
+                  to right,
+                  rgba(229, 231, 235, 0.3) 8%,
+                  rgba(229, 231, 235, 1) 18%,
+                  rgba(229, 231, 235, 0.3) 33%
+                );
+                background-size: 800px 100px;
+                animation: wave-lines 3s infinite ease-in-out;
+              }
             }
+          }
         }
+      }
+      .skeleton-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 8px 8px 8px 8px;
+        height: 56px;
+        border-radius: 56px;
+        background: rgba(130, 130, 130, 0.2);
+        background: -webkit-gradient(
+          linear,
+          left top,
+          right top,
+          color-stop(8%, rgba(130, 130, 130, 0.2)),
+          color-stop(18%, rgba(130, 130, 130, 0.3)),
+          color-stop(33%, rgba(130, 130, 130, 0.2))
+        );
+        background: linear-gradient(
+          to right,
+          rgba(130, 130, 130, 0.2) 8%,
+          rgba(130, 130, 130, 0.3) 18%,
+          rgba(130, 130, 130, 0.2) 33%
+        );
+        background-size: 800px 100px;
+        animation: wave-lines 3s infinite ease-in-out;
+      }
     }
+  }
 }
 
-
 @keyframes wave-lines {
-    0% {
-        background-position: -468px 0;
-    }
-     100% {
-        background-position: 468px 0;
-    }
+  0% {
+    background-position: -800px 0;
+  }
+  100% {
+    background-position: 800px 0;
+  }
 }
