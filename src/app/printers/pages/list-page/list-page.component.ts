@@ -23,7 +23,7 @@ export class ListPageComponent implements OnInit {
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;
   scrollAnchor: string = "";
-  limit = 21;
+  limit = 25;
   offset = 0;
   currentPage = 1;
   totalPages = 4;
@@ -35,7 +35,7 @@ export class ListPageComponent implements OnInit {
   constructor(
     private printersService: PrintersService,
     private route: ActivatedRoute,
-    private router: Router, 
+    private router: Router,
     private changeDetector: ChangeDetectorRef
   ) {
     this.router.events.pipe(
@@ -53,10 +53,10 @@ export class ListPageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-      this.adjustLimit();
-      this.checkIfMobile();
+    this.adjustLimit();
+    this.checkIfMobile();
   }
-  
+
   ngOnInit() {
     this.fetchPrinters();
     this.checkIfMobile();
@@ -78,7 +78,7 @@ export class ListPageComponent implements OnInit {
       this.totalPages = Math.ceil(this.totalPrinters / this.limit);
       this.sliceConsumablesForCurrentPage();
       this.isLoading = false;
-  
+
       // Subscribe to the query parameters after the consumables have been fetched
       this.route.queryParams.subscribe(params => {
         this.handleQueryParams(params);
@@ -121,7 +121,7 @@ export class ListPageComponent implements OnInit {
   async handleFilteredPrintersChange(queryFilters: Params): Promise<void> {
     const currentFilters = this.route.snapshot.queryParams;
     const filtersChanged = JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
-  
+
     this.applyFilters(queryFilters);
     const queryParams: Params = { ...queryFilters };
 
@@ -129,7 +129,7 @@ export class ListPageComponent implements OnInit {
     if (filtersChanged) {
       queryParams['page'] = 1;
     }
-  
+
     await this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
@@ -144,17 +144,17 @@ export class ListPageComponent implements OnInit {
 
     // Apply filters...
     if (queryFilters['brand']) {
-        const brands = queryFilters['brand'].split(',');
-        this.filteredPrinters = this.filteredPrinters.filter(printer => brands.includes(printer.brand));
+      const brands = queryFilters['brand'].split(',');
+      this.filteredPrinters = this.filteredPrinters.filter(printer => brands.includes(printer.brand));
     }
 
     // Apply rentable filter
     if (queryFilters['rentable']) {
       const rentable = JSON.parse(queryFilters['rentable']);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printer.rentable === rentable);
-      
+
     }
-    
+
     // Apply sellable filter
     if (queryFilters['sellable']) {
       const sellable = JSON.parse(queryFilters['sellable']);
@@ -185,12 +185,12 @@ export class ListPageComponent implements OnInit {
       this.filteredPrinters = this.filteredPrinters.filter(printer => {
         let isInRange = false;
         for (let i = 0; i < printVelocities.length; i++) {
-            const [min, max] = printVelocities[i].split('-').map(Number);
-            const printerVelocity = Number(printer.printVelocity);
-            if (printerVelocity >= min && printerVelocity <= max) {
-                isInRange = true;
-                break;
-            }
+          const [min, max] = printVelocities[i].split('-').map(Number);
+          const printerVelocity = Number(printer.printVelocity);
+          if (printerVelocity >= min && printerVelocity <= max) {
+            isInRange = true;
+            break;
+          }
         }
         return isInRange;
       });
@@ -198,7 +198,7 @@ export class ListPageComponent implements OnInit {
 
     // Apply the search filter
     if (this.searchQuery) {
-      this.filteredPrinters = this.filteredPrinters.filter(printer => 
+      this.filteredPrinters = this.filteredPrinters.filter(printer =>
         printer.model.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
@@ -227,9 +227,9 @@ export class ListPageComponent implements OnInit {
 
   adjustLimit() {
     if (window.innerWidth <= 768) {
-        this.limit = 21;
+      this.limit = 20;
     } else {
-        this.limit = 12; // Or whatever your default limit is
+      this.limit = 20; // Or whatever your default limit is
     }
   }
 

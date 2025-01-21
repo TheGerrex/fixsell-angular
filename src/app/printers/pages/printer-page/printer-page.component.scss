@@ -330,9 +330,6 @@
 .thumbs-swiper-container {
   position: relative;
   margin-top: 1rem;
-  @media (max-width: 1024px) {
-    margin-top: 0.5rem;
-  }
   @media (max-width: 767px) {
     display: none;
   }

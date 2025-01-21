@@ -1,318 +1,285 @@
 @import "../../../../variables";
 .filter {
-    width: 100%;
-    min-width: 300px;
-    height: 100%;
-    background: transparent;
-    border-radius: $border-radius;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    display: inline-flex;
-    position: relative;
-    @media(min-width: 1024px) {
-        justify-content: center;
-        background: $gray-50;
-        border: 1px solid $gray-300;
-    }
+  width: 100%;
+  background: transparent;
+  border-radius: $border-radius;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+  position: relative;
+  @media (min-width: 1024px) {
+    justify-content: center;
+    background: $gray-50;
+    border: 1px solid $gray-300;
+  }
 }
 
 .filter-header {
-    width: 100%;
-    justify-content: center;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+  padding: 0.5em;
+  border-bottom: 1px solid $gray-300;
+  border-radius: $border-radius $border-radius 0 0;
+  @media (max-width: 991px) {
+    display: none;
+  }
+  .filter-header-inner {
+    justify-content: flex-start;
     align-items: center;
     gap: 8px;
-    display: inline-flex;
-    padding: .5em;
-    border-bottom: 1px solid $gray-300;
-    border-radius: $border-radius $border-radius 0 0;
-    @media (max-width: 991px) {
-        display: none;
-    }
-    .filter-header-inner {
-        justify-content: flex-start;
-        align-items: center;
-        gap: 8px;
+    display: flex;
+    width: 100%;
+    height: 32px;
+    padding: 6px;
+    justify-content: center;
+    align-items: center;
+    // border-bottom: $gray-300 1px solid;
+    .filter-header-title {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      .filter-header-title-wrap {
         display: flex;
-        width: 100%;
-        height: 32px;
-        padding: 6px;
         justify-content: center;
         align-items: center;
-        // border-bottom: $gray-300 1px solid;
-        .filter-header-title {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            flex-direction: row;
-            justify-content: space-between;
-            .filter-header-title-wrap {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                flex-direction: row;
-                gap: 4px;
-                h3 {
-                    color: $header-text;
-                    font-weight: 600;
-                    word-wrap: break-word;
-                    margin: 0;
-                    font-size: 18px;
-                }
-            }
+        width: 100%;
+        flex-direction: row;
+        gap: 4px;
+        h3 {
+          color: $header-text;
+          font-weight: 600;
+          word-wrap: break-word;
+          margin: 0;
+          font-size: 18px;
         }
+      }
     }
+  }
 }
 
 .filter-content {
-    // margin-top: 16px;
-    // padding: 1em 0em;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    // gap: 16px;
-    display: flex;
-    width: 100%;
-    @media (min-width: 768px) {
-        margin: 0px;
-        padding: 0px;
-    }
+  // margin-top: 16px;
+  // padding: 1em 0em;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  // gap: 16px;
+  display: flex;
+  width: 100%;
+  @media (min-width: 768px) {
+    margin: 0px;
+    padding: 0px;
+  }
 }
 
 .AngleButton {
-    width: 32px;
-    height: 32px;
-    // padding-left: 10.51px;
-    // padding-right: 10.51px;
-    // padding: 0px 16px 0px 16px;
-    background: transparent;
-    // background: #CDD7E5;
-    border-radius: 30px;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    i {
-        transition: 0.3s;
-    }
-    &:active {
-        background: #cdd7e5;
-    }
+  width: 32px;
+  height: 32px;
+  // padding-left: 10.51px;
+  // padding-right: 10.51px;
+  // padding: 0px 16px 0px 16px;
+  background: transparent;
+  // background: #CDD7E5;
+  border-radius: 30px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  i {
+    transition: 0.3s;
+  }
+  &:active {
+    background: #cdd7e5;
+  }
 }
 
 .filter-section {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    // gap: 8px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  // gap: 8px;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  .filter-section-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    border-top: 1px solid $gray-300;
+    padding: 0.5em 1em;
+    // padding-bottom: .5em;
+    &:hover {
+      .AngleButton {
+        background: $light-50;
+      }
+    }
+    .filter-section-title {
+      color: $text;
+      font-size: 16px;
+      font-family: Cera Pro;
+      font-weight: 600;
+      line-height: 31.5px;
+      word-wrap: break-word;
+    }
+  }
+  .filter-section-content {
+    transition: 0.3s;
     overflow: hidden;
-    .filter-section-header {
-        display: flex;
-        justify-content: space-between;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0em 1em 1em 1em;
+    display: block;
+    @media (max-width: 1024px) {
+      gap: 16px;
+    }
+    .checkbox {
+      margin-bottom: 0.5em;
+      .checkbox-container {
+        justify-content: flex-start;
         align-items: center;
-        width: 100%;
-        border-top: 1px solid $gray-300;
-        padding: .5em 1em;
-        // padding-bottom: .5em;
-        &:hover {
-            .AngleButton {
-                background: $light-50;
-            }
-        }
-        .filter-section-title {
-            color: $text;
-            font-size: 16px;
-            font-family: Cera Pro;
-            font-weight: 600;
-            line-height: 31.5px;
-            word-wrap: break-word;
-        }
-    }
-    .filter-section-content {
-        transition: 0.3s;
-        overflow: hidden;
-        height: 100%;
+        gap: 8px;
         display: flex;
-        flex-direction: column;
-        gap: 6px;
-        padding: 0em 1em 1em 1em;
-        display: block;
-        @media (max-width: 1024px) {
-            gap: 16px;
+        width: 100%;
+        .checkbox-input {
+          width: 16px;
+          height: 16px;
+          position: relative;
+          background: transparent;
+          border-radius: 4px;
+          border: 1px solid #cbd5e1;
+          outline: none;
+          @media (max-width: 1024px) {
+            width: 24px;
+            height: 24px;
+          }
         }
-        .checkbox {
-            margin-bottom: .5em;
-            .checkbox-container {
-                justify-content: flex-start;
-                align-items: center;
-                gap: 8px;
-                display: flex;
-                width: 100%;
-                .checkbox-input {
-                    width: 16px;
-                    height: 16px;
-                    position: relative;
-                    background: transparent;
-                    border-radius: 4px;
-                    border: 1px solid #cbd5e1;
-                    outline: none;
-                    @media (max-width: 1024px) {
-                        width: 24px;
-                        height: 24px;
-                    }
-                }
-                label {
-                    color: $text;
-                    font-size: 16px;
-                    font-weight: 500;
-                    line-height: 24px;
-                    word-wrap: break-word;
-                    user-select: none;
-                }
-            }
+        label {
+          color: $text;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+          word-wrap: break-word;
+          user-select: none;
         }
+      }
     }
-    .filter-section-content.hidden {
-        transition: 0.3s;
-        opacity: 0;
-        padding: 0;
-        height: 0 !important;
-    }
+  }
+  .filter-section-content.hidden {
+    transition: 0.3s;
+    opacity: 0;
+    padding: 0;
+    height: 0 !important;
+  }
 }
 
 .button-filter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    border-radius: 8px;
-    padding: 4px 12px;
-    border: none;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    margin: 0;
-    background-color: $light-200;
-    font-weight: 600;
-    color: #1e3a8a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  padding: 4px 12px;
+  border: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  margin: 0;
+  background-color: $light-200;
+  font-weight: 600;
+  color: #1e3a8a;
 }
 
 .highlight {
-    background-color: $primary-color;
-    color: $white;
+  background-color: $primary-color;
+  color: $white;
 }
 
 .counter {
-    background-color: $gray-200;
-    border-radius: 50px;
-    color: $gray-800;
-    padding: 2px 8px;
-    font-size: 12px;
-    font-weight: 700;
+  background-color: $gray-200;
+  border-radius: 50px;
+  color: $gray-800;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .checkbox-container:hover .checkbox-input {
-    border: 2px solid $primary-color !important;
-    /* Adjust the border style and color as needed */
+  border: 2px solid $primary-color !important;
+  /* Adjust the border style and color as needed */
 }
 
 .filter-reset {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    gap: 8px;
-    width: 100%;
-    padding: 16px 8px;
-    user-select: none;
-    // border-radius: $border-radius;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 8px;
+  user-select: none;
+  // border-radius: $border-radius;
+  cursor: pointer;
+  // border: $primary-color 1px solid;
+  // background-color: $light-50;
+  @media (min-width: 768px) {
+    padding: 1em;
     // border: $primary-color 1px solid;
     // background-color: $light-50;
-    @media (min-width: 768px) {
-        padding: 1em;
-        // border: $primary-color 1px solid;
-        // background-color: $light-50;
-    }
-    &:hover {
-        background-color: $light-100;
-    }
-    &:active {
-        background-color: $primary-color;
-        p {
-            color: $white;
-        }
-        i {
-            color: $white;
-        }
-    }
+  }
+  &:hover {
+    background-color: $light-100;
+  }
+  &:active {
+    background-color: $primary-color;
     p {
-        margin: 0;
-        color: $primary-color;
-        font-size: 0.9em;
-        font-weight: 600;
+      color: $white;
     }
     i {
-        color: $primary-color;
+      color: $white;
     }
+  }
+  p {
+    margin: 0;
+    color: $primary-color;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+  i {
+    color: $primary-color;
+  }
 }
 
 .buttons-container {
-    width: 100%;
-    height: auto;
-    flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  display: flex;
+  padding: 8px;
+  overflow: visible;
+  .wrapper {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 8px;
     display: flex;
-    padding: 8px;
-    overflow: visible;
-    .wrapper {
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 8px;
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .Chip {
-        padding-left: 12px;
-        padding-right: 12px;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        background: #eff6ff;
-        border-radius: 8px;
-        overflow: hidden;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 8px;
-        display: flex;
-        border: none;
-        .ChipName {
-            color: #1e3a8a;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 24px;
-        }
-    }
-    .Chip.Active {
-        background-color: #1d4ed8;
-        .ChipName {
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 24px;
-        }
-    }
-}
-
-:host ::ng-deep .p-togglebutton {
+    flex-wrap: wrap;
+  }
+  .Chip {
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 8px;
     padding-bottom: 8px;
-    color: #1e3a8a;
     background: #eff6ff;
     border-radius: 8px;
     overflow: hidden;
@@ -321,12 +288,44 @@
     gap: 8px;
     display: flex;
     border: none;
-    span {
-        font-weight: 600;
+    .ChipName {
+      color: #1e3a8a;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
     }
+  }
+  .Chip.Active {
+    background-color: #1d4ed8;
+    .ChipName {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+    }
+  }
+}
+
+:host ::ng-deep .p-togglebutton {
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #1e3a8a;
+  background: #eff6ff;
+  border-radius: 8px;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+  border: none;
+  span {
+    font-weight: 600;
+  }
 }
 
 .flip {
-    transform: rotate(180deg);
-    transition: 0.3s;
+  transform: rotate(180deg);
+  transition: 0.3s;
 }
