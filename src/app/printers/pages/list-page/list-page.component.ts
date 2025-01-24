@@ -53,14 +53,12 @@ export class ListPageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.adjustLimit();
     this.checkIfMobile();
   }
 
   ngOnInit() {
     this.fetchPrinters();
     this.checkIfMobile();
-    this.adjustLimit();
     this.handleQueryParamsOnChanges();
   }
 
@@ -196,6 +194,13 @@ export class ListPageComponent implements OnInit {
       });
     }
 
+    // Apply deal filter
+    if (queryFilters['deal']) {
+      const deal = JSON.parse(queryFilters['deal']);
+      if (deal) {
+        this.filteredPrinters = this.filteredPrinters.filter(printer => printer.deals && printer.deals.length > 0);
+      }
+    }
     // Apply the search filter
     if (this.searchQuery) {
       this.filteredPrinters = this.filteredPrinters.filter(printer =>
@@ -214,23 +219,33 @@ export class ListPageComponent implements OnInit {
   }
 
   getPageNumbers(): number[] {
-    if (this.totalPages <= 5) {
-      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    } else if (this.currentPage <= 4) {
-      return [2, 3, 4];
-    } else if (this.currentPage > this.totalPages - 3) {
-      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
-    } else {
-      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
-    }
-  }
+    const totalPages = this.totalPages;
+    const currentPage = this.currentPage;
+    const maxPagesToShow = 5;
+    const pages = [];
 
-  adjustLimit() {
-    if (window.innerWidth <= 768) {
-      this.limit = 20;
+    if (totalPages <= maxPagesToShow) {
+      for (let i = 2; i < totalPages; i++) {
+        pages.push(i);
+      }
     } else {
-      this.limit = 20; // Or whatever your default limit is
+      let startPage = Math.max(2, currentPage - 1);
+      let endPage = Math.min(totalPages - 1, currentPage + 1);
+
+      if (currentPage <= 3) {
+        startPage = 2;
+        endPage = maxPagesToShow - 1;
+      } else if (currentPage >= totalPages - 2) {
+        startPage = totalPages - (maxPagesToShow - 2);
+        endPage = totalPages - 1;
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        pages.push(i);
+      }
     }
+
+    return pages;
   }
 
   checkIfMobile() {
