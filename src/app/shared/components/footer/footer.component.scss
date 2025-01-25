@@ -7,13 +7,19 @@
   .footer-title {
     font-size: 21px;
     font-weight: 600;
-    line-height: 31.5px;
+    line-height: 1;
     color: $header-text;
     margin-bottom: 0.5em;
+  }
+  .footer-subtitle {
+    font-weight: 400;
+    line-height: 1;
+    color: $secondary-text;
   }
   .footer-company-bio {
     color: $text;
     font-weight: 400;
+    max-width: 600px;
   }
   .icons {
     i {
@@ -35,23 +41,62 @@
   }
 }
 
+.footer-container {
+  position: relative;
+  width: 100%;
+  max-width: $grid-max-width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: $p-3 $p-2;
+}
+
+.footer-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  row-gap: 0rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.footer-col {
+  width: 100%;
+}
+
+.footer-section {
+  margin-bottom: 0;
+  @media (min-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.divider {
+  display: block;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
 .footer-contact-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
   .wrap {
-    margin-bottom: 10px;
+    flex-grow: 1;
     .wrap-title {
       font-size: 1em;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.5em;
       color: $secondary-text;
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
     }
     .wrap-item {
       display: flex;
       flex-direction: row;
-      align-items: center;
-      margin-bottom: 15px;
+      align-items: baseline;
+      margin-bottom: 1rem;
       i {
         margin-right: 10px;
       }
@@ -59,6 +104,7 @@
         margin-bottom: 0;
         color: $text;
         font-weight: 400;
+        max-width: 600px;
         &:hover {
           color: $primary-color;
         }
@@ -78,6 +124,14 @@
   }
 }
 
+.form-label {
+  font-weight: 500;
+}
+
+.form-section {
+  margin-bottom: 1rem;
+}
+
 :host ::ng-deep .p-inputnumber {
   width: 100%;
 }
@@ -88,12 +142,20 @@
   padding: 10px 15px;
 }
 
+.footer-social-text {
+  color: $white;
+  font-weight: 400;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
 .map-site-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 1rem;
+  row-gap: 0.5rem;
   a {
-    color: $text;
+    color: $secondary-text;
     font-weight: 500;
     text-decoration: none;
     &:hover {

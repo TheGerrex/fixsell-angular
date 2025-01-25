@@ -1,16 +1,12 @@
 <section class="footer">
-  <div class="container py-5">
-    <div class="row">
-      <div class="col-12">
-        <img
-          src="../../../assets/logo/logo-fixsell-grande.svg"
-          alt="logo-fixsell"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-lg-6">
-        <div class="col-12 col-md">
+  <div class="footer-container">
+    <img
+      src="../../../assets/logo/logo-fixsell-grande.svg"
+      alt="logo-fixsell"
+    />
+    <div class="footer-wrapper">
+      <div class="footer-col">
+        <div class="footer-section">
           <h4 class="footer-title">Acerca de Nosotros</h4>
           <p class="footer-company-bio">
             Empresa dedicada a la venta, renta, servicio de equipos de impresión
@@ -29,21 +25,22 @@
             </a>
           </div>
         </div>
-        <p-divider class="d-block d-lg-none"></p-divider>
-        <div class="col-12 col-md">
-          <h4 class="footer-title mt-lg-3">Mapa del Sitio</h4>
+        <p-divider class="divider"></p-divider>
+        <div class="footer-section">
+          <h4 class="footer-title">Mapa del Sitio</h4>
           <div class="map-site-links">
             <a routerLink="printers/intro">Multifuncionales</a>
-            <a href="#">Servicios</a>
+            <!-- <a href="#">Servicios</a> -->
             <a routerLink="consumables/intro">Consumibles</a>
             <a routerLink="promociones">Promociones</a>
             <a routerLink="nosotros">Nosotros</a>
+            <a routerLink="contacto">Contacto</a>
           </div>
         </div>
-        <p-divider class="d-block d-lg-none"></p-divider>
-        <div class="col-12 col-md">
-          <h4 class="footer-title mt-lg-3">Contacto</h4>
-          <div class="footer-contact-container flex-md-row gap-3">
+        <p-divider class="divider"></p-divider>
+        <div class="footer-section">
+          <h4 class="footer-title">Contacto</h4>
+          <div class="footer-contact-container">
             <div class="wrap">
               <h6 class="wrap-title">División Monterrey</h6>
               <div class="wrap-item">
@@ -66,7 +63,10 @@
                   href="https://maps.app.goo.gl/pJpSri8ju7nf1Kyz6"
                   target="_blank"
                 >
-                  <p>Platón Sánchez 721 Col. Centro <br />Monterrey 64000</p>
+                  <p>
+                    Platón Sánchez 721 Col. Centro, <br />
+                    Monterrey 64000
+                  </p>
                 </a>
               </div>
             </div>
@@ -93,7 +93,8 @@
                   target="_blank"
                 >
                   <p>
-                    Camino Real de Calacoaya 52A <br />Ciudad López Mateos 52990
+                    Camino Real de Calacoaya 52A, <br />
+                    Ciudad López Mateos 52990
                   </p>
                 </a>
               </div>
@@ -101,23 +102,23 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-6">
-        <p-divider class="d-block d-lg-none"></p-divider>
-        <div class="col-12">
+      <div class="footer-col">
+        <p-divider class="divider"></p-divider>
+        <div class="footer-section">
           <h4 class="footer-title">Escríbenos</h4>
 
-          <p>
+          <p class="footer-subtitle">
             Mandanos un mensaje y uno de nuestros asesores se pondra en contacto
             contigo.
           </p>
 
           <form
-            class="form-contact mt-3"
+            class="form-contact"
             method="POST"
             [formGroup]="contactForm"
             (ngSubmit)="submitForm()"
           >
-            <div class="mb-3">
+            <div class="form-section">
               <label class="form-label">Nombre o Empresa</label>
               <input
                 type="text"
@@ -129,7 +130,7 @@
                 {{ getFieldError("name") }}
               </span>
             </div>
-            <div class="mb-3">
+            <div class="form-section">
               <label class="form-label">Teléfono</label>
               <input
                 type="text"
@@ -141,7 +142,7 @@
                 {{ getFieldError("phone") }}
               </span>
             </div>
-            <div class="mb-3">
+            <div class="form-section">
               <label class="form-label">Email</label>
               <input
                 type="text"
@@ -153,7 +154,7 @@
                 {{ getFieldError("email") }}
               </span>
             </div>
-            <div class="mb-3">
+            <div class="form-section">
               <label class="form-label">Mensaje</label>
               <textarea
                 type="text"
@@ -181,8 +182,8 @@
   </div>
 </section>
 <div class="footer-social text-center">
-  <p class="text-white m-0">
-    Copyright © 2024 Fixsell del Norte -
+  <p class="footer-social-text">
+    Copyright © 2025 Fixsell del Norte -
     <a routerLink="aviso-de-privacidad" style="color: #fff"
       >Aviso de Privacidad</a
     >
