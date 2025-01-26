@@ -199,6 +199,38 @@
               }
             }
           }
+          .package-price {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+            justify-content: space-between;
+            border-top: 1px solid $gray-200;
+            padding-top: 0.75rem;
+            .data-price-container {
+              display: inline-flex;
+              align-items: baseline;
+              gap: 0.25rem;
+              .data-price {
+                color: $text;
+                font-weight: 600;
+                font-size: 20px;
+                margin: 0 !important;
+                line-height: 1;
+              }
+              .data-price-discount {
+                font-weight: 500;
+                font-size: 16px;
+                color: $promotion-text-color;
+              }
+            }
+
+            .data-price-label {
+              font-weight: 500;
+              margin-bottom: 0;
+              color: $secondary-text;
+            }
+          }
         }
       }
     }

@@ -198,7 +198,10 @@ export class ListPageComponent implements OnInit {
     if (queryFilters['deal']) {
       const deal = JSON.parse(queryFilters['deal']);
       if (deal) {
-        this.filteredPrinters = this.filteredPrinters.filter(printer => printer.deals && printer.deals.length > 0);
+        this.filteredPrinters = this.filteredPrinters.filter(printer =>
+          (printer.deals && printer.deals.length > 0) ||
+          (printer.packages && printer.packages.length > 0)
+        );
       }
     }
     // Apply the search filter

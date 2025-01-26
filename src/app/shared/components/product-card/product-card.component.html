@@ -3,7 +3,10 @@
     <div class="product-image-wrap" [routerLink]="['/printers', printer.id]">
       <div class="product-feature-image">
         <img [src]="printer.img_url[0]" alt="" class="product-image" />
-        <div class="product-deal-tag" *ngIf="printer.deals.length > 0">
+        <div
+          class="product-deal-tag"
+          *ngIf="printer.deals.length > 0 || printer.packages.length > 0"
+        >
           <p class="deal-tag-title">Promoción</p>
         </div>
       </div>
@@ -61,10 +64,9 @@
             </div>
           </div>
           <div class="product-price" *ngIf="printer.deals.length > 0">
-            <span class="product-price-deal"
-              >{{ printer.deals[0].dealCurrency }} ${{
-                printer.deals[0].dealPrice
-              }}
+            <span class="product-price-deal">
+              {{ printer.deals[0].dealCurrency }}
+              ${{ printer.deals[0].dealPrice }}
             </span>
             <div class="list-price-container">
               <s class="product-price-list"
@@ -74,6 +76,24 @@
                 >({{ printer.deals[0].dealDiscountPercentage }}% dto.)
               </span>
             </div>
+          </div>
+          <div class="package-price" *ngIf="printer.packages.length > 0">
+            <div class="data-price-container">
+              <span class="data-price">
+                {{ printer.packages[0].packageCurrency }}
+                {{
+                  printer.packages[0].packageMonthlyPrice
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                <span
+                  class="data-price-discount"
+                  *ngIf="printer.packages[0].packageDiscountPercentage !== 0"
+                  >({{ printer.packages[0].packageDiscountPercentage }}%
+                  dto.)</span
+                >
+              </span>
+            </div>
+            <p class="data-price-label">Renta Mensual + IVA</p>
           </div>
         </div>
       </div>
