@@ -24,9 +24,11 @@
             class="product-brand"
             [innerHTML]="printer.brand | productBrand"
           ></div>
-          <p class="product-name" [routerLink]="['/printers', printer.id]">
-            {{ printer.model }}
-          </p>
+          <div class="product-name">
+            <a [routerLink]="['/printers', printer.id]">
+              {{ printer.model }}
+            </a>
+          </div>
 
           <div class="product-features">
             <div class="feature">
@@ -64,18 +66,19 @@
             </div>
           </div>
           <div class="product-price" *ngIf="printer.deals.length > 0">
-            <span class="product-price-deal">
-              {{ printer.deals[0].dealCurrency }}
-              ${{ printer.deals[0].dealPrice }}
-            </span>
             <div class="list-price-container">
-              <s class="product-price-list"
-                >{{ printer.currency }} ${{ printer.price }}</s
-              >
+              <span class="product-price-deal">
+                {{ printer.deals[0].dealCurrency }}
+                ${{ printer.deals[0].dealPrice }}
+              </span>
               <span class="product-price-deal-percentage"
                 >({{ printer.deals[0].dealDiscountPercentage }}% dto.)
               </span>
             </div>
+            <span class="product-price-list"
+              >Precio de lista:
+              <s>{{ printer.currency }} ${{ printer.price }}</s></span
+            >
           </div>
           <div class="package-price" *ngIf="printer.packages.length > 0">
             <div class="data-price-container">

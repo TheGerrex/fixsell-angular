@@ -324,6 +324,7 @@
   .swiper-image {
     min-width: 300px;
     max-width: 500px;
+    margin: 1rem;
   }
 }
 
@@ -441,7 +442,7 @@
   margin-bottom: 32px;
 }
 
-.product-discount-container {
+.product-deal-price-container {
   display: flex;
   gap: 0.25rem;
   align-items: baseline;
@@ -452,6 +453,7 @@
   font-weight: 600;
   margin: 0;
 }
+
 .product-price {
   font-size: 16px;
   color: $gray-500;
@@ -461,12 +463,12 @@
 
 .line-through {
   text-decoration: line-through;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .product-discount {
   color: $promotion-text-color;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
 }
 

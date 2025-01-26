@@ -157,11 +157,12 @@
 .data-price-container {
   display: inline-flex;
   align-items: baseline;
+  flex-wrap: wrap;
   gap: 0.25rem;
+  row-gap: 0rem;
   .data-price {
     color: $text;
     font-weight: 600;
-    padding: 4px 0px;
     margin: 0 !important;
     line-height: 1;
   }
@@ -169,6 +170,7 @@
     font-weight: 600;
     font-size: 16px;
     color: $promotion-text-color;
+    white-space: nowrap;
   }
 }
 

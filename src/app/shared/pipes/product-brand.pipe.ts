@@ -32,7 +32,7 @@ export class ProductBrandPipe implements PipeTransform {
       case 'konica minolta':
         imagePath =
           '../../../assets/svg/home/proveedores/konica_minolta_logo.svg';
-        imgWidth = this.isMobile ? '120px' : 'auto';
+        imgWidth = this.isMobile ? '140px' : 'auto';
         imgHeight = this.isMobile ? 'auto' : imgHeight;
 
         break;
@@ -43,7 +43,7 @@ export class ProductBrandPipe implements PipeTransform {
         break;
       case 'epson':
         imagePath = '../../../assets/svg/home/proveedores/epson.svg';
-        imgWidth = this.isMobile ? '80px' : 'auto';
+        imgWidth = this.isMobile ? '80px' : '80px';
         imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
       case 'fujifilm':
@@ -81,7 +81,7 @@ export class ProductBrandPipe implements PipeTransform {
     }
 
     // Return the HTML img tag with the appropriate image path
-    const imgTag = `<img src="${imagePath}" alt="${brandName} Logo" style="width: ${imgWidth}; max-width: 180px; height:${imgHeight};">`;
+    const imgTag = `<img src="${imagePath}" alt="${brandName} Logo" style="width: ${imgWidth}; max-width: 150px; height:${imgHeight};">`;
 
     // Mark the HTML as safe
     return this.sanitizer.bypassSecurityTrustHtml(imgTag);

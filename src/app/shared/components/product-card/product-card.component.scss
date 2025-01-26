@@ -72,20 +72,24 @@
         .product-info-col {
           width: 100%;
           .product-brand {
-            margin: 0 0 4px;
+            margin-bottom: 0.25rem;
           }
           .product-name {
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
             flex: 0;
-            color: $text;
-            cursor: pointer;
-            &:hover {
-              text-decoration: underline;
-            }
-            @media (min-width: 1024px) {
-              font-size: 20px;
+            a {
+              font-weight: 500;
+              font-size: 1.25rem;
+              color: $text;
+              cursor: pointer;
+              text-decoration: none;
+              line-height: 1;
+              &:hover {
+                text-decoration: underline;
+              }
+              @media (min-width: 1024px) {
+                font-size: 20px;
+              }
             }
           }
           .product-tags {
@@ -123,7 +127,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
             margin-bottom: 0.75rem;
             flex: 1;
@@ -131,7 +135,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              gap: 5px;
+              gap: 4px;
               .ColorCircle {
                 width: 20px;
                 height: 20px;
@@ -183,20 +187,21 @@
               font-size: 20px;
               line-height: 1;
             }
+            .product-price-list {
+              color: $secondary-text;
+              font-weight: 500;
+              font-size: 15px;
+              margin-right: 0.5rem;
+              line-height: 1;
+            }
+            .product-price-deal-percentage {
+              color: $promotion-text-color;
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 1;
+            }
             .list-price-container {
               display: inline-block;
-              .product-price-list {
-                color: $secondary-text;
-                font-weight: 400;
-                font-size: 16px;
-                margin-right: 0.5rem;
-              }
-              .product-price-deal-percentage {
-                color: $promotion-text-color;
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 1;
-              }
             }
           }
           .package-price {
@@ -226,6 +231,7 @@
             }
 
             .data-price-label {
+              font-size: 15px;
               font-weight: 500;
               margin-bottom: 0;
               color: $secondary-text;
@@ -235,10 +241,6 @@
       }
     }
   }
-}
-
-.product-card:hover .product-name {
-  text-decoration: underline;
 }
 
 .color-icon {

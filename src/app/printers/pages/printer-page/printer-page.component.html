@@ -101,27 +101,27 @@
               class="product-price-container"
               *ngIf="printer?.deals && printer.deals.length > 0"
             >
-              <h2 class="product-deal-price">
-                {{ printer.currency }}
-                {{
-                  printer.deals[0].dealPrice
-                    | currency : "$" : "symbol" : "1.2-3"
-                }}
-              </h2>
-              <div class="product-discount-container">
-                <p class="product-price">
-                  Precio de venta
-                  <span class="line-through"
-                    >{{ printer.currency }}
-                    {{
-                      printer.price | currency : "$" : "symbol" : "1.2-3"
-                    }}</span
-                  >
-                </p>
+              <div class="product-deal-price-container">
+                <h2 class="product-deal-price">
+                  {{ printer.currency }}
+                  {{
+                    printer.deals[0].dealPrice
+                      | currency : "$" : "symbol" : "1.2-3"
+                  }}
+                </h2>
                 <p class="product-discount">
                   ({{ printer.deals[0].dealDiscountPercentage }}% dto.)
                 </p>
               </div>
+              <p class="product-price">
+                Precio de lista:
+                <span class="line-through"
+                  >{{ printer.currency }}
+                  {{
+                    printer.price | currency : "$" : "symbol" : "1.2-3"
+                  }}</span
+                >
+              </p>
             </div>
             <div class="actions-container">
               <button

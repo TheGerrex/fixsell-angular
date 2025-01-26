@@ -13,12 +13,12 @@
                       package.packageMonthlyPrice
                         | currency : "$" : "symbol" : "1.2-3"
                     }}
-                    <span
-                      class="data-price-discount"
-                      *ngIf="package.packageDiscountPercentage !== 0"
-                      >({{ package.packageDiscountPercentage }}% dto.)</span
-                    >
                   </h2>
+                  <span
+                    class="data-price-discount"
+                    *ngIf="package.packageDiscountPercentage !== 0"
+                    >({{ package.packageDiscountPercentage }}% dto.)</span
+                  >
                 </div>
                 <p class="data-price-label">Renta Mensual + IVA</p>
               </div>
