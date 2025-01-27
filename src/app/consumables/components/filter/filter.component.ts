@@ -168,6 +168,8 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
 
   toggleDealOptionFilter(): void {
     this.deal = !this.deal;
+    this.appliedFiltersCount = this.deal ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
+
     this.emitFilters(true);
   }
 
