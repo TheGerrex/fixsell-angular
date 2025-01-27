@@ -1,78 +1,115 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Thumbs,
-  SwiperOptions,
-  Autoplay,
-} from 'swiper';
 import { ConsumableService } from '../../services/consumables.service';
+import Swiper from 'swiper';
+import { SwiperContainer } from 'swiper/element';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
+import { SwiperOptions } from 'swiper/types';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'consumables-promotion-list',
   templateUrl: './promotion-list.component.html',
   styleUrls: ['./promotion-list.component.scss'],
 })
-export class PromotionListComponent implements OnInit {
-  thumbsSwiper: any;
+export class PromotionListComponent implements OnInit, AfterViewInit {
+  @Input() categories: string[] = []; // Accept categories as input
+  @Input() requireDeals: boolean = true;
+  @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   dealConsumables: Consumible[] = [];
   isLoading = true;
   noDealsMessage = 'No hay ofertas al momento';
+  isBeginning = true;
+  isEnd = false;
+  showNavigation = true;
 
-  config: SwiperOptions = {
-    slidesPerView: 1,
+  swiperOptions: SwiperOptions = {
+    slidesPerView: 1.25,
     spaceBetween: 8,
-    // navigation: false,
     autoplay: false,
     scrollbar: { draggable: true },
-
     breakpoints: {
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 24,
-        navigation: true,
-        autoplay: false,
-        scrollbar: { draggable: true },
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 16,
-        navigation: true,
-        autoplay: false,
-        scrollbar: { draggable: true },
-      },
-      375: {
-        slidesPerView: 2,
+      '@0.00': {
+        slidesPerView: 1.25,
         spaceBetween: 8,
-        navigation: false,
-        autoplay: true,
-        scrollbar: { draggable: true },
+      },
+      '@0.45': {
+        slidesPerView: 2.25,
+        spaceBetween: 12,
+      },
+      '@0.75': {
+        slidesPerView: 3.25,
+        spaceBetween: 12,
+      },
+      '@1.00': {
+        slidesPerView: 3.25,
+        spaceBetween: 16,
+      },
+      '@1.50': {
+        slidesPerView: 4.25,
+        spaceBetween: 24,
       },
     },
-    // thumbs: {swiper: this.thumbsSwiper}
+    on: {
+      init: () => this.updateNavigation(),
+      slideChange: () => this.updateNavigation(),
+    },
   };
 
-  constructor(private consumableService: ConsumableService) {}
+  constructor(private consumableService: ConsumableService) { }
 
   ngOnInit(): void {
-    this.consumableService
-      .getConsumables()
-      .subscribe((consumables: Consumible[]) => {
-        const currentDate = new Date();
-        this.dealConsumables = consumables.filter((consumable) =>
-          consumable.deals.some((deal) => {
-            const startDate = new Date(deal.dealStartDate);
-            const endDate = new Date(deal.dealEndDate);
-            return startDate <= currentDate && endDate >= currentDate;
-          })
-        );
-        this.isLoading = false;
+    this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
+      this.dealConsumables = this.filterconsumables(consumables);
+      this.isLoading = false;
+      setTimeout(() => {
+        this.updateNavigation(); // Update navigation after loading data
       });
+    });
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.swiperContainer) {
+        const swiperInstance = this.swiperContainer.nativeElement.swiper;
+        swiperInstance.on('slideChange', this.updateNavigation.bind(this));
+        swiperInstance.on('init', this.updateNavigation.bind(this));
+        swiperInstance.update();
+        this.updateNavigation(); // Initial update
+      }
+    });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateNavigation();
+  }
+
+  goToNext() {
+    this.swiperContainer.nativeElement.swiper.slideNext();
+    this.updateNavigation();
+  }
+
+  goToPrev() {
+    this.swiperContainer.nativeElement.swiper.slidePrev();
+    this.updateNavigation();
+  }
+
+  updateNavigation() {
+    const swiperInstance = this.swiperContainer.nativeElement.swiper;
+    this.isBeginning = swiperInstance.isBeginning;
+    this.isEnd = swiperInstance.isEnd;
+    this.showNavigation = this.dealConsumables.length > (swiperInstance.params.slidesPerView as number);
+    // console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation);
+  }
+
+  private filterconsumables(consumables: Consumible[]): Consumible[] {
+    return consumables.filter(consumable =>
+      (!this.requireDeals || consumable.deals.length > 0) &&
+      (this.categories.length === 0 || this.categories.includes(consumable.category))
+    );
+  }
+
 }

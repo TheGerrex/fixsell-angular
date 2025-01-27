@@ -1,34 +1,54 @@
-<div class="promotion-container">
-        <div class="box-container">
-            <div class="swiper-container">
-                <swiper class="promotion-swiper" (swiper)="promotionSwiper = $event" [config]="config">
-                    <!-- Display skeleton card while loading -->
-                    <ng-container *ngIf="isLoading">
-                        <ng-template swiperSlide>
-                            <shared-skeleton-product-card></shared-skeleton-product-card>
-                        </ng-template>
-                        <ng-template swiperSlide>
-                            <shared-skeleton-product-card></shared-skeleton-product-card>
-                        </ng-template>
-                        <ng-template swiperSlide>
-                            <shared-skeleton-product-card></shared-skeleton-product-card>
-                        </ng-template>
-                    </ng-container>
+<div class="swiper-container-wrapper">
+  <div
+    class="page-buttons"
+    *ngIf="!isLoading && dealRentPackagePrinters.length > 0"
+  >
+    <button
+      (click)="goToPrev()"
+      [hidden]="!showNavigation || isBeginning"
+      [disabled]="isBeginning"
+      class="swiper-prev-button"
+    >
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <button
+      (click)="goToNext()"
+      [hidden]="!showNavigation || isEnd"
+      [disabled]="isEnd"
+      class="swiper-next-button"
+    >
+      <i class="pi pi-arrow-right"></i>
+    </button>
+  </div>
+  <swiper-container
+    appSwiper
+    #swiperRentPrintersContainer
+    [config]="swiperOptions"
+    *ngIf="!isLoading && dealRentPackagePrinters.length > 0"
+  >
+    <ng-container *ngFor="let rentPackage of dealRentPackagePrinters">
+      <swiper-slide>
+        <shared-package-rent-product-card
+          [rentPackage]="rentPackage"
+        ></shared-package-rent-product-card>
+      </swiper-slide>
+    </ng-container>
 
-                    <!-- Display deals if available -->
-                    <ng-container *ngIf="!isLoading && dealRentPackagePrinters.length > 0">
-                        <ng-template swiperSlide *ngFor="let rentPackage of dealRentPackagePrinters">
-                            <div class="printer-product-card-container">
-                                <shared-package-rent-product-card [rentPackage]="rentPackage" style="width: 100%;"></shared-package-rent-product-card>
-                            </div>
-                        </ng-template>
-                    </ng-container>
-                </swiper>
-            </div>
-        </div>
-        <!-- Display no deals message if no deals are available -->
-        <div class="not-found" *ngIf="!isLoading && dealRentPackagePrinters.length === 0">
-            <i class="pi pi-exclamation-triangle" style="font-size: 4rem;"></i>
-            <p>{{noDealsMessage}}</p>
-        </div>
-    </div>
+    <div class="swiper-pagination"></div>
+
+    <ng-container *ngIf="isLoading">
+      <swiper-slide *ngFor="let i of [1, 2, 3, 4, 5]">
+        <shared-skeleton-product-card></shared-skeleton-product-card>
+      </swiper-slide>
+    </ng-container>
+  </swiper-container>
+
+  <!-- Display no deals message if no deals are available -->
+  <div
+    class="not-found"
+    *ngIf="!isLoading && dealRentPackagePrinters.length === 0"
+  >
+    <i class="pi pi-exclamation-triangle"></i>
+    <p>{{ noDealsMessage }}</p>
+  </div>
+</div>

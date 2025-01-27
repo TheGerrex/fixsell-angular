@@ -1,104 +1,188 @@
 <div class="product-card">
-    <div class="product-card-container">
-        <div class="product-image-wrap" [routerLink]="['/printers', rentPackage.printer.id]">
-            <div class="product-feature-image">
-                <img [src]="rentPackage.printer.img_url[0]" alt="" class="product-image">
-                <div class="product-deal-tag">
-                    <p class="deal-tag-title">{{(rentPackage.packageDiscountPercentage)}}% Descuento</p>
-                </div>
-            </div>
+  <div class="product-card-container">
+    <div
+      class="product-image-wrap"
+      [routerLink]="['/printers', rentPackage.printer.id]"
+    >
+      <div class="product-feature-image">
+        <img
+          [src]="rentPackage.printer.img_url[0]"
+          alt=""
+          class="product-image"
+        />
+        <div class="product-deal-tag">
+          <p class="deal-tag-title">Promoción</p>
         </div>
-        <div class="product-body">
-            <div class="product-info" *ngIf="!showMoreInfo" @fadeIn>
-                <div class="product-info-col">
-                    <div class="product-brand" [innerHTML]="rentPackage.printer.brand | productBrand"></div>
-                    <p class="product-name">{{rentPackage.printer.model}}</p>
-                    <div class="product-tags">
-                        <div class="tag deal">
-                            <div class="tag-title">Promoción</div>
-                        </div>
-                        <div class="TypeBlob" style="
-                            height: fit-content;
-                            align-self: stretch;
-                            padding: 2px 8px;
-                            background: #FFA7B8;
-                            border-radius: 8px;
-                            border: 0.50px #FFA7B8 solid;
-                            justify-content: center;
-                            align-items: center;
-                            gap: 10px;
-                            display: flex;">
-                            <div style="color: #AE003A;
-                                font-size: 12px;
-                                font-weight: 600;">Paquete de Renta
-                            </div>
-                        </div>
-                        <div [innerHTML]="rentPackage.printer.color | productColor"></div>
-                        <div class="tag">
-                            <div class="tag-title">{{rentPackage.printer.category}}</div>
-                        </div>
-                    </div>
-                    <!-- <div class="product-features">
-                        <div class="feature">
-                            <img *ngIf="!rentPackage.printer.color" class="color-icon" src="../../../../assets/svg/colors/B&W.svg" alt="B&W Icon" />
-                            <img *ngIf="rentPackage.printer.color" class="color-icon" src="../../../../assets/svg/colors/CMYK.svg" alt="CMYK Icon" />
-                            <p>{{rentPackage.printer.color ? 'Color' : 'B/N'}}</p>
-                        </div>
-                        <div class="feature">
-                            <i class="pi pi-file"></i>
-                            <p class="PrintSize">{{rentPackage.printer.printSize}}</p>
-                        </div>
-                        <div class="feature">
-                            <i class="pi pi-clock"></i>
-                            <p class="PrintVelocity">{{rentPackage.printer.printVelocity}} {{ rentPackage.printer.category === "Etiquetas" ? 'mm/s' : (rentPackage.printer.category === "Plotter" ? 'm2/h' : 'ppm') }}</p>
-                        </div>
-                    </div> -->
-                    <div class="package-print-cards-container">
-                        <div class="package-print-card">
-                            <div class="package-print-card-body">
-                                <div class="prints"><span class="package-print-card-icon"><img src="../../../../assets/svg/colors/B&W.svg" alt="b/n icon"></span>{{ rentPackage.packagePrintsBw | currency:' ' : 'symbol' : '1.0-0' }} <span>impresiones de B/N</span></div>
-                                <div class="sub-header">incluidas al mes</div>
-                            </div>
-                        </div>
-                        <div class="package-print-card" *ngIf="rentPackage.packagePrintsColor">
-                            <div class="package-print-card-body">
-                                <div class="prints"><span class="package-print-card-icon"><img src="../../../../assets/svg/colors/CMYK.svg" alt="color icon"></span>{{ rentPackage.packagePrintsColor | currency:' ' : 'symbol' : '1.0-0'}} <span>impresiones de Color</span></div>
-                                <div class="sub-header">incluidas al mes</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="package-price">
-                        <h5 class="data-price">{{ rentPackage.packageMonthlyPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ rentPackage.packageCurrency }}
-                            <p style="font-weight: 500; margin: 0;">Renta Mensual + IVA</p>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-            <div class="more-info" *ngIf="showMoreInfo" @fadeIn>
-                <div class="package-details">
-                    <div class="package-body-section">
-                        <p class="data-title">Extras:</p>
-                        <p class="data">Impresión extra en B/N: <span style="font-weight: 500;">{{ rentPackage.packageExtraClickPriceBw | currency:'$' : 'symbol' : '1.2-3' }} {{ rentPackage.packageCurrency }}</span></p>
-                        <p class="data" *ngIf="rentPackage.packageExtraClickPriceColor">Impresión extra en Color: <span style="font-weight: 500;">{{ rentPackage.packageExtraClickPriceColor | currency:'$' : 'symbol' : '1.2-3' }} {{ rentPackage.packageCurrency }}</span></p>
-                    </div>
-                    <div class="package-body-section">
-                        <p class="data-title">Incluye:</p>
-                        <ul>
-                            <li *ngFor="let includes of rentPackage.packageIncludes">{{includes}}</li>
-                        </ul>
-                    </div>
-                    <div class="package-body-section">
-                        <p class="data-title">Condiciones:</p>
-                        <p class="data">Contrato por <span style="font-weight: 500;">{{ rentPackage.packageDuration }} meses</span></p>
-                        <p class="data">Deposito Inicial de: <span style="font-weight: 500;">{{ rentPackage.packageDepositPrice | currency:'$' : 'symbol' : '1.2-3' }} {{ rentPackage.packageCurrency }}</span></p>
-                        <p class="data">Oferta Valida Hasta: {{ rentPackage.packageEndDate | date: 'longDate' }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-actions">
-                <button class="button button-outlined-secondary button-rounded" (click)="toggleMoreInfo()"><span class="button-label">{{buttonText}}</span></button>
-                <button class="button button-primary button-rounded" [routerLink]="['/printers', rentPackage.printer.id]"><span class="button-label">Ver paquete</span></button>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="product-body">
+      <div class="product-info" *ngIf="!showMoreInfo" @fadeIn>
+        <div class="product-info-col">
+          <div class="product-tags">
+            <div
+              class="TypeBlob"
+              style="
+                height: fit-content;
+                align-self: stretch;
+                padding: 2px 8px;
+                background: #ffa7b8;
+                border-radius: 16px;
+                border: 0.5px #ffa7b8 solid;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                display: flex;
+              "
+            >
+              <div style="color: #ae003a; font-size: 12px; font-weight: 600">
+                Paquete de Renta
+              </div>
+            </div>
+            <div [innerHTML]="rentPackage.printer.color | productColor"></div>
+            <div class="tag">
+              <div class="tag-title">{{ rentPackage.printer.category }}</div>
+            </div>
+          </div>
+          <div
+            class="product-brand"
+            [innerHTML]="rentPackage.printer.brand | productBrand"
+          ></div>
+          <p
+            class="product-name"
+            [routerLink]="['/printers', rentPackage.printer.id]"
+          >
+            {{ rentPackage.printer.model }}
+          </p>
+
+          <div class="package-print-cards-container">
+            <div class="package-print-card">
+              <div class="package-print-card-body">
+                <div class="prints">
+                  <span class="package-print-card-icon"
+                    ><img
+                      src="../../../../assets/svg/colors/B&W.svg"
+                      alt="b/n icon" /></span
+                  >{{
+                    rentPackage.packagePrintsBw
+                      | currency : " " : "symbol" : "1.0-0"
+                  }}
+                  <span>impresiones de B/N</span>
+                </div>
+                <div class="sub-header">incluidas al mes</div>
+              </div>
+            </div>
+            <div
+              class="package-print-card"
+              *ngIf="rentPackage.packagePrintsColor"
+            >
+              <div class="package-print-card-body">
+                <div class="prints">
+                  <span class="package-print-card-icon"
+                    ><img
+                      src="../../../../assets/svg/colors/CMYK.svg"
+                      alt="color icon" /></span
+                  >{{
+                    rentPackage.packagePrintsColor
+                      | currency : " " : "symbol" : "1.0-0"
+                  }}
+                  <span>impresiones de Color</span>
+                </div>
+                <div class="sub-header">incluidas al mes</div>
+              </div>
+            </div>
+          </div>
+          <div class="package-price">
+            <div class="data-price-container">
+              <span class="data-price">
+                {{ rentPackage.packageCurrency }}
+                {{
+                  rentPackage.packageMonthlyPrice
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                <span
+                  class="data-price-discount"
+                  *ngIf="rentPackage.packageDiscountPercentage !== 0"
+                  >({{ rentPackage.packageDiscountPercentage }}% dto.)</span
+                >
+              </span>
+            </div>
+            <p class="data-price-label">Renta Mensual + IVA</p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="more-info" *ngIf="showMoreInfo" @fadeIn>
+        <div class="package-details">
+          <div class="package-body-section">
+            <p class="data-title">Extras:</p>
+            <p class="data">
+              Impresión extra en B/N:
+              <span style="font-weight: 500"
+                >{{
+                  rentPackage.packageExtraClickPriceBw
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                {{ rentPackage.packageCurrency }}</span
+              >
+            </p>
+            <p class="data" *ngIf="rentPackage.packageExtraClickPriceColor">
+              Impresión extra en Color:
+              <span style="font-weight: 500"
+                >{{
+                  rentPackage.packageExtraClickPriceColor
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                {{ rentPackage.packageCurrency }}</span
+              >
+            </p>
+          </div>
+          <div class="package-body-section">
+            <p class="data-title">Incluye:</p>
+            <ul>
+              <li *ngFor="let includes of rentPackage.packageIncludes">
+                {{ includes }}
+              </li>
+            </ul>
+          </div>
+          <div class="package-body-section">
+            <p class="data-title">Condiciones:</p>
+            <p class="data">
+              Contrato por
+              <span style="font-weight: 500"
+                >{{ rentPackage.packageDuration }} meses</span
+              >
+            </p>
+            <p class="data">
+              Deposito Inicial de:
+              <span style="font-weight: 500"
+                >{{
+                  rentPackage.packageDepositPrice
+                    | currency : "$" : "symbol" : "1.2-3"
+                }}
+                {{ rentPackage.packageCurrency }}</span
+              >
+            </p>
+            <p class="data">
+              Oferta Valida Hasta:
+              {{ rentPackage.packageEndDate | date : "longDate" }}
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="product-actions">
+        <button
+          class="button button-outlined-secondary button-rounded"
+          (click)="toggleMoreInfo()"
+        >
+          <span class="button-label">{{ buttonText }}</span>
+        </button>
+        <button
+          class="button button-primary button-rounded"
+          [routerLink]="['/printers', rentPackage.printer.id]"
+        >
+          <span class="button-label">Ver paquete</span>
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>

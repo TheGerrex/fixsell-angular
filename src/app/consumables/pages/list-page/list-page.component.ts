@@ -1,25 +1,8 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  Renderer2,
-  ViewChild,
-  ElementRef,
-  OnInit,
-  HostListener,
-  ChangeDetectorRef,
-  OnDestroy,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-
-import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent, Scroll } from '@angular/router';
-import { FilterComponent } from '../../components/filter/filter.component';
+import { Component, Input, OnInit, HostListener, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
-// consumables
 import { ConsumableService } from '../../services/consumables.service';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
-import { SearchBarListComponent } from 'src/app/shared/components/search-bar-list/search-bar-list.component';
 
 @Component({
   selector: 'consumibles-list-page',
@@ -37,7 +20,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;
   scrollAnchor: string = '';
-  limit: number = 21;
+  limit: number = 25;
   offset: number = 0;
   currentPage: number = 1;
   totalPages: number = 4;
@@ -45,15 +28,14 @@ export class ListPageComponent implements OnInit, OnDestroy {
   searchQuery: string = '';
   private destroy$ = new Subject<void>();
   private searchQuerySubject = new Subject<string>();
-  
+
 
   constructor(
     private consumableService: ConsumableService,
     private route: ActivatedRoute,
     private router: Router,
     private changeDetector: ChangeDetectorRef,
-  ) 
-  {
+  ) {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       takeUntil(this.destroy$)
@@ -69,14 +51,12 @@ export class ListPageComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.adjustLimit();
     this.checkIfMobile();
   }
 
   ngOnInit() {
     this.fetchConsumables();
     this.checkIfMobile();
-    this.adjustLimit();
     this.handleQueryParamsOnChanges();
   }
 
@@ -94,7 +74,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
       this.totalPages = Math.ceil(this.totalConsumables / this.limit);
       this.sliceConsumablesForCurrentPage();
       this.isLoading = false;
-  
+
       // Subscribe to the query parameters after the consumables have been fetched
       this.route.queryParams.subscribe(params => {
         this.handleQueryParams(params);
@@ -109,15 +89,15 @@ export class ListPageComponent implements OnInit, OnDestroy {
   }
 
   handleQueryParams(params: Params) {
-    this.appliedFiltersCount = +params['filterCount'] || 0;
-    console.log('handleQueryParams - Params:', params);
     if (params['search']) {
       this.searchQuerySubject.next(params['search']);
     }
     if (params['page']) {
-      console.log("Enter If of params page")
       this.currentPage = +params['page'];
       this.sliceConsumablesForCurrentPage();
+    }
+    if (params['filterCount']) {
+      this.appliedFiltersCount = +params['filterCount'];
     }
     this.applyFilters(params);
     this.changeDetector.detectChanges();
@@ -127,32 +107,30 @@ export class ListPageComponent implements OnInit, OnDestroy {
     this.route.queryParams.pipe(
       takeUntil(this.destroy$)
     ).subscribe((params: Params) => {
-      console.log('Params fetchConsumables:', params);
       if (params['page']) {
         this.currentPage = +params['page'];
       }
       this.handleQueryParams(params);
     });
   }
-  
+
   async handleFilteredConsumableChange(queryFilters: Params): Promise<void> {
     const currentFilters = this.route.snapshot.queryParams;
     const filtersChanged = JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
-  
+
     this.applyFilters(queryFilters);
     const queryParams: Params = { ...queryFilters };
-  
+
     // Only reset the page number to 1 if the filters have changed
     if (filtersChanged) {
       queryParams['page'] = 1;
     }
-  
+
     await this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
       queryParamsHandling: 'merge',
     }).then(() => {
-      console.log('queryFilters inside Handle Filtered Consumables:', queryFilters);
       this.sliceConsumablesForCurrentPage();
     });
   }
@@ -161,7 +139,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
   applyFilters(queryFilters: Params): void {
 
     this.filteredConsumables = [...this.consumables];
-    
+
     // Apply filters...
     if (queryFilters['brand']) {
       const brands = queryFilters['brand'].split(',');
@@ -211,15 +189,22 @@ export class ListPageComponent implements OnInit, OnDestroy {
       });
     }
 
+    // Apply deal filter
+    if (queryFilters['deal']) {
+      const deal = JSON.parse(queryFilters['deal']);
+      if (deal) {
+        this.filteredConsumables = this.filteredConsumables.filter(printer =>
+          (printer.deals && printer.deals.length > 0)
+        );
+      }
+    }
+
     // Apply the search filter
     if (this.searchQuery) {
-      this.filteredConsumables = this.filteredConsumables.filter(consumable => 
+      this.filteredConsumables = this.filteredConsumables.filter(consumable =>
         consumable.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
-
-    console.log('Apply Filters - Params:', queryFilters);
-    console.log('Apply Filters - Filtered Consumables:', this.filteredConsumables);
 
     // Recalculate total pages
     this.totalConsumables = this.filteredConsumables.length;
@@ -230,23 +215,33 @@ export class ListPageComponent implements OnInit, OnDestroy {
   }
 
   getPageNumbers(): number[] {
-    if (this.totalPages <= 5) {
-      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    } else if (this.currentPage <= 4) {
-      return [2, 3, 4];
-    } else if (this.currentPage > this.totalPages - 3) {
-      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
-    } else {
-      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
-    }
-  }
+    const totalPages = this.totalPages;
+    const currentPage = this.currentPage;
+    const maxPagesToShow = 5;
+    const pages = [];
 
-  adjustLimit() {
-    if (window.innerWidth <= 768) {
-      this.limit = 21;
+    if (totalPages <= maxPagesToShow) {
+      for (let i = 2; i < totalPages; i++) {
+        pages.push(i);
+      }
     } else {
-      this.limit = 12; // Or whatever your default limit is
+      let startPage = Math.max(2, currentPage - 1);
+      let endPage = Math.min(totalPages - 1, currentPage + 1);
+
+      if (currentPage <= 3) {
+        startPage = 2;
+        endPage = maxPagesToShow - 1;
+      } else if (currentPage >= totalPages - 2) {
+        startPage = totalPages - (maxPagesToShow - 2);
+        endPage = totalPages - 1;
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        pages.push(i);
+      }
     }
+
+    return pages;
   }
 
   checkIfMobile() {

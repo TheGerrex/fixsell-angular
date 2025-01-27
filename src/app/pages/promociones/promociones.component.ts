@@ -1,21 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Package } from 'src/app/printers/interfaces/package.interface';
-import { Printer } from 'src/app/printers/interfaces/printer.interface';
-import { PrintersService } from 'src/app/printers/services/printers.service';
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Thumbs,
-  SwiperOptions,
-  Autoplay,
-} from 'swiper';
 import { EventData } from 'src/app/printers/interfaces/deal.interface';
+import { Package } from 'src/app/printers/interfaces/package.interface';
+import { PrintersService } from 'src/app/printers/services/printers.service';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
+import { SwiperOptions } from 'swiper/types';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
+Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'app-promociones',
@@ -65,10 +58,7 @@ export class PromocionesComponent implements OnInit {
     // thumbs: {swiper: this.thumbsSwiper}
   };
 
-  constructor(
-    private router: Router,
-    private printersService: PrintersService
-  ) {}
+  constructor(private router: Router, private printersService: PrintersService) { }
 
   ngOnInit(): void {
     this.printersService

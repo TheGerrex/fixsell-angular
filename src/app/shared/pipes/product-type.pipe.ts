@@ -6,59 +6,47 @@ import { Printer } from 'src/app/printers/interfaces/printer.interface';
   name: 'productType',
 })
 export class ProductTypePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) { }
 
   transform(value: Printer): SafeHtml {
-    const rentaTag = `
-      <div class="TypeBlob" style="width: 60px;
-      height: fit-content;
-      align-self: stretch;
-      padding-left: 4px;
-      padding-right: 4px;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      background: #FFA7B8;
-      border-radius: 8px;
-      border: 0.50px #FFA7B8 solid;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      display: flex;">
-        <div style="color: #AE003A;
-        font-size: 12px;
-        font-weight: 600;">Renta</div>
-      </div>
-    `;
-    const ventaTag = `
-      <div class="TypeBlob" style="width: 60px;
-      height: fit-content;
-      align-self: stretch;
-      padding-left: 4px;
-      padding-right: 4px;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      background: #BEF4D2;
-      border-radius: 8px;
-      border: 0.50px #BEF4D2 solid;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      display: flex;">
-        <div style="color: #0F572A; font-size: 12px; font-weight: 600;">Venta</div>
-      </div>
-    `;
+
+    const createTag = (backgroundColor: string, borderColor: string, textColor: string, label: string) => `
+  <div class="tag" 
+style="min-width: 60px;
+  display: flex;
+  height: fit-content;
+  align-self: stretch;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  padding-top: .125rem;
+  padding-bottom: .125rem;
+  background: ${backgroundColor};
+  border-radius: 16px;
+  border: 0.50px ${borderColor} solid;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;">
+    <div style="color: ${textColor}; font-size: 12px; font-weight: 600;">${label}</div>
+  </div>
+`;
 
     let result = '';
     if (value.rentable) {
-      result += rentaTag;
+      if (value.packages.length > 0) {
+        result += createTag('#FFA7B8', '#FFA7B8', '#AE003A', 'Paquete de Renta');
+      } else {
+        result += createTag('#FFA7B8', '#FFA7B8', '#AE003A', 'Renta');
+      }
     }
     if (value.sellable) {
-      result += ventaTag;
+      result += createTag('#BEF4D2', '#BEF4D2', '#0F572A', 'Venta');
     }
+
 
     // Wrap the result in a parent div with display: flex
     result = `<div style="display: flex; gap: 6px;">${result}</div>`;
-  
+
     return this.sanitizer.bypassSecurityTrustHtml(result);
 
     // if (value) {

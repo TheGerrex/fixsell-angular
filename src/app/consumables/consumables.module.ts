@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ConsumablesRoutingModule } from './consumables-routing.module';
 import { PrimengModule } from '../primeng/primeng.module';
 
-import { SwiperModule } from 'swiper/angular';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ConsumablesIntroComponent } from './pages/consumables-intro/consumables-intro.component';
@@ -16,6 +15,7 @@ import { ConsumablePageComponent } from './pages/consumable-page/consumable-page
 import { ConsumibleColorsPipe } from './pipes/consumible-colors.pipe';
 import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
 import { RelatedConsumablesListComponent } from './components/related-consumables-list/related-consumables-list.component';
+import { ConsumibleYieldPipe } from './pipes/consumible-yield.pipe';
 
 @NgModule({
   declarations: [
@@ -28,15 +28,16 @@ import { RelatedConsumablesListComponent } from './components/related-consumable
     ConsumibleColorsPipe,
     PromotionListComponent,
     RelatedConsumablesListComponent,
+    ConsumibleYieldPipe,
   ],
   imports: [
     CommonModule,
     ConsumablesRoutingModule,
     PrimengModule,
-    SwiperModule,
     FormsModule,
     SharedModule,
   ],
   exports: [PromotionListComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ConsumablesModule {}
+export class ConsumablesModule { }

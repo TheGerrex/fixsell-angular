@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -12,7 +12,6 @@ import { PrimengModule } from '../primeng/primeng.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { PrinterPageComponent } from './pages/printer-page/printer-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
-import { SwiperModule } from 'swiper/angular';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { IntroPageComponent } from './pages/intro-page/intro-page.component';
@@ -45,11 +44,11 @@ import { RelatedPrintersListComponent } from './components/related-printers-list
     CommonModule,
     PrinterRoutingModule,
     PrimengModule,
-    SwiperModule,
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
   ],
   exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe, PromotionListComponent, PackageRentPromotionListComponent, PackageRentContactFormComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PrinterModule {}
+export class PrinterModule { }

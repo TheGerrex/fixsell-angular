@@ -1,10 +1,8 @@
-import { AfterViewInit, Component, Input, Renderer2, ViewChild, ElementRef, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import { Component, Input, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
-import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent, Scroll } from '@angular/router';
-import { FilterComponent } from '../../components/filter/filter.component';
-import { Observable, Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'printers-list-page',
@@ -23,7 +21,7 @@ export class ListPageComponent implements OnInit {
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;
   scrollAnchor: string = "";
-  limit = 21;
+  limit = 25;
   offset = 0;
   currentPage = 1;
   totalPages = 4;
@@ -35,7 +33,7 @@ export class ListPageComponent implements OnInit {
   constructor(
     private printersService: PrintersService,
     private route: ActivatedRoute,
-    private router: Router, 
+    private router: Router,
     private changeDetector: ChangeDetectorRef
   ) {
     this.router.events.pipe(
@@ -53,14 +51,12 @@ export class ListPageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-      this.adjustLimit();
-      this.checkIfMobile();
+    this.checkIfMobile();
   }
-  
+
   ngOnInit() {
     this.fetchPrinters();
     this.checkIfMobile();
-    this.adjustLimit();
     this.handleQueryParamsOnChanges();
   }
 
@@ -78,7 +74,7 @@ export class ListPageComponent implements OnInit {
       this.totalPages = Math.ceil(this.totalPrinters / this.limit);
       this.sliceConsumablesForCurrentPage();
       this.isLoading = false;
-  
+
       // Subscribe to the query parameters after the consumables have been fetched
       this.route.queryParams.subscribe(params => {
         this.handleQueryParams(params);
@@ -121,7 +117,7 @@ export class ListPageComponent implements OnInit {
   async handleFilteredPrintersChange(queryFilters: Params): Promise<void> {
     const currentFilters = this.route.snapshot.queryParams;
     const filtersChanged = JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
-  
+
     this.applyFilters(queryFilters);
     const queryParams: Params = { ...queryFilters };
 
@@ -129,7 +125,7 @@ export class ListPageComponent implements OnInit {
     if (filtersChanged) {
       queryParams['page'] = 1;
     }
-  
+
     await this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
@@ -144,17 +140,17 @@ export class ListPageComponent implements OnInit {
 
     // Apply filters...
     if (queryFilters['brand']) {
-        const brands = queryFilters['brand'].split(',');
-        this.filteredPrinters = this.filteredPrinters.filter(printer => brands.includes(printer.brand));
+      const brands = queryFilters['brand'].split(',');
+      this.filteredPrinters = this.filteredPrinters.filter(printer => brands.includes(printer.brand));
     }
 
     // Apply rentable filter
     if (queryFilters['rentable']) {
       const rentable = JSON.parse(queryFilters['rentable']);
       this.filteredPrinters = this.filteredPrinters.filter(printer => printer.rentable === rentable);
-      
+
     }
-    
+
     // Apply sellable filter
     if (queryFilters['sellable']) {
       const sellable = JSON.parse(queryFilters['sellable']);
@@ -185,20 +181,31 @@ export class ListPageComponent implements OnInit {
       this.filteredPrinters = this.filteredPrinters.filter(printer => {
         let isInRange = false;
         for (let i = 0; i < printVelocities.length; i++) {
-            const [min, max] = printVelocities[i].split('-').map(Number);
-            const printerVelocity = Number(printer.printVelocity);
-            if (printerVelocity >= min && printerVelocity <= max) {
-                isInRange = true;
-                break;
-            }
+          const [min, max] = printVelocities[i].split('-').map(Number);
+          const printerVelocity = Number(printer.printVelocity);
+          if (printerVelocity >= min && printerVelocity <= max) {
+            isInRange = true;
+            break;
+          }
         }
         return isInRange;
       });
     }
 
+    // Apply deal filter
+    if (queryFilters['deal']) {
+      const deal = JSON.parse(queryFilters['deal']);
+      if (deal) {
+        this.filteredPrinters = this.filteredPrinters.filter(printer =>
+          (printer.deals && printer.deals.length > 0) ||
+          (printer.packages && printer.packages.length > 0)
+        );
+      }
+    }
+
     // Apply the search filter
     if (this.searchQuery) {
-      this.filteredPrinters = this.filteredPrinters.filter(printer => 
+      this.filteredPrinters = this.filteredPrinters.filter(printer =>
         printer.model.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
@@ -214,23 +221,33 @@ export class ListPageComponent implements OnInit {
   }
 
   getPageNumbers(): number[] {
-    if (this.totalPages <= 5) {
-      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    } else if (this.currentPage <= 4) {
-      return [2, 3, 4];
-    } else if (this.currentPage > this.totalPages - 3) {
-      return [this.totalPages - 3, this.totalPages - 2, this.totalPages - 1];
-    } else {
-      return [this.currentPage, this.currentPage + 1, this.currentPage + 2];
-    }
-  }
+    const totalPages = this.totalPages;
+    const currentPage = this.currentPage;
+    const maxPagesToShow = 5;
+    const pages = [];
 
-  adjustLimit() {
-    if (window.innerWidth <= 768) {
-        this.limit = 21;
+    if (totalPages <= maxPagesToShow) {
+      for (let i = 2; i < totalPages; i++) {
+        pages.push(i);
+      }
     } else {
-        this.limit = 12; // Or whatever your default limit is
+      let startPage = Math.max(2, currentPage - 1);
+      let endPage = Math.min(totalPages - 1, currentPage + 1);
+
+      if (currentPage <= 3) {
+        startPage = 2;
+        endPage = maxPagesToShow - 1;
+      } else if (currentPage >= totalPages - 2) {
+        startPage = totalPages - (maxPagesToShow - 2);
+        endPage = totalPages - 1;
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        pages.push(i);
+      }
     }
+
+    return pages;
   }
 
   checkIfMobile() {

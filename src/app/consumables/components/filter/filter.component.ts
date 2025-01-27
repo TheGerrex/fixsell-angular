@@ -1,22 +1,11 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  Input,
-  ElementRef,
-  ViewChild,
-  SimpleChanges,
-  OnDestroy,
-  OnChanges,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, SimpleChanges, OnDestroy, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 import { Consumible } from '../../../printers/interfaces/consumible.interface';
 import { ConsumableService } from '../../services/consumables.service';
-import { ViewportScroller } from '@angular/common';
 
 @Component({
-  selector: 'app-consumible-filter',
+  selector: 'consumible-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
@@ -71,6 +60,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
   isSectionVisibleCategory: boolean = true;
   isSectionVisibleOrigen: boolean = true;
   isSectionVisibleYield: boolean = true;
+  deal: boolean = false;
   appliedFiltersCount: number = 0;
   pageLoaded = false;
   filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
@@ -82,22 +72,18 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     private route: ActivatedRoute,
     private router: Router,
     private viewportScroller: ViewportScroller,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.selectedBrands =
-        typeof params['brand'] === 'string' ? params['brand'].split(',') : [];
-      this.selectedCategories =
-        typeof params['categories'] === 'string'
-          ? params['categories'].split(',')
-          : [];
-      this.selectedOrigens =
-        typeof params['origen'] === 'string' ? params['origen'].split(',') : [];
-      this.selectedYields =
-        typeof params['yields'] === 'string' ? params['yields'].split(',') : [];
-      this.selectedColors =
-        typeof params['color'] === 'string' ? params['color'].split(',') : [];
+      this.selectedBrands = typeof params['brand'] === 'string' ? params['brand'].split(',') : [];
+      this.selectedCategories = typeof params['categories'] === 'string'
+        ? params['categories'].split(',')
+        : [];
+      this.selectedOrigens = typeof params['origen'] === 'string' ? params['origen'].split(',') : [];
+      this.selectedYields = typeof params['yields'] === 'string' ? params['yields'].split(',') : [];
+      this.selectedColors = typeof params['color'] === 'string' ? params['color'].split(',') : [];
+      this.deal = params['deal'] ? JSON.parse(params['deal']) : false;
       this.searchQuery = params['search'] || '';
 
       // Emit the filteredPrintersChange event with the current filters
@@ -118,7 +104,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
         this.colorFilter = Array.from(
           new Set(consumables.map((consumable) => consumable.color))
         );
-        
+
       },
       (error) => {
         console.error('Error fetching consumables:', error);
@@ -180,6 +166,12 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     this.isMobile = window.innerWidth <= 768;
   }
 
+  toggleDealOptionFilter(): void {
+    this.deal = !this.deal;
+    this.appliedFiltersCount = this.deal ? this.appliedFiltersCount + 1 : (this.appliedFiltersCount > 0 ? this.appliedFiltersCount - 1 : 0);
+
+    this.emitFilters(true);
+  }
 
   toggleBrandFilter(filterBrand: string): void {
     const wasIncluded = this.selectedBrands.includes(filterBrand);
@@ -193,7 +185,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.appliedFiltersCount++;
     }
     this.emitFilters(true);
-    
+
   }
 
   toggleColorFilter(color: string): void {
@@ -248,7 +240,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       this.selectedYields.push(yieldValue);
       this.appliedFiltersCount++;
     }
-    
+
     this.emitFilters(true);
   }
 
@@ -266,7 +258,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     this.appliedFiltersCountChange.emit(0);
 
     // Update the URL to reflect the reset filters
-    // this.router.navigate([], { queryParams: {} });
+    this.router.navigate([], { queryParams: { page: 1 } });
   }
 
   emitFilters(filterChanged: boolean): void {
@@ -279,14 +271,12 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
       filterCount: this.appliedFiltersCount > 0 ? this.appliedFiltersCount : null,
       page: filterChanged ? 1 : this.route.snapshot.queryParams['page'] || 1,
       search: this.searchQuery?.trim() !== '' ? this.searchQuery : null,
+      deal: this.deal ? this.deal : null,
+      // Add other filters here...
     };
-    console.log('filters:', filters);
     this.filteredConsumableChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
-  
-    this.router.navigate([], {
-      queryParams: filters,
-      queryParamsHandling: 'preserve',
-    })
+
+    this.router.navigate([], { queryParams: filters, queryParamsHandling: 'merge' })
   }
 }
