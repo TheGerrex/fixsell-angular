@@ -127,12 +127,27 @@
 }
 
 .counter {
-  background-color: $gray-200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
   border-radius: 50px;
-  color: $gray-800;
-  padding: 2px 8px;
-  font-size: 12px;
-  font-weight: 700;
+  background-color: $gray-200;
+  padding: 2px;
+
+  span {
+    color: $gray-800;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.active_counter {
+  background-color: $primary-color;
+  span {
+    color: $white;
+  }
 }
 
 .filter-shade {

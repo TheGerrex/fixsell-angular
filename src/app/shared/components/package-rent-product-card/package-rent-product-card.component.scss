@@ -199,26 +199,28 @@
                   display: flex;
                   flex-wrap: wrap;
                   gap: 0.2em;
-                  align-items: baseline;
+                  align-items: center;
                   font-size: 16px;
                   font-weight: 500;
                   color: $text;
                   .package-print-card-icon {
                     img {
-                      width: 18px;
-                      height: 18px;
+                      width: 16px;
+                      height: 16px;
                     }
                   }
                   span {
                     font-size: 15px;
                     font-weight: 400;
                     color: $text;
+                    line-height: 1;
                   }
                 }
                 .sub-header {
                   font-size: 14px;
-                  font-weight: 400;
+                  font-weight: 500;
                   color: $secondary-text;
+                  line-height: 1;
                 }
               }
             }

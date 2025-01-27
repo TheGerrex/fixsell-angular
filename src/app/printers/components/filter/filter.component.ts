@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output, Input, ElementRef, ViewChild, SimpleChanges } from '@angular/core';
-import { Printer } from '../../interfaces/printer.interface';
-import { PrintersService } from '../../services/printers.service';
+import { Component, EventEmitter, OnInit, Output, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
+import { Printer } from '../../interfaces/printer.interface';
+import { PrintersService } from '../../services/printers.service';
 
 @Component({
   selector: 'printer-filter',

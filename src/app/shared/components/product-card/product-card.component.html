@@ -2,7 +2,11 @@
   <div class="product-card-container">
     <div class="product-image-wrap" [routerLink]="['/printers', printer.id]">
       <div class="product-feature-image">
-        <img [src]="printer.img_url[0]" alt="" class="product-image" />
+        <img
+          [src]="printer.img_url[0]"
+          [alt]="printer.model"
+          class="product-image"
+        />
         <div
           class="product-deal-tag"
           *ngIf="printer.deals.length > 0 || printer.packages.length > 0"

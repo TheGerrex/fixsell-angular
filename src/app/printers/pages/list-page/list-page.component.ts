@@ -1,10 +1,8 @@
-import { AfterViewInit, Component, Input, Renderer2, ViewChild, ElementRef, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import { Component, Input, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
-import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent, Scroll } from '@angular/router';
-import { FilterComponent } from '../../components/filter/filter.component';
-import { Observable, Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'printers-list-page',
@@ -204,6 +202,7 @@ export class ListPageComponent implements OnInit {
         );
       }
     }
+
     // Apply the search filter
     if (this.searchQuery) {
       this.filteredPrinters = this.filteredPrinters.filter(printer =>

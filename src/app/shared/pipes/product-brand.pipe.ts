@@ -64,7 +64,7 @@ export class ProductBrandPipe implements PipeTransform {
 
       case 'okidata':
         imagePath = '../../../assets/svg/home/proveedores/okidata.svg';
-        imgWidth = this.isMobile ? '70px' : 'auto';
+        imgWidth = this.isMobile ? '70px' : '70px';
         imgHeight = this.isMobile ? 'auto' : imgHeight;
         break;
 

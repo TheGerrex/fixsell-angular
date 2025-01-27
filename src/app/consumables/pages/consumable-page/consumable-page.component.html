@@ -100,27 +100,27 @@
               class="product-price-container"
               *ngIf="consumable?.deals && consumable.deals.length > 0"
             >
-              <h2 class="product-deal-price">
-                {{ consumable.currency }}
-                {{
-                  consumable.deals[0].dealPrice
-                    | currency : "$" : "symbol" : "1.2-3"
-                }}
-              </h2>
-              <div class="product-discount-container">
-                <p class="product-price">
-                  Precio de venta
-                  <span class="line-through"
-                    >{{ consumable.currency }}
-                    {{
-                      consumable.price | currency : "$" : "symbol" : "1.2-3"
-                    }}</span
-                  >
-                </p>
+              <div class="product-deal-price-container">
+                <h2 class="product-deal-price">
+                  {{ consumable.currency }}
+                  {{
+                    consumable.deals[0].dealPrice
+                      | currency : "$" : "symbol" : "1.2-3"
+                  }}
+                </h2>
                 <p class="product-discount">
                   ({{ consumable.deals[0].dealDiscountPercentage }}% dto.)
                 </p>
               </div>
+              <p class="product-price">
+                Precio de lista:
+                <span class="line-through"
+                  >{{ consumable.currency }}
+                  {{
+                    consumable.price | currency : "$" : "symbol" : "1.2-3"
+                  }}</span
+                >
+              </p>
             </div>
             <div class="actions-container">
               <button

@@ -17,10 +17,15 @@
       position: relative;
       background-color: $gray-100;
       border-radius: $border-radius;
+
+      &:hover ~ .product-body .product-name-link {
+        text-decoration: underline !important;
+      }
       .product-feature-image {
         position: relative;
-        padding: 0 12px;
+        padding: 0.5rem;
         aspect-ratio: 1 / 1;
+        width: 100%;
         max-height: 300px;
         overflow: hidden;
         display: flex;
@@ -71,20 +76,24 @@
         .product-info-col {
           width: 100%;
           .product-brand {
-            margin: 0 0 4px;
+            margin-bottom: 0.25rem;
           }
           .product-name {
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
             flex: 0;
-            color: $text;
-            cursor: pointer;
-            &:hover {
-              text-decoration: underline;
-            }
-            @media (min-width: 1024px) {
-              font-size: 20px;
+            .product-name-link {
+              font-weight: 500;
+              font-size: 1.25rem;
+              color: $text;
+              cursor: pointer;
+              text-decoration: none;
+              line-height: 1;
+              &:hover {
+                text-decoration: underline;
+              }
+              @media (min-width: 1024px) {
+                font-size: 20px;
+              }
             }
           }
           .product-tags {
@@ -122,7 +131,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
             margin-bottom: 0.75rem;
             flex: 1;
@@ -130,7 +139,38 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              gap: 5px;
+              gap: 4px;
+              .ColorCircle {
+                width: 20px;
+                height: 20px;
+                background: conic-gradient(
+                  from 180deg at 0% 100%,
+                  #ff0000 0deg,
+                  #ff7a1a 37deg,
+                  #fff730 67deg,
+                  #90ff4b 106deg,
+                  #66ff6c 144deg,
+                  #00ff75 174deg,
+                  #00ffe0 198deg,
+                  #00b2ff 226deg,
+                  #0038ff 249deg,
+                  #2400ff 279deg,
+                  #af06ff 301deg,
+                  #ff00d6 324deg,
+                  #ff002e 360deg
+                );
+                border-radius: 9999px;
+              }
+              .BlackCircle {
+                width: 20px;
+                height: 20px;
+                background: conic-gradient(
+                  from 180deg at 0% 100%,
+                  black 0deg,
+                  white 360deg
+                );
+                border-radius: 9999px;
+              }
               p {
                 color: $text;
                 font-size: 14px;
@@ -138,6 +178,67 @@
                 word-wrap: break-word;
                 margin: 0;
               }
+            }
+          }
+          .product-price {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid $gray-200;
+            padding-top: 0.75rem;
+            .product-price-deal {
+              color: $text;
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 1;
+            }
+            .product-price-list {
+              color: $secondary-text;
+              font-weight: 500;
+              font-size: 15px;
+              margin-right: 0.5rem;
+              line-height: 1;
+            }
+            .product-price-deal-percentage {
+              color: $promotion-text-color;
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 1;
+            }
+            .list-price-container {
+              display: inline-block;
+            }
+          }
+          .package-price {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+            justify-content: space-between;
+            border-top: 1px solid $gray-200;
+            padding-top: 0.75rem;
+            .data-price-container {
+              display: inline-flex;
+              align-items: baseline;
+              gap: 0.25rem;
+              .data-price {
+                color: $text;
+                font-weight: 600;
+                font-size: 20px;
+                margin: 0 !important;
+                line-height: 1;
+              }
+              .data-price-discount {
+                font-weight: 500;
+                font-size: 16px;
+                color: $promotion-text-color;
+              }
+            }
+
+            .data-price-label {
+              font-size: 15px;
+              font-weight: 500;
+              margin-bottom: 0;
+              color: $secondary-text;
             }
           }
         }
@@ -157,31 +258,28 @@
     font-size: 20px;
     line-height: 1;
   }
+  .product-price-list {
+    color: $secondary-text;
+    font-weight: 500;
+    font-size: 15px;
+    margin-right: 0.5rem;
+    line-height: 1;
+  }
+  .product-price-deal-percentage {
+    color: $promotion-text-color;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+  }
   .list-price-container {
     display: inline-block;
-    .product-price-list {
-      color: $secondary-text;
-      font-weight: 400;
-      font-size: 16px;
-      margin-right: 0.5rem;
-    }
-    .product-price-deal-percentage {
-      color: $promotion-text-color;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 1;
-    }
   }
-}
-
-.product-card:hover .product-name {
-  text-decoration: underline;
 }
 
 // MOVE ME TO CORRECT PLACE
 .circle {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
 }
 
@@ -197,8 +295,8 @@
     content: "";
     position: absolute;
     border-radius: 50px;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-image: linear-gradient(
         to bottom,
         rgba(255, 255, 255, 0.15),

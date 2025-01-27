@@ -12,8 +12,11 @@
     <div class="filter-title">
       <i class="pi pi-filter-fill" style="font-size: 0.8em; color: #111827"></i>
       <h3>Filtro</h3>
-      <div class="counter">
-        {{ appliedFiltersCount }}
+      <div
+        class="counter"
+        [ngClass]="{ active_counter: appliedFiltersCount > 0 }"
+      >
+        <span>{{ appliedFiltersCount }}</span>
       </div>
     </div>
   </div>
@@ -132,6 +135,7 @@
       (appliedFiltersCountChange)="onAppliedFiltersCountChange($event)"
       (filteredPrintersChange)="handleFilteredPrintersChange($event)"
       [selectedCategory]="selectedCategory"
+      [searchQuery]="searchQuery"
     ></printer-filter>
   </div>
 </div>
