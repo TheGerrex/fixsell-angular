@@ -3,10 +3,24 @@
 ::ng-deep .p-menubar {
   font-family: "Cera Pro", sans-serif;
   height: 50px;
+  border-radius: 0;
   p-menubarsub {
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+  .p-menubar-root-list {
+    margin: 0;
+    padding: 0;
+    gap: 0.25rem;
+  }
+  .p-submenu-list {
+    padding: 0;
+  }
+  a {
+    color: $text;
+    margin: 0;
+    text-decoration: none;
   }
   a.p-menubar-button {
     order: 2;
