@@ -1,9 +1,25 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
 import Swiper from 'swiper';
 import { SwiperContainer } from 'swiper/element';
-import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Thumbs,
+  Autoplay,
+} from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 
 // install Swiper modules
@@ -58,7 +74,7 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     },
   };
 
-  constructor(private printersService: PrintersService) { }
+  constructor(private printersService: PrintersService) {}
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
@@ -101,14 +117,24 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     const swiperInstance = this.swiperContainer.nativeElement.swiper;
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
-    this.showNavigation = this.dealPrinters.length > (swiperInstance.params.slidesPerView as number);
+    this.showNavigation =
+      this.dealPrinters.length >
+      (swiperInstance.params.slidesPerView as number);
     // console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation);
   }
 
   private filterPrinters(printers: Printer[]): Printer[] {
-    return printers.filter(printer =>
-      (!this.requireDeals || printer.deals.length > 0) &&
-      (this.categories.length === 0 || this.categories.includes(printer.category))
+    const currentDate = new Date();
+    return printers.filter(
+      (printer) =>
+        (!this.requireDeals ||
+          printer.deals.some(
+            (deal) =>
+              new Date(deal.dealStartDate) <= currentDate &&
+              new Date(deal.dealEndDate) >= currentDate
+          )) &&
+        (this.categories.length === 0 ||
+          this.categories.includes(printer.category))
     );
   }
 }
