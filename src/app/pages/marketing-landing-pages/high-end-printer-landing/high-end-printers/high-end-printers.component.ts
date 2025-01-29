@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-high-end-printers',
   templateUrl: './high-end-printers.component.html',
-  styleUrls: ['./high-end-printers.component.scss']
+  styleUrls: ['./high-end-printers.component.scss'],
 })
-export class HighEndPrintersComponent {
+export class HighEndPrintersComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
+  ngOnInit() {
+    // initilizacion logic for localstorage
+  }
 
   callPhoneNumber() {
-    window.location.href = 'tel:8181143827';
+    const location = localStorage.getItem('location') || 'mty';
+    const phoneNumber = location === 'cdmx' ? '5559295976' : '8181143827';
+    window.location.href = `tel:${phoneNumber}`;
   }
 
   navigateToProductListTypeCategory(types: string[]) {

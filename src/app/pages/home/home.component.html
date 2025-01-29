@@ -1,5 +1,5 @@
 <section class="hero-background">
-  <div class="container h-100">
+  <div class="hero-container">
     <div class="hero-banner">
       <div class="hero-message-container">
         <div class="hero-message">
@@ -19,8 +19,14 @@
             >
               <span class="button-label">Ver productos</span>
             </button>
+            <button
+              class="button button-rounded button-secondary button-raised"
+              routerLink="/contacto"
+            >
+              <span class="button-label">Contáctanos</span>
+            </button>
           </div>
-          <div class="proveedores mt-3">
+          <!-- <div class="proveedores mt-3">
             <div class="proveedores-container d-flex justify-content-around">
               <img
                 src="../../../assets/svg/home/proveedores/konica_minolta.svg"
@@ -43,7 +49,7 @@
                 alt="ysoft"
               />
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="hero-image-container">
@@ -72,7 +78,7 @@
 </section>
 
 <section class="section-content" id="features">
-  <div class="container py-5">
+  <div class="section-container">
     <div class="features-body">
       <div class="section-title">
         <h1>Nuestros Productos y Servicios</h1>
@@ -178,7 +184,7 @@
 </section>
 
 <section class="section-content" id="validation">
-  <div class="container py-5">
+  <div class="section-container">
     <div class="validation-body">
       <div class="validation-header">
         <h1 class="validation-title">Distribuidores Oficiales</h1>
@@ -273,7 +279,7 @@
 
 <section class="section-content" id="rent-printer-packages">
   <div class="package-rent-deals">
-    <div class="container py-5">
+    <div class="section-container">
       <div class="promotion-header">
         <div class="promotion-title-container">
           <h1 class="section-title">Paquetes de Renta en Oferta</h1>
@@ -297,7 +303,7 @@
 </section>
 
 <!-- <section class="section-content" id="catalog">
-    <div class="container py-5">
+    <div class="section-container">
         <div class="products-body">
             <div class="section-title">
                 <h1>Productos</h1>
@@ -377,7 +383,7 @@
 </section> -->
 
 <!-- <section class="section-content" id="categorias">
-    <div class="container py-5">
+    <div class="section-container">
         <div class="categoria-body">
             <div class="section-title">
                 <h1>Categorias de Multifuncionales</h1>
@@ -405,10 +411,10 @@
 
 <section class="section-content" id="servicio">
   <div class="servicio">
-    <div class="container servicio-container">
-      <div class="servicio-body py-5">
+    <div class="section-container servicio-container">
+      <div class="servicio-body">
         <div class="section-title">
-          <h1>Servicio Técnico</h1>
+          <h1 class="servicio-title">Servicio Técnico</h1>
         </div>
         <div class="servicio-content">
           <div
@@ -435,7 +441,7 @@
             </div>
             <div class="servicio-item-body">
               <div class="servicio-item-title">
-                <h2>Reparación de equipos de impresión</h2>
+                <h3>Reparación de equipos de impresión</h3>
               </div>
               <div class="servicio-item-content">
                 <h5 class="section-subtitle">
@@ -479,7 +485,7 @@
             </div>
             <div class="servicio-item-body">
               <div class="servicio-item-title">
-                <h2>Mantenimiento preventivo y correctivo</h2>
+                <h3>Mantenimiento preventivo y correctivo</h3>
               </div>
               <div class="servicio-item-content">
                 <h5 class="section-subtitle">
@@ -525,7 +531,7 @@
             </div>
             <div class="servicio-item-body">
               <div class="servicio-item-title">
-                <h2>Pólizas de servicio técnico todo incluido</h2>
+                <h3>Pólizas de servicio técnico todo incluido</h3>
               </div>
               <div class="servicio-item-content">
                 <h5 class="section-subtitle">
@@ -556,7 +562,6 @@
             [src]="imageSrc"
             alt="tecnico-impresoras"
             [class.displayNone]="isSmallScreen"
-            style="border-radius: 0"
           />
         </div>
       </div>
@@ -567,7 +572,7 @@
 <section class="section-content" id="consumibles">
   <div class="consumible">
     <!-- <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/consumibles.jpg" alt="consumibles-impresoras"></div> -->
-    <div class="container py-5 consumible-container">
+    <div class="section-container consumible-container">
       <div class="consumible-body">
         <div class="consumible-content">
           <div class="consumible-title">
@@ -622,7 +627,7 @@
     </div>
   </div>
   <div class="consumible-deals">
-    <div class="container py-5">
+    <div class="section-container">
       <div class="promotion-header">
         <div class="promotion-title-container">
           <h1 class="section-title">Consumibles en Oferta</h1>
@@ -647,7 +652,7 @@
 
 <section class="section-content" id="equipos">
   <div class="equipos">
-    <div class="container py-5">
+    <div class="section-container">
       <div class="equipos-container">
         <div class="equipos-body">
           <div class="section-header">
@@ -714,7 +719,7 @@
     </div>
   </div>
   <div class="equipos-deals">
-    <div class="container py-5">
+    <div class="section-container">
       <div class="promotion-header">
         <div class="promotion-title-container">
           <h1 class="section-title">Multifuncionales en Oferta</h1>
@@ -740,7 +745,7 @@
 <section class="section-content" id="softwares">
   <div class="software">
     <!-- <div class="software-image"><img src="../../../assets/img/home/soluciones-servicios/gestion-documental-impresion.jpg" alt="document-administration"></div> -->
-    <div class="container py-5 software-container">
+    <div class="section-container software-container">
       <div class="software-body">
         <div class="software-header">
           <h1 class="software-title">Gestión Documental y de Impresión</h1>
@@ -917,7 +922,7 @@
 </section>
 
 <div class="section-content" id="clients">
-  <div class="container py-5">
+  <div class="section-container">
     <div class="clients-body">
       <div class="clients-header">
         <h1 class="clients-title">Nuestros principales clientes</h1>
@@ -1198,7 +1203,7 @@
 </div>
 
 <!-- <section class="section-content" id="beneficios">
-    <div class="container py-5">
+    <div class="section-container">
         <div class="row">
             <div class="col-12">
                 <h1 class="section-title">Principales Beneficios</h1>

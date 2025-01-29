@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+
+  select {
+    width: 5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    height: 40px; /* Match navbar item height */
+    line-height: 1.5;
+  }
+
+  .pi-globe {
+    margin-right: 0.5rem;
+    font-size: 1.2rem; /* Adjust icon size if necessary */
+    vertical-align: middle; /* Align icon vertically */
+  }
+}

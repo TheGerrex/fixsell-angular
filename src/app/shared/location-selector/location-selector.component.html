@@ -1,0 +1,12 @@
+<div class="form-group">
+  <i class="pi pi-globe mr-2"></i>
+  <select
+    id="locationSelect"
+    class="form-select"
+    [value]="selectedLocation"
+    (change)="setLocation($event)"
+  >
+    <option value="cdmx">CDMX</option>
+    <option value="mty">MTY</option>
+  </select>
+</div>

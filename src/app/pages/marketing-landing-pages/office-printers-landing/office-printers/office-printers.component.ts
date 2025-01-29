@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-office-printers',
   templateUrl: './office-printers.component.html',
-  styleUrls: ['./office-printers.component.scss']
+  styleUrls: ['./office-printers.component.scss'],
 })
-export class OfficePrintersComponent {
-  constructor(private router: Router) { }
+export class OfficePrintersComponent implements OnInit {
+  constructor(private router: Router) {}
 
+  ngOnInit() {
+    // Initialization logic for localstorage
+  }
   callPhoneNumber() {
-    window.location.href = 'tel:8181143827';
+    const location = localStorage.getItem('location') || 'mty';
+    const phoneNumber = location === 'cdmx' ? '5559295976' : '8181143827';
+    window.location.href = `tel:${phoneNumber}`;
   }
 
   navigateToProductListTypeCategory(types: string[]) {
@@ -33,6 +38,5 @@ export class OfficePrintersComponent {
         queryParamsHandling: 'merge',
       });
     }
-
   }
 }

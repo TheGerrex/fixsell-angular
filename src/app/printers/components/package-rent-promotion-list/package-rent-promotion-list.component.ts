@@ -46,7 +46,7 @@ export class PackageRentPromotionListComponent implements OnInit, AfterViewInit 
         spaceBetween: 14,
       },
       '@1.50': {
-        slidesPerView: 3.25,
+        slidesPerView: 4.25,
         spaceBetween: 16,
       },
     },
