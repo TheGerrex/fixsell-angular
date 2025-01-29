@@ -427,21 +427,25 @@
             "
             [class.active]="activeItem === 1 || isSmallScreen"
           >
-            <div class="icon-container" [class.displayNone]="isSmallScreen">
-              <i class="pi pi-cog"></i>
-            </div>
-            <div class="servicio-content-image">
+            <div
+              class="servicio-content-image"
+              [class.displayNone]="!isSmallScreen"
+            >
               <div class="servicio-image">
                 <img
                   src="../../../assets/img/home/soluciones-servicios/arreglando-impresora.jpg"
                   alt="arreglando-impresora"
-                  [class.displayNone]="!isSmallScreen"
                 />
               </div>
             </div>
             <div class="servicio-item-body">
-              <div class="servicio-item-title">
-                <h3>Reparación de equipos de impresión</h3>
+              <div class="servicio-item-header">
+                <div class="icon-container">
+                  <i class="pi pi-cog"></i>
+                </div>
+                <div class="servicio-item-title">
+                  <h3>Reparación de equipos de impresión</h3>
+                </div>
               </div>
               <div class="servicio-item-content">
                 <h5 class="section-subtitle">
@@ -449,7 +453,7 @@
                   nosotros la reparamos con rapidez y eficacia.
                 </h5>
                 <br />
-                <p>
+                <p class="servicio-item-text">
                   Contamos con técnicos especializados y certificados por las
                   principales marcas de impresoras, como Konica Minolta, Kyocera
                   y Epson. Además, tenemos un extenso inventario de refacciones,
@@ -471,21 +475,25 @@
             "
             [class.active]="activeItem === 2 || isSmallScreen"
           >
-            <div class="icon-container" [class.displayNone]="isSmallScreen">
-              <i class="pi pi-exclamation-triangle"></i>
-            </div>
-            <div class="servicio-content-image">
+            <div
+              class="servicio-content-image"
+              [class.displayNone]="!isSmallScreen"
+            >
               <div class="servicio-image">
                 <img
                   src="../../../assets/img/home/soluciones-servicios/mantenimiento-correctivo.jpg"
                   alt="mantenimiento-correctivo"
-                  [class.displayNone]="!isSmallScreen"
                 />
               </div>
             </div>
             <div class="servicio-item-body">
-              <div class="servicio-item-title">
-                <h3>Mantenimiento preventivo y correctivo</h3>
+              <div class="servicio-item-header">
+                <div class="icon-container">
+                  <i class="pi pi-exclamation-triangle"></i>
+                </div>
+                <div class="servicio-item-title">
+                  <h3>Mantenimiento preventivo y correctivo</h3>
+                </div>
               </div>
               <div class="servicio-item-content">
                 <h5 class="section-subtitle">
@@ -517,21 +525,25 @@
             "
             [class.active]="activeItem === 3 || isSmallScreen"
           >
-            <div class="icon-container" [class.displayNone]="isSmallScreen">
-              <i class="pi pi-file"></i>
-            </div>
-            <div class="servicio-content-image">
+            <div
+              class="servicio-content-image"
+              [class.displayNone]="!isSmallScreen"
+            >
               <div class="servicio-image">
                 <img
                   src="../../../assets/img/home/soluciones-servicios/poliza-de-servicio.jpg"
                   alt="pieza-impresora"
-                  [class.displayNone]="!isSmallScreen"
                 />
               </div>
             </div>
             <div class="servicio-item-body">
-              <div class="servicio-item-title">
-                <h3>Pólizas de servicio técnico todo incluido</h3>
+              <div class="servicio-item-header">
+                <div class="icon-container">
+                  <i class="pi pi-file"></i>
+                </div>
+                <div class="servicio-item-title">
+                  <h3>Pólizas de servicio técnico todo incluido</h3>
+                </div>
               </div>
               <div class="servicio-item-content">
                 <h5 class="section-subtitle">
