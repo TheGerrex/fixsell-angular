@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  HostListener,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 import { PrintersService } from '../../services/printers.service';
@@ -7,7 +13,7 @@ import { Printer } from '../../interfaces/printer.interface';
 @Component({
   selector: 'printers-list-page',
   templateUrl: './list-page.component.html',
-  styleUrls: ['./list-page.component.scss']
+  styleUrls: ['./list-page.component.scss'],
 })
 export class ListPageComponent implements OnInit {
   @Input() selectedCategory?: string;
@@ -20,7 +26,7 @@ export class ListPageComponent implements OnInit {
   filterBarOpen = false;
   appliedFiltersCount: number = 0;
   scrollPosition: number = 0;
-  scrollAnchor: string = "";
+  scrollAnchor: string = '';
   limit = 25;
   offset = 0;
   currentPage = 1;
@@ -36,15 +42,17 @@ export class ListPageComponent implements OnInit {
     private router: Router,
     private changeDetector: ChangeDetectorRef
   ) {
-    this.router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      window.scrollTo(0, 480);
-    });
-    this.searchQuerySubject.pipe(
-      debounceTime(10)
-    ).subscribe(searchQuery => {
+    this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        ),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {
+        window.scrollTo(0, 480);
+      });
+    this.searchQuerySubject.pipe(debounceTime(10)).subscribe((searchQuery) => {
       this.searchQuery = searchQuery;
     });
   }
@@ -76,7 +84,7 @@ export class ListPageComponent implements OnInit {
       this.isLoading = false;
 
       // Subscribe to the query parameters after the consumables have been fetched
-      this.route.queryParams.subscribe(params => {
+      this.route.queryParams.subscribe((params) => {
         this.handleQueryParams(params);
       });
     });
@@ -104,19 +112,20 @@ export class ListPageComponent implements OnInit {
   }
 
   handleQueryParamsOnChanges() {
-    this.route.queryParams.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((params: Params) => {
-      if (params['page']) {
-        this.currentPage = +params['page'];
-      }
-      this.handleQueryParams(params);
-    });
+    this.route.queryParams
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        if (params['page']) {
+          this.currentPage = +params['page'];
+        }
+        this.handleQueryParams(params);
+      });
   }
 
   async handleFilteredPrintersChange(queryFilters: Params): Promise<void> {
     const currentFilters = this.route.snapshot.queryParams;
-    const filtersChanged = JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
+    const filtersChanged =
+      JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
 
     this.applyFilters(queryFilters);
     const queryParams: Params = { ...queryFilters };
@@ -126,13 +135,15 @@ export class ListPageComponent implements OnInit {
       queryParams['page'] = 1;
     }
 
-    await this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: queryParams,
-      queryParamsHandling: 'merge',
-    }).then(() => {
-      this.sliceConsumablesForCurrentPage();
-    });
+    await this.router
+      .navigate([], {
+        relativeTo: this.route,
+        queryParams: queryParams,
+        queryParamsHandling: 'merge',
+      })
+      .then(() => {
+        this.sliceConsumablesForCurrentPage();
+      });
   }
 
   applyFilters(queryFilters: Params): void {
@@ -141,44 +152,55 @@ export class ListPageComponent implements OnInit {
     // Apply filters...
     if (queryFilters['brand']) {
       const brands = queryFilters['brand'].split(',');
-      this.filteredPrinters = this.filteredPrinters.filter(printer => brands.includes(printer.brand));
+      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
+        brands.includes(printer.brand)
+      );
     }
 
     // Apply rentable filter
     if (queryFilters['rentable']) {
       const rentable = JSON.parse(queryFilters['rentable']);
-      this.filteredPrinters = this.filteredPrinters.filter(printer => printer.rentable === rentable);
-
+      this.filteredPrinters = this.filteredPrinters.filter(
+        (printer) => printer.rentable === rentable
+      );
     }
 
     // Apply sellable filter
     if (queryFilters['sellable']) {
       const sellable = JSON.parse(queryFilters['sellable']);
-      this.filteredPrinters = this.filteredPrinters.filter(printer => printer.sellable === sellable);
+      this.filteredPrinters = this.filteredPrinters.filter(
+        (printer) => printer.sellable === sellable
+      );
     }
 
     // Apply color filter
     if (queryFilters['color']) {
       const color = JSON.parse(queryFilters['color']);
-      this.filteredPrinters = this.filteredPrinters.filter(printer => printer.color === color);
+      this.filteredPrinters = this.filteredPrinters.filter(
+        (printer) => printer.color === color
+      );
     }
 
     // Apply category filter
     if (queryFilters['categories']) {
       const categories = queryFilters['categories'].split(',');
-      this.filteredPrinters = this.filteredPrinters.filter(printer => categories.includes(printer.category));
+      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
+        categories.includes(printer.category)
+      );
     }
 
     // Apply print size filter
     if (queryFilters['printSizes']) {
       const printSizes = queryFilters['printSizes'].split(',');
-      this.filteredPrinters = this.filteredPrinters.filter(printer => printSizes.includes(printer.printSize));
+      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
+        printSizes.includes(printer.printSize)
+      );
     }
 
     // Apply print velocity filter
     if (queryFilters['printVelocities']) {
       const printVelocities = queryFilters['printVelocities'].split(',');
-      this.filteredPrinters = this.filteredPrinters.filter(printer => {
+      this.filteredPrinters = this.filteredPrinters.filter((printer) => {
         let isInRange = false;
         for (let i = 0; i < printVelocities.length; i++) {
           const [min, max] = printVelocities[i].split('-').map(Number);
@@ -194,18 +216,30 @@ export class ListPageComponent implements OnInit {
 
     // Apply deal filter
     if (queryFilters['deal']) {
-      const deal = JSON.parse(queryFilters['deal']);
-      if (deal) {
-        this.filteredPrinters = this.filteredPrinters.filter(printer =>
-          (printer.deals && printer.deals.length > 0) ||
-          (printer.packages && printer.packages.length > 0)
+      const dealRequested = JSON.parse(queryFilters['deal']);
+      if (dealRequested) {
+        const currentDate = new Date();
+        this.filteredPrinters = this.filteredPrinters.filter(
+          (printer) =>
+            (printer.deals &&
+              printer.deals.some(
+                (d) =>
+                  new Date(d.dealStartDate) <= currentDate &&
+                  new Date(d.dealEndDate) >= currentDate
+              )) ||
+            (printer.packages &&
+              printer.packages.some(
+                (pkg) =>
+                  new Date(pkg.packageStartDate) <= currentDate &&
+                  new Date(pkg.packageEndDate) >= currentDate
+              ))
         );
       }
     }
 
     // Apply the search filter
     if (this.searchQuery) {
-      this.filteredPrinters = this.filteredPrinters.filter(printer =>
+      this.filteredPrinters = this.filteredPrinters.filter((printer) =>
         printer.model.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
