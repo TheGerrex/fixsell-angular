@@ -165,8 +165,8 @@ export class ListPageComponent implements OnInit, OnDestroy {
     // Apply color filter
     if (queryFilters['color']) {
       const color = queryFilters['color'].split(',');
-      this.filteredConsumables = this.filteredConsumables.filter((consumible) =>
-        color.includes(consumible.color)
+      this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
+        color.includes(consumable.color)
       );
     }
 
@@ -178,7 +178,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
       );
     }
 
-    //apply origen filter
+    // Apply origen filter
     if (queryFilters['origen']) {
       const origen = queryFilters['origen'].split(',');
       this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
@@ -205,7 +205,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
       );
     }
 
-    // Apply deal filter
+    // Apply deal filter with date validation
     if (queryFilters['deal']) {
       const deal = JSON.parse(queryFilters['deal']);
       if (deal) {
@@ -218,6 +218,20 @@ export class ListPageComponent implements OnInit, OnDestroy {
                 new Date(d.dealStartDate) <= currentDate &&
                 new Date(d.dealEndDate) >= currentDate
             )
+        );
+
+        // Retain only active deals
+        this.filteredConsumables = this.filteredConsumables.map(
+          (consumable) => ({
+            ...consumable,
+            deals: consumable.deals
+              ? consumable.deals.filter(
+                  (d) =>
+                    new Date(d.dealStartDate) <= currentDate &&
+                    new Date(d.dealEndDate) >= currentDate
+                )
+              : [],
+          })
         );
       }
     }

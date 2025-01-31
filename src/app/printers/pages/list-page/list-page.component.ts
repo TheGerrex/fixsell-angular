@@ -149,7 +149,7 @@ export class ListPageComponent implements OnInit {
   applyFilters(queryFilters: Params): void {
     this.filteredPrinters = [...this.printers];
 
-    // Apply filters...
+    // Apply brand filter
     if (queryFilters['brand']) {
       const brands = queryFilters['brand'].split(',');
       this.filteredPrinters = this.filteredPrinters.filter((printer) =>
@@ -214,7 +214,7 @@ export class ListPageComponent implements OnInit {
       });
     }
 
-    // Apply deal filter
+    // Apply deal filter with date validation
     if (queryFilters['deal']) {
       const dealRequested = JSON.parse(queryFilters['deal']);
       if (dealRequested) {
@@ -234,6 +234,25 @@ export class ListPageComponent implements OnInit {
                   new Date(pkg.packageEndDate) >= currentDate
               ))
         );
+
+        // Retain only active deals and packages
+        this.filteredPrinters = this.filteredPrinters.map((printer) => ({
+          ...printer,
+          deals: printer.deals
+            ? printer.deals.filter(
+                (d) =>
+                  new Date(d.dealStartDate) <= currentDate &&
+                  new Date(d.dealEndDate) >= currentDate
+              )
+            : [],
+          packages: printer.packages
+            ? printer.packages.filter(
+                (pkg) =>
+                  new Date(pkg.packageStartDate) <= currentDate &&
+                  new Date(pkg.packageEndDate) >= currentDate
+              )
+            : [],
+        }));
       }
     }
 
@@ -243,8 +262,6 @@ export class ListPageComponent implements OnInit {
         printer.model.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
-
-    // Add other filters here...
 
     // Recalculate total pages
     this.totalPrinters = this.filteredPrinters.length;
