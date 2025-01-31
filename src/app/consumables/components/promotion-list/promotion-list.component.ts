@@ -126,16 +126,25 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
 
   private filterconsumables(consumables: Consumible[]): Consumible[] {
     const currentDate = new Date();
-    return consumables.filter(
-      (consumable) =>
-        (!this.requireDeals ||
-          consumable.deals.some(
-            (deal) =>
-              new Date(deal.dealStartDate) <= currentDate &&
-              new Date(deal.dealEndDate) >= currentDate
-          )) &&
-        (this.categories.length === 0 ||
-          this.categories.includes(consumable.category))
-    );
+    return consumables
+      .filter(
+        (consumable) =>
+          (!this.requireDeals ||
+            consumable.deals.some(
+              (deal) =>
+                new Date(deal.dealStartDate) <= currentDate &&
+                new Date(deal.dealEndDate) >= currentDate
+            )) &&
+          (this.categories.length === 0 ||
+            this.categories.includes(consumable.category))
+      )
+      .map((consumable) => ({
+        ...consumable,
+        deals: consumable.deals.filter(
+          (deal) =>
+            new Date(deal.dealStartDate) <= currentDate &&
+            new Date(deal.dealEndDate) >= currentDate
+        ),
+      }));
   }
 }

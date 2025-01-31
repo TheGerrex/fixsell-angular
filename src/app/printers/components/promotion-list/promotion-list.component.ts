@@ -125,16 +125,25 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
 
   private filterPrinters(printers: Printer[]): Printer[] {
     const currentDate = new Date();
-    return printers.filter(
-      (printer) =>
-        (!this.requireDeals ||
-          printer.deals.some(
-            (deal) =>
-              new Date(deal.dealStartDate) <= currentDate &&
-              new Date(deal.dealEndDate) >= currentDate
-          )) &&
-        (this.categories.length === 0 ||
-          this.categories.includes(printer.category))
-    );
+    return printers
+      .filter(
+        (printer) =>
+          (!this.requireDeals ||
+            printer.deals.some(
+              (deal) =>
+                new Date(deal.dealStartDate) <= currentDate &&
+                new Date(deal.dealEndDate) >= currentDate
+            )) &&
+          (this.categories.length === 0 ||
+            this.categories.includes(printer.category))
+      )
+      .map((printer) => ({
+        ...printer,
+        deals: printer.deals.filter(
+          (deal) =>
+            new Date(deal.dealStartDate) <= currentDate &&
+            new Date(deal.dealEndDate) >= currentDate
+        ),
+      }));
   }
 }
