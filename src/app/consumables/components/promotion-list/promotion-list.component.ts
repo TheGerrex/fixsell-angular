@@ -1,9 +1,24 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
 import { ConsumableService } from '../../services/consumables.service';
 import Swiper from 'swiper';
 import { SwiperContainer } from 'swiper/element';
-import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Thumbs,
+  Autoplay,
+} from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
 
 // install Swiper modules
@@ -58,16 +73,18 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     },
   };
 
-  constructor(private consumableService: ConsumableService) { }
+  constructor(private consumableService: ConsumableService) {}
 
   ngOnInit(): void {
-    this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
-      this.dealConsumables = this.filterconsumables(consumables);
-      this.isLoading = false;
-      setTimeout(() => {
-        this.updateNavigation(); // Update navigation after loading data
+    this.consumableService
+      .getConsumables()
+      .subscribe((consumables: Consumible[]) => {
+        this.dealConsumables = this.filterconsumables(consumables);
+        this.isLoading = false;
+        setTimeout(() => {
+          this.updateNavigation(); // Update navigation after loading data
+        });
       });
-    });
   }
 
   ngAfterViewInit(): void {
@@ -101,15 +118,33 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     const swiperInstance = this.swiperContainer.nativeElement.swiper;
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
-    this.showNavigation = this.dealConsumables.length > (swiperInstance.params.slidesPerView as number);
+    this.showNavigation =
+      this.dealConsumables.length >
+      (swiperInstance.params.slidesPerView as number);
     // console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation);
   }
 
   private filterconsumables(consumables: Consumible[]): Consumible[] {
-    return consumables.filter(consumable =>
-      (!this.requireDeals || consumable.deals.length > 0) &&
-      (this.categories.length === 0 || this.categories.includes(consumable.category))
-    );
+    const currentDate = new Date();
+    return consumables
+      .filter(
+        (consumable) =>
+          (!this.requireDeals ||
+            consumable.deals.some(
+              (deal) =>
+                new Date(deal.dealStartDate) <= currentDate &&
+                new Date(deal.dealEndDate) >= currentDate
+            )) &&
+          (this.categories.length === 0 ||
+            this.categories.includes(consumable.category))
+      )
+      .map((consumable) => ({
+        ...consumable,
+        deals: consumable.deals.filter(
+          (deal) =>
+            new Date(deal.dealStartDate) <= currentDate &&
+            new Date(deal.dealEndDate) >= currentDate
+        ),
+      }));
   }
-
 }

@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, HostListener, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  HostListener,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 import { ConsumableService } from '../../services/consumables.service';
@@ -29,22 +36,23 @@ export class ListPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private searchQuerySubject = new Subject<string>();
 
-
   constructor(
     private consumableService: ConsumableService,
     private route: ActivatedRoute,
     private router: Router,
-    private changeDetector: ChangeDetectorRef,
+    private changeDetector: ChangeDetectorRef
   ) {
-    this.router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      window.scrollTo(0, 480);
-    });
-    this.searchQuerySubject.pipe(
-      debounceTime(10)
-    ).subscribe(searchQuery => {
+    this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        ),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {
+        window.scrollTo(0, 480);
+      });
+    this.searchQuerySubject.pipe(debounceTime(10)).subscribe((searchQuery) => {
       this.searchQuery = searchQuery;
     });
   }
@@ -66,26 +74,31 @@ export class ListPageComponent implements OnInit, OnDestroy {
   }
 
   fetchConsumables() {
-    this.consumableService.getConsumables().subscribe((consumables: Consumible[]) => {
-      this.isLoading = true;
-      this.consumables = consumables;
-      this.filteredConsumables = [...consumables];
-      this.totalConsumables = consumables.length;
-      this.totalPages = Math.ceil(this.totalConsumables / this.limit);
-      this.sliceConsumablesForCurrentPage();
-      this.isLoading = false;
+    this.consumableService
+      .getConsumables()
+      .subscribe((consumables: Consumible[]) => {
+        this.isLoading = true;
+        this.consumables = consumables;
+        this.filteredConsumables = [...consumables];
+        this.totalConsumables = consumables.length;
+        this.totalPages = Math.ceil(this.totalConsumables / this.limit);
+        this.sliceConsumablesForCurrentPage();
+        this.isLoading = false;
 
-      // Subscribe to the query parameters after the consumables have been fetched
-      this.route.queryParams.subscribe(params => {
-        this.handleQueryParams(params);
+        // Subscribe to the query parameters after the consumables have been fetched
+        this.route.queryParams.subscribe((params) => {
+          this.handleQueryParams(params);
+        });
       });
-    });
   }
 
   sliceConsumablesForCurrentPage() {
     const start = (this.currentPage - 1) * this.limit;
     const end = start + this.limit;
-    this.currentPageFilteredConsumables = this.filteredConsumables.slice(start, end);
+    this.currentPageFilteredConsumables = this.filteredConsumables.slice(
+      start,
+      end
+    );
   }
 
   handleQueryParams(params: Params) {
@@ -104,19 +117,20 @@ export class ListPageComponent implements OnInit, OnDestroy {
   }
 
   handleQueryParamsOnChanges() {
-    this.route.queryParams.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((params: Params) => {
-      if (params['page']) {
-        this.currentPage = +params['page'];
-      }
-      this.handleQueryParams(params);
-    });
+    this.route.queryParams
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((params: Params) => {
+        if (params['page']) {
+          this.currentPage = +params['page'];
+        }
+        this.handleQueryParams(params);
+      });
   }
 
   async handleFilteredConsumableChange(queryFilters: Params): Promise<void> {
     const currentFilters = this.route.snapshot.queryParams;
-    const filtersChanged = JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
+    const filtersChanged =
+      JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
 
     this.applyFilters(queryFilters);
     const queryParams: Params = { ...queryFilters };
@@ -126,18 +140,18 @@ export class ListPageComponent implements OnInit, OnDestroy {
       queryParams['page'] = 1;
     }
 
-    await this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: queryParams,
-      queryParamsHandling: 'merge',
-    }).then(() => {
-      this.sliceConsumablesForCurrentPage();
-    });
+    await this.router
+      .navigate([], {
+        relativeTo: this.route,
+        queryParams: queryParams,
+        queryParamsHandling: 'merge',
+      })
+      .then(() => {
+        this.sliceConsumablesForCurrentPage();
+      });
   }
 
-
   applyFilters(queryFilters: Params): void {
-
     this.filteredConsumables = [...this.consumables];
 
     // Apply filters...
@@ -151,8 +165,8 @@ export class ListPageComponent implements OnInit, OnDestroy {
     // Apply color filter
     if (queryFilters['color']) {
       const color = queryFilters['color'].split(',');
-      this.filteredConsumables = this.filteredConsumables.filter((consumible) =>
-        color.includes(consumible.color)
+      this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
+        color.includes(consumable.color)
       );
     }
 
@@ -164,7 +178,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
       );
     }
 
-    //apply origen filter
+    // Apply origen filter
     if (queryFilters['origen']) {
       const origen = queryFilters['origen'].split(',');
       this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
@@ -175,33 +189,56 @@ export class ListPageComponent implements OnInit, OnDestroy {
     // Apply yield filter
     if (queryFilters['yields']) {
       const yields = queryFilters['yields'].split(',');
-      this.filteredConsumables = this.filteredConsumables.filter((consumable) => {
-        let isInRange = false;
-        for (let i = 0; i < yields.length; i++) {
-          const [min, max] = yields[i].split('-').map(Number);
-          const consumableYield = Number(consumable.yield);
-          if (consumableYield >= min && consumableYield <= max) {
-            isInRange = true;
-            break;
+      this.filteredConsumables = this.filteredConsumables.filter(
+        (consumable) => {
+          let isInRange = false;
+          for (let i = 0; i < yields.length; i++) {
+            const [min, max] = yields[i].split('-').map(Number);
+            const consumableYield = Number(consumable.yield);
+            if (consumableYield >= min && consumableYield <= max) {
+              isInRange = true;
+              break;
+            }
           }
+          return isInRange;
         }
-        return isInRange;
-      });
+      );
     }
 
-    // Apply deal filter
+    // Apply deal filter with date validation
     if (queryFilters['deal']) {
       const deal = JSON.parse(queryFilters['deal']);
       if (deal) {
-        this.filteredConsumables = this.filteredConsumables.filter(printer =>
-          (printer.deals && printer.deals.length > 0)
+        const currentDate = new Date();
+        this.filteredConsumables = this.filteredConsumables.filter(
+          (consumable) =>
+            consumable.deals &&
+            consumable.deals.some(
+              (d) =>
+                new Date(d.dealStartDate) <= currentDate &&
+                new Date(d.dealEndDate) >= currentDate
+            )
+        );
+
+        // Retain only active deals
+        this.filteredConsumables = this.filteredConsumables.map(
+          (consumable) => ({
+            ...consumable,
+            deals: consumable.deals
+              ? consumable.deals.filter(
+                  (d) =>
+                    new Date(d.dealStartDate) <= currentDate &&
+                    new Date(d.dealEndDate) >= currentDate
+                )
+              : [],
+          })
         );
       }
     }
 
     // Apply the search filter
     if (this.searchQuery) {
-      this.filteredConsumables = this.filteredConsumables.filter(consumable =>
+      this.filteredConsumables = this.filteredConsumables.filter((consumable) =>
         consumable.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
