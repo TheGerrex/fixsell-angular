@@ -1,17 +1,59 @@
-.social-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #172A3A;
-    p {
-        color: #fff;
-        margin: 0;
-        padding: 5px;
+@import "../../../variables";
 
-        .pi {
-            @media (max-width: 360px) {
-                display: none;
-            }
-        }
-    }
+.social-header {
+  width: 100%;
+  background-color: #172a3a;
+}
+
+i {
+  color: $white;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+.phone-number-container {
+  display: flex;
+  align-items: center;
+  .phone-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: $white;
+    line-height: 1;
+  }
+  .phone-data {
+    font-size: 15px;
+    color: $white;
+    margin-left: 0.5rem;
+    line-height: 1;
+  }
+}
+
+.location {
+  display: none;
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.contact-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: $grid-max-width;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 1024px) {
+    padding: 0.25rem 2rem;
+    justify-content: flex-end;
+  }
 }

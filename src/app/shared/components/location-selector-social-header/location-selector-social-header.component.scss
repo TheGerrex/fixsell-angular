@@ -1,4 +1,4 @@
-@import "../../../variables";
+@import "../../../../variables";
 
 .location-selector {
   display: flex;
@@ -7,6 +7,7 @@
 }
 
 .location-selector-label {
+  color: $white;
   margin-right: 0.5rem;
   margin-bottom: 0;
   line-height: 1;
@@ -15,10 +16,11 @@
 }
 
 :host ::ng-deep .p-dropdown .p-dropdown-label {
-  color: $text;
-  font-size: 15px;
+  color: $white;
+  font-size: 12px;
   font-weight: 500;
   height: fit-content;
+  padding: 0.25rem 0.5rem;
 }
 
 :host ::ng-deep .p-dropdown {
@@ -31,5 +33,5 @@
 }
 
 :host ::ng-deep .p-dropdown .p-dropdown-trigger {
-  color: $text; /* Change dropdown icon color to white */
+  color: white; /* Change dropdown icon color to white */
 }

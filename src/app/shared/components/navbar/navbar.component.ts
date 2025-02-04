@@ -8,6 +8,8 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavbarComponent {
   items!: MenuItem[];
+  isMenuOpen = false;
+  openDropdowns: Set<string> = new Set();
 
   constructor() { }
 
@@ -20,8 +22,13 @@ export class NavbarComponent {
           {
             label: 'Multifuncionales',
             icon: 'pi pi-print',
-            routerLink: ['/printers/intro'],
+            // routerLink: ['/printers/intro'],
             items: [
+              {
+                label: 'Buscador',
+                // icon: 'pi pi-print',
+                routerLink: ['/printers/intro'],
+              },
               {
                 label: 'Alta Gama',
                 // icon: 'pi pi-print',
@@ -71,5 +78,25 @@ export class NavbarComponent {
         routerLink: ['/contacto'],
       },
     ];
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleDropdown(item: any, index: string) {
+    if (item.items) {
+      if (this.openDropdowns.has(index)) {
+        this.openDropdowns.delete(index);
+      } else {
+        this.openDropdowns.add(index);
+      }
+    } else {
+      this.isMenuOpen = false;
+    }
+  }
+
+  isDropdownOpen(index: string): boolean {
+    return this.openDropdowns.has(index);
   }
 }

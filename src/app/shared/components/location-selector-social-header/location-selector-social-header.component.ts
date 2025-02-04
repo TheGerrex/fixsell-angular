@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'shared-location-selector',
-  templateUrl: './location-selector.component.html',
-  styleUrls: ['./location-selector.component.scss'],
+  selector: 'shared-location-selector-social-header',
+  templateUrl: './location-selector-social-header.component.html',
+  styleUrls: ['./location-selector-social-header.component.scss']
 })
-export class LocationSelectorComponent {
+export class LocationSelectorSocialHeaderComponent {
   cities: any[] = [
     { name: 'CDMX', code: 'cdmx' },
     { name: 'MTY', code: 'mty' }

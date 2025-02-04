@@ -27,6 +27,7 @@ import { SwiperDirective } from './directives/app-swiper.directive';
 // Step 1: Add the following line...
 import { register } from 'swiper/element/bundle';
 import { LocationSelectorComponent } from './location-selector/location-selector.component';
+import { LocationSelectorSocialHeaderComponent } from './components/location-selector-social-header/location-selector-social-header.component';
 
 // Step 2: Add the following line...
 register();
@@ -52,6 +53,7 @@ register();
     WhatsappButtonComponent,
     SwiperDirective,
     LocationSelectorComponent,
+    LocationSelectorSocialHeaderComponent,
   ],
   imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
   exports: [

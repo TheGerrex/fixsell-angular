@@ -1,4 +1,4 @@
-<p-menubar [model]="items" [autoDisplay]="true">
+<!-- <p-menubar [model]="items" [autoDisplay]="true">
   <ng-template pTemplate="start">
     <img
       src="assets/logo/logo-navbar.svg"
@@ -27,10 +27,150 @@
       ></i>
     </a>
   </ng-template>
-  <!-- <ng-template pTemplate="end">
+  <ng-template pTemplate="end">
     <shared-location-selector class="ms-5"></shared-location-selector>
-  </ng-template> -->
+  </ng-template>
   <ng-template pTemplate="menuicon">
     <i class="pi pi-bars"></i>
   </ng-template>
-</p-menubar>
+</p-menubar> -->
+
+<div class="navbar-main">
+  <div class="navbar-container">
+    <div class="logo-container" routerLink="/">
+      <img src="assets/logo/logo-navbar.svg" />
+    </div>
+    <div class="items-menu-container">
+      <div class="items-menu">
+        <div
+          class="item-wrapper"
+          *ngFor="let item of items"
+          [routerLink]="item.routerLink"
+        >
+          <div class="item">
+            <i [ngClass]="item.icon"></i>
+            <span>{{ item.label }}</span>
+            <i class="pi pi-angle-down" *ngIf="item.items"></i>
+          </div>
+          <div class="dropdown" *ngIf="item.items">
+            <div class="dropdown-item" *ngFor="let subItem of item.items">
+              <div class="item">
+                <i [ngClass]="subItem.icon"></i>
+                <a [routerLink]="subItem.routerLink">{{ subItem.label }}</a>
+                <i class="pi pi-angle-right" *ngIf="subItem.items"></i>
+              </div>
+              <div class="dropdown" *ngIf="subItem.items">
+                <div
+                  class="dropdown-item"
+                  *ngFor="let nestedItem of subItem.items"
+                >
+                  <a [routerLink]="nestedItem.routerLink">{{
+                    nestedItem.label
+                  }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <shared-location-selector></shared-location-selector> -->
+      </div>
+    </div>
+    <div class="navbar-mobile-icon-container" (click)="toggleMenu()">
+      <i class="pi pi-bars"></i>
+    </div>
+    <div
+      class="backdrop"
+      [ngClass]="{ visible: isMenuOpen }"
+      (click)="toggleMenu()"
+    ></div>
+
+    <div class="items-mobile-menu-container" [ngClass]="{ open: isMenuOpen }">
+      <div class="items-mobile-menu">
+        <div class="items-mobile-menu-header">
+          <div class="close-icon" (click)="toggleMenu()">
+            <i class="pi pi-times"></i>
+          </div>
+        </div>
+        <ng-container *ngFor="let item of items; let i = index">
+          <div class="nav-item-mobile-container" [routerLink]="item.routerLink">
+            <div
+              class="nav-item-mobile"
+              (click)="toggleDropdown(item, i.toString())"
+              [ngClass]="{ 'no-hover': isDropdownOpen(i.toString()) }"
+            >
+              <i [ngClass]="item.icon"></i>
+              <span>{{ item.label }}</span>
+              <i
+                class="pi pi-angle-up"
+                *ngIf="item.items && isDropdownOpen(i.toString())"
+              ></i>
+              <i
+                class="pi pi-angle-down"
+                *ngIf="item.items && !isDropdownOpen(i.toString())"
+              ></i>
+            </div>
+            <div
+              class="dropdown-mobile-container"
+              *ngIf="item.items"
+              [ngClass]="{ open: isDropdownOpen(i.toString()) }"
+            >
+              <ng-container *ngFor="let subItem of item.items; let j = index">
+                <div
+                  class="dropdown-item-mobile"
+                  [ngClass]="{
+                    open: isDropdownOpen(i.toString() + '-' + j.toString())
+                  }"
+                >
+                  <div
+                    class="nav-dropdown-item-mobile"
+                    [routerLink]="subItem.routerLink"
+                    (click)="
+                      toggleDropdown(subItem, i.toString() + '-' + j.toString())
+                    "
+                  >
+                    <i [ngClass]="subItem.icon"></i>
+                    <span>{{ subItem.label }}</span>
+                    <i
+                      class="pi pi-angle-up"
+                      *ngIf="
+                        subItem.items &&
+                        isDropdownOpen(i.toString() + '-' + j.toString())
+                      "
+                    ></i>
+                    <i
+                      class="pi pi-angle-down"
+                      *ngIf="
+                        subItem.items &&
+                        !isDropdownOpen(i.toString() + '-' + j.toString())
+                      "
+                    ></i>
+                  </div>
+                  <ng-container *ngFor="let nestedItem of subItem.items">
+                    <div
+                      class="dropdown-nested-mobile-container"
+                      *ngIf="subItem.items"
+                      [routerLink]="nestedItem.routerLink"
+                      (click)="toggleMenu()"
+                      [ngClass]="{
+                        open: isDropdownOpen(i.toString() + '-' + j.toString())
+                      }"
+                    >
+                      <div class="nav-dropdown-nested-item-mobile">
+                        <a>
+                          {{ nestedItem.label }}
+                        </a>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="bottom-navbar-mobile">
+        <shared-location-selector></shared-location-selector>
+      </div>
+    </div>
+  </div>
+</div>
