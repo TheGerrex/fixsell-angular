@@ -28,6 +28,7 @@ import { SwiperDirective } from './directives/app-swiper.directive';
 import { register } from 'swiper/element/bundle';
 import { LocationSelectorComponent } from './location-selector/location-selector.component';
 import { LocationSelectorSocialHeaderComponent } from './components/location-selector-social-header/location-selector-social-header.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 // Step 2: Add the following line...
 register();
@@ -55,7 +56,14 @@ register();
     LocationSelectorComponent,
     LocationSelectorSocialHeaderComponent,
   ],
-  imports: [CommonModule, PrimengModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    PrimengModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
+  ],
   exports: [
     NavbarComponent,
     FooterComponent,
@@ -75,6 +83,7 @@ register();
     WhatsappButtonComponent,
     SwiperDirective
   ],
+  providers: [provideNgxMask()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule { }

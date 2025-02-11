@@ -1,24 +1,25 @@
 @import "../../../../variables";
-.message-success {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  width: 100%;
-  height: 100%;
-  i {
-    color: $green-500;
-  }
-  h5 {
-    color: $text;
-  }
-  p {
-    text-align: center;
-    color: $secondary-text;
-  }
+
+.form-contact {
+  min-height: 500px;
 }
 
+.contact-email-form-container {
+  height: 100%;
+  min-height: 500px;
+  margin-top: 1rem;
+}
+
+.message-loading {
+  width: 100%;
+  height: 100%;
+  border: 1px solid $gray-300;
+  border-radius: $border-radius;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.message-success,
 .message-error {
   display: flex;
   flex-direction: column;
@@ -27,16 +28,26 @@
   gap: 1em;
   width: 100%;
   height: 100%;
-  i {
-    color: $red-500;
-  }
+  border: 1px solid $gray-300;
+  border-radius: $border-radius;
+  padding: 2rem 1rem;
+  background-color: $white;
   h5 {
     color: $text;
   }
   p {
     text-align: center;
     color: $secondary-text;
+    margin-bottom: 0;
   }
+}
+
+.message-success i {
+  color: $green-500;
+}
+
+.message-error i {
+  color: $red-500;
 }
 
 .form-contact-label {

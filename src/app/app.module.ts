@@ -30,6 +30,7 @@ import { SoftwareDocumentScanningComponent } from './pages/marketing-landing-pag
 import { HighEndPrintersComponent } from './pages/marketing-landing-pages/high-end-printer-landing/high-end-printers/high-end-printers.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -59,7 +60,8 @@ registerLocaleData(localeEs);
     HttpClientModule,
     PrinterModule,
     ConsumablesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent],

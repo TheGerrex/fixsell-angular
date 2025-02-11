@@ -30,47 +30,44 @@
 }
 
 .contact-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2rem 2rem;
-  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: $grid-max-width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 $p-2;
+  @media (min-width: 768px) {
+    padding: 0 $p-4;
+  }
+}
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 1rem 1rem;
-    align-items: center;
+.contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0rem;
+
+  @media (min-width: 768px) {
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 2rem 0rem;
+    gap: 2rem;
   }
 }
 
 .contact-form {
-  flex: 1 1 100%;
-  max-width: 600px; // Set maximum width
-  margin-bottom: 20px;
-
-  @media (min-width: 768px) {
-    flex: 1 1 48%;
-  }
-
-  @media (min-width: 1440px) {
-    flex: 1 1 50%;
-  }
+  max-width: 768px; // Set maximum width
+  margin-bottom: 1rem;
 }
 
 .contact-info {
-  flex: 0 1 auto; // Fit content
-  width: fit-content; // Fit content width
-  margin-bottom: 20px;
-  align-self: center; // Center on the screen
-
-  @media (min-width: 768px) {
-    flex: 0 1 auto; // Fit content
-    align-self: flex-start;
-  }
-
-  @media (min-width: 1440px) {
-    flex: 0 1 auto; // Fit content
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .subtitle {
@@ -92,29 +89,37 @@
   border-radius: $border-radius;
 
   .contact-card-title {
-    font-weight: 500;
+    font-weight: 600;
     color: $gray-500;
     margin-bottom: 1rem;
   }
 
   .contact-card-content {
     display: flex;
-    @media (max-width: 425px) {
-      flex-direction: column;
-    }
+    flex-wrap: wrap;
+
     .contact-data-container {
       padding: 1rem;
+      flex: 1 1 33.33%; // 1/3 of the width
       min-width: 300px;
     }
+
     .contact-card-map {
+      flex: 2 1 66.67%; // 2/3 of the width
       width: 100%;
-      display: flex;
-      flex-grow: 1;
 
       iframe {
         width: 100%;
         height: 100%; // Make iframe fill the parent div
         border: 0; // Remove border if any
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-data-container,
+      .contact-card-map {
+        flex: 1 1 100%; // Full width on smaller screens
+        width: 100%;
       }
     }
   }

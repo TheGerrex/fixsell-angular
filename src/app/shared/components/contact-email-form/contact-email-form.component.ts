@@ -52,12 +52,20 @@ export class ContactEmailFormComponent {
       () => {
         this.isSubmitting = false;
         this.isSuccess = true;
-        this.contactForm.reset();
       },
       () => {
         this.isSubmitting = false;
         this.isError = true;
       }
     );
+  }
+
+  reloadForm() {
+    this.isSuccess = false;
+    this.contactForm.reset();
+  }
+
+  retryForm() {
+    this.isError = false;
   }
 }
