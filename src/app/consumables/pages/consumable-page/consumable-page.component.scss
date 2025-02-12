@@ -602,8 +602,7 @@
   padding: $p-2;
 
   @media (min-width: 768px) {
-    padding-left: $p-2;
-    padding-right: $p-2;
+    padding: $p-4 $p-2;
   }
 }
 

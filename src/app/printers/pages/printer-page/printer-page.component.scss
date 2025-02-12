@@ -595,8 +595,11 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  padding-left: $p-2;
-  padding-right: $p-2;
+  padding: $p-2;
+
+  @media (min-width: 768px) {
+    padding: $p-4 $p-2;
+  }
 }
 
 .related-printers-container {
