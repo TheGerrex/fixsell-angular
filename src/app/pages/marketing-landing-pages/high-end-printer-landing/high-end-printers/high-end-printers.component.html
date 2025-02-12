@@ -1,170 +1,176 @@
 <div class="landing-container">
-  <section class="hero-container">
-    <div class="hero-message">
-      <h1 class="title">
-        Venta y/o Renta de Impresoras de Alta Gama y Alto Volumen
-      </h1>
-      <div class="question-list">
-        <div class="question">
-          <i class="pi pi-question-circle"></i>
-          <p>
-            Eres una empresa que por su actividad requiere manejar altos
-            volúmenes de impresión?
-          </p>
-        </div>
-        <div class="question">
-          <i class="pi pi-question-circle"></i>
-          <p>
-            Estas buscando un equipo de impresión para la elaboración de libros,
-            manuales, revistas, postales con acabados de calidad, grapado y
-            doblado?
-          </p>
-        </div>
-        <div class="question">
-          <i class="pi pi-question-circle"></i>
-          <p>
-            Necesitas un equipo de impresión con capacidad doble carta rebasado,
-            diferentes sustratos, gramaje de 350 gr, calidad de prensa digital y
-            de una a N cantidad de impresiones?
-          </p>
-        </div>
+  <section class="section-container">
+    <div class="hero-container">
+      <div class="hero-message">
+        <h1 class="title">
+          Venta y/o Renta de Impresoras de Alta Gama y Alto Volumen
+        </h1>
+        <div class="question-list">
+          <div class="question">
+            <i class="pi pi-question-circle"></i>
+            <p>
+              Eres una empresa que por su actividad requiere manejar altos
+              volúmenes de impresión?
+            </p>
+          </div>
+          <div class="question">
+            <i class="pi pi-question-circle"></i>
+            <p>
+              Estas buscando un equipo de impresión para la elaboración de
+              libros, manuales, revistas, postales con acabados de calidad,
+              grapado y doblado?
+            </p>
+          </div>
+          <div class="question">
+            <i class="pi pi-question-circle"></i>
+            <p>
+              Necesitas un equipo de impresión con capacidad doble carta
+              rebasado, diferentes sustratos, gramaje de 350 gr, calidad de
+              prensa digital y de una a N cantidad de impresiones?
+            </p>
+          </div>
 
-        <div class="question">
-          <i class="pi pi-question-circle"></i>
-          <p>
-            Tu negocio de imprenta está creciendo y requieres contar con equipos
-            de impresión más eficientes con los que puedas dar un mejor
-            servicio, con más calidad y ofrecer servicios adicionales?
-          </p>
-        </div>
+          <div class="question">
+            <i class="pi pi-question-circle"></i>
+            <p>
+              Tu negocio de imprenta está creciendo y requieres contar con
+              equipos de impresión más eficientes con los que puedas dar un
+              mejor servicio, con más calidad y ofrecer servicios adicionales?
+            </p>
+          </div>
 
-        <div class="question">
-          <i class="pi pi-question-circle"></i>
-          <p>
-            Estas buscando una impresora de alto volumen y alta velocidad a bajo
-            costo de impresión en inyección de tinta?
-          </p>
+          <div class="question">
+            <i class="pi pi-question-circle"></i>
+            <p>
+              Estas buscando una impresora de alto volumen y alta velocidad a
+              bajo costo de impresión en inyección de tinta?
+            </p>
+          </div>
+        </div>
+        <div class="call-to-action">
+          <h5 class="subtitle">En Fixsell estamos para servirte:</h5>
+          <div class="action-buttons">
+            <button
+              (click)="callPhoneNumber()"
+              class="button button-primary button-rounded button-raised"
+            >
+              <i class="pi pi-phone"></i>
+              <span class="button-label">Llámanos</span>
+            </button>
+            <button
+              routerLink="/contacto"
+              class="button button-outlined-primary button-rounded"
+            >
+              <i class="pi pi-envelope"></i>
+              <span class="button-label">Contáctanos</span>
+            </button>
+            <button
+              (click)="
+                navigateToProductListTypeCategory([
+                  'Artes Graficas',
+                  'Produccion'
+                ])
+              "
+              class="button button-outlined-secondary button-rounded"
+            >
+              <i class="pi pi-book"></i>
+              <span class="button-label">Catálogo</span>
+            </button>
+          </div>
         </div>
       </div>
-      <div class="call-to-action">
-        <h5 class="subtitle">En Fixsell estamos para servirte:</h5>
-        <div class="action-buttons">
+      <div class="hero-image-container">
+        <img
+          class="image-mobile"
+          src="../../../../../assets/img/marketing-landing-pages/TASKalfa-Pro-15000c-Front.jpg"
+          alt="accuriopress-6136-top-full"
+        />
+        <img
+          class="image-desktop"
+          src="../../../../../assets/img/marketing-landing-pages/AccurioPress-C4080-Side.jpg"
+          alt="AccurioPress-C4080-Side"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="section-container">
+    <div class="promotion-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h2 class="section-title">
+            Impresoras de Alta Gama y Alto Volumen en Oferta
+          </h2>
+          <h5 class="section-subtitle">
+            Ahorra en equipos de alta calidad, volumen y velocidad para tus
+            necesidades de impresión.
+          </h5>
+        </div>
+        <div class="promotion-links">
           <button
-            (click)="callPhoneNumber()"
-            class="button button-primary button-rounded button-raised"
-          >
-            <i class="pi pi-phone"></i>
-            <span class="button-label">Llámanos</span>
-          </button>
-          <button
-            routerLink="/contacto"
             class="button button-outlined-primary button-rounded"
+            routerLink="/promociones"
           >
-            <i class="pi pi-envelope"></i>
-            <span class="button-label">Contáctanos</span>
-          </button>
-          <button
-            (click)="
-              navigateToProductListTypeCategory([
-                'Artes Graficas',
-                'Produccion'
-              ])
-            "
-            class="button button-outlined-secondary button-rounded"
-          >
-            <i class="pi pi-book"></i>
-            <span class="button-label">Catálogo</span>
+            <span class="button-label">Ver Promociones</span>
           </button>
         </div>
       </div>
-    </div>
-    <div class="hero-image-container">
-      <img
-        class="image-mobile"
-        src="../../../../../assets/img/marketing-landing-pages/TASKalfa-Pro-15000c-Front.jpg"
-        alt="accuriopress-6136-top-full"
-      />
-      <img
-        class="image-desktop"
-        src="../../../../../assets/img/marketing-landing-pages/AccurioPress-C4080-Side.jpg"
-        alt="AccurioPress-C4080-Side"
-      />
+      <printer-promotion-list
+        [categories]="['Artes Graficas', 'Produccion']"
+        [requireDeals]="true"
+      ></printer-promotion-list>
     </div>
   </section>
-  <section class="promotion-container">
-    <div class="promotion-header">
-      <div class="promotion-title-container">
-        <h2 class="section-title">
-          Impresoras de Alta Gama y Alto Volumen en Oferta
-        </h2>
-        <h5 class="section-subtitle">
-          Ahorra en equipos de alta calidad, volumen y velocidad para tus
-          necesidades de impresión.
-        </h5>
-      </div>
-      <div class="promotion-links">
-        <button
-          class="button button-outlined-primary button-rounded"
-          routerLink="/promociones"
-        >
-          <span class="button-label">Ver Promociones</span>
-        </button>
-      </div>
-    </div>
-    <printer-promotion-list
-      [categories]="['Artes Graficas', 'Produccion']"
-      [requireDeals]="true"
-    ></printer-promotion-list>
-  </section>
-  <section class="rent-or-sale-container">
-    <div class="promo-card">
-      <div class="promo-card-content">
-        <div class="promo-card-image">
-          <img
-            src="../../../../../assets/img/marketing-landing-pages/ECOSYS-M6630cidn-left.png"
-            alt="ECOSYS-M3645idn-side"
-          />
-        </div>
-        <div class="promo-card-info">
-          <h3 class="promo-card-title">
-            Requieres nuevos equipos en venta para tu empresa?
-          </h3>
-          <p class="promo-card-subtitle">
-            ¡Conoce más y explora la alta variedad de multifuncionales en
-            nuestro catalogo!
-          </p>
-          <button
-            class="button button-secondary button-rounded button-raised"
-            (click)="navigateToProductListType('sellable')"
-          >
-            <i class="pi pi-print"></i>
-            <span class="button-label">Equipos en Venta</span>
-          </button>
+  <section class="section-container">
+    <div class="rent-or-sale-container">
+      <div class="promo-card">
+        <div class="promo-card-content">
+          <div class="promo-card-image">
+            <img
+              src="../../../../../assets/img/marketing-landing-pages/ECOSYS-M6630cidn-left.png"
+              alt="ECOSYS-M3645idn-side"
+            />
+          </div>
+          <div class="promo-card-info">
+            <h3 class="promo-card-title">
+              Requieres nuevos equipos en venta para tu empresa?
+            </h3>
+            <p class="promo-card-subtitle">
+              ¡Conoce más y explora la alta variedad de multifuncionales en
+              nuestro catalogo!
+            </p>
+            <button
+              class="button button-secondary button-rounded button-raised"
+              (click)="navigateToProductListType('sellable')"
+            >
+              <i class="pi pi-print"></i>
+              <span class="button-label">Equipos en Venta</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="promo-card">
-      <div class="promo-card-content">
-        <div class="promo-card-image">
-          <img
-            src="../../../../../assets/img/marketing-landing-pages/TASKalfa-308ci-front.png"
-            alt="ECOSYS-M3645idn-side"
-          />
-        </div>
-        <div class="promo-card-info">
-          <h3 class="promo-card-title">
-            Interesado en nuestros equipos en renta?
-          </h3>
-          <p class="promo-card-subtitle">
-            Impresoras remanufacturadas con garantía y servicio técnico
-          </p>
-          <button
-            class="button button-secondary button-rounded button-raised"
-            (click)="navigateToProductListType('rentable')"
-          >
-            <i class="pi pi-shopping-bag"></i>
-            <span class="button-label">Equipos en Renta</span>
-          </button>
+      <div class="promo-card">
+        <div class="promo-card-content">
+          <div class="promo-card-image">
+            <img
+              src="../../../../../assets/img/marketing-landing-pages/TASKalfa-308ci-front.png"
+              alt="ECOSYS-M3645idn-side"
+            />
+          </div>
+          <div class="promo-card-info">
+            <h3 class="promo-card-title">
+              Interesado en nuestros equipos en renta?
+            </h3>
+            <p class="promo-card-subtitle">
+              Impresoras remanufacturadas con garantía y servicio técnico
+            </p>
+            <button
+              class="button button-secondary button-rounded button-raised"
+              (click)="navigateToProductListType('rentable')"
+            >
+              <i class="pi pi-shopping-bag"></i>
+              <span class="button-label">Equipos en Renta</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

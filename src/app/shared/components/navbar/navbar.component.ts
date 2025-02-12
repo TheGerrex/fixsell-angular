@@ -25,11 +25,6 @@ export class NavbarComponent {
             // routerLink: ['/printers/intro'],
             items: [
               {
-                label: 'Buscador',
-                // icon: 'pi pi-print',
-                routerLink: ['/printers/intro'],
-              },
-              {
                 label: 'Alta Gama',
                 // icon: 'pi pi-print',
                 routerLink: ['/impresoras-alta-gama'],
@@ -41,8 +36,13 @@ export class NavbarComponent {
               },
               {
                 label: 'Gran Formato',
-                // icon: 'pi pi-print',
+                icon: 'pi pi-search',
                 routerLink: ['/plotters-impresoras-gran-formato'],
+              },
+              {
+                label: 'Buscar',
+                // icon: 'pi pi-print',
+                routerLink: ['/printers/intro'],
               },
             ]
           },

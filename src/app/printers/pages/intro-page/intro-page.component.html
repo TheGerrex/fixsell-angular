@@ -19,31 +19,29 @@
   </div>
 </div>
 
-<section id="printer-promotions">
-  <div class="container py-5">
-    <div class="promotion-header">
-      <div class="promotion-title-container">
-        <h1 class="section-title">Multifuncionales en Oferta</h1>
-        <h5 class="section-subtitle">
-          Ahorra en equipos de alta calidad para todas tus necesidades de
-          impresión.
-        </h5>
-      </div>
-      <div class="promotion-links">
-        <button
-          class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
-        >
-          <span class="button-label">Ver Multifuncionales</span>
-        </button>
-      </div>
+<section class="section-container" id="printer-promotions">
+  <div class="promotion-header">
+    <div class="promotion-title-container">
+      <h1 class="section-title">Multifuncionales en Oferta</h1>
+      <h5 class="section-subtitle">
+        Ahorra en equipos de alta calidad para todas tus necesidades de
+        impresión.
+      </h5>
     </div>
-    <printer-promotion-list [requireDeals]="true"></printer-promotion-list>
+    <div class="promotion-links">
+      <button
+        class="button button-outlined-primary button-rounded"
+        routerLink="/printers/list"
+      >
+        <span class="button-label">Ver Multifuncionales</span>
+      </button>
+    </div>
   </div>
+  <printer-promotion-list [requireDeals]="true"></printer-promotion-list>
 </section>
 
-<section id="printer-types">
-  <div class="container py-5">
+<div id="printer-types">
+  <section class="section-container">
     <div class="printer-type-container">
       <div class="venta">
         <div class="section-body">
@@ -159,34 +157,32 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<section id="printer-promotions">
-  <div class="container py-5">
-    <div class="promotion-header">
-      <div class="promotion-title-container">
-        <h1 class="section-title">Paquetes de Renta en Oferta</h1>
-        <p class="section-subtitle">
-          Ahorra en equipos de alta calidad para todas tus necesidades de
-          impresión.
-        </p>
-      </div>
-      <div class="promotion-links">
-        <button
-          class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
-        >
-          <span class="button-label">Ver Multifuncionales</span>
-        </button>
-      </div>
+<section class="section-container" id="printer-promotions">
+  <div class="promotion-header">
+    <div class="promotion-title-container">
+      <h1 class="section-title">Paquetes de Renta en Oferta</h1>
+      <p class="section-subtitle">
+        Ahorra en equipos de alta calidad para todas tus necesidades de
+        impresión.
+      </p>
     </div>
-    <package-rent-promotion-list></package-rent-promotion-list>
+    <div class="promotion-links">
+      <button
+        class="button button-outlined-primary button-rounded"
+        routerLink="/printers/list"
+      >
+        <span class="button-label">Ver Multifuncionales</span>
+      </button>
+    </div>
   </div>
+  <package-rent-promotion-list></package-rent-promotion-list>
 </section>
 
 <!-- <section id="categorias">
-    <div class="container py-5">
+    <div class="section-container">
         <div class="section-body">
             <div class="section-title justify-content-center ">
                 <h1>Categorias</h1>
