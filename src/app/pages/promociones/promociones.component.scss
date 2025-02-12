@@ -52,6 +52,19 @@
   background-position: center;
 }
 
+.section-container {
+  position: relative;
+  width: 100%;
+  max-width: $grid-max-width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: $p-2;
+  @media (min-width: 768px) {
+    padding: $p-6;
+  }
+}
+
 .section-title {
   color: $text;
 }
@@ -76,8 +89,25 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1em;
+  padding-bottom: 1rem;
   margin-bottom: 1em;
   border-bottom: 1px solid $gray-200;
+  @media (min-width: 768px) {
+    padding-bottom: 0rem;
+  }
+  .promotion-title-container {
+    margin-bottom: 8px;
+  }
+  .promotion-links {
+    display: flex;
+    gap: 0.5em;
+    @media (max-width: 768px) {
+      width: 100%;
+      button {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .promotion-title-container {
