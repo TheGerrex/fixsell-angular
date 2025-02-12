@@ -1,42 +1,51 @@
 <div class="swiper-container-wrapper">
-  <div class="page-buttons" *ngIf="!isLoading && relatedPrinters.length > 0">
-    <button
-      (click)="goToPrev()"
-      [hidden]="!showNavigation || isBeginning"
-      [disabled]="isBeginning"
-      class="swiper-prev-button"
+  <ng-container *ngIf="isLoading">
+    <swiper-container
+      appSwiper
+      #swiperContainer
+      [config]="swiperOptions"
+      class="custom-swiper-container"
     >
-      <i class="pi pi-angle-left"></i>
-    </button>
-    <button
-      (click)="goToNext()"
-      [hidden]="!showNavigation || isEnd"
-      [disabled]="isEnd"
-      class="swiper-next-button"
-    >
-      <i class="pi pi-angle-right"></i>
-    </button>
-  </div>
-  <swiper-container
-    appSwiper
-    #swiperContainer
-    [config]="swiperOptions"
-    class="custom-swiper-container"
-    *ngIf="!isLoading && relatedPrinters.length > 0"
-  >
-    <ng-container *ngFor="let printer of relatedPrinters">
-      <swiper-slide>
-        <shared-product-card [printer]="printer"></shared-product-card>
-      </swiper-slide>
-    </ng-container>
-    <div class="swiper-scrollbar"></div>
-
-    <ng-container *ngIf="isLoading">
       <swiper-slide *ngFor="let i of [1, 2, 3, 4]">
         <shared-skeleton-product-card></shared-skeleton-product-card>
       </swiper-slide>
-    </ng-container>
-  </swiper-container>
+    </swiper-container>
+  </ng-container>
+
+  <ng-container *ngIf="!isLoading && relatedPrinters.length > 0">
+    <div class="page-buttons">
+      <button
+        (click)="goToPrev()"
+        [hidden]="!showNavigation || isBeginning"
+        [disabled]="isBeginning"
+        class="swiper-prev-button"
+      >
+        <i class="pi pi-angle-left"></i>
+      </button>
+      <button
+        (click)="goToNext()"
+        [hidden]="!showNavigation || isEnd"
+        [disabled]="isEnd"
+        class="swiper-next-button"
+      >
+        <i class="pi pi-angle-right"></i>
+      </button>
+    </div>
+    <swiper-container
+      appSwiper
+      #swiperContainer
+      [config]="swiperOptions"
+      class="custom-swiper-container"
+    >
+      <ng-container *ngFor="let printer of relatedPrinters">
+        <swiper-slide>
+          <shared-product-card [printer]="printer"></shared-product-card>
+        </swiper-slide>
+      </ng-container>
+      <div class="swiper-scrollbar"></div>
+    </swiper-container>
+  </ng-container>
+
   <ng-container *ngIf="!isLoading && relatedPrinters.length === 0">
     <div class="not-found">
       <i class="pi pi-exclamation-triangle"></i>
