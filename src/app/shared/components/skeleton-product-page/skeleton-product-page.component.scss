@@ -1,0 +1,264 @@
+@import "../../../../variables";
+
+@keyframes wave {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(400px + 100%) 0;
+  }
+}
+
+@mixin wave-loading {
+  background: linear-gradient(
+    90deg,
+    $gray-200 25%,
+    $gray-150 50%,
+    $gray-200 75%
+  );
+  background-size: 400px 100%;
+  animation: wave 1.5s linear infinite;
+}
+
+.product-section {
+  position: relative;
+  width: 100%;
+  max-width: $grid-max-width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 768px) {
+    padding-left: $p-2;
+    padding-right: $p-2;
+  }
+}
+
+.grid-section {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 1rem;
+  row-gap: 0rem;
+}
+
+.product-image-container {
+  max-width: 100%;
+  grid-column: span 16 / span 16;
+  @media (min-width: 512px) {
+    grid-column: span 16 / span 16;
+  }
+  @media (min-width: 768px) {
+    grid-column: span 8 / span 8;
+  }
+  @media (min-width: 1024px) {
+    grid-column: span 9 / span 9;
+  }
+  @media (min-width: 1280px) {
+    grid-column: span 10 / span 10;
+  }
+}
+
+.product-info-container {
+  max-width: 100%;
+  grid-column: span 16 / span 16;
+  @media (min-width: 512px) {
+    grid-column: span 16 / span 16;
+  }
+  @media (min-width: 768px) {
+    grid-column: span 8 / span 8;
+  }
+  @media (min-width: 1024px) {
+    grid-column: span 7 / span 7;
+  }
+  @media (min-width: 1280px) {
+    grid-column: span 6 / span 6;
+  }
+}
+
+.product-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  .product-brand {
+    width: 150px;
+    height: 25px;
+
+    @include wave-loading;
+    border-radius: 50px;
+  }
+  .product-title {
+    width: 300px;
+    height: 31px;
+
+    @include wave-loading;
+    border-radius: 50px;
+  }
+  .product-tags {
+    display: flex;
+    gap: 6px;
+    .tag {
+      width: 80px;
+      height: 22px;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+
+      @include wave-loading;
+      border-radius: 50px;
+    }
+  }
+}
+
+.product-description {
+  width: 100%;
+  height: 343px;
+  @include wave-loading;
+  border-radius: 10px;
+}
+
+.product-info-block {
+  margin: 0 0 48px;
+}
+
+.heading-block {
+  margin: 0 0 32px;
+}
+
+.product-info-column {
+  padding: 1rem;
+}
+
+.product-info-inner {
+  width: 100%;
+}
+
+.product-image-inner {
+  position: sticky;
+  top: 0;
+  @media (min-width: 768px) {
+    margin-bottom: 1rem;
+  }
+}
+
+.product-image {
+  display: flex;
+  position: relative;
+  height: fit-content;
+  flex-direction: column-reverse;
+  @media (min-width: 1024px) {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+}
+
+.main-swiper-container {
+  width: 100%;
+  height: 100%;
+  max-height: 600px;
+
+  @media (min-width: 768px) {
+    margin-top: 1rem;
+  }
+  @media (min-width: 1024px) {
+    width: calc(100% - 90px);
+    margin-left: 0.5rem;
+  }
+}
+
+.mainSwiper {
+  min-width: 100%;
+  height: 100%;
+
+  .mainSwiper-slide {
+    min-width: 300px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-height: 500px;
+
+    @include wave-loading;
+    @media (min-width: 768px) {
+      border-radius: $border-radius;
+    }
+  }
+}
+
+.thumbs-swiper-container {
+  position: relative;
+  margin-top: 1rem;
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.thumbsSwiper {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  @media (min-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+.thumbsSwiper-slide {
+  width: 90px;
+  height: 90px;
+  border-radius: $border-radius;
+  @include wave-loading;
+}
+
+.product-price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
+
+.product-deal-price-container {
+  display: flex;
+  gap: 0.25rem;
+  align-items: baseline;
+}
+
+.product-deal-price {
+  width: 140px;
+  height: 35px;
+  border-radius: 50px;
+  @include wave-loading;
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  width: 224px;
+  height: 20px;
+  border-radius: 50px;
+  @include wave-loading;
+}
+
+.product-discount {
+  width: 75px;
+  height: 20px;
+  border-radius: 50px;
+  @include wave-loading;
+}
+
+.actions-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 32px;
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
+
+  .action-button {
+    width: 100%;
+    height: 48px;
+    border-radius: 50px;
+
+    @include wave-loading;
+  }
+}

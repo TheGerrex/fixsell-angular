@@ -1,43 +1,43 @@
 <div class="swiper-container-wrapper">
-  <div class="page-buttons" *ngIf="!isLoading && dealConsumables.length > 0">
-    <button
-      (click)="goToPrev()"
-      [hidden]="!showNavigation || isBeginning"
-      [disabled]="isBeginning"
-      class="swiper-prev-button"
-    >
-      <i class="pi pi-arrow-left"></i>
-    </button>
-    <button
-      (click)="goToNext()"
-      [hidden]="!showNavigation || isEnd"
-      [disabled]="isEnd"
-      class="swiper-next-button"
-    >
-      <i class="pi pi-arrow-right"></i>
-    </button>
-  </div>
-  <swiper-container
-    appSwiper
-    #swiperContainer
-    [config]="swiperOptions"
-    *ngIf="!isLoading && dealConsumables.length > 0"
-  >
-    <ng-container *ngFor="let consumable of dealConsumables">
-      <swiper-slide>
-        <consumable-product-card
-          [consumible]="consumable"
-        ></consumable-product-card>
-      </swiper-slide>
-    </ng-container>
-    <div class="swiper-pagination"></div>
-
-    <ng-container *ngIf="isLoading">
+  <ng-container *ngIf="isLoading">
+    <swiper-container appSwiper #swiperContainer [config]="swiperOptions">
       <swiper-slide *ngFor="let i of [1, 2, 3, 4, 5]">
         <shared-skeleton-product-card></shared-skeleton-product-card>
       </swiper-slide>
-    </ng-container>
-  </swiper-container>
+    </swiper-container>
+  </ng-container>
+
+  <ng-container *ngIf="!isLoading && dealConsumables.length > 0">
+    <div class="page-buttons">
+      <button
+        (click)="goToPrev()"
+        [hidden]="!showNavigation || isBeginning"
+        [disabled]="isBeginning"
+        class="swiper-prev-button"
+      >
+        <i class="pi pi-arrow-left"></i>
+      </button>
+      <button
+        (click)="goToNext()"
+        [hidden]="!showNavigation || isEnd"
+        [disabled]="isEnd"
+        class="swiper-next-button"
+      >
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </div>
+    <swiper-container appSwiper #swiperContainer [config]="swiperOptions">
+      <ng-container *ngFor="let consumable of dealConsumables">
+        <swiper-slide>
+          <consumable-product-card
+            [consumible]="consumable"
+          ></consumable-product-card>
+        </swiper-slide>
+      </ng-container>
+      <div class="swiper-scrollbar"></div>
+    </swiper-container>
+  </ng-container>
+
   <ng-container *ngIf="!isLoading && dealConsumables.length === 0">
     <div class="not-found">
       <i class="pi pi-exclamation-triangle"></i>

@@ -1,8 +1,9 @@
 <section *ngIf="loading">
-  <loading-spinner></loading-spinner>
+  <shared-skeleton-product-page></shared-skeleton-product-page>
 </section>
-<section *ngIf="!loading">
-  <div class="product-section">
+
+<ng-container *ngIf="!loading">
+  <section class="product-section">
     <div class="grid-section">
       <div class="product-image-container" *ngIf="printer">
         <div class="product-image-inner">
@@ -296,14 +297,14 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section-related-printers" *ngIf="printer">
-  <div class="related-printers-container py-5">
-    <div class="header">
-      <h2>Productos similares</h2>
+  <section class="section-related-printers">
+    <div class="related-printers-container">
+      <div class="header">
+        <h2>Productos similares</h2>
+      </div>
+      <related-printers-list [printerProduct]="printer"></related-printers-list>
     </div>
-    <related-printers-list [printerProduct]="printer"></related-printers-list>
-  </div>
-</section>
+  </section>
+</ng-container>
