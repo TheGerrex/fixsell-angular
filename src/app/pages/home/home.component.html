@@ -302,85 +302,130 @@
   </div>
 </section>
 
-<!-- <section class="section-content" id="catalog">
-    <div class="section-container">
-        <div class="products-body">
-            <div class="section-title">
-                <h1>Productos</h1>
+<section class="section-content" id="catalog">
+  <div class="section-container">
+    <div class="products-body">
+      <div class="section-title">
+        <h1>Productos</h1>
+      </div>
+      <div class="product-wrapper">
+        <div
+          class="catalog-container"
+          [class.active]="isMultifuncionalesActive"
+        >
+          <div
+            class="list-header"
+            (click)="isMultifuncionalesActive = !isMultifuncionalesActive"
+          >
+            <h3 class="catalog-title">Multifuncionales</h3>
+            <div class="icon-dropdown">
+              <i
+                class="pi pi-chevron-up"
+                [class.rotate]="isMultifuncionalesActive"
+              ></i>
             </div>
-            <div class="product-wrapper">
-                <div class="product-container" [class.active]="isMultifuncionalesActive">
-                    <div class="list-header" (click)="isMultifuncionalesActive = !isMultifuncionalesActive">
-                        <h3 class="catalog-title">Multifuncionales</h3>
-                        <div class="icon-dropdown"><i class="pi pi-chevron-up" [class.rotate]="isMultifuncionalesActive"></i></div>
-                    </div>
-                    <div class="list-wrapper">
-                        <div class="list-container">
-                            <div class="list">
-                                <h5 class="list-title">Marcas</h5>
-                                <ul>
-                                    <a *ngFor="let brand of printerProducts.brands">
-                                        <li (click)="navigateToPrinterList('brand', brand.name)">{{brand.name}}</li>
-                                    </a>
-                                </ul>
-                            </div>
-                            <div class="list">
-                                <h5 class="list-title">Categorias</h5>
-                                <ul>
-                                    <a *ngFor="let category of printerProducts.categories">
-                                        <li (click)="navigateToPrinterList('categories', category.name)">{{category.name}}</li>
-                                    </a>
-                                </ul>
-                            </div>
-                            <div class="list">
-                                <h5 class="list-title">Tamaños de Papel</h5>
-                                <ul>
-                                    <a *ngFor="let printSize of printerProducts.printSizes">
-                                        <li (click)="navigateToPrinterList('printSizes', printSize.name)">{{printSize.name}}</li>
-                                    </a>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="catalog-container" [class.active]="isConsumiblesActive">
-                    <div class="list-header" (click)="isConsumiblesActive = !isConsumiblesActive">
-                        <h3 class="catalog-title">Consumibles</h3>
-                        <div class="icon-dropdown"><i class="pi pi-chevron-up" [class.rotate]="isConsumiblesActive"></i></div>
-                    </div>
-                    <div class="list-wrapper">
-                        <div class="list-container">
-                            <div class="list">
-                                <h5 class="list-title">Marcas</h5>
-                                <ul>
-                                    <a *ngFor="let brand of consumableProducts.brands">
-                                        <li (click)="navigateToConsumableList('brand', brand.name)">{{brand.name}}</li>
-                                    </a>
-                                </ul>
-                            </div>
-                            <div class="list">
-                                <h5 class="list-title">Categorias</h5>
-                                <ul>
-                                    <a *ngFor="let category of consumableProducts.categories">
-                                        <li (click)="navigateToConsumableList('categories', category.value)">{{category.name}}</li>
-                                    </a>
-                                </ul>
-                            </div>
-                            <div class="list">
-                                <h5 class="list-title">Colores</h5>
-                                <ul>
-                                    <a *ngFor="let color of consumableProducts.colors">
-                                        <li (click)="navigateToConsumableList('color', color.value)">{{color.name}}</li>
-                                    </a>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="list-wrapper">
+            <div class="list-container">
+              <div class="list">
+                <h5 class="list-title">Marcas</h5>
+                <ul>
+                  <a *ngFor="let brand of printerProducts.brands">
+                    <li (click)="navigateToPrinterList('brand', brand.name)">
+                      {{ brand.name }}
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div class="list">
+                <h5 class="list-title">Categorias</h5>
+                <ul>
+                  <a *ngFor="let category of printerProducts.categories">
+                    <li
+                      (click)="
+                        navigateToPrinterList('categories', category.name)
+                      "
+                    >
+                      {{ category.name }}
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div class="list">
+                <h5 class="list-title">Tamaños de Papel</h5>
+                <ul>
+                  <a *ngFor="let printSize of printerProducts.printSizes">
+                    <li
+                      (click)="
+                        navigateToPrinterList('printSizes', printSize.name)
+                      "
+                    >
+                      {{ printSize.name }}
+                    </li>
+                  </a>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+        <div class="catalog-container" [class.active]="isConsumiblesActive">
+          <div
+            class="list-header"
+            (click)="isConsumiblesActive = !isConsumiblesActive"
+          >
+            <h3 class="catalog-title">Consumibles</h3>
+            <div class="icon-dropdown">
+              <i
+                class="pi pi-chevron-up"
+                [class.rotate]="isConsumiblesActive"
+              ></i>
+            </div>
+          </div>
+          <div class="list-wrapper">
+            <div class="list-container">
+              <div class="list">
+                <h5 class="list-title">Marcas</h5>
+                <ul>
+                  <a *ngFor="let brand of consumableProducts.brands">
+                    <li (click)="navigateToConsumableList('brand', brand.name)">
+                      {{ brand.name }}
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div class="list">
+                <h5 class="list-title">Categorias</h5>
+                <ul>
+                  <a *ngFor="let category of consumableProducts.categories">
+                    <li
+                      (click)="
+                        navigateToConsumableList('categories', category.value)
+                      "
+                    >
+                      {{ category.name }}
+                    </li>
+                  </a>
+                </ul>
+              </div>
+              <div class="list">
+                <h5 class="list-title">Colores</h5>
+                <ul>
+                  <a *ngFor="let color of consumableProducts.colors">
+                    <li
+                      (click)="navigateToConsumableList('color', color.value)"
+                    >
+                      {{ color.name }}
+                    </li>
+                  </a>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section> -->
+  </div>
+</section>
 
 <!-- <section class="section-content" id="categorias">
     <div class="section-container">

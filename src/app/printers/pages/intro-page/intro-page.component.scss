@@ -70,36 +70,32 @@
   background-color: $light-50;
 }
 
-:host ::ng-deep .p-carousel-item {
-  max-height: 100%;
-  padding: 10px;
-}
-
-:host ::ng-deep .p-carousel-indicator {
-  .p-link {
-    border-radius: 50% !important;
-    height: 0.8rem !important;
-    width: 0.8rem !important;
-  }
-}
-
-:host ::ng-deep p-tabview.p-element {
-  padding: 0;
-  .p-tabview.p-component {
-    border-radius: 6px;
-    border: #dee2e6 1px solid;
-  }
-  .p-tabview-nav-container {
-    border-radius: 6px 6px 0 0;
-  }
-  .p-tabview-panels {
-    background-color: #fff;
-  }
-}
-
 .white-space {
   width: 100%;
   height: 400px;
+}
+
+.section-container {
+  position: relative;
+  width: 100%;
+  max-width: $grid-max-width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: $p-4 $p-2;
+  @media (min-width: 768px) {
+    padding: $p-4;
+  }
+}
+
+.section-title {
+  color: $text;
+}
+
+.section-subtitle {
+  font-weight: 500;
+  color: $secondary-text;
+  margin: 0;
 }
 
 .aspectos-destacados {
@@ -234,47 +230,30 @@
   }
 }
 
-#printer-promotions {
-  width: 100%;
-}
-
 .promotion-header {
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 1em;
+  padding-bottom: 1rem;
   margin-bottom: 1em;
   border-bottom: 1px solid $gray-200;
-}
-
-.promotion-title-container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 0; /* Ensures the title container can shrink */
-  margin-bottom: 8px;
-}
-
-.section-title {
-  color: $text;
-}
-
-.section-subtitle {
-  font-weight: 500;
-  color: $secondary-text;
-  margin: 0;
-}
-
-.promotion-links {
-  display: flex;
-  gap: 0.5em;
-  flex-shrink: 0;
-  margin-bottom: 8px;
-  @media (max-width: 768px) {
-    width: 100%;
-    button {
+  @media (min-width: 768px) {
+    padding-bottom: 0rem;
+  }
+  .promotion-title-container {
+    margin-bottom: 8px;
+  }
+  .promotion-links {
+    display: flex;
+    gap: 0.5em;
+    @media (max-width: 768px) {
       width: 100%;
+      button {
+        width: 100%;
+      }
     }
   }
 }

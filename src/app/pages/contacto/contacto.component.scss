@@ -36,9 +36,9 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 $p-2;
+  padding: $p-4 $p-2;
   @media (min-width: 768px) {
-    padding: 0 $p-4;
+    padding: $p-4;
   }
 }
 
@@ -48,12 +48,10 @@
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  padding: 1rem 0rem;
 
   @media (min-width: 768px) {
     align-items: flex-start;
     flex-direction: row;
-    padding: 2rem 0rem;
     gap: 2rem;
   }
 }
