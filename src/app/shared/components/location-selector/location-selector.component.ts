@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GeoLocationService } from '../services/geo-location.service';
+import { GeoLocationService } from '../../services/geo-location.service';
 
 @Component({
   selector: 'shared-location-selector',
