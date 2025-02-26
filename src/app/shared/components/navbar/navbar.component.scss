@@ -1,13 +1,17 @@
 @import "../../../../variables";
 
 .navbar-main {
-  position: relative;
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1001;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 50px;
   background-color: $gray-50;
+  border-bottom: $gray-200 1px solid;
 }
 
 .navbar-container {
