@@ -266,10 +266,15 @@ export class FilterComponent implements OnInit {
       deal: this.deal ? this.deal : null,
       // Add other filters here...
     };
+
     this.filteredPrintersChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
 
-    this.router.navigate([], { queryParams: filters, queryParamsHandling: 'merge' });
+    this.router.navigate([], {
+      queryParams: filters,
+      // queryParamsHandling: 'merge',
+      replaceUrl: filterChanged,
+    });
   }
 
 }

@@ -6,7 +6,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
+import { Subject, Subscription, debounceTime, filter, takeUntil } from 'rxjs';
 import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
 
@@ -35,6 +35,7 @@ export class ListPageComponent implements OnInit {
   searchQuery: string = '';
   private destroy$ = new Subject<void>();
   private searchQuerySubject = new Subject<string>();
+  private urlHistory: string[] = [];
 
   constructor(
     private printersService: PrintersService,
@@ -63,6 +64,15 @@ export class ListPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((event) => {
+        this.urlHistory.push(event.urlAfterRedirects);
+        console.log('URL History:', this.urlHistory);
+      });
     this.fetchPrinters();
     this.checkIfMobile();
     this.handleQueryParamsOnChanges();
@@ -140,6 +150,7 @@ export class ListPageComponent implements OnInit {
         relativeTo: this.route,
         queryParams: queryParams,
         queryParamsHandling: 'merge',
+        replaceUrl: false,
       })
       .then(() => {
         this.sliceConsumablesForCurrentPage();
@@ -240,17 +251,17 @@ export class ListPageComponent implements OnInit {
           ...printer,
           deals: printer.deals
             ? printer.deals.filter(
-                (d) =>
-                  new Date(d.dealStartDate) <= currentDate &&
-                  new Date(d.dealEndDate) >= currentDate
-              )
+              (d) =>
+                new Date(d.dealStartDate) <= currentDate &&
+                new Date(d.dealEndDate) >= currentDate
+            )
             : [],
           packages: printer.packages
             ? printer.packages.filter(
-                (pkg) =>
-                  new Date(pkg.packageStartDate) <= currentDate &&
-                  new Date(pkg.packageEndDate) >= currentDate
-              )
+              (pkg) =>
+                new Date(pkg.packageStartDate) <= currentDate &&
+                new Date(pkg.packageEndDate) >= currentDate
+            )
             : [],
         }));
       }

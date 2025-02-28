@@ -106,6 +106,31 @@
     </div>
   </section>
   <section class="section-container">
+    <div class="promotion-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h2 class="section-title">Impresoras de Oficina en Venta</h2>
+          <h5 class="section-subtitle">
+            Equipos confiables y de alto rendimiento a precios inigualables para
+            tu oficina.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            (click)="navigateToProductListType('sellable')"
+          >
+            <span class="button-label">Equipos en Venta</span>
+          </button>
+        </div>
+      </div>
+      <printer-promotion-list
+        [categories]="['Oficina']"
+        [requireDeals]="false"
+      ></printer-promotion-list>
+    </div>
+  </section>
+  <section class="section-container">
     <div class="rent-or-sale-container">
       <div class="promo-card">
         <div class="promo-card-content">

@@ -4,7 +4,6 @@ import {
   ElementRef,
   HostListener,
   Input,
-  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -33,6 +32,8 @@ Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 export class PromotionListComponent implements OnInit, AfterViewInit {
   @Input() categories: string[] = []; // Accept categories as input
   @Input() requireDeals: boolean = true;
+  @Input() sellable: boolean = true; // New input for sellable filter
+  @Input() rentable: boolean = false; // New input for rentable filter
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   dealPrinters: Printer[] = [];
   isLoading = true;
@@ -74,7 +75,7 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     },
   };
 
-  constructor(private printersService: PrintersService) {}
+  constructor(private printersService: PrintersService) { }
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
@@ -135,7 +136,9 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
                 new Date(deal.dealEndDate) >= currentDate
             )) &&
           (this.categories.length === 0 ||
-            this.categories.includes(printer.category))
+            this.categories.includes(printer.category)) &&
+          (printer.sellable === this.sellable) &&
+          (printer.rentable === this.rentable)
       )
       .map((printer) => ({
         ...printer,
