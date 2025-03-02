@@ -126,6 +126,16 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
 
   private filterPrinters(printers: Printer[]): Printer[] {
     const currentDate = new Date();
+
+    const isPackageExpired = (packageEndDate: string): boolean => {
+      const endDate = new Date(packageEndDate);
+      return endDate < currentDate;
+    };
+
+    const hasValidPackages = (packages: any[]): boolean => {
+      return packages.some(pkg => !isPackageExpired(pkg.packageEndDate));
+    };
+
     return printers
       .filter((printer) => {
         const hasActiveDeals = printer.deals.some(
@@ -133,7 +143,7 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
             new Date(deal.dealStartDate) <= currentDate &&
             new Date(deal.dealEndDate) >= currentDate
         );
-        const hasRentPackage = printer.packages && printer.packages.length > 0;
+        const hasRentPackage = printer.packages && hasValidPackages(printer.packages);
 
         return (
           (this.requireDeals ? (hasActiveDeals || hasRentPackage) : (!hasActiveDeals && !hasRentPackage)) &&

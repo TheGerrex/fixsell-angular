@@ -286,4 +286,17 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
   showDialog() {
     this.showDialogForm = true;
   }
+
+
+  isPackageExpired(packageEndDate: Date): boolean {
+    const currentDate = new Date();
+    const endDate = new Date(packageEndDate);
+    console.log("currentDate:", currentDate, "endDate:", endDate);
+    console.log("isPackageExpired:", endDate > currentDate);
+    return endDate < currentDate;
+  }
+
+  hasValidPackages(packages: any[]): boolean {
+    return packages.some(pkg => !this.isPackageExpired(pkg.packageEndDate));
+  }
 }

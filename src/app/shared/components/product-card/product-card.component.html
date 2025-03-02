@@ -9,7 +9,7 @@
         />
         <div
           class="product-deal-tag"
-          *ngIf="printer.deals.length > 0 || printer.packages.length > 0"
+          *ngIf="printer.deals.length > 0 || hasValidPackages(printer.packages)"
         >
           <p class="deal-tag-title">Promoción</p>
         </div>
@@ -84,7 +84,7 @@
               <s>{{ printer.currency }} ${{ printer.price }}</s></span
             >
           </div>
-          <div class="package-price" *ngIf="printer.packages.length > 0">
+          <div class="package-price" *ngIf="hasValidPackages(printer.packages)">
             <div class="data-price-container">
               <span class="data-price">
                 {{ printer.packages[0].packageCurrency }}

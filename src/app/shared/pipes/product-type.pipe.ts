@@ -31,9 +31,19 @@ style="min-width: 60px;
   </div>
 `;
 
+    const isPackageExpired = (packageEndDate: string): boolean => {
+      const currentDate = new Date();
+      const endDate = new Date(packageEndDate);
+      return endDate < currentDate;
+    };
+
+    const hasValidPackages = (packages: any[]): boolean => {
+      return packages.some(pkg => !isPackageExpired(pkg.packageEndDate));
+    };
+
     let result = '';
     if (value.rentable) {
-      if (value.packages.length > 0) {
+      if (hasValidPackages(value.packages)) {
         result += createTag('#FFA7B8', '#FFA7B8', '#AE003A', 'Paquete de Renta');
       } else {
         result += createTag('#FFA7B8', '#FFA7B8', '#AE003A', 'Renta');
@@ -43,16 +53,9 @@ style="min-width: 60px;
       result += createTag('#BEF4D2', '#BEF4D2', '#0F572A', 'Venta');
     }
 
-
     // Wrap the result in a parent div with display: flex
     result = `<div style="display: flex; gap: 6px;">${result}</div>`;
 
     return this.sanitizer.bypassSecurityTrustHtml(result);
-
-    // if (value) {
-    //   return this.sanitizer.bypassSecurityTrustHtml(rentaTag);
-    // } else {
-    //   return this.sanitizer.bypassSecurityTrustHtml(ventaTag);
-    // }
   }
 }

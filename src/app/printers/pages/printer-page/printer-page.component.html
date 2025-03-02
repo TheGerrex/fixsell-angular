@@ -239,17 +239,23 @@
             </div>
             <div
               class="product-info-block"
-              *ngIf="printer.packages.length > 0 && printer.rentable"
+              *ngIf="hasValidPackages(printer.packages) && printer.rentable"
             >
               <div class="product-packages">
                 <div class="package-header">
                   <h2>Paquetes de Renta</h2>
                 </div>
                 <div class="package-body">
-                  <printer-package-rent-card
-                    [printer]="printer"
-                    style="width: 100%"
-                  ></printer-package-rent-card>
+                  <ng-container *ngFor="let package of printer.packages">
+                    <ng-container
+                      *ngIf="!isPackageExpired(package.packageEndDate)"
+                    >
+                      <printer-package-rent-card
+                        [printer]="printer"
+                        style="width: 100%"
+                      ></printer-package-rent-card>
+                    </ng-container>
+                  </ng-container>
                 </div>
               </div>
             </div>
