@@ -26,16 +26,16 @@ Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
   selector: 'printer-promotion-list',
-  templateUrl: './promotion-list.component.html',
-  styleUrls: ['./promotion-list.component.scss'],
+  templateUrl: './printer-list.component.html',
+  styleUrls: ['./printer-list.component.scss'],
 })
-export class PromotionListComponent implements OnInit, AfterViewInit {
+export class PrinterListComponent implements OnInit, AfterViewInit {
   @Input() categories: string[] = []; // Accept categories as input
   @Input() requireDeals: boolean = true;
-  @Input() sellable: boolean = true; // New input for sellable filter
+  @Input() sellable: boolean = false; // New input for sellable filter
   @Input() rentable: boolean = false; // New input for rentable filter
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
-  dealPrinters: Printer[] = [];
+  printers: Printer[] = [];
   isLoading = true;
   noDealsMessage = 'No hay ofertas al momento';
   isBeginning = true;
@@ -79,7 +79,7 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.printersService.getPrinters().subscribe((printers: Printer[]) => {
-      this.dealPrinters = this.filterPrinters(printers);
+      this.printers = this.filterPrinters(printers);
       this.isLoading = false;
       setTimeout(() => {
         this.updateNavigation(); // Update navigation after loading data
@@ -119,7 +119,7 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
     this.showNavigation =
-      this.dealPrinters.length >
+      this.printers.length >
       (swiperInstance.params.slidesPerView as number);
     // console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation);
   }
@@ -127,19 +127,21 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
   private filterPrinters(printers: Printer[]): Printer[] {
     const currentDate = new Date();
     return printers
-      .filter(
-        (printer) =>
-          (!this.requireDeals ||
-            printer.deals.some(
-              (deal) =>
-                new Date(deal.dealStartDate) <= currentDate &&
-                new Date(deal.dealEndDate) >= currentDate
-            )) &&
-          (this.categories.length === 0 ||
-            this.categories.includes(printer.category)) &&
-          (printer.sellable === this.sellable) &&
-          (printer.rentable === this.rentable)
-      )
+      .filter((printer) => {
+        const hasActiveDeals = printer.deals.some(
+          (deal) =>
+            new Date(deal.dealStartDate) <= currentDate &&
+            new Date(deal.dealEndDate) >= currentDate
+        );
+        const hasRentPackage = printer.packages && printer.packages.length > 0;
+
+        return (
+          (this.requireDeals ? (hasActiveDeals || hasRentPackage) : (!hasActiveDeals && !hasRentPackage)) &&
+          (this.categories.length === 0 || this.categories.includes(printer.category)) &&
+          (!this.sellable || printer.sellable === this.sellable) &&
+          (!this.rentable || printer.rentable === this.rentable)
+        );
+      })
       .map((printer) => ({
         ...printer,
         deals: printer.deals.filter(

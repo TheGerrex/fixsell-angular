@@ -251,6 +251,7 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     this.selectedCategories = [];
     this.selectedOrigens = [];
     this.selectedYields = [];
+    this.deal = false;
     this.appliedFiltersCount = 0;
 
     // Emit the changes

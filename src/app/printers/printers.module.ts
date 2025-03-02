@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { IntroPageComponent } from './pages/intro-page/intro-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
+import { PrinterListComponent } from './components/printer-list/printer-list.component';
 import { PackageRentCardComponent } from './components/package-rent-card/package-rent-card.component';
 import { PackageRentContactFormComponent } from './components/package-rent-contact-form/package-rent-contact-form.component';
 import { PackageRentPromotionListComponent } from './components/package-rent-promotion-list/package-rent-promotion-list.component';
@@ -34,7 +34,7 @@ import { RelatedPrintersListComponent } from './components/related-printers-list
     ListPageComponent,
     IntroPageComponent,
     SearchBarComponent,
-    PromotionListComponent,
+    PrinterListComponent,
     PackageRentCardComponent,
     PackageRentContactFormComponent,
     PackageRentPromotionListComponent,
@@ -48,7 +48,7 @@ import { RelatedPrintersListComponent } from './components/related-printers-list
     SharedModule,
     ReactiveFormsModule,
   ],
-  exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe, PromotionListComponent, PackageRentPromotionListComponent, PackageRentContactFormComponent],
+  exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe, PrinterListComponent, PackageRentPromotionListComponent, PackageRentContactFormComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PrinterModule { }

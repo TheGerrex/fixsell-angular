@@ -50,36 +50,6 @@
       </div>
     </div>
     <div class="filter-section">
-      <div class="filter-section-header" (click)="toggleFilterSectionType()">
-        <div class="filter-section-title">Color</div>
-        <div class="AngleButton">
-          <i
-            class="pi pi-angle-down"
-            style="font-size: 1rem; color: #3f4756"
-            [class.flip]="!isSectionVisibleType"
-          ></i>
-        </div>
-      </div>
-      <div
-        class="filter-section-content"
-        [ngClass]="{ hidden: !isSectionVisibleType }"
-      >
-        <div class="checkbox" *ngFor="let color of colorFilter">
-          <div class="checkbox-container">
-            <input
-              type="checkbox"
-              class="checkbox-input"
-              [id]="color"
-              [value]="color"
-              [checked]="selectedColors.includes(color)"
-              (change)="toggleColorFilter(color)"
-            />
-            <label for="{{ color }}">{{ colorDisplayNames[color] }}</label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="filter-section">
       <div
         class="filter-section-header"
         (click)="toggleFilterSectionCategory()"
@@ -168,6 +138,36 @@
               (change)="toggleOrigenFilter(origen)"
             />
             <label for="{{ origen }}">{{ origen }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-section-header" (click)="toggleFilterSectionType()">
+        <div class="filter-section-title">Color</div>
+        <div class="AngleButton">
+          <i
+            class="pi pi-angle-down"
+            style="font-size: 1rem; color: #3f4756"
+            [class.flip]="!isSectionVisibleType"
+          ></i>
+        </div>
+      </div>
+      <div
+        class="filter-section-content"
+        [ngClass]="{ hidden: !isSectionVisibleType }"
+      >
+        <div class="checkbox" *ngFor="let color of colorFilter">
+          <div class="checkbox-container">
+            <input
+              type="checkbox"
+              class="checkbox-input"
+              [id]="color"
+              [value]="color"
+              [checked]="selectedColors.includes(color)"
+              (change)="toggleColorFilter(color)"
+            />
+            <label for="{{ color }}">{{ colorDisplayNames[color] }}</label>
           </div>
         </div>
       </div>

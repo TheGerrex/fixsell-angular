@@ -7,7 +7,7 @@
     </swiper-container>
   </ng-container>
 
-  <ng-container *ngIf="!isLoading && dealPrinters.length > 0">
+  <ng-container *ngIf="!isLoading && printers.length > 0">
     <div class="page-buttons">
       <button
         (click)="goToPrev()"
@@ -27,7 +27,7 @@
       </button>
     </div>
     <swiper-container appSwiper #swiperContainer [config]="swiperOptions">
-      <ng-container *ngFor="let printer of dealPrinters">
+      <ng-container *ngFor="let printer of printers">
         <swiper-slide>
           <shared-product-card [printer]="printer"></shared-product-card>
         </swiper-slide>
@@ -36,7 +36,7 @@
     </swiper-container>
   </ng-container>
 
-  <ng-container *ngIf="!isLoading && dealPrinters.length === 0">
+  <ng-container *ngIf="!isLoading && printers.length === 0">
     <div class="not-found">
       <i class="pi pi-exclamation-triangle"></i>
       <p>{{ noDealsMessage }}</p>

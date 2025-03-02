@@ -109,10 +109,10 @@
     <div class="promotion-container">
       <div class="promotion-header">
         <div class="promotion-title-container">
-          <h2 class="section-title">Impresoras de Oficina en Venta</h2>
+          <h2 class="section-title">Venta de Impresoras para Oficina</h2>
           <h5 class="section-subtitle">
-            Equipos confiables y de alto rendimiento a precios inigualables para
-            tu oficina.
+            La mejor tecnología en impresión con opciones que se ajustan a tus
+            necesidades y presupuesto.
           </h5>
         </div>
         <div class="promotion-links">
@@ -126,7 +126,35 @@
       </div>
       <printer-promotion-list
         [categories]="['Oficina']"
+        [sellable]="true"
         [requireDeals]="false"
+      ></printer-promotion-list>
+    </div>
+  </section>
+  <section class="section-container">
+    <div class="promotion-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h2 class="section-title">Renta de Impresoras para Oficina</h2>
+          <h5 class="section-subtitle">
+            Flexibilidad y ahorro con equipos confiables y de alto rendimiento
+            para tu oficina.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            (click)="navigateToProductListType('rentable')"
+          >
+            <span class="button-label">Equipos en Renta</span>
+          </button>
+        </div>
+      </div>
+      <printer-promotion-list
+        [categories]="['Oficina']"
+        [rentable]="true"
+        [requireDeals]="false"
+        [sellable]="false"
       ></printer-promotion-list>
     </div>
   </section>
