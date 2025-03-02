@@ -98,11 +98,11 @@
       <div class="promotion-header">
         <div class="promotion-title-container">
           <h2 class="section-title">
-            Impresoras de Alta Gama y Alto Volumen en Oferta
+            Ofertas en Impresoras de Alta Gama y Gran Volumen
           </h2>
           <h5 class="section-subtitle">
-            Ahorra en equipos de alta calidad, volumen y velocidad para tus
-            necesidades de impresión.
+            Aprovecha descuentos exclusivos en equipos de alto rendimiento para
+            optimizar tu impresión.
           </h5>
         </div>
         <div class="promotion-links">
@@ -114,9 +114,70 @@
           </button>
         </div>
       </div>
+
       <printer-promotion-list
         [categories]="['Artes Graficas', 'Produccion']"
         [requireDeals]="true"
+      ></printer-promotion-list>
+    </div>
+  </section>
+  <section class="section-container">
+    <div class="promotion-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h2 class="section-title">
+            Venta de Impresoras de Alta Gama y Gran Volumen
+          </h2>
+          <h5 class="section-subtitle">
+            Invierte en equipos de alto rendimiento para maximizar la
+            productividad y calidad de impresión.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            (click)="navigateToProductListType('sellable')"
+          >
+            <span class="button-label">Ver Impresoras en Venta</span>
+          </button>
+        </div>
+      </div>
+
+      <printer-promotion-list
+        [categories]="['Artes Graficas', 'Produccion']"
+        [requireDeals]="false"
+        [sellable]="true"
+        [rentable]="false"
+      ></printer-promotion-list>
+    </div>
+  </section>
+  <section class="section-container">
+    <div class="promotion-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h2 class="section-title">
+            Renta de Impresoras de Alta Gama y Gran Volumen
+          </h2>
+          <h5 class="section-subtitle">
+            Optimiza costos con equipos de alto rendimiento, ideales para
+            grandes volúmenes de impresión.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            (click)="navigateToProductListType('rentable')"
+          >
+            <span class="button-label">Ver Impresoras en Renta</span>
+          </button>
+        </div>
+      </div>
+
+      <printer-promotion-list
+        [categories]="['Artes Graficas', 'Produccion']"
+        [requireDeals]="false"
+        [sellable]="false"
+        [rentable]="true"
       ></printer-promotion-list>
     </div>
   </section>

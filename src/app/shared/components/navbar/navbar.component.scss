@@ -62,13 +62,6 @@
   padding: 0.5rem 1rem;
   position: relative;
 
-  .item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: $gray-600;
-  }
-
   &:hover {
     background-color: $gray-100;
     cursor: pointer;
@@ -79,11 +72,24 @@
   }
 
   &:focus {
-    background-color: $gray-100;
+    background-color: $gray-200;
+    border-radius: $border-radius;
   }
 
-  &:active {
-    background-color: $gray-200;
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $gray-600;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      background-color: $gray-200;
+      border-radius: $border-radius;
+    }
   }
 
   .dropdown {
@@ -97,6 +103,12 @@
     z-index: 1000;
     padding: 0.25rem;
     box-sizing: border-box;
+    .active {
+      .item a,
+      .item i {
+        color: $primary-color !important;
+      }
+    }
 
     .dropdown-item {
       display: flex;
@@ -105,6 +117,12 @@
       padding: 0.5rem 1rem 0.5rem 0.5rem;
       white-space: nowrap;
       position: relative;
+      .active {
+        border-radius: $border-radius;
+        a {
+          color: $primary-color !important;
+        }
+      }
 
       a {
         color: $text;
@@ -120,6 +138,11 @@
         }
       }
 
+      &:focus {
+        background-color: $gray-100;
+        border-radius: $border-radius;
+      }
+
       .dropdown {
         display: none;
         position: absolute;
@@ -129,6 +152,39 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: $border-radius;
         z-index: 1000;
+
+        .dropdown-item {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          padding: 0.5rem 1rem 0.5rem 0.5rem;
+          white-space: nowrap;
+          position: relative;
+
+          a {
+            color: $text;
+            text-decoration: none;
+          }
+
+          &:hover {
+            background-color: $gray-100;
+            border-radius: $border-radius;
+
+            .dropdown {
+              display: block;
+            }
+          }
+
+          &:focus {
+            background-color: $gray-100;
+            border-radius: $border-radius;
+          }
+
+          &:active {
+            background-color: $gray-200;
+            border-radius: $border-radius;
+          }
+        }
       }
     }
   }

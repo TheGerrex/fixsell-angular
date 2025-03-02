@@ -37,7 +37,7 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   printers: Printer[] = [];
   isLoading = true;
-  noDealsMessage = 'No hay ofertas al momento';
+  noDealsMessage = 'No hay productos o promociones disponibles en este momento';
   isBeginning = true;
   isEnd = false;
   showNavigation = true;

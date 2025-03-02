@@ -94,11 +94,11 @@
       <div class="promotion-header">
         <div class="promotion-title-container">
           <h2 class="section-title">
-            Plotters e Impresoras de Gran Formato en Oferta
+            Oferta de Plotters e Impresoras de Gran Formato
           </h2>
           <h5 class="section-subtitle">
-            Impresiones de gran escala y precisión, perfectas para proyectos
-            exigentes.
+            Potencia tus proyectos con equipos de alta precisión y capacidad
+            para impresiones de gran formato.
           </h5>
         </div>
         <div class="promotion-links">
@@ -113,6 +113,35 @@
       <printer-promotion-list
         [categories]="['Plotter', 'Cama Plana']"
         [requireDeals]="true"
+      ></printer-promotion-list>
+    </div>
+  </section>
+  <section class="section-container">
+    <div class="promotion-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h2 class="section-title">
+            Venta de Plotters e Impresoras de Gran Formato
+          </h2>
+          <h5 class="section-subtitle">
+            Equipos de alta precisión y calidad para impresiones de gran escala,
+            ideales para proyectos exigentes.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            (click)="navigateToProductListType('sellable')"
+          >
+            <span class="button-label">Ver Plotters en Venta</span>
+          </button>
+        </div>
+      </div>
+      <printer-promotion-list
+        [categories]="['Plotter', 'Cama Plana']"
+        [requireDeals]="false"
+        [sellable]="true"
+        [rentable]="false"
       ></printer-promotion-list>
     </div>
   </section>

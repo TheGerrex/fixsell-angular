@@ -9,6 +9,8 @@
           class="item-wrapper"
           *ngFor="let item of items"
           [routerLink]="item.routerLink"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <div class="item">
             <i [ngClass]="item.icon"></i>
@@ -16,7 +18,12 @@
             <i class="pi pi-angle-down" *ngIf="item.items"></i>
           </div>
           <div class="dropdown" *ngIf="item.items">
-            <div class="dropdown-item" *ngFor="let subItem of item.items">
+            <div
+              class="dropdown-item"
+              *ngFor="let subItem of item.items"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
               <div class="item">
                 <i [ngClass]="subItem.icon"></i>
                 <a [routerLink]="subItem.routerLink">{{ subItem.label }}</a>
@@ -26,6 +33,8 @@
                 <div
                   class="dropdown-item"
                   *ngFor="let nestedItem of subItem.items"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
                 >
                   <a [routerLink]="nestedItem.routerLink">{{
                     nestedItem.label
