@@ -50,7 +50,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe(() => {
-        window.scrollTo(0, 480);
+        window.scrollTo(0, 436);
       });
     this.searchQuerySubject.pipe(debounceTime(10)).subscribe((searchQuery) => {
       this.searchQuery = searchQuery;
@@ -226,10 +226,10 @@ export class ListPageComponent implements OnInit, OnDestroy {
             ...consumable,
             deals: consumable.deals
               ? consumable.deals.filter(
-                  (d) =>
-                    new Date(d.dealStartDate) <= currentDate &&
-                    new Date(d.dealEndDate) >= currentDate
-                )
+                (d) =>
+                  new Date(d.dealStartDate) <= currentDate &&
+                  new Date(d.dealEndDate) >= currentDate
+              )
               : [],
           })
         );

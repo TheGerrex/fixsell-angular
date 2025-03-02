@@ -277,6 +277,6 @@ export class FilterComponent implements OnInit, OnDestroy, OnChanges {
     this.filteredConsumableChange.emit(filters);
     this.appliedFiltersCountChange.emit(this.appliedFiltersCount);
 
-    this.router.navigate([], { queryParams: filters, queryParamsHandling: 'merge' })
+    this.router.navigate([], { queryParams: filters, queryParamsHandling: 'merge', replaceUrl: true });
   }
 }

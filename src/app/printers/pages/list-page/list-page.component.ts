@@ -6,7 +6,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { Subject, Subscription, debounceTime, filter, takeUntil } from 'rxjs';
+import { Subject, debounceTime, filter, takeUntil } from 'rxjs';
 import { PrintersService } from '../../services/printers.service';
 import { Printer } from '../../interfaces/printer.interface';
 
@@ -51,7 +51,7 @@ export class ListPageComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe(() => {
-        window.scrollTo(0, 480);
+        window.scrollTo(0, 436);
       });
     this.searchQuerySubject.pipe(debounceTime(10)).subscribe((searchQuery) => {
       this.searchQuery = searchQuery;
@@ -64,15 +64,6 @@ export class ListPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events
-      .pipe(
-        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-        takeUntil(this.destroy$)
-      )
-      .subscribe((event) => {
-        this.urlHistory.push(event.urlAfterRedirects);
-        console.log('URL History:', this.urlHistory);
-      });
     this.fetchPrinters();
     this.checkIfMobile();
     this.handleQueryParamsOnChanges();
@@ -137,13 +128,10 @@ export class ListPageComponent implements OnInit {
     const filtersChanged =
       JSON.stringify(queryFilters) !== JSON.stringify(currentFilters);
 
-    this.applyFilters(queryFilters);
-    const queryParams: Params = { ...queryFilters };
+    if (!filtersChanged) return; // Avoid unnecessary navigation
 
-    // Only reset the page number to 1 if the filters have changed
-    if (filtersChanged) {
-      queryParams['page'] = 1;
-    }
+    this.applyFilters(queryFilters);
+    const queryParams: Params = { ...queryFilters, page: 1 };
 
     await this.router
       .navigate([], {
@@ -156,6 +144,7 @@ export class ListPageComponent implements OnInit {
         this.sliceConsumablesForCurrentPage();
       });
   }
+
 
   applyFilters(queryFilters: Params): void {
     this.filteredPrinters = [...this.printers];
@@ -323,6 +312,8 @@ export class ListPageComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: newParams,
+      queryParamsHandling: 'merge',
+      replaceUrl: false,
     });
   }
 

@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./office-printers.component.scss'],
 })
 export class OfficePrintersComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
     // Initialization logic for localstorage
   }
+
   callPhoneNumber() {
     const location = localStorage.getItem('location') || 'mty';
     const phoneNumber = location === 'cdmx' ? '5559295976' : '8181143827';
@@ -20,23 +21,30 @@ export class OfficePrintersComponent implements OnInit {
 
   navigateToProductListTypeCategory(types: string[]) {
     const categories = types.join(',');
+
     this.router.navigate(['/printers/list'], {
-      queryParams: { categories: categories, filterCount: 1 },
+      queryParams: { categories, filterCount: 1 },
       queryParamsHandling: 'merge',
+      replaceUrl: false,
     });
   }
 
+
   navigateToProductListType(type: string) {
+    let queryParams = {};
+
     if (type === 'sellable') {
-      this.router.navigate(['/printers/list'], {
-        queryParams: { sellable: true, filterCount: 1 },
-        queryParamsHandling: 'merge',
-      });
+      queryParams = { sellable: true, filterCount: 1 };
     } else if (type === 'rentable') {
-      this.router.navigate(['/printers/list'], {
-        queryParams: { rentable: true, filterCount: 1 },
-        queryParamsHandling: 'merge',
-      });
+      queryParams = { rentable: true, filterCount: 1 };
     }
+
+    this.router.navigate(['/printers/list'], {
+      queryParams,
+      queryParamsHandling: 'merge',
+      replaceUrl: false,
+    });
   }
+
+
 }

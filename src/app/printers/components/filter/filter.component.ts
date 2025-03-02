@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { Printer } from '../../interfaces/printer.interface';
@@ -9,7 +9,7 @@ import { PrintersService } from '../../services/printers.service';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, OnChanges, OnDestroy {
   @Output() filteredPrintersChange = new EventEmitter<any>(); // Output event
   @Output() appliedFiltersCountChange = new EventEmitter<number>();
   @Input() selectedCategory?: string;
@@ -49,6 +49,8 @@ export class FilterComponent implements OnInit {
   filterSectionsState: string = window.innerWidth > 768 ? 'open' : 'closed';
   checked = false;
   isMobile?: boolean;
+  private queryParamsSubscription: any;
+
 
   constructor(
     private printerService: PrintersService,
@@ -58,7 +60,7 @@ export class FilterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
       this.sellable = params['sellable'] ? JSON.parse(params['sellable']) : undefined;
       this.rentable = params['rentable'] ? JSON.parse(params['rentable']) : undefined;
       this.deal = params['deal'] ? JSON.parse(params['deal']) : false;
@@ -93,6 +95,11 @@ export class FilterComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.queryParamsSubscription.unsubscribe();
+    window.removeEventListener('resize', this.onResize);
+  }
+
   toggleFilterSectionProduct() {
     this.isSectionVisibleProduct = !this.isSectionVisibleProduct;
   }
@@ -116,9 +123,7 @@ export class FilterComponent implements OnInit {
     this.filterSectionsState = window.innerWidth > 768 ? 'open' : 'closed';
   }
 
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.onResize);
-  }
+
 
   scrollToTop() {
     window.scrollTo({ top: 480, behavior: 'smooth' });
@@ -248,7 +253,7 @@ export class FilterComponent implements OnInit {
     this.appliedFiltersCountChange.emit(0);
 
     // Update the URL to reflect the reset filters
-    this.router.navigate([], { queryParams: { page: 1 } });
+    // this.router.navigate([], { queryParams: { page: 1 } });
   }
 
   emitFilters(filterChanged: boolean): void {
@@ -272,8 +277,8 @@ export class FilterComponent implements OnInit {
 
     this.router.navigate([], {
       queryParams: filters,
-      // queryParamsHandling: 'merge',
-      replaceUrl: filterChanged,
+      queryParamsHandling: 'merge',
+      replaceUrl: true,
     });
   }
 
