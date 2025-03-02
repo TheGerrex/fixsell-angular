@@ -10,7 +10,7 @@
           [alt]="consumible.name"
           class="product-image"
         />
-        <div class="product-deal-tag" *ngIf="consumible.deals.length > 0">
+        <div class="product-deal-tag" *ngIf="hasValidDeals(consumible.deals)">
           <p class="deal-tag-title">Promoción</p>
         </div>
       </div>
@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div class="product-price" *ngIf="consumible.deals.length > 0">
+      <div class="product-price" *ngIf="hasValidDeals(consumible.deals)">
         <div class="list-price-container">
           <span class="product-price-deal">
             {{ consumible.deals[0].dealCurrency }}

@@ -12,4 +12,14 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
     if (!this.consumible) throw new Error('Consumable property is required');
   }
+
+  isDealExpired(dealEndDate: string): boolean {
+    const currentDate = new Date();
+    const endDate = new Date(dealEndDate);
+    return endDate < currentDate;
+  }
+
+  hasValidDeals(deals: any[]): boolean {
+    return deals.some(deal => !this.isDealExpired(deal.dealEndDate));
+  }
 }

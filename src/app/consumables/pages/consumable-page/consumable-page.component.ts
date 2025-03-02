@@ -296,4 +296,15 @@ export class ConsumablePageComponent implements OnInit, AfterViewInit, OnDestroy
   showDialog() {
     this.showDialogForm = true;
   }
+
+
+  isDealExpired(dealEndDate: string): boolean {
+    const currentDate = new Date();
+    const endDate = new Date(dealEndDate);
+    return endDate < currentDate;
+  }
+
+  hasValidDeals(deals: any[]): boolean {
+    return deals.some(deal => !this.isDealExpired(deal.dealEndDate));
+  }
 }

@@ -23,11 +23,6 @@
               </swiper-container>
             </div>
             <div class="main-swiper-container">
-              <!-- <div class="product-deal-tag" *ngIf="printer.deals.length > 0">
-                <p class="deal-tag-title">
-                  {{ printer.deals[0].dealDiscountPercentage }}% Dto.
-                </p>
-              </div> -->
               <div class="swiper-fraction-pagination" *ngIf="paginationVisible">
                 <p class="pagination-label">
                   {{ currentSlideIndex }} / {{ totalSlides }}
@@ -85,10 +80,7 @@
                 </div>
                 <h3 class="product-title">{{ printer.model }}</h3>
                 <div class="product-tags">
-                  <div
-                    class="tag-deal"
-                    *ngIf="printer?.deals && printer.deals.length > 0"
-                  >
+                  <div class="tag-deal" *ngIf="hasValidDeals(printer.deals)">
                     <div class="tag-title">Promoción</div>
                   </div>
                   <div [innerHTML]="printer | productType"></div>
@@ -100,7 +92,7 @@
             </div>
             <div
               class="product-price-container"
-              *ngIf="printer?.deals && printer.deals.length > 0"
+              *ngIf="hasValidDeals(printer.deals)"
             >
               <div class="product-deal-price-container">
                 <h2 class="product-deal-price">
@@ -193,7 +185,7 @@
                 </a>
               </div>
             </div>
-            <div class="product-info-block">
+            <!-- <div class="product-info-block">
               <div class="product-functions">
                 <div class="Feature">
                   <div class="feature-container">
@@ -236,7 +228,7 @@
                   <p class="dato">{{ printer.color ? "Color" : "B/N" }}</p>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div
               class="product-info-block"
               *ngIf="hasValidPackages(printer.packages) && printer.rentable"
@@ -265,6 +257,36 @@
                   <h2>Especificaciones</h2>
                 </div>
                 <div class="body-specs">
+                  <div class="spec">
+                    <h5 class="spec-title">Funciones</h5>
+                    <p class="spec-data">{{ printer.printerFunctions }}</p>
+                  </div>
+                  <div class="spec">
+                    <h5 class="spec-title">Tamaño</h5>
+                    <p class="spec-data">
+                      {{ printer.printSize }} (Máximo:
+                      {{ printer.maxPrintSizeSimple }})
+                    </p>
+                  </div>
+                  <div class="spec">
+                    <h5 class="spec-title">Velocidad de Impresión</h5>
+                    <p class="spec-data">
+                      {{ printer.printVelocity }}
+                      {{
+                        printer.category === "Etiquetas"
+                          ? "mm/s"
+                          : printer.category === "Plotter"
+                          ? "m2/h"
+                          : "paginas por minuto"
+                      }}
+                    </p>
+                  </div>
+                  <div class="spec">
+                    <h5 class="spec-title">Tipo de Impresión</h5>
+                    <p class="spec-data">
+                      {{ printer.color ? "Color" : "Monocromatico" }}
+                    </p>
+                  </div>
                   <div class="spec">
                     <h5 class="spec-title">Consumo de Energía</h5>
                     <p class="spec-data">{{ printer.powerConsumption }}</p>

@@ -299,4 +299,14 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
   hasValidPackages(packages: any[]): boolean {
     return packages.some(pkg => !this.isPackageExpired(pkg.packageEndDate));
   }
+
+  isDealExpired(dealEndDate: string): boolean {
+    const currentDate = new Date();
+    const endDate = new Date(dealEndDate);
+    return endDate < currentDate;
+  }
+
+  hasValidDeals(deals: any[]): boolean {
+    return deals.some(deal => !this.isDealExpired(deal.dealEndDate));
+  }
 }

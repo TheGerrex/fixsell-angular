@@ -84,10 +84,7 @@
                 </div>
                 <h3 class="product-title">{{ consumable.name }}</h3>
                 <div class="product-tags">
-                  <div
-                    class="tag-deal"
-                    *ngIf="consumable?.deals && consumable.deals.length > 0"
-                  >
+                  <div class="tag-deal" *ngIf="hasValidDeals(consumable.deals)">
                     <div class="tag-title">Promoción</div>
                   </div>
                   <div class="tag">
@@ -98,7 +95,7 @@
             </div>
             <div
               class="product-price-container"
-              *ngIf="consumable?.deals && consumable.deals.length > 0"
+              *ngIf="hasValidDeals(consumable.deals)"
             >
               <div class="product-deal-price-container">
                 <h2 class="product-deal-price">
@@ -131,7 +128,7 @@
                 <span class="button-label">Cotiza por Email</span>
               </button>
               <button
-                *ngIf="!(consumable?.deals && consumable.deals.length > 0)"
+                *ngIf="!hasValidDeals(consumable.deals)"
                 class="button button-success button-rounded button-full"
                 style="background-color: #23d366 !important; color: #1f2937"
                 (click)="openWhatsApp()"
@@ -140,7 +137,7 @@
                 <span class="button-label">Cotiza por Whatsapp</span>
               </button>
               <button
-                *ngIf="consumable?.deals && consumable.deals.length > 0"
+                *ngIf="hasValidDeals(consumable.deals)"
                 class="button button-success button-rounded button-full"
                 style="background-color: #23d366 !important; color: #1f2937"
                 (click)="openWhatsAppDeal()"
