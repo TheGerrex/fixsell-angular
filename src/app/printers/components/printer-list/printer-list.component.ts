@@ -25,7 +25,7 @@ import { SwiperOptions } from 'swiper/types';
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
-  selector: 'printer-promotion-list',
+  selector: 'printer-list',
   templateUrl: './printer-list.component.html',
   styleUrls: ['./printer-list.component.scss'],
 })
@@ -78,7 +78,7 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
   constructor(private printersService: PrintersService) { }
 
   ngOnInit(): void {
-    this.printersService.getPrinters().subscribe((printers: Printer[]) => {
+    this.printersService.getPrinters(25, 0).subscribe((printers: Printer[]) => {
       this.printers = this.filterPrinters(printers);
       this.isLoading = false;
       setTimeout(() => {

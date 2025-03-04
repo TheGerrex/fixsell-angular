@@ -12,6 +12,9 @@
   height: 50px;
   background-color: $gray-50;
   border-bottom: $gray-200 1px solid;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-container {

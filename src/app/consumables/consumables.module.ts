@@ -13,7 +13,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ConsumablePageComponent } from './pages/consumable-page/consumable-page.component';
 import { ConsumibleColorsPipe } from './pipes/consumible-colors.pipe';
-import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
+import { PromotionListComponent } from './components/consumable-list/consumable-list.component';
 import { RelatedConsumablesListComponent } from './components/related-consumables-list/related-consumables-list.component';
 import { ConsumibleYieldPipe } from './pipes/consumible-yield.pipe';
 

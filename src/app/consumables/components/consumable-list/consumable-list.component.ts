@@ -25,9 +25,9 @@ import { SwiperOptions } from 'swiper/types';
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 
 @Component({
-  selector: 'consumables-promotion-list',
-  templateUrl: './promotion-list.component.html',
-  styleUrls: ['./promotion-list.component.scss'],
+  selector: 'consumables-list',
+  templateUrl: './consumable-list.component.html',
+  styleUrls: ['./consumable-list.component.scss'],
 })
 export class PromotionListComponent implements OnInit, AfterViewInit {
   @Input() categories: string[] = []; // Accept categories as input
@@ -35,7 +35,7 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   dealConsumables: Consumible[] = [];
   isLoading = true;
-  noDealsMessage = 'No hay ofertas al momento';
+  noDealsMessage = 'No hay productos o promociones disponibles en este momento';
   isBeginning = true;
   isEnd = false;
   showNavigation = true;
@@ -73,11 +73,11 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     },
   };
 
-  constructor(private consumableService: ConsumableService) {}
+  constructor(private consumableService: ConsumableService) { }
 
   ngOnInit(): void {
     this.consumableService
-      .getConsumables()
+      .getConsumables(25, 0)
       .subscribe((consumables: Consumible[]) => {
         this.dealConsumables = this.filterconsumables(consumables);
         this.isLoading = false;
@@ -127,17 +127,18 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
   private filterconsumables(consumables: Consumible[]): Consumible[] {
     const currentDate = new Date();
     return consumables
-      .filter(
-        (consumable) =>
-          (!this.requireDeals ||
-            consumable.deals.some(
-              (deal) =>
-                new Date(deal.dealStartDate) <= currentDate &&
-                new Date(deal.dealEndDate) >= currentDate
-            )) &&
+      .filter((consumable) => {
+        const hasActiveDeals = consumable.deals.some(
+          (deal) =>
+            new Date(deal.dealStartDate) <= currentDate &&
+            new Date(deal.dealEndDate) >= currentDate
+        );
+        return (
+          (this.requireDeals ? hasActiveDeals : !hasActiveDeals) &&
           (this.categories.length === 0 ||
             this.categories.includes(consumable.category))
-      )
+        );
+      })
       .map((consumable) => ({
         ...consumable,
         deals: consumable.deals.filter(

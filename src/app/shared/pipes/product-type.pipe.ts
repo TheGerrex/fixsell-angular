@@ -44,7 +44,7 @@ style="min-width: 60px;
     let result = '';
     if (value.rentable) {
       if (hasValidPackages(value.packages)) {
-        result += createTag('#FFA7B8', '#FFA7B8', '#AE003A', 'Paquete de Renta');
+        result += createTag('#FFA7B8', '#FFA7B8', '#AE003A', 'Renta');
       } else {
         result += createTag('#FFA7B8', '#FFA7B8', '#AE003A', 'Renta');
       }

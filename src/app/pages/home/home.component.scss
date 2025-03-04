@@ -821,19 +821,14 @@
 .consumible {
   width: 100%;
   height: 100%;
-  background-color: $blue-800;
-  // background-image: linear-gradient(to bottom, rgba($blue-800, 1), rgba($blue-700, 1));
-  // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
-  background-size: cover;
-  background-position: center;
   .consumible-container {
     .consumible-body {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       gap: 1em;
-      @media (max-width: 768px) {
-        flex-direction: column;
+      @media (min-width: 768px) {
+        flex-direction: row;
       }
       .consumible-content {
         display: flex;
@@ -851,7 +846,7 @@
           }
           h1 {
             font-weight: 600;
-            color: $white;
+            color: $text;
             margin: 0;
           }
         }
@@ -869,16 +864,17 @@
           }
           p {
             margin: 0;
-            color: $white;
+            color: $text;
           }
           h4 {
             margin: 0;
-            color: $blue-100;
+            font-weight: 500;
+            color: $secondary-text;
           }
           h5 {
             margin: 0;
-            color: $white;
-            font-weight: 400;
+            color: $text;
+            font-weight: 500;
           }
         }
         .consumible-action {
@@ -894,21 +890,21 @@
         }
       }
       .consumible-features {
-        display: flex;
         flex: 2;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2em;
         .consumible-items-container {
           display: flex;
+          flex-wrap: wrap;
           flex-direction: column;
           align-items: flex-start;
           gap: 1em;
-          align-self: stretch;
-          margin-top: 1em;
+          margin-top: 1rem;
+          @media (min-width: 768px) {
+            flex-direction: row;
+            margin-top: 0;
+          }
           .consumible-item-card {
             display: flex;
-            padding: 1em;
+            padding: 1.5rem 1rem;
             flex-direction: row;
             align-items: center;
             gap: 16px;
@@ -916,16 +912,39 @@
             align-self: stretch;
             border-radius: 12px;
             transition: transform 0.3s ease-in-out;
+            min-width: 170px;
             width: 100%;
-            border: 1px solid $gray-200;
+            border: 1px solid $gray-300;
+            box-sizing: border-box;
+            box-shadow: $box-shadow-2;
             background-color: $white;
+            @media (min-width: 768px) {
+              width: 100px;
+              flex-direction: column;
+              padding: 2.25rem 0.75rem;
+
+              i {
+                font-size: 40px !important;
+              }
+              p {
+                text-align: center;
+              }
+            }
             i {
-              font-size: 24px;
+              font-size: 32px;
+              transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
             }
             p {
               margin: 0;
               color: $text;
-              font-weight: 400;
+              font-weight: 500;
+              font-size: 15px;
+            }
+            &:hover {
+              i {
+                transform: scale(1.2);
+                color: $primary-color;
+              }
             }
           }
         }
@@ -935,10 +954,8 @@
 }
 
 .servicio {
-  //   min-height: 700px;
   overflow: hidden;
   background-color: $light-50;
-  // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../../assets/img/home/soluciones-servicios/consumibles.jpg');
   background-size: cover;
   background-position: center;
   .servicio-container {
@@ -947,15 +964,15 @@
     gap: 1rem;
     @media (min-width: 768px) {
       flex-direction: row;
-      min-height: 950px;
+      min-height: 870px;
     }
     .servicio-body {
       display: flex;
       flex-direction: column;
       width: 100%;
-      @media (min-width: 769px) {
+      @media (min-width: 768px) {
         min-width: 400px;
-        max-width: 600px;
+        max-width: 800px;
       }
       .servicio-title {
         margin-bottom: 1rem;
@@ -980,11 +997,12 @@
           border-radius: $border-radius;
 
           transition: all 0.3s ease;
-          @media (min-width: 769px) {
+          @media (min-width: 768px) {
             border: 1px solid $gray-300;
             background-color: $white;
             padding: 2rem;
             gap: 0.5rem;
+            box-shadow: $box-shadow-1;
           }
           .servicio-item-body {
             .servicio-item-header {
@@ -1058,6 +1076,7 @@
     }
     .servicio-content-image {
       border-radius: $border-radius;
+      width: 100%;
       .servicio-image {
         display: flex;
         justify-content: center;
@@ -1067,12 +1086,13 @@
         img {
           width: 100%;
           height: 100%;
+          /* Adjust this value to make the image smaller */
           object-fit: cover;
           object-position: 45% 0%;
           border-radius: $border-radius;
-          @media (max-width: 768px) {
-            // max-width: 500px;
-            // height: 500px;
+          @media (min-width: 768px) {
+            max-width: 600px;
+            max-height: 600px;
           }
         }
       }
@@ -1081,7 +1101,7 @@
 }
 
 .equipos {
-  background-color: $light-50;
+  background-color: $white;
   position: relative;
   z-index: 1;
   .equipos-container {
@@ -1125,7 +1145,8 @@
           flex-direction: row;
           background-color: $white;
           border: 1px solid $gray-300;
-          border-radius: 12px;
+          border-radius: $border-radius;
+          box-shadow: $box-shadow-1;
           padding: 1em;
           i {
             font-size: 24px;

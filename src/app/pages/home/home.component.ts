@@ -440,6 +440,10 @@ export class HomeComponent implements OnInit {
 
   scrollTo(id: string): void {
     const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      const yOffset = -50; // Offset for the sticky navbar
+      const yPosition = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: yPosition, behavior: 'smooth' });
+    }
   }
 }

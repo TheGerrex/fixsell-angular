@@ -187,8 +187,8 @@
   <div class="section-container">
     <div class="validation-body">
       <div class="validation-header">
-        <h1 class="validation-title">Distribuidores Oficiales</h1>
-        <h5 class="validation-subtitle">
+        <h1 class="section-title">Distribuidores Oficiales</h1>
+        <h5 class="section-subtitle">
           Nos enorgullece ser distribuidores oficiales de las marcas líderes en
           tecnología y soluciones de impresión. Nuestra alianza con estas marcas
           garantiza que ofrecemos productos de la más alta calidad y el mejor
@@ -277,7 +277,96 @@
   </div>
 </section>
 
-<section class="section-content" id="rent-printer-packages">
+<section class="section-content" id="equipos">
+  <div class="equipos">
+    <div class="section-container">
+      <div class="equipos-container">
+        <div class="equipos-body">
+          <div class="section-header">
+            <h1 class="section-title">Descubre Nuestras Multifuncionales</h1>
+            <h4 class="section-subtitle">
+              Encuentra información detallada, explora nuestras opciones y elige
+              la mejor solución para tus necesidades de impresión.
+            </h4>
+          </div>
+          <div
+            class="equipos-content-image-mobile"
+            [class.displayNone]="!isMediumScreen"
+          >
+            <div class="equipos-image">
+              <img
+                src="../../../assets/img/home/printers/accurio-jet-6000.jpg"
+                alt="AccurioJet 6000"
+              />
+            </div>
+          </div>
+          <div class="equipos-content">
+            <div class="equipos-item" id="velocidad">
+              <i class="pi pi-check-circle"></i>
+              <p>
+                Impresoras con velocidad, eficiencia y nitidez incomparables que
+                facilitan los flujos de trabajo de tu negocio.
+              </p>
+            </div>
+            <div class="equipos-item" id="impresion">
+              <i class="pi pi-check-circle"></i>
+              <p>
+                Posibilidad de imprimir documentos de alta calidad en segundos,
+                reducir los costes de mantenimiento, administrar tus impresiones
+                y mucho más.
+              </p>
+            </div>
+            <div class="equipos-item" id="mantenimiento">
+              <i class="pi pi-check-circle"></i>
+              <p>
+                Reducir los costes de mantenimiento, gracias a nuestro sistema
+                de consumibles continua y nuestro servicio técnico
+                especializado.
+              </p>
+            </div>
+          </div>
+          <div class="equipos-action">
+            <button
+              class="button button-rounded button-primary button-raised"
+              routerLink="/printers/intro"
+            >
+              <span class="button-label">Busca tu Multifuncional</span>
+            </button>
+          </div>
+        </div>
+        <div class="equipos-content-image" [class.displayNone]="isMediumScreen">
+          <div class="equipos-image">
+            <img
+              src="../../../assets/img/home/printers/accurio-jet-6000.jpg"
+              alt="AccurioJet 6000"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="equipos-deals">
+    <div class="section-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h1 class="section-title">Multifuncionales en Oferta</h1>
+          <h5 class="section-subtitle">
+            Ahorra en equipos de alta calidad para todas tus necesidades de
+            impresión.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            routerLink="/promociones"
+          >
+            <span class="button-label">Ver Promociones</span>
+          </button>
+        </div>
+      </div>
+      <printer-list [requireDeals]="true"></printer-list>
+    </div>
+  </div>
   <div class="package-rent-deals">
     <div class="section-container">
       <div class="promotion-header">
@@ -298,6 +387,30 @@
         </div>
       </div>
       <package-rent-promotion-list></package-rent-promotion-list>
+    </div>
+  </div>
+  <div class="equipos-deals">
+    <div class="section-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h1 class="section-title">
+            Optimiza tu Trabajo con Nuestras Multifuncionales
+          </h1>
+          <h5 class="section-subtitle">
+            Eficiencia, tecnología y ahorro en un solo equipo. Encuentra el
+            modelo ideal.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            routerLink="/printers/list"
+          >
+            <span class="button-label">Ver Multifuncionales</span>
+          </button>
+        </div>
+      </div>
+      <printer-list [requireDeals]="false"></printer-list>
     </div>
   </div>
 </section>
@@ -628,11 +741,10 @@
 
 <section class="section-content" id="consumibles">
   <div class="consumible">
-    <!-- <div class="solucion-image"><img src="../../../assets/img/home/soluciones-servicios/consumibles.jpg" alt="consumibles-impresoras"></div> -->
     <div class="section-container consumible-container">
       <div class="consumible-body">
         <div class="consumible-content">
-          <div class="consumible-title">
+          <div class="section-title">
             <h1>Consumibles y Refacciones</h1>
           </div>
           <div class="consumible-subtitle">
@@ -651,7 +763,7 @@
               class="button button-rounded button-primary button-raised"
               routerLink="/consumables/intro"
             >
-              <span class="button-label">Ver Consumibles</span>
+              <span class="button-label">Busca tu Consumible</span>
             </button>
           </div>
         </div>
@@ -687,6 +799,27 @@
     <div class="section-container">
       <div class="promotion-header">
         <div class="promotion-title-container">
+          <h1 class="section-title">Todo en Consumibles para tu Equipo</h1>
+          <h5 class="section-subtitle">
+            Encuentra cartuchos, toners y más, al mejor precio.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            routerLink="/consumables/list"
+          >
+            <span class="button-label">Ver Consumibles</span>
+          </button>
+        </div>
+      </div>
+      <consumables-list [requireDeals]="false"></consumables-list>
+    </div>
+  </div>
+  <div class="consumible-deals">
+    <div class="section-container">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
           <h1 class="section-title">Consumibles en Oferta</h1>
           <h5 class="section-subtitle">
             Ahorra en equipos de alta calidad para todas tus necesidades de
@@ -702,99 +835,7 @@
           </button>
         </div>
       </div>
-      <consumables-promotion-list></consumables-promotion-list>
-    </div>
-  </div>
-</section>
-
-<section class="section-content" id="equipos">
-  <div class="equipos">
-    <div class="section-container">
-      <div class="equipos-container">
-        <div class="equipos-body">
-          <div class="section-header">
-            <h1 class="section-title">Equipos de Impresión</h1>
-            <h4 class="section-subtitle">
-              ¿Quieres mejorar los tiempos, la calidad y el presupuesto de tus
-              trabajos de impresión?
-            </h4>
-          </div>
-          <div
-            class="equipos-content-image-mobile"
-            [class.displayNone]="!isMediumScreen"
-          >
-            <div class="equipos-image">
-              <img
-                src="../../../assets/img/home/printers/accurio-jet-6000.jpg"
-                alt="AccurioJet 6000"
-              />
-            </div>
-          </div>
-          <div class="equipos-content">
-            <div class="equipos-item" id="velocidad">
-              <i class="pi pi-check-circle"></i>
-              <p>
-                Impresoras con velocidad, eficiencia y nitidez incomparables que
-                facilitan los flujos de trabajo de tu negocio.
-              </p>
-            </div>
-            <div class="equipos-item" id="impresion">
-              <i class="pi pi-check-circle"></i>
-              <p>
-                Posibilidad de imprimir documentos de alta calidad en segundos,
-                reducir los costes de mantenimiento, administrar tus impresiones
-                y mucho más.
-              </p>
-            </div>
-            <div class="equipos-item" id="mantenimiento">
-              <i class="pi pi-check-circle"></i>
-              <p>
-                Reducir los costes de mantenimiento, gracias a nuestro sistema
-                de consumibles continua y nuestro servicio técnico
-                especializado.
-              </p>
-            </div>
-          </div>
-          <div class="equipos-action">
-            <button
-              class="button button-rounded button-primary button-raised"
-              routerLink="/printers/intro"
-            >
-              <span class="button-label">Ver Multifuncionales</span>
-            </button>
-          </div>
-        </div>
-        <div class="equipos-content-image" [class.displayNone]="isMediumScreen">
-          <div class="equipos-image">
-            <img
-              src="../../../assets/img/home/printers/accurio-jet-6000.jpg"
-              alt="AccurioJet 6000"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="equipos-deals">
-    <div class="section-container">
-      <div class="promotion-header">
-        <div class="promotion-title-container">
-          <h1 class="section-title">Multifuncionales en Oferta</h1>
-          <h5 class="section-subtitle">
-            Ahorra en equipos de alta calidad para todas tus necesidades de
-            impresión.
-          </h5>
-        </div>
-        <div class="promotion-links">
-          <button
-            class="button button-outlined-primary button-rounded"
-            routerLink="/promociones"
-          >
-            <span class="button-label">Ver Promociones</span>
-          </button>
-        </div>
-      </div>
-      <printer-promotion-list [requireDeals]="true"></printer-promotion-list>
+      <consumables-list></consumables-list>
     </div>
   </div>
 </section>
@@ -805,8 +846,8 @@
     <div class="section-container software-container">
       <div class="software-body">
         <div class="software-header">
-          <h1 class="software-title">Gestión Documental y de Impresión</h1>
-          <h4 class="software-subtitle">
+          <h1 class="section-title">Gestión Documental y de Impresión</h1>
+          <h4 class="section-subtitle">
             Servicios esenciales para optimizar el flujo de trabajo y la
             seguridad de tu información.
           </h4>
