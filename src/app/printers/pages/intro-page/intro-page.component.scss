@@ -40,39 +40,49 @@
   }
 }
 
-.carousel-container {
-  width: 100%;
-}
-
 .category-list {
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 0.75rem;
+  margin-top: 1rem;
   .category-button {
-    padding: 0.5em 1.5em;
+    padding: 0.5em 1.25em;
     border: 1px solid $gray-200;
     border-radius: 50px;
     background-color: rgba($color: $gray-50, $alpha: 0.1);
     p {
       color: $white;
       font-weight: 500;
+      font-size: 15px;
+      line-height: 1;
       margin: 0;
     }
     &:hover {
       background-color: rgba($color: $gray-50, $alpha: 0.2);
+    }
+    &-primary {
+      padding: 0.5em 1.25em;
+      border: 1px solid $blue-500;
+      border-radius: 50px;
+      background-color: rgba($color: $primary-color, $alpha: 0.8);
+      p {
+        color: $white;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 1;
+        margin: 0;
+      }
+      &:hover {
+        background-color: rgba($color: $primary-color, $alpha: 0.2);
+      }
     }
   }
 }
 
 #printer-types {
   background-color: $light-50;
-}
-
-.white-space {
-  width: 100%;
-  height: 400px;
 }
 
 .section-container {
@@ -90,12 +100,12 @@
 
 .section-title {
   color: $text;
+  margin-bottom: 0.25rem;
 }
 
 .section-subtitle {
   font-weight: 500;
   color: $secondary-text;
-  margin: 0;
 }
 
 .aspectos-destacados {
@@ -256,4 +266,146 @@
       }
     }
   }
+}
+
+#printer-sell,
+#printer-rent {
+  background-color: $light-50;
+}
+
+.printer-sell-features {
+  display: grid;
+  grid-template-columns: 1fr; // Single column on mobile screens
+  gap: 1em;
+  margin-top: 1rem;
+
+  .card-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid $gray-300;
+    padding: 1em;
+    background-color: $white;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-1;
+
+    &:hover {
+      .card-header i {
+        transform: scale(1.2); // Scale effect on hover
+      }
+    }
+
+    .card-header {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-direction: column;
+      .card-title {
+        text-align: center;
+        font-weight: 500;
+      }
+
+      i {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease; // Smooth transition for the scale effect
+      }
+      #icon-product {
+        color: $blue-500;
+      }
+      #icon-service {
+        color: $orange-500;
+      }
+      #icon-help {
+        color: $purple-500;
+      }
+      #icon-quality {
+        color: $green-500;
+      }
+    }
+
+    .card-content {
+      p {
+        text-align: center;
+        font-size: 15px;
+        margin: 0;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr); // 2x2 grid on medium screens
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr); // 4 cards per row on large screens
+  }
+}
+
+.printer-rent-features {
+  display: grid;
+  grid-template-columns: 1fr; // Single column on mobile screens
+  gap: 1em;
+  margin-top: 1rem;
+
+  .card-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid $gray-300;
+    padding: 1em;
+    background-color: $white;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-1;
+
+    &:hover {
+      .card-header i {
+        transform: scale(1.2); // Scale effect on hover
+      }
+    }
+
+    .card-header {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-direction: column;
+      .card-title {
+        text-align: center;
+        font-weight: 500;
+      }
+
+      i {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease; // Smooth transition for the scale effect
+      }
+      #icon-process {
+        color: $green-500;
+      }
+      #icon-support {
+        color: $purple-500;
+      }
+      #icon-flex {
+        color: $blue-500;
+      }
+    }
+
+    .card-content {
+      p {
+        text-align: center;
+        font-size: 15px;
+        margin: 0;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr); // 2x2 grid on medium screens
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr); // 4 cards per row on large screens
+  }
+}
+
+.printer-list {
+  margin-bottom: 2rem;
 }

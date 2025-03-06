@@ -34,6 +34,7 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
   @Input() requireDeals: boolean = true;
   @Input() sellable: boolean = false; // New input for sellable filter
   @Input() rentable: boolean = false; // New input for rentable filter
+  @Input() brands: string[] = []; // New input for brands filter
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   printers: Printer[] = [];
   isLoading = true;
@@ -149,7 +150,8 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
           (this.requireDeals ? (hasActiveDeals || hasRentPackage) : (!hasActiveDeals && !hasRentPackage)) &&
           (this.categories.length === 0 || this.categories.includes(printer.category)) &&
           (!this.sellable || printer.sellable === this.sellable) &&
-          (!this.rentable || printer.rentable === this.rentable)
+          (!this.rentable || printer.rentable === this.rentable) &&
+          (this.brands.length === 0 || this.brands.includes(printer.brand)) // Add brand filter condition
         );
       })
       .map((printer) => ({

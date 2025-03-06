@@ -8,7 +8,7 @@ import { Printer } from '../../interfaces/printer.interface';
   styleUrls: ['./intro-page.component.scss']
 })
 export class IntroPageComponent {
-  isInputFocused = false;  
+  isInputFocused = false;
   searchQuery = '';
   aspectos = [
     {
@@ -151,26 +151,32 @@ export class IntroPageComponent {
     ];
   }
 
-  navigateToProductList(category: string) {
+  navigateToProductList(category?: string) {
+    const queryParams: any = { categories: category };
+
+    if (category) {
+      queryParams.filterCount = 1;
+    }
+
     this.router.navigate(['/printers/list'], {
-      queryParams: { categories: category,  filterCount: 1 },
+      queryParams: queryParams,
       queryParamsHandling: 'merge',
     });
   }
 
   navigateToProductListType(type: string) {
 
-    if(type === 'sellable') {
+    if (type === 'sellable') {
       this.router.navigate(['/printers/list'], {
-        queryParams: { sellable: true,  filterCount: 1 },
+        queryParams: { sellable: true, filterCount: 1 },
         queryParamsHandling: 'merge',
       });
-    } else if(type === 'rentable') {
+    } else if (type === 'rentable') {
       this.router.navigate(['/printers/list'], {
-        queryParams: { rentable: true,  filterCount: 1 },
+        queryParams: { rentable: true, filterCount: 1 },
         queryParamsHandling: 'merge',
       });
     }
-    
+
   }
 }

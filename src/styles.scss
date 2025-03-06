@@ -136,7 +136,11 @@ h5 {
   line-height: 1.36875rem; /* 21.9px */
 }
 
-h6,
+h6 {
+  font-size: 1rem; /* 16px */
+  line-height: 1.25rem; /* 20px */
+}
+
 p {
   font-size: 1rem; /* 16px */
   line-height: 1.25rem; /* 20px */
@@ -149,6 +153,38 @@ small {
 
 li {
   font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.75rem; /* 28px */
+    line-height: 2.1875rem; /* 35px */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.875rem; /* 30px */
+  }
+
+  h3 {
+    font-size: 1.3125rem; /* 21px */
+    line-height: 1.64375rem; /* 26.3px */
+  }
+
+  h4 {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.40625rem; /* 22.5px */
+  }
+
+  h5 {
+    font-size: 1rem; /* 16px */
+    line-height: 1.25rem; /* 20px */
+  }
+
+  h6 {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.09375rem; /* 17.5px */
+  }
 }
 
 // PrimeNG Components Font Change

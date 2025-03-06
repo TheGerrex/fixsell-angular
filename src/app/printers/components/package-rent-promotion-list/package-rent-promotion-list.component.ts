@@ -18,7 +18,7 @@ export class PackageRentPromotionListComponent implements OnInit, AfterViewInit 
   @ViewChild('swiperRentPrintersContainer') swiperContainer!: ElementRef<SwiperContainer>;
   dealRentPackagePrinters: Package[] = [];
   isLoading = true;
-  noDealsMessage = 'No hay ofertas al momento';
+  noDealsMessage = 'No hay productos o promociones disponibles en este momento';
   isBeginning = true;
   isEnd = false;
   showNavigation = true;

@@ -6,7 +6,7 @@
         Servicio Incomparable a tu Alcance y Calidad en Cada Impresión
       </h5>
       <printer-search-bar></printer-search-bar>
-      <div class="category-list mt-4">
+      <div class="category-list">
         <button
           class="category-button"
           *ngFor="let category of categories"
@@ -14,33 +14,350 @@
         >
           <p>{{ category.name }}</p>
         </button>
+        <button
+          class="category-button-primary"
+          (click)="navigateToProductList()"
+        >
+          <p>Ver Todos</p>
+        </button>
       </div>
     </div>
   </div>
 </div>
 
-<section class="section-container" id="printer-promotions">
-  <div class="promotion-header">
-    <div class="promotion-title-container">
-      <h1 class="section-title">Multifuncionales en Oferta</h1>
-      <h5 class="section-subtitle">
-        Ahorra en equipos de alta calidad para todas tus necesidades de
-        impresión.
-      </h5>
+<div id="printer-sell">
+  <section class="section-container">
+    <div class="printer-sell-content">
+      <div class="section-header">
+        <h1 class="section-title">
+          Destino Definitivo para sus Necesidades de Impresión
+        </h1>
+        <h5 class="section-subtitle">
+          Tanto si es una empresa que desea actualizar sus equipos de oficina
+          como si es un particular que busca una solución de impresión fiable.
+          Nuestro objetivo es hacer que su experiencia de compra de impresoras
+          sea fluida y satisfactoria.
+        </h5>
+      </div>
+      <div class="printer-sell-features">
+        <div class="card-feature">
+          <div class="card-header">
+            <i class="pi pi-box" id="icon-product"></i>
+            <h4 class="card-title">Amplia Gama de Productos</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              Desde impresoras para uso doméstico hasta soluciones de impresión
+              de alta gama para empresas.
+            </p>
+          </div>
+        </div>
+        <div class="card-feature">
+          <div class="card-header">
+            <i class="pi pi-users" id="icon-service"></i>
+            <h4 class="card-title">Servicio Excepcional</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              Nuestro equipo está aquí para brindarle atención personalizada y
+              resolver cualquier pregunta o inquietud que pueda tener.
+            </p>
+          </div>
+        </div>
+        <div class="card-feature">
+          <div class="card-header">
+            <i class="pi pi-comment" id="icon-help"></i>
+            <h4 class="card-title">Asesoramiento Profesional</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              Nuestros expertos en impresión están disponibles para ayudarlo a
+              tomar la mejor decisión para sus necesidades de impresión.
+            </p>
+          </div>
+        </div>
+        <div class="card-feature">
+          <div class="card-header">
+            <i class="pi pi-check" id="icon-quality"></i>
+            <h4 class="card-title">Calidad Garantizada</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              Nos comprometemos a ofrecer productos de calidad que cumplan con
+              sus expectativas y requisitos de impresión.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="promotion-links">
-      <button
-        class="button button-outlined-primary button-rounded"
-        routerLink="/printers/list"
-      >
-        <span class="button-label">Ver Multifuncionales</span>
-      </button>
+  </section>
+</div>
+
+<section class="section-container" id="printer-sell-lists">
+  <div class="printer-list" id="promotion-printers">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Multifuncionales en Oferta</h1>
+        <h5 class="section-subtitle">
+          Ahorra en equipos de alta calidad para todas tus necesidades de
+          impresión.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/promociones"
+        >
+          <span class="button-label">Ver Promociones</span>
+        </button>
+      </div>
     </div>
+    <printer-list
+      [requireDeals]="true"
+      [sellable]="true"
+      [rentable]="false"
+    ></printer-list>
   </div>
-  <printer-list [requireDeals]="true"></printer-list>
+
+  <div class="printer-list" id="konica-printers">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Konica Minolta en Venta</h1>
+        <h5 class="section-subtitle">
+          Obtén equipos de impresión de alta calidad y optimiza tus procesos a
+          un excelente precio.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
+    </div>
+    <printer-list
+      [requireDeals]="false"
+      [brands]="['Konica Minolta']"
+      [sellable]="true"
+      [rentable]="false"
+    ></printer-list>
+  </div>
+
+  <div class="printer-list" id="kyocera-printers">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Kyocera en Venta</h1>
+        <h5 class="section-subtitle">
+          Encuentra el modelo perfecto para tu negocio y lleva la eficiencia a
+          otro nivel.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
+    </div>
+    <printer-list
+      [requireDeals]="false"
+      [brands]="['Kyocera']"
+      [sellable]="true"
+      [rentable]="false"
+    ></printer-list>
+  </div>
+
+  <div class="printer-list" id="epson-printers">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Epson en Venta</h1>
+        <h5 class="section-subtitle">
+          Impresión de calidad, durabilidad y ahorro en un solo equipo.
+          ¡Descúbrelos ahora!
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
+    </div>
+    <printer-list
+      [requireDeals]="false"
+      [brands]="['Epson']"
+      [sellable]="true"
+      [rentable]="false"
+    ></printer-list>
+  </div>
 </section>
 
-<div id="printer-types">
+<div id="printer-rent">
+  <section class="section-container" id="printer-rent">
+    <div class="printer-rent-content">
+      <div class="section-header">
+        <h1 class="section-title">
+          Alquiler de Multifuncionales Adaptados a sus Necesidades
+        </h1>
+        <h5 class="section-subtitle" style="margin-bottom: 1rem">
+          Ofrecemos soluciones flexibles y rentables para tus necesidades de
+          impresión, sin la carga de propiedad. Ideal para empresas, oficinas
+          con alta demanda o estudiantes que requieren impresión temporal.
+        </h5>
+      </div>
+      <div class="printer-rent-features">
+        <div class="card-feature">
+          <div class="card-header">
+            <i class="pi pi-check-circle" id="icon-process"></i>
+            <h4 class="card-title">Proceso Sencillo</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              Nuestro proceso de alquiler es fácil y sin complicaciones, para
+              que pueda obtener rápidamente la tecnología de impresión que
+              necesita.
+            </p>
+          </div>
+        </div>
+        <div class="card-feature">
+          <div class="card-header">
+            <i class="pi pi-phone" id="icon-support"></i>
+            <h4 class="card-title">Soporte Integral</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              Ofrecemos soporte completo durante todo el período de alquiler
+              para garantizar que su experiencia sea sin problemas y
+              satisfactoria.
+            </p>
+          </div>
+        </div>
+        <div class="card-feature">
+          <div class="card-header">
+            <i class="pi pi-refresh" id="icon-flex"></i>
+            <h4 class="card-title">Flexibilidad</h4>
+          </div>
+          <div class="card-content">
+            <p>
+              Adaptamos nuestros planes de alquiler para satisfacer sus
+              necesidades cambiantes, brindándole la flexibilidad que necesita
+              para gestionar su flujo de trabajo de manera efectiva.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="section-container" id="printer-rent-lists">
+  <div class="printer-list" id="rent-package-printers-promotion">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Paquetes de Renta en Oferta</h1>
+        <h5 class="section-subtitle">
+          Ahorra en equipos de alta calidad para todas tus necesidades de
+          impresión.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/promociones"
+        >
+          <span class="button-label">Ver Promociones</span>
+        </button>
+      </div>
+    </div>
+    <package-rent-promotion-list></package-rent-promotion-list>
+  </div>
+
+  <div class="printer-list" id="konica-printers">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Konica Minolta en Renta</h1>
+        <h5 class="section-subtitle">
+          Obtén equipos de impresión de alta calidad y optimiza tus procesos a
+          un excelente precio.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
+    </div>
+    <printer-list
+      [requireDeals]="false"
+      [brands]="['Konica Minolta']"
+      [sellable]="false"
+      [rentable]="true"
+    ></printer-list>
+  </div>
+
+  <div class="printer-list" id="kyocera-printers">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Kyocera en Renta</h1>
+        <h5 class="section-subtitle">
+          Encuentra el modelo perfecto para tu negocio y lleva la eficiencia a
+          otro nivel.
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
+    </div>
+    <printer-list
+      [requireDeals]="false"
+      [brands]="['Kyocera']"
+      [sellable]="false"
+      [rentable]="true"
+    ></printer-list>
+  </div>
+
+  <div class="printer-list" id="epson-printers">
+    <div class="promotion-header">
+      <div class="promotion-title-container">
+        <h1 class="section-title">Epson en Renta</h1>
+        <h5 class="section-subtitle">
+          Impresión de calidad, durabilidad y ahorro en un solo equipo.
+          ¡Descúbrelos ahora!
+        </h5>
+      </div>
+      <div class="promotion-links">
+        <button
+          class="button button-outlined-primary button-rounded"
+          routerLink="/printers/list"
+        >
+          <span class="button-label">Ver Multifuncionales</span>
+        </button>
+      </div>
+    </div>
+    <printer-list
+      [requireDeals]="false"
+      [brands]="['Epson']"
+      [sellable]="false"
+      [rentable]="true"
+    ></printer-list>
+  </div>
+</section>
+
+<!-- <div id="printer-types">
   <section class="section-container">
     <div class="printer-type-container">
       <div class="venta">
@@ -158,28 +475,7 @@
       </div>
     </div>
   </section>
-</div>
-
-<section class="section-container" id="printer-promotions">
-  <div class="promotion-header">
-    <div class="promotion-title-container">
-      <h1 class="section-title">Paquetes de Renta en Oferta</h1>
-      <p class="section-subtitle">
-        Ahorra en equipos de alta calidad para todas tus necesidades de
-        impresión.
-      </p>
-    </div>
-    <div class="promotion-links">
-      <button
-        class="button button-outlined-primary button-rounded"
-        routerLink="/printers/list"
-      >
-        <span class="button-label">Ver Multifuncionales</span>
-      </button>
-    </div>
-  </div>
-  <package-rent-promotion-list></package-rent-promotion-list>
-</section>
+</div> -->
 
 <!-- <section id="categorias">
     <div class="section-container">
@@ -239,5 +535,3 @@
         </div>
     </div>
 </section> -->
-
-<!-- <div class="white-space"></div> -->
