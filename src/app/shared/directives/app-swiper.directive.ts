@@ -10,12 +10,12 @@ export class SwiperDirective implements OnInit, AfterViewInit {
   @Input() config?: SwiperOptions;
 
   constructor(private el: ElementRef<SwiperContainer>) {
-    console.log('SwiperDirective instantiated');
+    // console.log('SwiperDirective instantiated');
   }
 
   ngOnInit(): void {
-    console.log('SwiperDirective initialized');
-    console.log('Element:', this.el.nativeElement);
+    // console.log('SwiperDirective initialized');
+    // console.log('Element:', this.el.nativeElement);
   }
 
   ngAfterViewInit(): void {

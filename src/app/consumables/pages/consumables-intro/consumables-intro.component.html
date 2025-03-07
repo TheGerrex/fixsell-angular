@@ -6,13 +6,19 @@
         Abastece tus Multifuncionales con Nuestros Consumibles de Calidad
       </h5>
       <shared-search-bar></shared-search-bar>
-      <div class="category-list mt-4">
+      <div class="category-list">
         <button
           class="category-button"
           *ngFor="let category of categories"
           (click)="navigateToProductList(category.category)"
         >
           <p>{{ category.name }}</p>
+        </button>
+        <button
+          class="category-button-primary"
+          (click)="navigateToProductList()"
+        >
+          <p>Ver Todos</p>
         </button>
       </div>
     </div>
@@ -21,50 +27,71 @@
 
 <section id="consumable-promotions">
   <div class="section-container">
-    <div class="promotion-header">
-      <div class="promotion-title-container">
-        <h1 class="section-title">Consumibles en Oferta</h1>
-        <h5 class="section-subtitle">
-          Encuentra los mejores precios en tintas, tóneres y más.
-        </h5>
+    <div class="product-list" id="deal-consumables">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h1 class="section-title">Consumibles en Oferta</h1>
+          <h5 class="section-subtitle">
+            Encuentra los mejores precios en tintas, tóneres y más.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            routerLink="/promociones"
+          >
+            <span class="button-label">Ver Promociones</span>
+          </button>
+        </div>
       </div>
-      <div class="promotion-links">
-        <button
-          class="button button-outlined-primary button-rounded"
-          routerLink="/consumables/list"
-        >
-          <span class="button-label">Ver Consumibles</span>
-        </button>
-      </div>
+      <consumables-list [deals]="true"></consumables-list>
     </div>
-    <consumables-list></consumables-list>
+    <div class="product-list" id="ink-consumables">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h1 class="section-title">Cartuchos de Tinta</h1>
+          <h5 class="section-subtitle">
+            Encuentra los mejores precios en tintas, tóneres y más.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            routerLink="/consumables/list"
+          >
+            <span class="button-label">Ver Consumibles</span>
+          </button>
+        </div>
+      </div>
+      <consumables-list
+        [deals]="false"
+        [categories]="['Cartucho de Tinta']"
+      ></consumables-list>
+    </div>
+    <div class="product-list" id="toner-consumables">
+      <div class="promotion-header">
+        <div class="promotion-title-container">
+          <h1 class="section-title">Cartuchos de Tóner</h1>
+          <h5 class="section-subtitle">
+            Encuentra los mejores precios en tintas, tóneres y más.
+          </h5>
+        </div>
+        <div class="promotion-links">
+          <button
+            class="button button-outlined-primary button-rounded"
+            routerLink="/consumables/list"
+          >
+            <span class="button-label">Ver Consumibles</span>
+          </button>
+        </div>
+      </div>
+      <consumables-list
+        [deals]="false"
+        [categories]="['Cartucho de tóner']"
+      ></consumables-list>
+    </div>
   </div>
 </section>
-
-<!-- <section id="categorias">
-    <div class="section-container">
-        <div class="section-body">
-            <div class="section-title justify-content-center ">
-                <h1>Categorias</h1>
-            </div>
-            <div class="carousel-container">
-                <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showNavigators]="true">
-                    <ng-template let-category pTemplate="item">
-                        <div class="category-card" (click)="navigateToProductList(category.name)">
-                            <div class="image">
-                                <img [src]="category.img" alt="category.name" />
-                            </div>
-                            <div class="body">
-                                <h4 class="title mb-0">{{ category.name }}</h4>
-                                <i class="pi pi-arrow-right" id="translate-icon"></i>
-                            </div>
-                        </div>
-                    </ng-template>
-                </p-carousel>
-            </div>
-        </div>
-    </div>
-</section> -->
 
 <section class="aspectos-destacados">
   <div class="section-container">
@@ -112,5 +139,3 @@
     </div>
   </div>
 </section>
-
-<!-- <div class="white-space"></div> -->

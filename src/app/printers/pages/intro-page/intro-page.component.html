@@ -112,11 +112,7 @@
         </button>
       </div>
     </div>
-    <printer-list
-      [requireDeals]="true"
-      [sellable]="true"
-      [rentable]="false"
-    ></printer-list>
+    <printer-list [deals]="true"></printer-list>
   </div>
 
   <div class="printer-list" id="konica-printers">
@@ -138,10 +134,9 @@
       </div>
     </div>
     <printer-list
-      [requireDeals]="false"
-      [brands]="['Konica Minolta']"
-      [sellable]="true"
+      [brands]="['konica minolta']"
       [rentable]="false"
+      [deals]="false"
     ></printer-list>
   </div>
 
@@ -164,10 +159,9 @@
       </div>
     </div>
     <printer-list
-      [requireDeals]="false"
-      [brands]="['Kyocera']"
-      [sellable]="true"
+      [brands]="['kyocera']"
       [rentable]="false"
+      [deals]="false"
     ></printer-list>
   </div>
 
@@ -189,12 +183,7 @@
         </button>
       </div>
     </div>
-    <printer-list
-      [requireDeals]="false"
-      [brands]="['Epson']"
-      [sellable]="true"
-      [rentable]="false"
-    ></printer-list>
+    <printer-list [brands]="['epson']" [rentable]="false"></printer-list>
   </div>
 </section>
 
@@ -281,7 +270,7 @@
   <div class="printer-list" id="konica-printers">
     <div class="promotion-header">
       <div class="promotion-title-container">
-        <h1 class="section-title">Konica Minolta en Renta</h1>
+        <h1 class="section-title">Multifuncionales en Renta</h1>
         <h5 class="section-subtitle">
           Obtén equipos de impresión de alta calidad y optimiza tus procesos a
           un excelente precio.
@@ -296,15 +285,10 @@
         </button>
       </div>
     </div>
-    <printer-list
-      [requireDeals]="false"
-      [brands]="['Konica Minolta']"
-      [sellable]="false"
-      [rentable]="true"
-    ></printer-list>
+    <printer-list [packages]="false" [rentable]="true"></printer-list>
   </div>
 
-  <div class="printer-list" id="kyocera-printers">
+  <!-- <div class="printer-list" id="kyocera-printers">
     <div class="promotion-header">
       <div class="promotion-title-container">
         <h1 class="section-title">Kyocera en Renta</h1>
@@ -323,14 +307,14 @@
       </div>
     </div>
     <printer-list
-      [requireDeals]="false"
-      [brands]="['Kyocera']"
+      [packages]="false"
+      [brands]="['kyocera']"
       [sellable]="false"
       [rentable]="true"
     ></printer-list>
-  </div>
+  </div> -->
 
-  <div class="printer-list" id="epson-printers">
+  <!-- <div class="printer-list" id="epson-printers">
     <div class="promotion-header">
       <div class="promotion-title-container">
         <h1 class="section-title">Epson en Renta</h1>
@@ -349,189 +333,10 @@
       </div>
     </div>
     <printer-list
-      [requireDeals]="false"
-      [brands]="['Epson']"
+      [packages]="false"
+      [brands]="['epson']"
       [sellable]="false"
       [rentable]="true"
     ></printer-list>
-  </div>
+  </div> -->
 </section>
-
-<!-- <div id="printer-types">
-  <section class="section-container">
-    <div class="printer-type-container">
-      <div class="venta">
-        <div class="section-body">
-          <div class="section-icon">
-            <div class="icon-container venta-color">
-              <img
-                src="../../../../assets/svg/intro-printers/shopping-bag.svg"
-                alt="subscription"
-              />
-            </div>
-            <h2 style="color: #0f572a">Venta</h2>
-          </div>
-          <div class="section-content">
-            <h4 class="section-title">
-              Destino Definitivo para sus Necesidades de Impresión
-            </h4>
-            <p>
-              Tanto si es una empresa que desea actualizar sus equipos de
-              oficina como si es un particular que busca una solución de
-              impresión fiable. Nuestro objetivo es hacer que su experiencia de
-              compra de impresoras sea fluida y satisfactoria. Prepárese para
-              explorar un mundo de tecnología de impresión de vanguardia y
-              encontrar la impresora perfecta que se adapte a sus necesidades,
-              todo en un solo lugar.
-            </p>
-            <ul>
-              <li>
-                <span style="font-weight: 500">Amplia Gama de Productos:</span>
-                Desde impresoras para uso doméstico hasta soluciones de
-                impresión de alta gama para empresas.
-              </li>
-              <li>
-                <span style="font-weight: 500">Servicio Excepcional:</span>
-                Nuestro equipo está aquí para brindarle atención personalizada y
-                resolver cualquier pregunta o inquietud que pueda tener.
-              </li>
-              <li>
-                <span style="font-weight: 500">Calidad Garantizada:</span> Nos
-                comprometemos a ofrecer productos de calidad que cumplan con sus
-                expectativas y requisitos de impresión.
-              </li>
-              <li>
-                <span style="font-weight: 500">Asesoramiento Profesional:</span>
-                Nuestros expertos en impresión están disponibles para ayudarlo a
-                tomar la mejor decisión para sus necesidades de impresión.
-              </li>
-            </ul>
-            <div class="actions">
-              <button
-                class="button button-rounded button-primary button-raised"
-                (click)="navigateToProductListType('sellable')"
-              >
-                <span class="button-label">Ver Multifuncionales en Venta</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="renta">
-        <div class="section-body">
-          <div class="section-icon">
-            <div class="icon-container renta-color">
-              <img
-                src="../../../../assets/svg/intro-printers/subscription.svg"
-                alt="subscription"
-              />
-            </div>
-            <h2 style="color: #ae003a">Renta</h2>
-          </div>
-          <div class="section-content">
-            <h4 class="section-title">
-              Alquiler de Multifuncionales Adaptados a sus Necesidades
-            </h4>
-            <p>
-              Entendemos que cada empresa, organización o individuo tiene
-              necesidades de impresión únicas que a menudo requieren una
-              solución flexible y rentable. Por eso ofrecemos una forma cómoda y
-              sin complicaciones de acceder a impresoras de alta calidad sin la
-              carga de la propiedad. Tanto si se trata de una pequeña empresa
-              emergente como de una oficina con mucho trabajo o de un estudiante
-              que necesita capacidad de impresión temporal, nuestro servicio de
-              alquiler es la respuesta perfecta.
-            </p>
-            <ul>
-              <li>
-                <span style="font-weight: 500">Proceso Sencillo:</span> Nuestro
-                proceso de alquiler es fácil y sin complicaciones, para que
-                pueda obtener rápidamente la tecnología de impresión que
-                necesita.
-              </li>
-              <li>
-                <span style="font-weight: 500">Soporte Integral:</span>
-                Ofrecemos soporte completo durante todo el período de alquiler
-                para garantizar que su experiencia sea sin problemas y
-                satisfactoria.
-              </li>
-              <li>
-                <span style="font-weight: 500">Flexibilidad:</span> Adaptamos
-                nuestros planes de alquiler para satisfacer sus necesidades
-                cambiantes, brindándole la flexibilidad que necesita para
-                gestionar su flujo de trabajo de manera efectiva.
-              </li>
-            </ul>
-            <div class="actions">
-              <button
-                class="button button-rounded button-primary button-raised"
-                (click)="navigateToProductListType('rentable')"
-              >
-                <span class="button-label">Ver Multifuncionales en Renta</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div> -->
-
-<!-- <section id="categorias">
-    <div class="section-container">
-        <div class="section-body">
-            <div class="section-title justify-content-center ">
-                <h1>Categorias</h1>
-            </div>
-            <div class="carousel-container">
-                <p-carousel [value]="categories" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showNavigators]="true">
-                    <ng-template let-category pTemplate="item">
-                        <div class="category-card" (click)="navigateToProductList(category.name)">
-                            <div class="image">
-                                <img [src]="category.img" alt="category.name" />
-                            </div>
-                            <div class="body">
-                                <h4 class="title mb-0">{{ category.name }}</h4>
-                                <i class="pi pi-arrow-right" id="translate-icon"></i>
-                            </div>
-                        </div>
-                    </ng-template>
-                </p-carousel>
-            </div>
-        </div>
-    </div>
-</section> -->
-
-<!-- <section class="aspectos-destacados">
-    <div class="title">
-        <h1>Aquí están los aspectos más destacados que nos distinguen</h1>
-    </div>
-    <div class="container">
-        <div class="row">
-            <p-carousel [value]="aspectos" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptionsAspectos" [showNavigators]="false" class="d-md-none">
-                <ng-template let-aspectos pTemplate="item">
-                    <div class="aspectos-card">
-                        <div class="title">
-                            <h1>{{ aspectos.title }}</h1>
-                        </div>
-                        <div class="body">
-                            <p>{{ aspectos.description }}</p>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-carousel>
-            <p-carousel [value]="aspectos" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptionsAspectos" class="d-none d-md-block">
-                <ng-template let-aspectos pTemplate="item">
-                    <div class="aspectos-card">
-                        <div class="title">
-                            <h1>{{ aspectos.title }}</h1>
-                        </div>
-                        <div class="body">
-                            <p>{{ aspectos.description }}</p>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-carousel>
-        </div>
-    </div>
-</section> -->

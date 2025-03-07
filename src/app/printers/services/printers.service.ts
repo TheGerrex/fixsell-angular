@@ -13,29 +13,41 @@ export class PrintersService {
 
   constructor(private http: HttpClient) { }
 
-  getPrinters(
-    limit?: number,
-    offset?: number,
-    filters?: any
-  ): Observable<Printer[]> {
-    let url = `${this.baseUrl}/printers`;
+  getPrinters(limit?: number, offset?: number, filters?: any): Observable<Printer[]> {
     let params = new HttpParams();
-    if (limit != undefined && offset != undefined) {
-      url += `?limit=${limit}&offset=${offset}`;
+
+    if (limit != undefined) {
+      params = params.set('limit', limit.toString());
+    }
+    if (offset != undefined) {
+      params = params.set('offset', offset.toString());
     }
     if (filters) {
-      for (let filter in filters) {
-        params = params.append(filter, filters[filter]);
+      for (let key in filters) {
+        if (filters.hasOwnProperty(key)) {
+          params = params.set(key, filters[key]);
+        }
       }
     }
-    return this.http.get<Printer[]>(url, { params })
+
+    // Decode the URL parameters to ensure spaces are preserved
+    const decodedParams = decodeURIComponent(params.toString());
+
+    // Construct the full URL with query parameters
+    const fullUrl = `${this.baseUrl}/printers?${decodedParams}`;
+
+    // Log the full URL to the console
+    // console.log('Request URL:', fullUrl);
+
+    return this.http.get<Printer[]>(fullUrl)
       .pipe(
         catchError(error => {
-          console.error('Error al traer los productos:', error);
+          console.error('Error fetching printers:', error);
           return of([]);
         })
       );
   }
+
 
   getPrinterById(id: string): Observable<Printer | undefined> {
     return this.http.get<Printer>(`${this.baseUrl}/printers/${id}`)

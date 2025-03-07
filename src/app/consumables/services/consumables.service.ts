@@ -10,29 +10,41 @@ import { Consumible } from './../../printers/interfaces/consumible.interface';
 export class ConsumableService {
   private readonly baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getConsumables(
-    limit?: number,
-    offset?: number,
-    filters?: any
-  ): Observable<Consumible[]> {
-    let url = `${this.baseUrl}/consumibles`;
+  getConsumables(limit?: number, offset?: number, filters?: any): Observable<Consumible[]> {
     let params = new HttpParams();
-    if (limit != undefined && offset != undefined) {
-      url += `?limit=${limit}&offset=${offset}`;
+
+    if (limit != undefined) {
+      params = params.set('limit', limit.toString());
+    }
+    if (offset != undefined) {
+      params = params.set('offset', offset.toString());
     }
     if (filters) {
-      for (let filter in filters) {
-        params = params.append(filter, filters[filter]);
+      for (let key in filters) {
+        if (filters.hasOwnProperty(key)) {
+          params = params.set(key, filters[key]);
+        }
       }
     }
-    return this.http.get<Consumible[]>(url, { params }).pipe(
-      catchError((error) => {
-        console.error('Error al traer los productos:', error);
-        return of([]);
-      })
-    );
+
+    // Decode the URL parameters to ensure spaces are preserved
+    const decodedParams = decodeURIComponent(params.toString());
+
+    // Construct the full URL with query parameters
+    const fullUrl = `${this.baseUrl}/consumibles?${decodedParams}`;
+
+    // Log the full URL to the console
+    // console.log('Request URL:', fullUrl);
+
+    return this.http.get<Consumible[]>(fullUrl)
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching consumables:', error);
+          return of([]);
+        })
+      );
   }
 
   getConsumableById(id: string): Observable<Consumible | undefined> {

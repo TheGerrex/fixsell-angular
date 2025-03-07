@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { PrintersService } from '../../services/printers.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Subject, debounceTime, switchMap } from 'rxjs';
 import { Printer } from '../../interfaces/printer.interface';
 import Swiper from 'swiper';
 import { SwiperContainer } from 'swiper/element';
@@ -16,8 +16,9 @@ Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   selector: 'app-printer-page',
   templateUrl: './printer-page.component.html',
   styleUrls: ['./printer-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PrinterPageComponent implements OnInit, AfterViewInit {
+export class PrinterPageComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mainSwiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   @ViewChild('thumbSwiperContainer') thumbSwiperContainer!: ElementRef<SwiperContainer>;
   loading = true;
@@ -26,6 +27,7 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
   isBeginning = true;
   isEnd = false;
   showNavigation = true;
+  private updateNavigationSubject = new Subject<void>();
   public printer?: Printer;
   public images: any[] = [];
   mainSwiperInstance?: Swiper;
@@ -81,12 +83,29 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {
+    this.updateNavigationSubject.pipe(debounceTime(100)).subscribe(() => {
+      this.performUpdateNavigation();
+    });
+  }
 
   ngOnInit(): void {
     this.loadPrinterData();
     this.checkScreenWidth();
     window.addEventListener('resize', () => this.checkScreenWidth());
+  }
+
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      this.initializeMainSwiper();
+    }, 100); // Ensure the swiper instances are fully initialized
+    this.initializeThumbsSwiper();
+  }
+
+  ngOnDestroy(): void {
+    this.mainSwiperInstance?.destroy(true, true);
+    this.thumbSwiperInstance?.destroy(true, true);
   }
 
   private loadPrinterData(): void {
@@ -105,25 +124,13 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
           thumbnailImageSrc: url
         }));
         this.loading = false;
+        this.cdr.detectChanges(); // Manually trigger change detection
         setTimeout(() => {
           this.updateNavigation();
           this.initializeThumbsSwiper();
           this.resetSwiperToInitialSlide();
-
         }, 0); // Update navigation after loading data
       });
-  }
-
-  ngAfterViewInit(): void {
-    console.log("ngAfterViewInit called");
-    console.log("thumbSwiperContainer:", this.thumbSwiperContainer);
-    console.log("swiperContainer:", this.swiperContainer);
-
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      this.initializeMainSwiper();
-    }, 100); // Ensure the swiper instances are fully initialized
-    this.initializeThumbsSwiper();
   }
 
   private initializeMainSwiper(): void {
@@ -215,15 +222,17 @@ export class PrinterPageComponent implements OnInit, AfterViewInit {
   }
 
   updateNavigation() {
+    this.updateNavigationSubject.next();
+  }
+
+  private performUpdateNavigation() {
     const swiperInstance = this.swiperContainer.nativeElement.swiper;
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
     this.showNavigation = this.images.length > (swiperInstance.params.slidesPerView as number);
     this.currentSlideIndex = swiperInstance.activeIndex + 1; // Swiper's activeIndex is 0-based
     this.totalSlides = swiperInstance.slides.length;
-    console.log('isBeginning:', this.isBeginning, 'isEnd:', this.isEnd, "showNavigation:", this.showNavigation, "currentSlideIndex:", this.currentSlideIndex, "totalSlides:", this.totalSlides);
     this.cdr.detectChanges(); // Manually trigger change detection
-
   }
 
   checkScreenWidth(): void {

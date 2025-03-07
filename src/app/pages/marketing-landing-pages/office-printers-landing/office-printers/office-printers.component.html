@@ -100,10 +100,7 @@
         </div>
       </div>
 
-      <printer-list
-        [categories]="['Oficina']"
-        [requireDeals]="true"
-      ></printer-list>
+      <printer-list [categories]="['Oficina']" [deals]="true"></printer-list>
     </div>
   </section>
   <section class="section-container">
@@ -128,7 +125,7 @@
       <printer-list
         [categories]="['Oficina']"
         [sellable]="true"
-        [requireDeals]="false"
+        [deals]="false"
       ></printer-list>
     </div>
   </section>
@@ -154,7 +151,8 @@
       <printer-list
         [categories]="['Oficina']"
         [rentable]="true"
-        [requireDeals]="false"
+        [deals]="false"
+        [packages]="false"
         [sellable]="false"
       ></printer-list>
     </div>

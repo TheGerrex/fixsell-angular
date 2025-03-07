@@ -30,11 +30,24 @@ Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
   styleUrls: ['./printer-list.component.scss'],
 })
 export class PrinterListComponent implements OnInit, AfterViewInit {
-  @Input() categories: string[] = []; // Accept categories as input
-  @Input() requireDeals: boolean = true;
-  @Input() sellable: boolean = false; // New input for sellable filter
-  @Input() rentable: boolean = false; // New input for rentable filter
-  @Input() brands: string[] = []; // New input for brands filter
+  @Input() categories: string[] = [];
+  @Input() deals!: boolean;
+  @Input() limit: number = 15;
+  @Input() offset: number = 0;
+  @Input() packages!: boolean;
+  @Input() sellable!: boolean;
+  @Input() rentable!: boolean;
+  @Input() brands: string[] = [];
+  @Input() color!: boolean;
+  @Input() price!: number;
+  @Input() tags: string[] = [];
+  @Input() printVelocity: string[] = [];
+  @Input() maxPrintSize!: string;
+  @Input() printSize: string[] = [];
+  @Input() duplexUnit!: boolean;
+  @Input() applicableOS!: string;
+  @Input() printerFunctions!: string;
+  @Input() barcode: string[] = [];
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   printers: Printer[] = [];
   isLoading = true;
@@ -47,7 +60,7 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
     slidesPerView: 1.25,
     spaceBetween: 8,
     autoplay: false,
-    scrollbar: { draggable: true },
+    // scrollbar: { draggable: true },
     breakpoints: {
       '@0.00': {
         slidesPerView: 1.25,
@@ -79,12 +92,90 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
   constructor(private printersService: PrintersService) { }
 
   ngOnInit(): void {
-    this.printersService.getPrinters(25, 0).subscribe((printers: Printer[]) => {
-      this.printers = this.filterPrinters(printers);
+    this.loadPrinters();
+  }
+
+  loadPrinters(): void {
+    const filters: any = {};
+
+    if (this.deals !== undefined) {
+      filters.deals = this.deals;
+    }
+    if (this.packages !== undefined) {
+      filters.packages = this.packages;
+    }
+    if (this.categories.length > 0) {
+      filters.category = this.categories.join(',');
+    }
+    if (this.sellable !== undefined) {
+      filters.sellable = this.sellable;
+    }
+    if (this.rentable !== undefined) {
+      filters.rentable = this.rentable;
+    }
+    if (this.brands.length > 0) {
+      filters.brand = this.brands.join(',');
+    }
+    if (this.color !== undefined) {
+      filters.color = this.color;
+    }
+    if (this.price !== undefined) {
+      filters.price = this.price;
+    }
+    if (this.tags.length > 0) {
+      filters.tags = this.tags.join(',');
+    }
+    if (this.printVelocity.length > 0) {
+      filters.printVelocity = this.printVelocity.join(',');
+    }
+    if (this.maxPrintSize !== undefined) {
+      filters.maxPrintSize = this.maxPrintSize;
+    }
+    if (this.printSize.length > 0) {
+      filters.printSize = this.printSize.join(',');
+    }
+    if (this.duplexUnit !== undefined) {
+      filters.duplexUnit = this.duplexUnit;
+    }
+    if (this.applicableOS !== undefined) {
+      filters.applicableOS = this.applicableOS;
+    }
+    if (this.printerFunctions !== undefined) {
+      filters.printerFunctions = this.printerFunctions;
+    }
+    if (this.barcode.length > 0) {
+      filters.barcode = this.barcode.join(',');
+    }
+
+    this.isLoading = true;
+    this.printersService.getPrinters(this.limit, this.offset, filters).subscribe((printers: Printer[]) => {
+      const currentDate = new Date();
+
+      let filteredPrinters = printers;
+
+      if (filters.deals === true) {
+        // Filter out expired deals on the frontend
+        filteredPrinters = filteredPrinters
+          .map(printer => ({
+            ...printer,
+            deals: printer.deals.filter(deal => new Date(deal.dealEndDate) >= currentDate)
+          }))
+          .filter(printer => printer.deals.length > 0); // Only include printers with active deals
+      }
+
+      if (filters.packages === true) {
+        // Filter out expired packages on the frontend
+        filteredPrinters = filteredPrinters
+          .map(printer => ({
+            ...printer,
+            packages: printer.packages.filter(pkg => new Date(pkg.packageEndDate) >= currentDate)
+          }))
+          .filter(printer => printer.packages.length > 0); // Only include printers with active packages
+      }
+
+      this.printers = filteredPrinters;
       this.isLoading = false;
-      setTimeout(() => {
-        this.updateNavigation(); // Update navigation after loading data
-      });
+      setTimeout(() => this.updateNavigation());
     });
   }
 
@@ -137,30 +228,28 @@ export class PrinterListComponent implements OnInit, AfterViewInit {
       return packages.some(pkg => !isPackageExpired(pkg.packageEndDate));
     };
 
-    return printers
-      .filter((printer) => {
-        const hasActiveDeals = printer.deals.some(
-          (deal) =>
-            new Date(deal.dealStartDate) <= currentDate &&
-            new Date(deal.dealEndDate) >= currentDate
-        );
-        const hasRentPackage = printer.packages && hasValidPackages(printer.packages);
+    return printers.filter((printer) => {
+      const hasActiveDeals = printer.deals.some(
+        (deal) =>
+          new Date(deal.dealStartDate) <= currentDate &&
+          new Date(deal.dealEndDate) >= currentDate
+      );
+      const hasRentPackage = printer.packages && hasValidPackages(printer.packages);
 
-        return (
-          (this.requireDeals ? (hasActiveDeals || hasRentPackage) : (!hasActiveDeals && !hasRentPackage)) &&
-          (this.categories.length === 0 || this.categories.includes(printer.category)) &&
-          (!this.sellable || printer.sellable === this.sellable) &&
-          (!this.rentable || printer.rentable === this.rentable) &&
-          (this.brands.length === 0 || this.brands.includes(printer.brand)) // Add brand filter condition
-        );
-      })
-      .map((printer) => ({
-        ...printer,
-        deals: printer.deals.filter(
-          (deal) =>
-            new Date(deal.dealStartDate) <= currentDate &&
-            new Date(deal.dealEndDate) >= currentDate
-        ),
-      }));
+      const passesDealsFilter = !this.deals || hasActiveDeals || hasRentPackage;
+      const passesCategoryFilter = this.categories.length === 0 || this.categories.includes(printer.category);
+      const passesSellableFilter = this.sellable === undefined || printer.sellable === this.sellable;
+      const passesRentableFilter = this.rentable === undefined || printer.rentable === this.rentable;
+      const passesBrandFilter = this.brands.length === 0 || this.brands.includes(printer.brand);
+
+      return passesDealsFilter && passesCategoryFilter && passesSellableFilter && passesRentableFilter && passesBrandFilter;
+    }).map((printer) => ({
+      ...printer,
+      deals: printer.deals.filter(
+        (deal) =>
+          new Date(deal.dealStartDate) <= currentDate &&
+          new Date(deal.dealEndDate) >= currentDate
+      ),
+    }));
   }
 }

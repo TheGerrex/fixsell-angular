@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./consumables-intro.component.scss'],
 })
 export class ConsumablesIntroComponent {
-  isInputFocused = false;  
+  isInputFocused = false;
   searchQuery = '';
   aspectos = [
     {
@@ -140,9 +140,15 @@ export class ConsumablesIntroComponent {
       },
     ];
   }
-  navigateToProductList(category: string) {
+  navigateToProductList(category?: string) {
+    const queryParams: any = { categories: category };
+
+    if (category) {
+      queryParams.filterCount = 1;
+    }
+
     this.router.navigate(['/consumables/list'], {
-      queryParams: { categories: category,  filterCount: 1 },
+      queryParams: queryParams,
       queryParamsHandling: 'merge',
     });
   }

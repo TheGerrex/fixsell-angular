@@ -65,11 +65,11 @@ export class PromocionesComponent implements OnInit {
       .getRentPackages()
       .subscribe((rentPackages: Package[]) => {
         this.rentPackages = rentPackages;
-        console.log(this.rentPackages);
+        // console.log(this.rentPackages);
       });
 
     this.printersService.getEvents().subscribe((events: EventData[]) => {
-      console.log('Fetched events:', events);
+      // console.log('Fetched events:', events);
       const currentDate = new Date();
       const startOfMonth = new Date(
         currentDate.getFullYear(),
@@ -100,7 +100,7 @@ export class PromocionesComponent implements OnInit {
     img.src = imageUrl;
     img.onload = () => {
       this.sectionCardHeight = img.height; // Set the image height
-      console.log('Image height:', img.height);
+      // console.log('Image height:', img.height);
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
       canvas.height = img.height;
@@ -123,7 +123,7 @@ export class PromocionesComponent implements OnInit {
         }
 
         this.dominantColor = `rgb(${dominantColor})`;
-        console.log('Dominant Color:', this.dominantColor);
+        // console.log('Dominant Color:', this.dominantColor);
         // Utilize this.dominantColor as needed
       }
     };

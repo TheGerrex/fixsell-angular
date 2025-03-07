@@ -32,6 +32,17 @@ Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 export class PromotionListComponent implements OnInit, AfterViewInit {
   @Input() categories: string[] = []; // Accept categories as input
   @Input() requireDeals: boolean = true;
+  @Input() limit: number = 25;
+  @Input() offset: number = 0;
+  @Input() brand?: string;
+  @Input() price?: number;
+  @Input() sku?: string;
+  @Input() origen?: string;
+  @Input() volume?: number;
+  @Input() compatibleModels?: string[];
+  @Input() color?: string;
+  @Input() yieldValue?: string[];
+  @Input() deals?: boolean;
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
   dealConsumables: Consumible[] = [];
   isLoading = true;
@@ -44,7 +55,7 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
     slidesPerView: 1.25,
     spaceBetween: 8,
     autoplay: false,
-    scrollbar: { draggable: true },
+    // scrollbar: { draggable: true },
     breakpoints: {
       '@0.00': {
         slidesPerView: 1.25,
@@ -76,15 +87,65 @@ export class PromotionListComponent implements OnInit, AfterViewInit {
   constructor(private consumableService: ConsumableService) { }
 
   ngOnInit(): void {
-    this.consumableService
-      .getConsumables(25, 0)
-      .subscribe((consumables: Consumible[]) => {
-        this.dealConsumables = this.filterconsumables(consumables);
-        this.isLoading = false;
-        setTimeout(() => {
-          this.updateNavigation(); // Update navigation after loading data
-        });
-      });
+    this.loadConsumables();
+  }
+
+  loadConsumables(): void {
+    const filters: any = {};
+
+    if (this.deals !== undefined) {
+      filters.deals = this.deals;
+    }
+    if (this.brand !== undefined) {
+      filters.brand = this.brand;
+    }
+    if (this.price !== undefined) {
+      filters.price = this.price;
+    }
+    if (this.sku !== undefined) {
+      filters.sku = this.sku;
+    }
+    if (this.origen !== undefined) {
+      filters.origen = this.origen;
+    }
+    if (this.volume !== undefined) {
+      filters.volume = this.volume;
+    }
+    if (this.compatibleModels !== undefined) {
+      filters.compatibleModels = this.compatibleModels.join(',');
+    }
+    if (this.color !== undefined) {
+      filters.color = this.color;
+    }
+    if (this.yieldValue !== undefined) {
+      filters.yieldValue = this.yieldValue.join(',');
+    }
+    if (this.categories.length > 0) {
+      filters.category = this.categories.join(',');
+    }
+
+    this.isLoading = true;
+    this.consumableService.getConsumables(this.limit, this.offset, filters).subscribe((consumables: Consumible[]) => {
+      const currentDate = new Date();
+
+      let filteredConsumables = consumables;
+
+      if (filters.deals === true) {
+        // Filter out expired deals on the frontend
+        filteredConsumables = filteredConsumables
+          .map(consumable => ({
+            ...consumable,
+            deals: consumable.deals.filter(deal => new Date(deal.dealEndDate) >= currentDate)
+          }))
+          .filter(consumable => consumable.deals.length > 0); // Only include consumables with active deals
+      }
+
+      this.dealConsumables = filteredConsumables;
+      this.isLoading = false;
+      setTimeout(() => this.updateNavigation());
+    });
+
+
   }
 
   ngAfterViewInit(): void {
