@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Subject, debounceTime } from 'rxjs';
 import { Printer } from 'src/app/printers/interfaces/printer.interface';
 import { PrintersService } from 'src/app/printers/services/printers.service';
 import Swiper from 'swiper';
@@ -17,7 +18,10 @@ Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
   @Input() categories: string[] = []; // Accept categories as input
   @Input() printerProduct: Printer | undefined = undefined;
+  @Input() limit: number = 15;
+  @Input() offset: number = 0;
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
+  private updateNavigationSubject = new Subject<void>();
   noDealsMessage = 'No hay productos relacionados al momento';
   relatedPrinters: Printer[] = [];
   isLoading = true;
@@ -62,22 +66,34 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
     },
   };
 
-  constructor(private printersService: PrintersService) { }
+  constructor(private printersService: PrintersService, private cdr: ChangeDetectorRef) {
+    this.updateNavigationSubject.pipe(debounceTime(100)).subscribe(() => {
+      this.performUpdateNavigation();
+    });
+  }
 
   ngOnInit(): void {
     if (this.printerProduct) {
       const brand = this.printerProduct.brand;
       const category = this.printerProduct.category;
 
-      this.printersService.getPrinters(10, 0, { brand, category }).subscribe((printers: Printer[]) => {
-        if (this.printerProduct) {
-          this.relatedPrinters = printers.filter(printer => printer.id !== this.printerProduct?.id);
+      this.printersService.getPrinters(this.limit, this.offset, { brand, category }).subscribe(
+        (printers: Printer[]) => {
+          if (this.printerProduct) {
+            this.relatedPrinters = printers.filter(printer => printer.id !== this.printerProduct?.id);
+          }
+          this.isLoading = false;
+          this.cdr.detectChanges(); // Manually trigger change detection
+          setTimeout(() => {
+            this.updateNavigation(); // Update navigation after loading data
+          }, 0);
+        },
+        (error) => {
+          console.error('Error fetching related printers:', error);
+          this.isLoading = false;
+          this.cdr.detectChanges(); // Manually trigger change detection on error
         }
-        this.isLoading = false;
-        setTimeout(() => {
-          this.updateNavigation(); // Update navigation after loading data
-        });
-      });
+      );
     }
   }
 
@@ -93,10 +109,15 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
     });
   }
 
+  updateNavigation() {
+    this.updateNavigationSubject.next();
+  }
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.updateNavigation();
+    this.cdr.detectChanges(); // Manually trigger change detection on resize
   }
 
   goToNext() {
@@ -109,10 +130,11 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
     this.updateNavigation();
   }
 
-  updateNavigation() {
+  private performUpdateNavigation() {
     const swiperInstance = this.swiperContainer.nativeElement.swiper;
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
     this.showNavigation = this.relatedPrinters.length > (swiperInstance.params.slidesPerView as number);
+    this.cdr.detectChanges(); // Manually trigger change detection
   }
 }

@@ -23,10 +23,11 @@
               *ngFor="let subItem of item.items"
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="subItem.routerLink"
             >
-              <div class="item">
+              <div class="item" [routerLink]="subItem.routerLink">
                 <i [ngClass]="subItem.icon"></i>
-                <a [routerLink]="subItem.routerLink">{{ subItem.label }}</a>
+                <a>{{ subItem.label }}</a>
                 <i class="pi pi-angle-right" *ngIf="subItem.items"></i>
               </div>
               <div class="dropdown" *ngIf="subItem.items">
@@ -34,11 +35,11 @@
                   class="dropdown-item"
                   *ngFor="let nestedItem of subItem.items"
                   routerLinkActive="active"
+                  [routerLink]="nestedItem.routerLink"
                   [routerLinkActiveOptions]="{ exact: true }"
                 >
-                  <a [routerLink]="nestedItem.routerLink">{{
-                    nestedItem.label
-                  }}</a>
+                  <i [ngClass]="nestedItem.icon"></i>
+                  <a>{{ nestedItem.label }}</a>
                 </div>
               </div>
             </div>

@@ -32,7 +32,8 @@
       type="text"
       formControlName="phone"
       class="form-control"
-      placeholder="XX-XX-XX-XX-XX"
+      placeholder="(XXX) XXX-XXXX"
+      mask="(000) 000-0000"
       [class.is-invalid]="
         packageRentContactForm.controls['phone'].invalid &&
         packageRentContactForm.controls['phone'].touched

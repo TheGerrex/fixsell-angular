@@ -21,6 +21,7 @@ import { PackageRentCardComponent } from './components/package-rent-card/package
 import { PackageRentContactFormComponent } from './components/package-rent-contact-form/package-rent-contact-form.component';
 import { PackageRentPromotionListComponent } from './components/package-rent-promotion-list/package-rent-promotion-list.component';
 import { RelatedPrintersListComponent } from './components/related-printers-list/related-printers-list.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,10 @@ import { RelatedPrintersListComponent } from './components/related-printers-list
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
+  providers: [provideNgxMask()],
   exports: [ProductTypePipe, ProductColorIconPipe, BrandTypePipe, PrinterListComponent, PackageRentPromotionListComponent, PackageRentContactFormComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -32,7 +32,6 @@ import { SwiperDirective } from './directives/app-swiper.directive';
 import { register } from 'swiper/element/bundle';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
-// Step 2: Add the following line...
 register();
 
 @NgModule({

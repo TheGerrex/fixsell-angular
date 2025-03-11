@@ -284,6 +284,18 @@
                   <div class="spec">
                     <h5 class="spec-title">Tipo de Impresión</h5>
                     <p class="spec-data">
+                      <img
+                        *ngIf="!printer.color"
+                        class="color-icon"
+                        src="../../../../assets/svg/colors/B&W.svg"
+                        alt="B&W Icon"
+                      />
+                      <img
+                        *ngIf="printer.color"
+                        class="color-icon"
+                        src="../../../../assets/svg/colors/CMYK.svg"
+                        alt="CMYK Icon"
+                      />
                       {{ printer.color ? "Color" : "Monocromatico" }}
                     </p>
                   </div>

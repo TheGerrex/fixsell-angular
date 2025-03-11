@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Consumible } from 'src/app/printers/interfaces/consumible.interface';
 import { ConsumableService } from '../../services/consumables.service';
 import Swiper from 'swiper';
 import { SwiperContainer } from 'swiper/element';
 import { Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay } from 'swiper/modules';
 import { SwiperOptions } from 'swiper/types';
+import { Subject, debounceTime } from 'rxjs';
 
 // install Swiper modules
 Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
@@ -17,8 +18,11 @@ Swiper.use([Navigation, Pagination, Scrollbar, A11y, Thumbs, Autoplay]);
 export class RelatedConsumablesListComponent implements OnInit, AfterViewInit {
   @Input() categories: string[] = []; // Accept categories as input
   @Input() consumableProduct: Consumible | undefined = undefined;
+  @Input() limit: number = 15;
+  @Input() offset: number = 0;
   @ViewChild('swiperContainer') swiperContainer!: ElementRef<SwiperContainer>;
-  noDealsMessage = 'No hay consumibles relacionados al momento';
+  private updateNavigationSubject = new Subject<void>();
+  noDealsMessage = 'No hay productos relacionados al momento';
   relatedConsumables: Consumible[] = [];
   isLoading = true;
   isBeginning = true;
@@ -62,7 +66,11 @@ export class RelatedConsumablesListComponent implements OnInit, AfterViewInit {
     },
   };
 
-  constructor(private consumableService: ConsumableService) { }
+  constructor(private consumableService: ConsumableService, private cdr: ChangeDetectorRef) {
+    this.updateNavigationSubject.pipe(debounceTime(100)).subscribe(() => {
+      this.performUpdateNavigation();
+    });
+  }
 
   ngOnInit(): void {
     if (this.consumableProduct) {
@@ -70,15 +78,23 @@ export class RelatedConsumablesListComponent implements OnInit, AfterViewInit {
       const category = this.consumableProduct.category;
       const color = this.consumableProduct.color;
 
-      this.consumableService.getConsumables(10, 0, { brand, category, color }).subscribe((consumables: Consumible[]) => {
-        if (this.consumableProduct) {
-          this.relatedConsumables = consumables.filter(consumables => consumables.id !== this.consumableProduct?.id);
+      this.consumableService.getConsumables(this.limit, this.offset, { brand, category, color }).subscribe(
+        (consumables: Consumible[]) => {
+          if (this.consumableProduct) {
+            this.relatedConsumables = consumables.filter(consumable => consumable.id !== this.consumableProduct?.id);
+          }
+          this.isLoading = false;
+          this.cdr.detectChanges(); // Manually trigger change detection
+          setTimeout(() => {
+            this.updateNavigation(); // Update navigation after loading data
+          }, 0);
+        },
+        (error) => {
+          console.error('Error fetching related consumables:', error);
+          this.isLoading = false;
+          this.cdr.detectChanges(); // Manually trigger change detection on error
         }
-        this.isLoading = false;
-        setTimeout(() => {
-          this.updateNavigation(); // Update navigation after loading data
-        });
-      });
+      );
     }
   }
 
@@ -94,9 +110,14 @@ export class RelatedConsumablesListComponent implements OnInit, AfterViewInit {
     });
   }
 
+  updateNavigation() {
+    this.updateNavigationSubject.next();
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.updateNavigation();
+    this.cdr.detectChanges();
   }
 
   goToNext() {
@@ -109,10 +130,11 @@ export class RelatedConsumablesListComponent implements OnInit, AfterViewInit {
     this.updateNavigation();
   }
 
-  updateNavigation() {
+  private performUpdateNavigation() {
     const swiperInstance = this.swiperContainer.nativeElement.swiper;
     this.isBeginning = swiperInstance.isBeginning;
     this.isEnd = swiperInstance.isEnd;
     this.showNavigation = this.relatedConsumables.length > (swiperInstance.params.slidesPerView as number);
+    this.cdr.detectChanges();
   }
 }
