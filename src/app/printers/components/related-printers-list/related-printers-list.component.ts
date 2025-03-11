@@ -40,15 +40,15 @@ export class RelatedPrintersListComponent implements OnInit, AfterViewInit {
     },
     breakpoints: {
       '@0.00': {
-        slidesPerView: 2.25,
+        slidesPerView: 1.25,
         spaceBetween: 8,
       },
       '@0.45': {
-        slidesPerView: 2.25,
+        slidesPerView: 1.25,
         spaceBetween: 12,
       },
       '@0.75': {
-        slidesPerView: 3.25,
+        slidesPerView: 2.25,
         spaceBetween: 12,
       },
       '@1.00': {

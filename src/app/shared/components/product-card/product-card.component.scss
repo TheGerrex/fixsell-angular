@@ -76,7 +76,6 @@
           }
           .product-name {
             margin-bottom: 0.5rem;
-            flex: 0;
             a {
               font-weight: 500;
               font-size: 1.25rem;
@@ -84,6 +83,11 @@
               cursor: pointer;
               text-decoration: none;
               line-height: 1;
+              display: inline-block;
+              max-width: 100%; /* Ensure it doesn't overflow the container */
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
               &:hover {
                 text-decoration: underline;
               }
@@ -126,47 +130,18 @@
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
-            flex-wrap: wrap;
+            flex-direction: column; // Default to column
             gap: 10px;
             width: 100%;
             margin-bottom: 0.75rem;
             flex: 1;
+
             .feature {
               display: flex;
               justify-content: center;
               align-items: center;
               gap: 4px;
-              .ColorCircle {
-                width: 20px;
-                height: 20px;
-                background: conic-gradient(
-                  from 180deg at 0% 100%,
-                  #ff0000 0deg,
-                  #ff7a1a 37deg,
-                  #fff730 67deg,
-                  #90ff4b 106deg,
-                  #66ff6c 144deg,
-                  #00ff75 174deg,
-                  #00ffe0 198deg,
-                  #00b2ff 226deg,
-                  #0038ff 249deg,
-                  #2400ff 279deg,
-                  #af06ff 301deg,
-                  #ff00d6 324deg,
-                  #ff002e 360deg
-                );
-                border-radius: 9999px;
-              }
-              .BlackCircle {
-                width: 20px;
-                height: 20px;
-                background: conic-gradient(
-                  from 180deg at 0% 100%,
-                  black 0deg,
-                  white 360deg
-                );
-                border-radius: 9999px;
-              }
+
               p {
                 color: $text;
                 font-size: 14px;
@@ -175,7 +150,13 @@
                 margin: 0;
               }
             }
+
+            @media (min-width: 301px) {
+              flex-direction: row; // Switch to row when width > 300px
+              flex-wrap: wrap; // Ensure features don't overflow
+            }
           }
+
           .product-price {
             display: flex;
             flex-direction: column;
