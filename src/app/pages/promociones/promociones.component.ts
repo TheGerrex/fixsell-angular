@@ -132,4 +132,35 @@ export class PromocionesComponent implements OnInit {
       console.error('Failed to load image for color extraction.');
     };
   }
+
+
+  navigateToPrinterListDeal(deal?: boolean, type?: string) {
+    const queryParams: any = { deal: deal, page: 1 };
+
+    if (type === 'sellable') {
+      queryParams.sellable = true;
+      queryParams.filterCount = (queryParams.filterCount || 0) + 1;
+    } else if (type === 'rentable') {
+      queryParams.rentable = true;
+      queryParams.filterCount = (queryParams.filterCount || 0) + 1;
+    }
+
+    if (deal) {
+      queryParams.filterCount = (queryParams.filterCount || 0) + 1;
+    }
+
+    this.router.navigate(['/printers/list'], {
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  navigateToConsumableListDeal() {
+    const queryParams: any = { deal: true, page: 1, filterCount: 1 };
+
+    this.router.navigate(['/consumables/list'], {
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
+  }
 }

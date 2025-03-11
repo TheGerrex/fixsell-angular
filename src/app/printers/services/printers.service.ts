@@ -5,6 +5,7 @@ import { Printer } from '../interfaces/printer.interface';
 import { Observable, catchError, of } from 'rxjs';
 import { Package } from '../interfaces/package.interface';
 import { EventData } from '../interfaces/deal.interface';
+import { Category } from '../interfaces/category.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -48,7 +49,6 @@ export class PrintersService {
       );
   }
 
-
   getPrinterById(id: string): Observable<Printer | undefined> {
     return this.http.get<Printer>(`${this.baseUrl}/printers/${id}`)
       .pipe(
@@ -82,4 +82,13 @@ export class PrintersService {
       })
     );
   }
-}
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.baseUrl}/categories/printers`).pipe(
+      catchError((error) => {
+        console.error('Error fetching categories:', error);
+        return of([]);
+      })
+    );
+  }
+}  

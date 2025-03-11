@@ -41,7 +41,7 @@
       <div class="promotion-links">
         <button
           class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
+          (click)="navigateToPrinterListDeal(true, 'sellable')"
         >
           <span class="button-label">Ver Multifuncionales</span>
         </button>
@@ -63,9 +63,9 @@
       <div class="promotion-links">
         <button
           class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
+          (click)="navigateToPrinterListDeal(true, 'rentable')"
         >
-          <span class="button-label">Ver Multifuncionales</span>
+          <span class="button-label">Ver Paquetes de Renta</span>
         </button>
       </div>
     </div>
@@ -85,7 +85,7 @@
       <div class="promotion-links">
         <button
           class="button button-outlined-primary button-rounded"
-          routerLink="/consumables/list"
+          (click)="navigateToConsumableListDeal()"
         >
           <span class="button-label">Ver Consumibles</span>
         </button>

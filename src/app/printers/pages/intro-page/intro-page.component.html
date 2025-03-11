@@ -5,12 +5,12 @@
       <h5 class="banner-subtitle">
         Servicio Incomparable a tu Alcance y Calidad en Cada Impresión
       </h5>
-      <printer-search-bar></printer-search-bar>
+      <printer-search-bar style="max-width: 800px"></printer-search-bar>
       <div class="category-list">
         <button
           class="category-button"
           *ngFor="let category of categories"
-          (click)="navigateToProductList(category.category)"
+          (click)="navigateToProductList(category.name)"
         >
           <p>{{ category.name }}</p>
         </button>
@@ -127,7 +127,9 @@
       <div class="promotion-links">
         <button
           class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
+          (click)="
+            navigateToProductList(undefined, 'Konica Minolta', 'sellable')
+          "
         >
           <span class="button-label">Ver Multifuncionales</span>
         </button>
@@ -152,7 +154,7 @@
       <div class="promotion-links">
         <button
           class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
+          (click)="navigateToProductList(undefined, 'Kyocera', 'sellable')"
         >
           <span class="button-label">Ver Multifuncionales</span>
         </button>
@@ -177,7 +179,7 @@
       <div class="promotion-links">
         <button
           class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
+          (click)="navigateToProductList(undefined, 'Epson', 'sellable')"
         >
           <span class="button-label">Ver Multifuncionales</span>
         </button>
@@ -279,7 +281,7 @@
       <div class="promotion-links">
         <button
           class="button button-outlined-primary button-rounded"
-          routerLink="/printers/list"
+          (click)="navigateToProductList(undefined, undefined, 'rentable')"
         >
           <span class="button-label">Ver Multifuncionales</span>
         </button>

@@ -15,19 +15,15 @@ export class ProductTypePipe implements PipeTransform {
 style="min-width: 60px;
   display: flex;
   height: fit-content;
-  align-self: stretch;
-  padding-left: .5rem;
-  padding-right: .5rem;
-  padding-top: .125rem;
-  padding-bottom: .125rem;
+  padding: 0.25rem 0.5rem;
   background: ${backgroundColor};
   border-radius: 16px;
   border: 0.50px ${borderColor} solid;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 10px;  
   display: flex;">
-    <div style="color: ${textColor}; font-size: 12px; font-weight: 600;">${label}</div>
+    <div style="color: ${textColor}; font-size: 12px; font-weight: 600; line-height: 1;">${label}</div>
   </div>
 `;
 
