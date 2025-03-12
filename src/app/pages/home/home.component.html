@@ -813,7 +813,7 @@
           </button>
         </div>
       </div>
-      <consumables-list [requireDeals]="false"></consumables-list>
+      <consumables-list [deals]="false"></consumables-list>
     </div>
   </div>
   <div class="consumible-deals">
@@ -835,7 +835,7 @@
           </button>
         </div>
       </div>
-      <consumables-list></consumables-list>
+      <consumables-list [deals]="true"></consumables-list>
     </div>
   </div>
 </section>
@@ -851,13 +851,21 @@
             Servicios esenciales para optimizar el flujo de trabajo y la
             seguridad de tu información.
           </h4>
-          <h5>
+          <h5 class="section-text">
             Con estos servicios, puedes digitalizar, almacenar, compartir y
             proteger tus documentos de forma eficiente y ecológica. Además,
             puedes controlar y reducir los costos de impresión, mejorar la
             productividad y la colaboración, y acceder a tus documentos desde
             cualquier lugar, dispositivo y momento.
           </h5>
+          <div class="software-action">
+            <button
+              class="button button-primary button-raised button-rounded"
+              routerLink="/software-digitalizacion-documentos"
+            >
+              <span class="button-label">Ir a Softwares</span>
+            </button>
+          </div>
         </div>
         <div class="software-content">
           <div class="software-card">

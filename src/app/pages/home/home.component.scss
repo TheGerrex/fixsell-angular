@@ -392,6 +392,11 @@
   font-weight: 500;
   margin: 0;
 }
+.section-text {
+  color: $text;
+  font-weight: 400;
+  margin: 0;
+}
 
 .white {
   color: $white !important;
@@ -916,7 +921,7 @@
             width: 100%;
             border: 1px solid $gray-300;
             box-sizing: border-box;
-            box-shadow: $box-shadow-2;
+            // box-shadow: $box-shadow-2;
             background-color: $white;
             @media (min-width: 768px) {
               width: 100px;
@@ -1002,7 +1007,6 @@
             background-color: $white;
             padding: 2rem;
             gap: 0.5rem;
-            box-shadow: $box-shadow-1;
           }
           .servicio-item-body {
             .servicio-item-header {
@@ -1146,7 +1150,6 @@
           background-color: $white;
           border: 1px solid $gray-300;
           border-radius: $border-radius;
-          box-shadow: $box-shadow-1;
           padding: 1em;
           i {
             font-size: 24px;
@@ -1366,8 +1369,14 @@
           color: $secondary-text;
           font-weight: 500;
         }
-        h5 {
-          font-weight: 400;
+        .software-action {
+          margin-top: 1em;
+          width: 100%;
+          @media (max-width: 768px) {
+            button {
+              width: 100%;
+            }
+          }
         }
       }
       .software-content {
