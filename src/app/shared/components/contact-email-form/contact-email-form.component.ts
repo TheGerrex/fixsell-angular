@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../services/validators.service';
 import { ContactFormService } from '../../services/forms/contact-form.service';
@@ -28,6 +28,7 @@ export class ContactEmailFormComponent {
     private formBuilder: FormBuilder,
     private validatorsService: ValidatorsService,
     private contactFormService: ContactFormService,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   isValidField(field: string): boolean | null {
@@ -43,19 +44,18 @@ export class ContactEmailFormComponent {
       this.contactForm.markAllAsTouched();
       return;
     }
-
-
     const formData = this.contactForm.value;
     this.isSubmitting = true;
-    console.log('formData', formData);
     this.contactFormService.submit(formData).subscribe(
       () => {
         this.isSubmitting = false;
         this.isSuccess = true;
+        this.cdr.detectChanges();
       },
       () => {
         this.isSubmitting = false;
         this.isError = true;
+        this.cdr.detectChanges();
       }
     );
   }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PackageRentContactFormService } from 'src/app/shared/services/forms/package-rent-contact-form.service';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
@@ -8,7 +8,7 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
   templateUrl: './package-rent-contact-form.component.html',
   styleUrls: ['./package-rent-contact-form.component.scss']
 })
-export class PackageRentContactFormComponent implements OnInit{
+export class PackageRentContactFormComponent implements OnInit {
 
   @Input() message: string = '';
   @Input() product: string = '';
@@ -21,7 +21,8 @@ export class PackageRentContactFormComponent implements OnInit{
     private formBuilder: FormBuilder,
     private validatorsService: ValidatorsService,
     private packageRentContactFormService: PackageRentContactFormService,
-  ) {}
+    private cdr: ChangeDetectorRef,
+  ) { }
 
   ngOnInit(): void {
     this.packageRentContactForm.controls['message'].setValue(this.message);
@@ -34,7 +35,7 @@ export class PackageRentContactFormComponent implements OnInit{
     message: [this.message, [Validators.required, Validators.maxLength(300)]],
   });
 
-  isValidField(field: string): boolean|null {
+  isValidField(field: string): boolean | null {
     return this.validatorsService.isValidField(this.packageRentContactForm, field)
   }
 
@@ -53,12 +54,24 @@ export class PackageRentContactFormComponent implements OnInit{
       () => {
         this.isSubmitting = false;
         this.isSuccess = true;
-        this.packageRentContactForm.reset();
+        this.cdr.detectChanges();
+
       },
       () => {
         this.isSubmitting = false;
         this.isError = true;
+        this.cdr.detectChanges();
+
       }
     );
+  }
+
+  reloadForm() {
+    this.isSuccess = false;
+    this.packageRentContactForm.reset();
+  }
+
+  retryForm() {
+    this.isError = false;
   }
 }

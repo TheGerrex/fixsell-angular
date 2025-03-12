@@ -88,15 +88,31 @@
 
 <div class="message-success" *ngIf="isSuccess">
   <i class="pi pi-check-circle" style="font-size: 2em"></i>
-  <h5>Mensaje Enviado con Éxito</h5>
+  <h5>¡Tu solicitud ha sido enviada con éxito!</h5>
   <p>
-    Gracias por contactarnos, pronto un asesor se pondra en comunicación
-    contigo.
+    Gracias por tu interés en nuestro paquete de renta de multifuncionales. Un
+    asesor se pondrá en contacto contigo en breve para brindarte más detalles y
+    resolver cualquier duda.
   </p>
+
+  <button
+    type="button"
+    class="button button-primary button-rounded button-raised"
+    (click)="reloadForm()"
+  >
+    <span class="button-label">Enviar Otro Mensaje</span>
+  </button>
 </div>
 
 <div class="message-error" *ngIf="isError">
   <i class="pi pi-times-circle" style="font-size: 2em"></i>
   <h5>Hubo un Error</h5>
   <p>Vuelve a intentarlo más tarde, gracias.</p>
+  <button
+    type="button"
+    class="button button-primary button-rounded button-raised"
+    (click)="retryForm()"
+  >
+    <span class="button-label">Intentar de nuevo</span>
+  </button>
 </div>

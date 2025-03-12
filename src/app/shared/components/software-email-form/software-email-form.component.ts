@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ValidatorsService } from '../../services/validators.service';
@@ -32,6 +31,7 @@ export class SoftwareEmailFormComponent {
     private formBuilder: FormBuilder,
     private validatorsService: ValidatorsService,
     private productContactFormService: ProductContactFormService,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   isValidField(field: string): boolean | null {
@@ -53,12 +53,22 @@ export class SoftwareEmailFormComponent {
       () => {
         this.isSubmitting = false;
         this.isSuccess = true;
-        this.softwareContactForm.reset();
+        this.cdr.detectChanges();
       },
       () => {
         this.isSubmitting = false;
         this.isError = true;
+        this.cdr.detectChanges();
       }
     );
+  }
+
+  reloadForm() {
+    this.isSuccess = false;
+    this.softwareContactForm.reset();
+  }
+
+  retryForm() {
+    this.isError = false;
   }
 }
