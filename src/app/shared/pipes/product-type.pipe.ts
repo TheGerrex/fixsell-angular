@@ -11,18 +11,16 @@ export class ProductTypePipe implements PipeTransform {
   transform(value: Printer): SafeHtml {
 
     const createTag = (backgroundColor: string, borderColor: string, textColor: string, label: string) => `
-  <div class="tag" 
-style="min-width: 60px;
+  <div class="tag" style="min-width: 60px;
   display: flex;
-  height: fit-content;
+  height: 100%;
   padding: 0.25rem 0.5rem;
   background: ${backgroundColor};
   border-radius: 16px;
   border: 0.50px ${borderColor} solid;
   justify-content: center;
   align-items: center;
-  gap: 10px;  
-  display: flex;">
+  gap: 10px;">
     <div style="color: ${textColor}; font-size: 12px; font-weight: 600; line-height: 1;">${label}</div>
   </div>
 `;
@@ -50,7 +48,7 @@ style="min-width: 60px;
     }
 
     // Wrap the result in a parent div with display: flex
-    result = `<div style="display: flex; gap: 6px;">${result}</div>`;
+    result = `<div style="display: flex; gap: .5rem;">${result}</div>`;
 
     return this.sanitizer.bypassSecurityTrustHtml(result);
   }

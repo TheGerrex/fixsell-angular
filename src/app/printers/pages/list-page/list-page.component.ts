@@ -35,7 +35,13 @@ export class ListPageComponent implements OnInit {
   searchQuery: string = '';
   private destroy$ = new Subject<void>();
   private searchQuerySubject = new Subject<string>();
-  private urlHistory: string[] = [];
+  viewMode: string = 'list'; // Default view mode
+  items: any[] = []; // Replace with your actual items
+
+  viewOptions = [
+    { label: 'Gallery View', value: 'gallery', icon: 'pi pi-th-large' },
+    { label: 'List View', value: 'list', icon: 'pi pi-bars' }
+  ];
 
   constructor(
     private printersService: PrintersService,
@@ -331,5 +337,10 @@ export class ListPageComponent implements OnInit {
 
   onSearchQueryChange(searchQuery: string) {
     this.searchQuery = searchQuery.toLowerCase();
+  }
+
+  updateViewMode(newViewMode: any) {
+    this.viewMode = newViewMode.value;
+    console.log('View mode updated to:', this.viewMode);
   }
 }

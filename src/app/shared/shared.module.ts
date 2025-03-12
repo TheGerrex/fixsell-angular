@@ -31,6 +31,7 @@ import { SwiperDirective } from './directives/app-swiper.directive';
 
 import { register } from 'swiper/element/bundle';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ProductListItemComponent } from './components/product-list-item/product-list-item.component';
 
 register();
 
@@ -57,6 +58,7 @@ register();
     LocationSelectorComponent,
     LocationSelectorSocialHeaderComponent,
     SkeletonProductPageComponent,
+    ProductListItemComponent,
   ],
   imports: [
     CommonModule,
@@ -84,7 +86,8 @@ register();
     ContactEmailFormComponent,
     WhatsappButtonComponent,
     SkeletonProductPageComponent,
-    SwiperDirective
+    SwiperDirective,
+    ProductListItemComponent
   ],
   providers: [provideNgxMask()],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -20,6 +20,8 @@ import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { SelectButtonModule } from 'primeng/selectbutton';
+
 
 
 
@@ -43,7 +45,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     TooltipModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    SelectButtonModule
   ],
   providers: [MessageService]
 })

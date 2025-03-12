@@ -129,7 +129,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             flex-direction: column; // Default to column
-            gap: 10px;
+            gap: 0.5rem;
             width: 100%;
             margin-bottom: 0.75rem;
             flex: 1;
@@ -138,7 +138,11 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              gap: 4px;
+              gap: 0.25rem;
+
+              i {
+                font-size: 15px;
+              }
 
               p {
                 color: $text;
@@ -146,6 +150,7 @@
                 font-weight: 500;
                 word-wrap: break-word;
                 margin: 0;
+                line-height: 1;
               }
             }
 

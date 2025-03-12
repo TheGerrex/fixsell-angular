@@ -36,17 +36,46 @@
           <app-search-bar-list
             [(searchQuery)]="searchQuery"
             (searchQueryChange)="onSearchQueryChange($event)"
+            class="search-bar"
           ></app-search-bar-list>
+          <p-selectButton
+            [options]="viewOptions"
+            [(ngModel)]="viewMode"
+            (ngModelChange)="updateViewMode($event)"
+            optionLabel="icon"
+            class="view-mode-button"
+          >
+            <ng-template let-item pTemplate>
+              <i [class]="item.icon"></i>
+            </ng-template>
+          </p-selectButton>
         </div>
         <section *ngIf="isLoading">
           <loading-spinner></loading-spinner>
         </section>
-        <div class="product-list" #productList>
+        <div
+          *ngIf="viewMode === 'gallery'"
+          class="product-list-cards"
+          #productListCards
+        >
           <ng-container *ngIf="filteredPrinters.length > 0">
             <shared-product-card
               [printer]="printer"
               *ngFor="let printer of currentPageFilteredPrinters"
             ></shared-product-card>
+          </ng-container>
+        </div>
+
+        <div
+          *ngIf="viewMode === 'list'"
+          class="product-list-items"
+          #productListItems
+        >
+          <ng-container *ngIf="filteredPrinters.length > 0">
+            <shared-product-list-item
+              [printer]="printer"
+              *ngFor="let printer of currentPageFilteredPrinters"
+            ></shared-product-list-item>
           </ng-container>
         </div>
         <ng-container *ngIf="filteredPrinters.length <= 0" #noProducts>

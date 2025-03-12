@@ -1,0 +1,107 @@
+<div class="product-list-item">
+  <div class="product-list-item-container">
+    <div class="product-image-wrap" [routerLink]="['/printers', printer.id]">
+      <div class="product-feature-image">
+        <img
+          [src]="printer.img_url[0]"
+          [alt]="printer.model"
+          class="product-image"
+        />
+      </div>
+    </div>
+    <div class="product-body">
+      <div class="product-body-wrapper">
+        <div
+          class="product-brand"
+          [innerHTML]="printer.brand | productBrand"
+        ></div>
+        <div class="product-name">
+          <a [routerLink]="['/printers', printer.id]">
+            {{ printer.model }}
+          </a>
+        </div>
+        <div class="product-tags">
+          <div
+            class="product-deal-tag"
+            *ngIf="
+              hasValidDeals(printer.deals) || hasValidPackages(printer.packages)
+            "
+          >
+            <p class="deal-tag-title">Promoción</p>
+          </div>
+          <div [innerHTML]="printer | productType"></div>
+          <div class="tag">
+            <div class="tag-title">{{ printer.category }}</div>
+          </div>
+        </div>
+        <div class="product-features">
+          <div class="feature">
+            <img
+              *ngIf="!printer.color"
+              class="color-icon"
+              src="../../../../assets/svg/colors/B&W.svg"
+              alt="B&W Icon"
+            />
+            <img
+              *ngIf="printer.color"
+              class="color-icon"
+              src="../../../../assets/svg/colors/CMYK.svg"
+              alt="CMYK Icon"
+            />
+            <p>{{ printer.color ? "Color" : "B/N" }}</p>
+          </div>
+          <div class="feature">
+            <i class="pi pi-file"></i>
+            <p class="PrintSize">{{ printer.printSize }}</p>
+          </div>
+          <div class="feature">
+            <i class="pi pi-clock"></i>
+            <p class="PrintVelocity">
+              {{ printer.printVelocity }}
+              {{
+                printer.category === "Etiquetas"
+                  ? "mm/s"
+                  : printer.category === "Plotter"
+                  ? "m2/h"
+                  : "ppm"
+              }}
+            </p>
+          </div>
+        </div>
+        <div class="product-price" *ngIf="hasValidDeals(printer.deals)">
+          <div class="list-price-container">
+            <span class="product-price-deal">
+              {{ printer.deals[0].dealCurrency }}
+              ${{ printer.deals[0].dealPrice }}
+            </span>
+            <span class="product-price-deal-percentage"
+              >({{ printer.deals[0].dealDiscountPercentage }}% dto.)
+            </span>
+          </div>
+          <span class="product-price-list"
+            >Precio de lista:
+            <s>{{ printer.currency }} ${{ printer.price }}</s></span
+          >
+        </div>
+        <div class="package-price" *ngIf="hasValidPackages(printer.packages)">
+          <div class="data-price-container">
+            <span class="data-price">
+              {{ printer.packages[0].packageCurrency }}
+              {{
+                printer.packages[0].packageMonthlyPrice
+                  | currency : "$" : "symbol" : "1.2-3"
+              }}
+              <span
+                class="data-price-discount"
+                *ngIf="printer.packages[0].packageDiscountPercentage !== 0"
+                >({{ printer.packages[0].packageDiscountPercentage }}%
+                dto.)</span
+              >
+            </span>
+          </div>
+          <p class="data-price-label">Renta Mensual + IVA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
