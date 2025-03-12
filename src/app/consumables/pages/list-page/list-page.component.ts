@@ -35,6 +35,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
   searchQuery: string = '';
   private destroy$ = new Subject<void>();
   private searchQuerySubject = new Subject<string>();
+  viewMode: string = 'list';
 
   constructor(
     private consumableService: ConsumableService,
@@ -309,5 +310,9 @@ export class ListPageComponent implements OnInit, OnDestroy {
 
   onSearchQueryChange(searchQuery: string) {
     this.searchQuery = searchQuery.toLowerCase();
+  }
+
+  setViewMode(mode: string) {
+    this.viewMode = mode;
   }
 }

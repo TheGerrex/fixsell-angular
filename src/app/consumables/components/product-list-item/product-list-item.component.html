@@ -1,0 +1,79 @@
+<div class="product-list-item">
+  <div class="product-list-item-container">
+    <div
+      class="product-image-wrap"
+      [routerLink]="['/consumables', consumible.id]"
+    >
+      <div class="product-feature-image">
+        <img
+          [src]="consumible.img_url[0]"
+          [alt]="consumible.name"
+          class="product-image"
+        />
+      </div>
+    </div>
+    <div class="product-body">
+      <div class="product-body-wrapper">
+        <div
+          class="product-brand"
+          [innerHTML]="consumible.brand | productBrand"
+        ></div>
+        <div class="product-name">
+          <a
+            class="product-name-link"
+            [routerLink]="['/consumables', consumible.id]"
+          >
+            {{ consumible.name }}
+          </a>
+        </div>
+        <div class="product-tags">
+          <div class="product-deal-tag" *ngIf="hasValidDeals(consumible.deals)">
+            <p class="deal-tag-title">Promoción</p>
+          </div>
+          <div class="tag">
+            <div class="tag-title">{{ consumible.category }}</div>
+          </div>
+        </div>
+
+        <div class="product-features">
+          <div class="feature" [ngSwitch]="consumible.color">
+            <div *ngSwitchCase="'K'" class="circle black"></div>
+            <div *ngSwitchCase="'C'" class="circle cyan"></div>
+            <div *ngSwitchCase="'M'" class="circle magenta"></div>
+            <div *ngSwitchCase="'Y'" class="circle yellow"></div>
+            <div *ngSwitchCase="'BK'" class="circle black-gloss"></div>
+            <div *ngSwitchCase="'MK'" class="circle black-matte"></div>
+            <p class="Color">{{ consumible.color | consumibleColors }}</p>
+          </div>
+          <div class="feature">
+            <i class="pi pi-verified"></i>
+            <p class="OEM">
+              {{ consumible.origen }}
+            </p>
+          </div>
+          <div class="feature" *ngIf="consumible.yield">
+            <i class="pi pi-chart-bar"></i>
+            <p class="Yield">
+              {{ consumible.yield | consumibleYield }} paginas
+            </p>
+          </div>
+        </div>
+        <div class="product-price" *ngIf="hasValidDeals(consumible.deals)">
+          <div class="list-price-container">
+            <span class="product-price-deal">
+              {{ consumible.deals[0].dealCurrency }}
+              ${{ consumible.deals[0].dealPrice }}
+            </span>
+            <span class="product-price-deal-percentage"
+              >({{ consumible.deals[0].dealDiscountPercentage }}% dto.)
+            </span>
+          </div>
+          <span class="product-price-list"
+            >Precio de lista:
+            <s>{{ consumible.currency }} ${{ consumible.price }}</s></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

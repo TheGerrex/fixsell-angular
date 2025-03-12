@@ -16,6 +16,7 @@ import { ConsumibleColorsPipe } from './pipes/consumible-colors.pipe';
 import { PromotionListComponent } from './components/consumable-list/consumable-list.component';
 import { RelatedConsumablesListComponent } from './components/related-consumables-list/related-consumables-list.component';
 import { ConsumibleYieldPipe } from './pipes/consumible-yield.pipe';
+import { ProductListItemComponent } from './components/product-list-item/product-list-item.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ConsumibleYieldPipe } from './pipes/consumible-yield.pipe';
     PromotionListComponent,
     RelatedConsumablesListComponent,
     ConsumibleYieldPipe,
+    ProductListItemComponent,
   ],
   imports: [
     CommonModule,

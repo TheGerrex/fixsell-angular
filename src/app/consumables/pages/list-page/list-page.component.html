@@ -35,31 +35,62 @@
         ></consumible-filter>
       </div>
       <div class="product-list-container">
-        <div class="product-list-col">
-          <div class="search-bar-container">
-            <app-search-bar-list
-              [(searchQuery)]="searchQuery"
-              (searchQueryChange)="onSearchQueryChange($event)"
-            ></app-search-bar-list>
+        <div class="search-bar-container">
+          <app-search-bar-list
+            [(searchQuery)]="searchQuery"
+            (searchQueryChange)="onSearchQueryChange($event)"
+            class="search-bar"
+          ></app-search-bar-list>
+          <div class="toggle-buttons">
+            <button
+              [class.active]="viewMode === 'list'"
+              (click)="setViewMode('list')"
+            >
+              <i class="pi pi-bars"></i>
+            </button>
+            <button
+              [class.active]="viewMode === 'grid'"
+              (click)="setViewMode('grid')"
+            >
+              <i class="pi pi-th-large"></i>
+            </button>
           </div>
-          <section *ngIf="isLoading">
-            <loading-spinner></loading-spinner>
-          </section>
-          <div class="product-list" #productList>
-            <ng-container *ngIf="filteredConsumables.length > 0">
-              <consumable-product-card
-                [consumible]="consumable"
-                *ngFor="let consumable of currentPageFilteredConsumables"
-              ></consumable-product-card>
-            </ng-container>
-          </div>
-          <ng-container *ngIf="filteredConsumables.length <= 0" #noProducts>
-            <div class="not-found" *ngIf="!isLoading">
-              <i class="pi pi-exclamation-circle" style="font-size: 4rem"></i>
-              <p>No se encontraron productos</p>
-            </div>
+        </div>
+
+        <section *ngIf="isLoading">
+          <loading-spinner></loading-spinner>
+        </section>
+        <div
+          *ngIf="viewMode === 'grid'"
+          class="product-list-cards"
+          #productListCards
+        >
+          <ng-container *ngIf="filteredConsumables.length > 0">
+            <consumable-product-card
+              [consumible]="consumable"
+              *ngFor="let consumable of currentPageFilteredConsumables"
+            ></consumable-product-card>
           </ng-container>
         </div>
+
+        <div
+          *ngIf="viewMode === 'list'"
+          class="product-list-items"
+          #productListItems
+        >
+          <ng-container *ngIf="filteredConsumables.length > 0">
+            <consumable-product-list-item
+              [consumible]="consumable"
+              *ngFor="let consumable of currentPageFilteredConsumables"
+            ></consumable-product-list-item>
+          </ng-container>
+        </div>
+        <ng-container *ngIf="filteredConsumables.length <= 0" #noProducts>
+          <div class="not-found" *ngIf="!isLoading">
+            <i class="pi pi-exclamation-circle" style="font-size: 4rem"></i>
+            <p>No se encontraron productos</p>
+          </div>
+        </ng-container>
         <div
           class="pagination-container"
           *ngIf="filteredConsumables.length > 0 && totalPages > 1"

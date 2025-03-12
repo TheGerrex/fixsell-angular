@@ -38,23 +38,26 @@
             (searchQueryChange)="onSearchQueryChange($event)"
             class="search-bar"
           ></app-search-bar-list>
-          <p-selectButton
-            [options]="viewOptions"
-            [(ngModel)]="viewMode"
-            (ngModelChange)="updateViewMode($event)"
-            optionLabel="icon"
-            class="view-mode-button"
-          >
-            <ng-template let-item pTemplate>
-              <i [class]="item.icon"></i>
-            </ng-template>
-          </p-selectButton>
+          <div class="toggle-buttons">
+            <button
+              [class.active]="viewMode === 'list'"
+              (click)="setViewMode('list')"
+            >
+              <i class="pi pi-bars"></i>
+            </button>
+            <button
+              [class.active]="viewMode === 'grid'"
+              (click)="setViewMode('grid')"
+            >
+              <i class="pi pi-th-large"></i>
+            </button>
+          </div>
         </div>
         <section *ngIf="isLoading">
           <loading-spinner></loading-spinner>
         </section>
         <div
-          *ngIf="viewMode === 'gallery'"
+          *ngIf="viewMode === 'grid'"
           class="product-list-cards"
           #productListCards
         >
