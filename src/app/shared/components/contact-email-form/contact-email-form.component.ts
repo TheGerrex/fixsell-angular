@@ -46,7 +46,7 @@ export class ContactEmailFormComponent {
     }
     const formData = this.contactForm.value;
     this.isSubmitting = true;
-    this.contactFormService.submit(formData).subscribe(
+    this.contactFormService.submitForm(formData).subscribe(
       () => {
         this.isSubmitting = false;
         this.isSuccess = true;

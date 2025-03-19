@@ -1,39 +1,87 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ToastService } from '../toast.service';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
+
+interface formDataContact {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactFormService {
 
-  constructor(private http: HttpClient, private toastService: ToastService) { }
-
+  constructor(private http: HttpClient) { }
   private readonly baseUrl: string = environment.baseUrl;
+  leadId: number = 0; // Assign an initial value to leadId
 
-  submitForm(data: any) {
-    const formData = data;
-    // console.log(formData);
-    this.toastService.showSuccess('El formulario se ha mandado correctamente', 'Pronto nos pondremos en contacto contigo');
-    // Make an HTTP POST request to your NestJS server
-    this.http.post(`${this.baseUrl}/email/send-email`, formData)
-      .subscribe(
-        () => {
-          this.toastService.showSuccess('El formulario se ha mandado correctamente', 'Pronto nos pondremos en contacto contigo');
+  submitForm(data: formDataContact): Observable<any> {
+
+    const geoLocationData = JSON.parse(localStorage.getItem('geoLocationData') || '{}');
+
+    const formData = {
+      client: data.name,
+      status: 'prospect',
+      product_interested: 'contact-form', // Specify the product interested
+      type_of_product: 'contact',// Specify the type of product
+      email: data.email,
+      phone: data.phone,
+      regionLocation: geoLocationData.region,
+      zoneLocation: geoLocationData.zone,
+    };
+
+    console.log("Submitting Form with data:", formData);
+
+    // Make the POST request
+    return new Observable((observer) => {
+      this.http.post(`${this.baseUrl}/leads`, formData).subscribe({
+        next: (response: any) => {
+
+          // Store the id
+          this.leadId = response.id;
+
+          // Prepare the sales communication data
+          const salesCommunicationData = {
+            message: data.message,
+            date: new Date().toISOString(),
+            type: 'email',
+            leadId: this.leadId,
+            notes: 'generado automáticamente por el sistema',
+          };
+
+          // Make the POST request for sales communication
+          const salesCommunicationRequest = this.http.post(`${this.baseUrl}/sale-communication`, salesCommunicationData);
+
+          // Prepare the email data
+          const emailData = {
+            name: data.name,
+            phone: data.phone,
+            email: data.email,
+            message: data.message,
+          };
+
+          // Send the email
+          const emailRequest = this.http.post(`${this.baseUrl}/email/send-email`, emailData);
+
+          // Wait for both requests to complete
+          forkJoin([salesCommunicationRequest, emailRequest]).subscribe({
+            next: () => {
+              observer.next();
+              observer.complete();
+            },
+            error: (error) => {
+              observer.error(error);
+            }
+          });
         },
-        (error) => {
-          console.error('Error submitting form:', error);
-          this.toastService.showError('Error de envio de formulario.', 'Intentelo otra vez porfavor');
-        }
-      );
-  }
-
-  submit(data: any): Observable<any> {
-    const formData = data;
-    console.log(formData);
-    // Make an HTTP POST request to your NestJS server
-    return this.http.post(`${this.baseUrl}/email/send-email`, formData);
+        error: (error) => {
+          observer.error(error);
+        },
+      });
+    });
   }
 }

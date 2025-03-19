@@ -22,6 +22,8 @@ export class ProductContactFormService {
 
   submitForm(data: formDataRentPackage, product: string, productType: string) {
 
+    const geoLocationData = JSON.parse(localStorage.getItem('geoLocationData') || '{}');
+
     const formData = {
       client: data.companyName,
       status: 'prospect',
@@ -29,6 +31,8 @@ export class ProductContactFormService {
       type_of_product: productType,
       email: data.email,
       phone: data.phone,
+      regionLocation: geoLocationData.region,
+      zoneLocation: geoLocationData.zone,
     };
 
     // Make the POST request
