@@ -23,7 +23,7 @@ interface ContactFormDto {
 }
 
 interface LeadData {
-  name: string;
+  client: string;
   status: string;
   product_interested: string;
   type_of_product: string;
@@ -54,7 +54,7 @@ export class ContactFormService {
     const geoLocationData = JSON.parse(localStorage.getItem('geoLocationData') || '{}');
 
     const leadData: LeadData = {
-      name: data.name,
+      client: data.name,
       status: 'prospect',
       product_interested: 'contact-form',
       type_of_product: 'contact',
