@@ -1,50 +1,77 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastService } from '../toast.service';
 import { environment } from 'src/environments/environment';
 import { Observable, forkJoin } from 'rxjs';
 
-interface formDataRentPackage {
+interface ProductFormData {
   companyName: string;
   phone: string;
   email: string;
   message: string;
 }
 
+interface ProductContactFormDto {
+  client: string;
+  phone: string;
+  email: string;
+  message: string;
+  status: string;
+  product_interested: string;
+  type_of_product: string;
+  regionLocation: string;
+  zoneLocation: string;
+}
+
+interface ProductLeadData {
+  client: string;
+  status: string;
+  product_interested: string;
+  type_of_product: string;
+  email: string;
+  phone: string;
+  regionLocation: string;
+  zoneLocation: string;
+}
+
+interface SalesCommunicationData {
+  message: string;
+  date: string;
+  type: string;
+  leadId: number;
+  notes: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductContactFormService {
+  private readonly baseUrl: string = environment.baseUrl;
+  private leadId: number = 0;
 
   constructor(private http: HttpClient) { }
-  private readonly baseUrl: string = environment.baseUrl;
-  leadId: number = 0; // Assign an initial value to leadId
 
-  submitForm(data: formDataRentPackage, product: string, productType: string) {
-
+  submitForm(data: ProductFormData, product: string, productType: string): Observable<any> {
     const geoLocationData = JSON.parse(localStorage.getItem('geoLocationData') || '{}');
 
-    const formData = {
+    const leadData: ProductLeadData = {
       client: data.companyName,
       status: 'prospect',
       product_interested: product,
       type_of_product: productType,
       email: data.email,
       phone: data.phone,
-      regionLocation: geoLocationData.region,
-      zoneLocation: geoLocationData.zone,
+      regionLocation: geoLocationData.region || 'No especificada',
+      zoneLocation: geoLocationData.zone || 'No especificada',
     };
 
-    // Make the POST request
-    return new Observable((observer) => {
-      this.http.post(`${this.baseUrl}/leads`, formData).subscribe({
-        next: (response: any) => {
+    console.log("Submitting Product Form with data:", leadData);
 
-          // Store the id
+    return new Observable((observer) => {
+      this.http.post(`${this.baseUrl}/leads`, leadData).subscribe({
+        next: (response: any) => {
           this.leadId = response.id;
 
-          // Prepare the sales communication data
-          const salesCommunicationData = {
+          const salesCommunicationData: SalesCommunicationData = {
             message: data.message,
             date: new Date().toISOString(),
             type: 'email',
@@ -52,21 +79,21 @@ export class ProductContactFormService {
             notes: 'generado automáticamente por el sistema',
           };
 
-          // Make the POST request for sales communication
-          const salesCommunicationRequest = this.http.post(`${this.baseUrl}/sale-communication`, salesCommunicationData);
-
-          // Prepare the email data
-          const emailData = {
-            name: data.companyName,
+          const emailData: ProductContactFormDto = {
+            client: data.companyName,
             phone: data.phone,
             email: data.email,
             message: data.message,
+            status: 'prospect',
+            product_interested: product,
+            type_of_product: productType,
+            regionLocation: geoLocationData.region || 'No especificada',
+            zoneLocation: geoLocationData.zone || 'No especificada',
           };
 
-          // Send the email
+          const salesCommunicationRequest = this.http.post(`${this.baseUrl}/sale-communication`, salesCommunicationData);
           const emailRequest = this.http.post(`${this.baseUrl}/email/send-email`, emailData);
 
-          // Wait for both requests to complete
           forkJoin([salesCommunicationRequest, emailRequest]).subscribe({
             next: () => {
               observer.next();

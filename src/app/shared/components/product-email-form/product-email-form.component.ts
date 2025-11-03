@@ -46,20 +46,32 @@ export class ProductEmailFormComponent {
       this.productContactForm.markAllAsTouched();
       return;
     }
+
+    // Validate that we have product and productType
+    if (!this.product || !this.productType) {
+      console.error('Product or ProductType not provided to ProductEmailFormComponent');
+      this.isError = true;
+      return;
+    }
+
     const formData = this.productContactForm.value;
     this.isSubmitting = true;
-    this.productContactFormService.submitForm(formData, this.product, this.productType).subscribe(
-      () => {
+    
+    console.log('Submitting form with product:', this.product, 'and productType:', this.productType);
+    
+    this.productContactFormService.submitForm(formData, this.product, this.productType).subscribe({
+      next: () => {
         this.isSubmitting = false;
         this.isSuccess = true;
         this.cdr.detectChanges();
       },
-      () => {
+      error: (error) => {
+        console.error('Error submitting product form:', error);
         this.isSubmitting = false;
         this.isError = true;
         this.cdr.detectChanges();
       }
-    );
+    });
   }
 
   reloadForm() {
