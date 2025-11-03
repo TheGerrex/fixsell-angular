@@ -11,7 +11,7 @@ interface ProductFormData {
 }
 
 interface ProductContactFormDto {
-  client: string;
+  name: string;
   phone: string;
   email: string;
   message: string;
@@ -80,7 +80,7 @@ export class ProductContactFormService {
           };
 
           const emailData: ProductContactFormDto = {
-            client: data.companyName,
+            name: data.companyName,
             phone: data.phone,
             email: data.email,
             message: data.message,
